@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Static file server for the Kodi repository, with HTTP Range support (backlog 010). Stdlib only.
 
-  kodi_repo_server.py --port 8090 --bind 0.0.0.0 --directory /srv/kodi-repo
+  kodi_repo_server.py --port 8090 --bind 127.0.0.1 --directory dist/repo
 
 Like `python3 -m http.server` (index.html, directory listings), plus single byte ranges (206 / 416). Dotfiles
-(e.g. publish's .lock) are neither listed nor served, and nothing outside the root is served, even via symlinks.
+(e.g. an old .lock) are neither listed nor served, and nothing outside the root is served, even via symlinks.
 Kodi reads zips over HTTP with Range requests, e.g. "Install from zip file" browses into the zip; with plain
 http.server Kodi 21.3 logged "Requested range was not delivered by the server" and crashed.
-Run by kodi-repo.service.
+Used by the GitHub release job and the tests to verify a repository tree locally (build_repo.py verify).
 """
 import argparse
 import functools

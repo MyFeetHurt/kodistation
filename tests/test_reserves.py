@@ -503,25 +503,28 @@ def _callers(src, pattern):
 
 
 def test_api_writes_section_is_exactly_the_audited_writes():
-    """007 + 014 + 006 + 018: the writes section holds five DELETEs, one POST and two PUTs, nothing else writes."""
+    """007 + 014 + 006 + 018 + 011: the writes section holds six DELETEs, one POST, three PUTs and the GET that starts
+    a transcode (011), nothing else writes."""
     src = _src("api.py")
     section = src.split("# --- writes (006, 007, 014, 018)", 1)
     assert len(section) == 2
     body = section[1].split("\n    # --- end of writes", 1)[0]
     writes = re.findall(r"^    def (\w+)\(", body, re.M)
     assert writes == ["delete", "cancel_reserve", "remove_skip", "remove_overlap", "post", "create_reserve", "put",
-                      "protect_recorded", "unprotect_recorded", "delete_recorded", "delete_video_file"]
+                      "protect_recorded", "unprotect_recorded", "delete_recorded", "delete_video_file",
+                      # transcoded playback (011)
+                      "start_recorded_hls", "streams", "keep_stream", "stop_stream", "stream_playlist_url"]
     assert '"PATCH"' not in src and "method=\"POST\"" not in src
     assert src.count('"POST"') == 1 and '"POST"' in _api_methods(src)["post"]
     assert src.count('"DELETE"') == 1 and '"DELETE"' in _api_methods(src)["delete"]
     assert src.count('"PUT"') == 1 and '"PUT"' in _api_methods(src)["put"]  # protect / delete (006)
-    # 3 reservation DELETEs + delete_recorded (006) + delete_video_file (018)
-    assert src.count("self.delete(") == 5
+    # 3 reservation DELETEs + delete_recorded (006) + delete_video_file (018) + stop_stream (011)
+    assert src.count("self.delete(") == 6
     assert _callers(src, r"\bself\.delete\(") == {"cancel_reserve", "remove_skip", "remove_overlap",
-                                                    "delete_recorded", "delete_video_file"}
+                                                    "delete_recorded", "delete_video_file", "stop_stream"}
     assert _callers(src, r"\bself\.post\(") == {"create_reserve"} and src.count("self.post(") == 1
-    assert _callers(src, r"\bself\.put\(") == {"protect_recorded", "unprotect_recorded"}
-    assert src.count("self.put(") == 2
+    assert _callers(src, r"\bself\.put\(") == {"protect_recorded", "unprotect_recorded", "keep_stream"}  # (011)
+    assert src.count("self.put(") == 3
 
 
 def test_api_request_is_called_only_from_get_delete_and_post():
@@ -645,12 +648,27 @@ def test_dev_tool_accepts_dev_and_counts_concurrency(monkeypatch, no_dns):
     monkeypatch.setenv("KODI_SSH_USER", "kodi")
     tool = _test_reserve_tool()
     assert tool.check_base(DEV_URL + "/") == DEV_URL
+    monkeypatch.setattr(tool, "_on_vm", lambda: True)  # on the VM itself
     assert tool.check_base("http://localhost:8888") == "http://localhost:8888"
+    monkeypatch.setattr(tool, "_on_vm", lambda: False)  # 011 review: elsewhere localhost may tunnel to production
+    with pytest.raises(SystemExit):
+        tool.check_base("http://localhost:8888")
     assert tool.vm_ssh() == "kodi@epgs-dev.test"
     rs = [{"startAt": 0, "endAt": 10}, {"startAt": 5, "endAt": 15}, {"startAt": 0, "endAt": 20, "isSkip": True}]
     assert tool.others_at(rs, 0, 20) == 2
     assert tool.others_at(rs, 10, 20) == 1
     assert tool.others_at([], 0, 10) == 0
+
+
+def test_on_vm_only_on_kodi_host(monkeypatch):
+    """011 review nit 6: _on_vm is True only when this machine owns KODI_HOST's address."""
+    tool = _test_reserve_tool()
+    monkeypatch.delenv("KODI_HOST", raising=False)
+    assert not tool._on_vm()
+    monkeypatch.setenv("KODI_HOST", "127.0.0.1")  # this machine
+    assert tool._on_vm()
+    monkeypatch.setenv("KODI_HOST", "192.0.2.1")  # TEST-NET: never this machine
+    assert not tool._on_vm()
 
 
 class _FakeDev:
@@ -1102,13 +1120,16 @@ def test_add_error_ipc_timeout_is_no_answer():
 
 
 def test_urlopen_and_request_only_in_request_and_live_probe():
-    """L3: every HTTP request of the addon goes through api._request or the GET-only live_probe."""
+    """L3: every HTTP request of the addon goes through api._request, the GET-only live_probe or the HEAD-only
+    stream_playlist_status (011: a static playlist file, no side effect)."""
     src = _src("api.py")
-    assert _callers(src, r"\burlopen\(") == {"_request", "live_probe"}
-    assert _callers(src, r"\bRequest\(") == {"_request", "live_probe"}
-    assert src.count("urlopen(") == 2 and src.count("Request(") == 2
+    assert _callers(src, r"\burlopen\(") == {"_request", "live_probe", "stream_playlist_status"}
+    assert _callers(src, r"\bRequest\(") == {"_request", "live_probe", "stream_playlist_status"}
+    assert src.count("urlopen(") == 3 and src.count("Request(") == 3
     probe = _api_methods(src)["live_probe"]
     assert 'method="GET"' in probe and "data=" not in probe
+    head = _api_methods(src)["stream_playlist_status"]
+    assert 'method="HEAD"' in head and "data=" not in head and "/streamfiles/" in head
     for name, other in _addon_sources().items():
         assert "urlopen" not in other and "Request(" not in other, name
 

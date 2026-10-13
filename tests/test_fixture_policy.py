@@ -1,8 +1,9 @@
 """Backlog 020: the fixtures are free-channel dev captures plus clearly marked synthetic data, nothing else.
 
 No production data, no paid channel, no disk size: the repository is published (019). New fixtures come from
-`make snapshot-dev`, `snapshot-dev2`, `snapshot-schedules`, `snapshot-live`, `snapshot-reserves` (dev EPGStation,
-free channels only); a shape the free channels lack goes into tests/fixtures/synthetic (marked `_synthetic`).
+`make snapshot-dev`, `snapshot-dev2`, `snapshot-schedules`, `snapshot-live`, `snapshot-reserves`, `snapshot-stream`
+(dev EPGStation, free channels only); a shape the free channels lack goes into tests/fixtures/synthetic (marked
+`_synthetic`).
 """
 import glob
 import json
@@ -15,7 +16,7 @@ import snapshot_api
 from conftest import FIXTURES, ROOT
 
 SETS = ("dev", "dev2")
-DIRS = {"dev", "dev2", "live", "synthetic"}
+DIRS = {"dev", "dev2", "live", "synthetic", "streams"}  # streams: 011
 TOP_FILES = {"epgmeta_expected.json", "live_errors.json"}
 OPTIONAL = {"sample.ts"}  # a local sample video the fake server streams when present (never committed)
 # The free channels, pinned here on purpose (not imported from tools/snapshot_api.py, so a change there has to be
@@ -205,3 +206,16 @@ def test_tracked_fixtures_match_the_tree():
         rest = path.split("/", 2)[2]
         assert rest in TOP_FILES or rest.split("/", 1)[0] in DIRS, path
         assert not path.endswith("storages.json"), path
+
+
+def test_stream_fixtures_are_free_and_hold_no_video():
+    """Transcoded playback (011): make snapshot-stream writes these four files (no .ts / .m3u8 file)."""
+    root = os.path.join(FIXTURES, "streams")
+    assert sorted(os.listdir(root)) == ["playlist.txt", "stream_meta.json", "streams.json", "streams_empty.json"]
+    assert _load(root, "streams_empty.json") == {"items": []}
+    channels = _real_channels()
+    for item in _load(root, "streams.json")["items"]:
+        cid = item["channelId"]
+        assert cid in channels and _free(channels[cid]), cid
+    with open(os.path.join(root, "playlist.txt"), encoding="utf-8") as f:
+        assert f.read().startswith("#EXTM3U")

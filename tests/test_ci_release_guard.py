@@ -148,6 +148,9 @@ def test_github_workflow_runs_only_on_github():
     assert "concurrency: gh-pages" in release
     assert "--force" not in text and "push -f" not in text and "+HEAD" not in text
     assert "git push origin HEAD:gh-pages" in release
+    # 023: publish removes the old .lock; no dotfile but .git is ever committed to gh-pages or deployed
+    dots = release.index("find site -mindepth 1 -name .git -prune -o -name '.*' -print")
+    assert release.index("build_repo.py publish --repo-dir site") < dots < release.index("git add -A")
     assert "public_audit.py --zip dist/*.zip" in release
     assert "--expect-base-url \"$PUBLIC_REPO_BASE_URL\"" in release
     assert "PUBLIC_REPO_BASE_URL: https://myfeethurt.github.io/kodistation/" in release
@@ -164,17 +167,70 @@ def test_github_workflow_runs_only_on_github():
     assert uses and all(re.fullmatch(r"[\w.-]+/[\w.-]+@[0-9a-f]{40}", u) for u in uses), uses  # L4: SHA pins
 
 
-def test_gitea_release_checks_pages_before_publishing():
-    """019 B2: the LAN job moves the boxes to Pages (repository 1.1.0), so Pages must already serve the release."""
+# 022: split so that `git grep` for the retired LAN repository finds nothing outside docs/backlog (AC2).
+LAN_DIR = "/srv/" + "kodi-repo"
+LAN_UNIT = "kodi-repo" + ".service"
+LAN_INSTALL = "install_kodi_repo" + "_server.sh"
+MAKE_PUBLISH = "make " + "publish"
+
+
+def test_gitea_release_is_a_get_only_check():
+    """022 C1a: the Gitea tag job publishes nothing; it only checks the tag and that GitHub Pages serves the release."""
     if not os.path.isfile(GITEA):
         pytest.skip("no .gitea in this tree")
     _, release = _release_job(GITEA)
-    check = release.index("verify --base-url https://myfeethurt.github.io/kodistation/")
-    assert check < release.index("make publish")
-    step = release[check:release.index("make publish")]
+    assert 'tools/ci_release_guard.sh "$TAG"' in release
+    assert "build_repo.py check-repo-addon --src repository.kodistation" in release
+    step = release[release.index("verify --base-url https://myfeethurt.github.io/kodistation/"):]
     assert '--require "plugin.video.epgstation=${TAG#v}"' in step
     assert '--require "repository.kodistation=$repo_version"' in step
     assert "--expect-base-url https://myfeethurt.github.io/kodistation/" in step
+    for word in (MAKE_PUBLISH, LAN_DIR, "8090", "build_repo.py publish", "concurrency: kodi-repo"):
+        assert word not in release, word
+    # the exact steps: nothing can be added (e.g. a write step) without changing this test
+    names = re.findall(r"^      - (?:name: (.+)|uses: (.+))$", release, re.M)
+    assert [n or u for n, u in names] == [
+        "actions/checkout@v4",
+        "Annotated tag on main, equal to the addon.xml version",
+        "Repository addon not changed without a version bump",
+        "GitHub Pages serves this release (GET only)",
+    ]
+    runs = re.findall(r"^        run: (?:\|\n((?:          .*\n)+)|(.+)\n)", release, re.M)
+    commands = [[ln.strip() for ln in (block or line).splitlines()] for block, line in runs]
+    sed = "sed -n 's/.*<addon[^>]* version=\"\\([^\"]*\\)\".*/\\1/p' repository.kodistation/addon.xml"
+    assert commands == [
+        ['tools/ci_release_guard.sh "$TAG"'],
+        ["python3 tools/build_repo.py check-repo-addon --src repository.kodistation"],
+        [f"repo_version=$({sed})",
+         "python3 tools/build_repo.py verify --base-url https://myfeethurt.github.io/kodistation/ \\",
+         "--expect-base-url https://myfeethurt.github.io/kodistation/ \\",
+         '--require "plugin.video.epgstation=${TAG#v}" --require "repository.kodistation=$repo_version"'],
+    ]
+    assert "concurrency:" not in release
+
+
+def test_no_lan_repository_left():
+    """022: the LAN repository (:8090 on the dev VM, its unit and install script) is retired; Pages is the only host."""
+    makefile = open(os.path.join(ROOT, "Makefile"), encoding="utf-8").read()
+    assert not re.search(r"^publish:", makefile, re.M)
+    assert "REPO_VERIFY_URL" not in makefile and LAN_DIR not in makefile
+    for name in (LAN_UNIT, LAN_INSTALL):
+        assert not os.path.exists(os.path.join(ROOT, "tools", "dev", name)), name
+    if not os.path.exists(os.path.join(ROOT, ".git")):  # 023: an exported tree has no git
+        pytest.skip("no git checkout")
+    files = subprocess.run(["git", "-C", ROOT, "ls-files", "-z"], check=True, capture_output=True,
+                           text=True).stdout.split("\0")
+    hits = []
+    for rel in files:
+        if not rel or rel.startswith("docs/backlog/"):
+            continue
+        path = os.path.join(ROOT, rel)
+        if not os.path.isfile(path):
+            continue
+        with open(path, "rb") as f:
+            data = f.read()
+        hits += [(rel, w) for w in (LAN_DIR, LAN_UNIT, LAN_INSTALL[:-3], MAKE_PUBLISH) if w.encode() in data]
+    assert hits == []
 
 
 def test_public_base_url_is_the_same_everywhere():

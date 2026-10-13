@@ -7,13 +7,15 @@
       Reproducible zip (sorted, fixed timestamps) with the single top-level folder <id>/; no caches.
   build_repo.py check-zip [--git-root .] ZIP...
       Fail if a zip contains tests/, tools/, dist/, __pycache__, .pyc or dotfiles, or (with --git-root) any file
-      that git does not track.
+      that git does not track (skipped with a note when GIT_ROOT is in no git repository, e.g. a "Download ZIP", or
+      git is not installed; any other git failure exits 2).
   build_repo.py publish --repo-dir DIR ZIP...
       Add zips to DIR/<id>/<id>-<ver>.zip (+ .sha256), extract their assets, rebuild addons.xml(.sha256) from the
       newest version of each id, and write index.html linking the repository zip (copied to DIR/), addons.xml(.sha256)
       and each <id>/ (Kodi caches that listing and refuses unlisted files). A version that is
       already published with different bytes is refused and nothing changes: Kodi would never download it again.
-      One publish at a time: an exclusive flock on DIR/.lock (the server hides dotfiles).
+      One publish at a time: an exclusive flock on DIR itself (local filesystem), so no lock file lands in the
+      published tree (backlog 023); a DIR/.lock of older versions and .*.tmp files of a crashed write are deleted.
   build_repo.py check-repo-addon [--git-root .] [--src repository.kodistation]
       Fail if the repository addon source differs from the newest v* tag while its version is unchanged: the
       next publish would be refused (same id+version, different bytes), so bump it.
@@ -140,7 +142,7 @@ def write_atomic(path, data):
         return False
     d = os.path.dirname(path) or "."
     os.makedirs(d, exist_ok=True)
-    fd, tmp = tempfile.mkstemp(dir=d, prefix=".", suffix=".tmp")
+    fd, tmp = tempfile.mkstemp(dir=d, prefix=".", suffix=".tmp")  # publish deletes ones a crash left (023)
     try:
         with os.fdopen(fd, "wb") as f:
             f.write(data)
@@ -196,6 +198,28 @@ def _forbidden(name):
 def forbidden_entries(zip_path):
     with zipfile.ZipFile(zip_path) as z:
         return [n for n in z.namelist() if _forbidden(n)]
+
+
+class GitError(Exception):
+    """git failed for a reason other than "no repository here" (dubious ownership, bad GIT_DIR, corrupt repo)."""
+
+
+def git_work_tree(root):
+    """"yes" inside a git work tree; "no-git" when git is not installed; "no-repo" when root is in no repository
+    (a GitHub "Download ZIP" tree) or only in a .git directory. Any other git failure raises GitError with git's
+    stderr: it must never quietly skip the untracked-files check (023 review)."""
+    try:
+        done = subprocess.run(["git", "-C", root, "rev-parse", "--is-inside-work-tree"], capture_output=True, text=True)
+    except FileNotFoundError:
+        return "no-git"
+    out = done.stdout.strip()
+    if done.returncode == 0 and out in ("true", "false"):
+        return "yes" if out == "true" else "no-repo"
+    # "(or any of the parent directories)" / "(or any parent up to mount point /)"; a bad GIT_DIR says
+    # "not a git repository: '<dir>'" and stays an error.
+    if done.returncode != 0 and "not a git repository (or any" in done.stderr:
+        return "no-repo"
+    raise GitError(f"git rev-parse in {root} failed (rc {done.returncode}): {done.stderr.strip()}")
 
 
 def untracked_entries(zip_path, git_root):
@@ -377,15 +401,33 @@ def parse_links(text):
 
 
 def publish(repo_dir, zips):
-    """Validate the zips, then publish them under an exclusive flock on repo_dir/.lock (one publish at a time)."""
+    """Validate the zips, then publish them under an exclusive flock on repo_dir itself (one publish at a time).
+
+    The lock is the directory, not a file in it: an empty .lock was committed to gh-pages and served (backlog 023).
+    flock on a directory needs a local filesystem (Linux ext4 / tmpfs: the CI runners and the dev VM), not NFS.
+    A .lock left by older versions and temp files of a crashed write_atomic are deleted under the lock; on gh-pages
+    `git add -A` stages that as a normal change.
+    """
     infos = [read_zip(z) for z in zips]
     os.makedirs(repo_dir, exist_ok=True)
-    with open(os.path.join(repo_dir, ".lock"), "a") as lock:
+    lock = os.open(repo_dir, os.O_RDONLY)
+    try:
         fcntl.flock(lock, fcntl.LOCK_EX)
-        try:
-            return _publish_locked(repo_dir, infos)
-        finally:
-            fcntl.flock(lock, fcntl.LOCK_UN)
+        _remove_leftovers(repo_dir)
+        return _publish_locked(repo_dir, infos)
+    finally:
+        os.close(lock)  # releases the flock
+
+
+def _remove_leftovers(repo_dir):
+    """The .lock of older versions and the .*.tmp files of a write_atomic that crashed."""
+    for d, dirs, files in os.walk(repo_dir):
+        dirs[:] = [x for x in dirs if not x.startswith(".")]  # never .git
+        for f in files:
+            p = os.path.join(d, f)
+            stale_tmp = f.startswith(".") and f.endswith(".tmp")
+            if (stale_tmp or (d == repo_dir and f == ".lock")) and os.path.isfile(p) and not os.path.islink(p):
+                os.unlink(p)
 
 
 def _publish_locked(repo_dir, infos):
@@ -521,8 +563,8 @@ def verify(base_url, expect_base_url=None, require=None):
 
     Also: Range support (Kodi reads zips with Range requests), the repository zip at the root linked from
     index.html and equal to <id>/<zip>, with expect_base_url the URLs baked into the repository addon, and with
-    require ({addon id: version}) that addons.xml lists each of those add-ons at exactly that version (019: the LAN
-    release job checks that GitHub Pages already serves the release before it moves the boxes there).
+    require ({addon id: version}) that addons.xml lists each of those add-ons at exactly that version (019: the Gitea
+    release check requires that GitHub Pages already serves the tagged release).
     """
     try:
         check_base_url(base_url)
@@ -652,7 +694,13 @@ def main(argv=None):
             print(args.out)
         elif args.cmd == "check-zip":
             bad = [f"{zp}: {n}" for zp in args.zips for n in forbidden_entries(zp)]
-            if args.git_root:
+            state = git_work_tree(args.git_root) if args.git_root else None
+            if state == "no-git":
+                print("note: git not installed; skipped the untracked-files check", file=sys.stderr)
+            elif state == "no-repo":
+                print(f"note: {args.git_root} is not a git work tree; skipped the untracked-files check",
+                      file=sys.stderr)
+            elif state == "yes":
                 bad += [f"{zp}: {n} (not tracked by git)" for zp in args.zips
                         for n in untracked_entries(zp, args.git_root)]
             if bad:
@@ -680,6 +728,9 @@ def main(argv=None):
             if problems:
                 return 1
             print(f"OK {args.base_url}")
+    except GitError as e:
+        print(f"build_repo: {e}", file=sys.stderr)
+        return 2
     except (RepoError, OSError, subprocess.CalledProcessError) as e:
         print(f"build_repo: {e}", file=sys.stderr)
         return 1

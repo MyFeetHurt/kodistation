@@ -1114,3 +1114,44 @@ def test_list_category_subgenre():
     assert items.list_category({"genre": "6", "subGenre": "x"}, {}, "ja", s) == "映画 / #x"
     assert items.list_category({"genre": "99"}, {}, "ja", s) == "99"
     assert items.list_category({"genre": "x"}, {}, "ja", s) == "x"
+
+
+# --- transcoded playback (011) ----------------------------------------------------------------------------------
+
+STREAM_STRINGS = {"stream": "変換して再生", "choose": "再生するファイルを選択", "stop": "録画を停止", "protect": "保護",
+                  "delete": "削除"}
+
+
+def _actions(d):
+    """"action" (or "action:op") of each context entry."""
+    import urllib.parse
+
+    out = []
+    for _, url in d["context"]:
+        query = urllib.parse.parse_qs(urllib.parse.urlparse(url).query)
+        out.append(query["action"][0] + (":" + query["op"][0] if "op" in query else ""))
+    return out
+
+
+def test_stream_entry_after_choose_before_writes(api):
+    multi = _recorded("dev", 4)
+    assert len(multi["videoFiles"]) > 1
+    d = items.recorded_item(multi, api, {}, "ja", STREAM_STRINGS)
+    acts = _actions(d)
+    assert acts[:2] == ["choose", "stream"] and acts.count("stream") == 1
+    assert d["context"][1] == ("変換して再生", f"plugin://plugin.video.epgstation/?action=stream&id={multi['id']}")
+    single = dict(multi, videoFiles=multi["videoFiles"][:1])
+    assert _actions(items.recorded_item(single, api, {}, "ja", STREAM_STRINGS))[0] == "stream"
+
+
+def test_stream_entry_before_stop_while_recording(api):
+    rec = dict(_recorded("dev", 4), isRecording=True)
+    acts = _actions(items.recorded_item(rec, api, {}, "ja", STREAM_STRINGS))
+    assert acts.index("stream") < acts.index("reserve_action:stop")
+
+
+def test_stream_entry_absent_without_files_or_string(api):
+    rec = _recorded("dev", 4)
+    assert "stream" not in _actions(items.recorded_item(dict(rec, videoFiles=[]), api, {}, "ja", STREAM_STRINGS))
+    assert "stream" not in _actions(items.recorded_item(rec, api, {}, "ja"))
+    assert "stream" not in _actions(items.recorded_item(rec, api, {}, "ja", dict(STREAM_STRINGS, stream="")))

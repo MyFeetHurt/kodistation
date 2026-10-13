@@ -1093,7 +1093,9 @@ def test_api_recorded_writes():
     src = _src("api.py")
     methods = _api_methods(src)
     assert src.count('"PUT"') == 1 and '"PUT"' in methods["put"]
-    assert _callers(src, r"\bself\.put\(") == {"protect_recorded", "unprotect_recorded"} and src.count("self.put(") == 2
+    # transcoded playback (011): keep_stream is the only other PUT
+    assert _callers(src, r"\bself\.put\(") == {"protect_recorded", "unprotect_recorded", "keep_stream"}
+    assert src.count("self.put(") == 3
     assert "self.delete(" in methods["delete_recorded"]
     assert re.search(r'f"/recorded/\{int\(recorded_id\)\}/protect"', methods["protect_recorded"])
     assert re.search(r'f"/recorded/\{int\(recorded_id\)\}/unprotect"', methods["unprotect_recorded"])
@@ -1123,10 +1125,11 @@ def test_recorded_writes_are_called_only_from_do_recorded_action():
 
 
 def test_pure_modules_have_no_write_call():
-    for name in ("items.py", "recorded.py", "library.py", "guide.py", "live.py", "reserves.py"):
+    for name in ("items.py", "recorded.py", "library.py", "guide.py", "live.py", "reserves.py", "transcode.py"):
         src = _src(name)
         assert not re.search(r"\.(cancel_reserve|remove_skip|remove_overlap|delete|post|put|create_reserve|"
-                             r"protect_recorded|unprotect_recorded|delete_recorded|delete_video_file)\(", src), name
+                             r"protect_recorded|unprotect_recorded|delete_recorded|delete_video_file|"
+                             r"start_recorded_hls|keep_stream|stop_stream)\(", src), name
         assert "urlopen" not in src and '"POST"' not in src and '"PUT"' not in src, name
 
 
@@ -1384,6 +1387,7 @@ def test_read_access_log_takes_rotated_files_newer_than_the_snapshot(tmp_path, m
     monkeypatch.setenv("EPGS_DEV_URL", "http://epgs-dev.test:8888")  # 019: dev tools need both URLs
     monkeypatch.setenv("EPGS_PROD_URL", "http://epgs-prod.test:9984")
     monkeypatch.setattr(tool, "_addresses", lambda host: set())  # no DNS in tests
+    monkeypatch.setattr(tool, "_on_vm", lambda: True)  # these run on the VM (011 review nit 6)
     dev = tool.Dev("http://localhost:8888")
     text = tool.read_access_log(dev, (time.time() - 3600) * 1000)
     assert text.splitlines() == ["rotated", "now"]  # oldest first; the 2-day-old file and encode.log left out
@@ -1399,6 +1403,7 @@ def test_read_kodi_log_reads_old_and_current_or_none(tmp_path, monkeypatch):
     monkeypatch.setenv("EPGS_DEV_URL", "http://epgs-dev.test:8888")  # 019: dev tools need both URLs
     monkeypatch.setenv("EPGS_PROD_URL", "http://epgs-prod.test:9984")
     monkeypatch.setattr(tool, "_addresses", lambda host: set())  # no DNS in tests
+    monkeypatch.setattr(tool, "_on_vm", lambda: True)  # these run on the VM (011 review nit 6)
     dev = tool.Dev("http://localhost:8888")
     assert tool.read_kodi_log(dev).split() == ["old", "new"]
     (tmp_path / "kodi.log").unlink()
@@ -1640,7 +1645,8 @@ def test_delete_file_yes_writes_once(kodi, fake_server, handler, idx, vid, keep)
     kodi.reset()
     run_plugin("action=list")
     li = _list_item(kodi, 9)
-    assert [c[0] for c in li.context] == ["Protect", "Delete"]  # no 別のファイルを選ぶ, no ファイルを削除
+    # no 別のファイルを選ぶ, no ファイルを削除 (011: 変換して再生 first)
+    assert [c[0] for c in li.context] == ["Stream transcoded", "Protect", "Delete"]
     gone, kept = files[vid], files[keep]
     files_lines = [ln for ln in li.tag.data["plot"].split("\n") if ln.startswith("Files: ")]  # 002: in the block
     assert files_lines == [f"Files: {kept['name']} {items.fmt_size(kept['size'])}"] and gone["id"] != kept["id"]
@@ -1940,3 +1946,26 @@ def test_audit_refuses_a_video_get_or_put_path(tmp_path, monkeypatch):
     assert not tool._adopted_write("PUT", "/api/videos/700", {70}, {700})
     assert not tool._adopted_write("DELETE", "/api/videos/700", {70}, set())
     assert tool._adopted_write("DELETE", "/api/recorded/70", {70}, set())
+
+
+def test_stream_writes_are_called_only_from_the_stream_path():
+    """Transcoded playback (011): the stream start / keep / stop are reached only from do_stream and its helpers."""
+    hits = {}
+    for name, src in _addon_sources().items():
+        for m in re.finditer(r"\.(start_recorded_hls|keep_stream|stop_stream)\(", src):
+            hits.setdefault(name, []).append(m.group(1))
+    # tester F1: _stop_stale_streams stops what an earlier run left (after a GET /streams match)
+    assert hits == {"plugin.py": ["start_recorded_hls", "stop_stream", "keep_stream", "stop_stream"]}
+    plugin = _src("plugin.py")
+    assert "start_recorded_hls(" in _method_body(plugin, "do_stream")
+    assert "keep_stream(" in plugin.split("    def _keep(", 1)[1].split("\n    def ", 1)[0]
+    assert _callers(plugin, r"\b_keep\(") == {"_wait_ready", "_play_stream"}
+    assert "stop_stream(" in plugin.split("    def _stop_stream(", 1)[1].split("\n    def ", 1)[0]
+    assert _callers(plugin, r"\.stop_stream\(") == {"_stop_stream", "_stop_stale_streams"}
+    assert _callers(plugin, r"\b_stop_stale_streams\(") == {"do_stream"}
+    assert _callers(plugin, r"\b_stop_stream\(") == {"do_stream"}
+    # 011 review nit 5: the transcode start path and the stream write paths live in their api methods only
+    api = _src("api.py")
+    assert _callers(api, r"/streams/recorded/") == {"start_recorded_hls"}
+    assert _callers(api, r'"/streams/\{int\(stream_id\)\}/keep"') == {"keep_stream"}
+    assert _callers(api, r'f"/streams/\{int\(stream_id\)\}"') == {"stop_stream"}

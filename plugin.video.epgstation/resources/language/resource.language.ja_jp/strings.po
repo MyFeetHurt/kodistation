@@ -353,6 +353,26 @@ msgctxt "#30087"
 msgid "Protected (not auto-deleted)"
 msgstr "保護中 (自動削除の対象外)"
 
+msgctxt "#30088"
+msgid "Stream transcoded"
+msgstr "変換して再生"
+
+msgctxt "#30089"
+msgid "From the beginning"
+msgstr "最初から"
+
+msgctxt "#30090"
+msgid "From {0}"
+msgstr "{0} から"
+
+msgctxt "#30091"
+msgid "From a position…"
+msgstr "位置を指定…"
+
+msgctxt "#30092"
+msgid "Starting transcoded stream…"
+msgstr "変換を開始しています…"
+
 msgctxt "#30100"
 msgid "Cannot reach EPGStation"
 msgstr "EPGStation に接続できません"
@@ -368,6 +388,30 @@ msgstr "ライブ配信を開始できません"
 msgctxt "#30103"
 msgid "Live streaming is disabled on the server"
 msgstr "サーバーでライブ配信が無効になっています"
+
+msgctxt "#30104"
+msgid "Server: streaming off"
+msgstr "サーバーで変換再生が無効です"
+
+msgctxt "#30105"
+msgid "No free encoder on the server"
+msgstr "エンコーダーが空いていません"
+
+msgctxt "#30106"
+msgid "Could not start transcoded stream"
+msgstr "変換再生を開始できません"
+
+msgctxt "#30107"
+msgid "Start position is past the end"
+msgstr "開始位置が録画の外です"
+
+msgctxt "#30108"
+msgid "Start position (hours:minutes)"
+msgstr "開始位置 (時:分)"
+
+msgctxt "#30109"
+msgid "Transcoded stream ended"
+msgstr "変換再生が終了しました"
 
 msgctxt "#30200"
 msgid "Server"
@@ -532,3 +576,27 @@ msgstr "ドロップログがありません"
 msgctxt "#30270"
 msgid "All ({0})"
 msgstr "すべて ({0})"
+
+msgctxt "#30280"
+msgid "Transcoded playback"
+msgstr "変換再生"
+
+msgctxt "#30281"
+msgid "Recording stream mode"
+msgstr "録画の変換モード"
+
+msgctxt "#30282"
+msgid "Ask each time"
+msgstr "毎回選ぶ"
+
+msgctxt "#30283"
+msgid "Used by the context menu entry \"Stream transcoded\" on a recording: EPGStation re-encodes the recording as HLS in one of the recorded-stream modes of its config.yml (stream.recorded.ts.hls / stream.recorded.encoded.hls), first or last in that list, or you pick one each time. It loads the server's CPU and keeps the encoded segments of the rest of the recording in its data/streamfiles until playback stops (about 1.5 to 3 GB per hour). Seeking works only within the part already encoded, and only with inputstream.adaptive installed."
+msgstr "録画の右クリックメニュー「変換して再生」で使います。EPGStation が録画を config.yml の録画配信モード (stream.recorded.ts.hls / stream.recorded.encoded.hls) の1番目または最後、または毎回選んだモードで HLS に再エンコードします。サーバーの CPU に負荷がかかり、再生を止めるまで録画の残り部分の変換済みファイルがサーバーの data/streamfiles にたまります (1時間あたり約1.5〜3GB)。シークは変換済みの範囲内だけで、inputstream.adaptive が必要です。"
+
+msgctxt "#30284"
+msgid "The server's 1st mode (e.g. 720p)"
+msgstr "サーバーの1番目のモード (例: 720p)"
+
+msgctxt "#30285"
+msgid "The server's last mode (e.g. 480p)"
+msgstr "サーバーの最後のモード (例: 480p)"

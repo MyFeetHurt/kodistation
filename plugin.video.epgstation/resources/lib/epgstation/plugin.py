@@ -2,6 +2,7 @@
 
 Keep logic out of here - put it in items.py where it can be unit-tested.
 """
+import secrets
 import sys
 import time
 import urllib.parse
@@ -14,8 +15,19 @@ import xbmcvfs
 
 from . import api as epgs_api  # review L5: epgs_api.join_workers
 
-# reservations (007): reserves; protect / delete (006): recorded; artwork (003): thumbs
-from . import details, durations, guide, items, library, live, recorded, reserves, thumbs  # program guide (013)
+# reservations (007): reserves; protect / delete (006): recorded; artwork (003): thumbs; program guide (013): guide
+from . import (  # program guide (013)
+    details,
+    durations,
+    guide,
+    items,
+    library,
+    live,
+    recorded,
+    reserves,
+    thumbs,
+    transcode,  # transcoded playback (011)
+)
 from .api import ApiError, EPGStation
 
 ADDON = xbmcaddon.Addon()
@@ -61,6 +73,7 @@ def _item_strings():
             "protect": _s(30072), "unprotect": _s(30073), "delete": _s(30074), "marker": _s(30075),
             "protect_line": _s(30087),
             "delete_file": _s(30245),  # delete a file (018)
+            "stream": _s(30088),  # transcoded playback (011)
             # full detail view (002): the 【録画情報】 block and the ドロップログ entry
             "files": _s(30080), "weekdays": _s(30026), **{k: _s(i) for k, i in DETAIL_STRINGS}}
 
@@ -104,6 +117,29 @@ def _live_mode():  # live TV (012): 0 unconverted, 1 first transcoded mode, 2 la
 
 def _live_error(program, exc):  # live TV (012)
     xbmc.log(f"[epgstation] metadata parser failed on program {program.get('id')}: {exc!r}", xbmc.LOGWARNING)
+
+
+def _stream_strings():  # transcoded playback (011)
+    return {k: _s(i) for k, i in (("from_start", 30089), ("from_pos", 30090), ("from_custom", 30091),
+                                  ("off", 30104), ("no_encoder", 30105), ("failed", 30106),
+                                  ("out_of_range", 30107), ("ended", 30109))}
+
+
+def _stream_mode():  # transcoded playback (011): 0 the server's first mode, 1 its last, 2 ask
+    try:
+        return int(_setting("stream_mode") or 0)
+    except ValueError:
+        return 0
+
+
+def _positions():  # transcoded playback (011): decision D2 B
+    xbmcvfs.mkdirs(PROFILE)
+    return transcode.PositionStore(xbmcvfs.translatePath(PROFILE + "stream_positions.json"), _server_url())
+
+
+def _active_streams():  # transcoded playback (011): tester F1
+    xbmcvfs.mkdirs(PROFILE)
+    return transcode.ActiveStreams(xbmcvfs.translatePath(PROFILE + "stream_active"))
 
 
 def _guide_strings():  # program guide (013)
@@ -296,6 +332,40 @@ class _LivePlayer(xbmc.Player):  # live TV (012): forwards Kodi's player callbac
         self._event("on_ended")
 
 
+class _StreamPlayer(xbmc.Player):  # transcoded playback (011): player callbacks to a transcode.KeepAlive
+    keep = None
+
+    def onPlayBackStarted(self):  # noqa: N802 - Kodi API
+        if self.keep:
+            self.keep.on_started()
+
+    def onAVStarted(self):  # noqa: N802
+        if self.keep:
+            self.keep.on_started()
+
+    def onPlayBackStopped(self):  # noqa: N802
+        if self.keep:
+            self.keep.on_stopped()
+
+    def onPlayBackEnded(self):  # noqa: N802
+        if self.keep:
+            self.keep.on_stopped()
+
+
+def _playing_tag(player):  # transcoded playback (011): our nonce property of the playing item ("" when unknown)
+    try:
+        return player.getPlayingItem().getProperty("epgstation.stream") if player.isPlaying() else ""
+    except (AttributeError, RuntimeError):  # Kodi < 20 has no getPlayingItem
+        return ""
+
+
+def _player_time(player):
+    try:
+        return player.getTime()
+    except RuntimeError:
+        return None
+
+
 class Plugin:
     def __init__(self, argv):
         self.base = argv[0]
@@ -307,7 +377,8 @@ class Plugin:
     # program guide (013): run by a click, Kodi expects no directory; reservations (007): reserve_info, reserve_action
     # record from the guide (014): record; protect / delete (006): recorded_action, search_ask
     NON_DIRECTORY_ACTIONS = ("guide_info", "reserve_info", "reserve_action", "record", "recorded_action", "search_ask",
-                             "droplog")  # full detail view (002)
+                             "droplog",  # full detail view (002)
+                             "stream")  # transcoded playback (011)
 
     def run(self):
         action = self.params.get("action", "root")
@@ -377,9 +448,9 @@ class Plugin:
             xbmcplugin.addSortMethod(self.handle, method, labelMask="%L", label2Mask=label2)
         xbmcplugin.endOfDirectory(self.handle, cacheToDisc=cache)
 
-    def _channels(self):
+    def _channels(self, timeout=None):
         """({channelId: name}, channel ids with hasLogoData) from one GET /channels."""
-        got = self.api.channels()
+        got = self.api.channels(timeout=timeout) if timeout else self.api.channels()
         return items.channel_names(got), {c["id"] for c in got if c.get("hasLogoData")}
 
     def _blank_thumbs(self, ids):
@@ -606,6 +677,263 @@ class Plugin:
             return
         li = self._play_item(rec, files[idx], real.get(files[idx]["id"]))
         xbmc.Player().play(li.getPath(), li)
+
+    # --- transcoded playback (011) -------------------------------------------------------------------------------
+
+    def do_stream(self):
+        """変換して再生 (context entry): pick the mode and the start, start an EPGStation HLS stream, wait until it is
+        ready, play it, keep it alive while Kodi plays it and always stop it (DELETE) at the end."""
+        if self.handle >= 0:  # a play request of the URL (not the context menu): never a directory or resolved item
+            xbmcplugin.setResolvedUrl(self.handle, False, xbmcgui.ListItem())
+        strings = transcode.with_defaults(_stream_strings())
+        rec = self.api.recorded_item(self._int_param("id"))
+        video = items.pick_video(rec.get("videoFiles"), items.default_prefer(rec, _prefer()))
+        if video is None:
+            self._notify(transcode.error_message(None, None, strings), xbmcgui.NOTIFICATION_ERROR)
+            return
+        config = self.api.config()
+        modes = transcode.hls_modes(config, video.get("type"))
+        if not transcode.recorded_enabled(config, video.get("type")) or not modes:
+            self._notify(strings["off"], xbmcgui.NOTIFICATION_ERROR)
+            return
+        mode = transcode.mode_index(modes, _stream_mode())
+        if mode is None:
+            mode = xbmcgui.Dialog().select(_s(30281), modes)
+            if mode < 0:
+                return
+        duration = self._stream_duration(rec, video)
+        choices = transcode.start_choices(_positions().get(rec["id"]), duration, strings)
+        idx = xbmcgui.Dialog().select(_s(30088), [label for label, _ in choices])
+        if idx < 0:
+            return
+        ss = choices[idx][1]
+        if ss is None:
+            ss = transcode.parse_position(xbmcgui.Dialog().numeric(2, _s(30108), "00:00"), duration)
+            if ss is None:
+                return
+        nonce = secrets.token_hex(6)
+        li = self._stream_listitem(rec, nonce)  # 011 review M2: all metadata before the start (no request after it)
+        self._stop_stale_streams()
+        player_name = transcode.ISA if self._use_isa() else "ffmpeg"
+        what = f"recorded {rec['id']} file {video['id']} ss={ss} mode={mode} ({player_name})"
+        xbmc.log(f"[epgstation] stream: start {what}", xbmc.LOGINFO)
+        try:
+            stream_id = self.api.start_recorded_hls(video["id"], ss, mode)
+        except ApiError as e:
+            xbmc.log(f"[epgstation] stream: start {what} failed: {e}", xbmc.LOGERROR)
+            self._notify(transcode.error_message(e.status, e.detail, strings), xbmcgui.NOTIFICATION_ERROR)
+            return
+        xbmc.log(f"[epgstation] stream: {stream_id} started", xbmc.LOGINFO)
+        # the server's 15 s timer runs from the start: keeps count from here, also while waiting for isEnable
+        keep = transcode.KeepAlive(nonce, f"/streamfiles/stream{stream_id}.m3u8", ss, _clock())
+        ours = (stream_id, video["id"], mode)  # 011 review L2: what GET /streams must show for our stream
+        try:
+            self._remember_stream(stream_id, video["id"], mode, True)  # inside: never skips the DELETE
+            if not self._wait_ready(ours, strings, keep):
+                return
+            url = self.api.stream_playlist_url(stream_id, nonce)
+            li.setPath(url if self._use_isa() else url + self.api.kodi_headers())
+            self._play_stream(ours, keep, li)
+        finally:
+            self._stop_stream(ours, keep)
+        message = transcode.end_message(keep.reason, strings, keep.started)
+        if message:
+            self._notify(message, xbmcgui.NOTIFICATION_WARNING)
+        if keep.started:
+            self._save_position(rec["id"], keep.position, duration)
+
+    def _remember_stream(self, stream_id, video_file_id, mode, active):
+        """stream_active/ (tester F1): add our stream after the start, remove it once it is stopped or gone (one file
+        per stream: one atomic create or unlink, never a rewrite of other runs' entries)."""
+        store = _active_streams()
+        if active:
+            done = store.add(_server_url(), stream_id, video_file_id, mode, _now_ms())
+        else:
+            done = store.remove(_server_url(), stream_id)
+        if not done:
+            xbmc.log(f"[epgstation] stream: {stream_id}: could not update stream_active", xbmc.LOGWARNING)
+
+    def _stop_stale_streams(self):
+        """Tester F1, final review round: dead listings an earlier run left (Kodi killed during playback; EPGStation
+        2.10.0 keeps a timed-out stream listed, without its files, until a DELETE). DELETE an entry only when GET
+        /streams lists its id enabled with the same file and mode AND its playlist answers 404 (stale_state "check"):
+        a live stream, ours or another client's, always has its playlist. Not listed / another file or mode / older
+        than transcode.STALE_MAX_AGE_MS: forgotten; live or not checkable: kept for the next start."""
+        store, server = _active_streams(), _server_url()
+        entries = store.of(server)
+        if not entries:
+            return
+        try:
+            streams = self.api.streams(timeout=transcode.STREAMS_TIMEOUT)
+        except ApiError as e:
+            xbmc.log(f"[epgstation] stream: stale check: {e}", xbmc.LOGWARNING)
+            return
+        for entry in entries:
+            sid = entry["streamId"]
+            state = transcode.stale_state(entry, streams, _now_ms())
+            if state == "check":
+                status = self.api.stream_playlist_status(sid, timeout=transcode.STREAMS_TIMEOUT)
+                if status != 404:
+                    xbmc.log(f"[epgstation] stream: {sid} of an earlier run is live (playlist {status}): kept",
+                             xbmc.LOGINFO)
+                    continue
+                try:
+                    self.api.stop_stream(sid)
+                    xbmc.log(f"[epgstation] stream: {sid} dead listing of an earlier run: stopped", xbmc.LOGINFO)
+                except ApiError as e:
+                    xbmc.log(f"[epgstation] stream: {sid} dead listing of an earlier run: stop: {e}", xbmc.LOGWARNING)
+                    continue
+            elif state == "live":
+                xbmc.log(f"[epgstation] stream: {sid} of an earlier run is starting: kept", xbmc.LOGINFO)
+                continue
+            else:
+                xbmc.log(f"[epgstation] stream: {sid} of an earlier run: {state}, forgotten", xbmc.LOGINFO)
+            store.remove(server, sid)
+
+    def _save_position(self, recorded_id, position, duration):
+        """011 review C2: merge into the store as it is now (another transcoded play may have saved meanwhile)."""
+        store = _positions()
+        store.put(recorded_id, position, duration)
+        if not store.save():
+            xbmc.log("[epgstation] stream: could not write stream_positions.json", xbmc.LOGWARNING)
+
+    def _stream_duration(self, rec, video):
+        """Seconds of the file (real length when known, else the EPG length); None while recording."""
+        if rec.get("isRecording"):
+            return None
+        real = self._file_durations(rec, [video]).get(video["id"])
+        return real if real else max(0, (rec["endAt"] - rec["startAt"]) // 1000) or None
+
+    @staticmethod
+    def _use_isa():
+        return bool(xbmc.getCondVisibility(f"System.AddonIsEnabled({transcode.ISA})"))
+
+    def _stream_state(self, ours):
+        """transcode.stream_state of our stream in GET /streams, or None when the server cannot be asked."""
+        try:
+            return transcode.stream_state(self.api.streams(timeout=transcode.STREAMS_TIMEOUT), *ours)
+        except ApiError as e:
+            xbmc.log(f"[epgstation] stream: {ours[0]} state: {e}", xbmc.LOGWARNING)
+            return None
+
+    def _wait_ready(self, ours, strings, keep):
+        """Poll GET /streams until our stream is enabled (playlist + 2 segments), keeping it alive meanwhile. False on
+        cancel, abort, the stream disappearing (or its id showing another file / mode) or transcode.READY_TIMEOUT s
+        (with a toast, except on cancel / abort)."""
+        monitor, progress = xbmc.Monitor(), xbmcgui.DialogProgress()
+        progress.create(_s(30088), _s(30092))
+        deadline, state = _clock() + transcode.READY_TIMEOUT, "waiting"
+        try:
+            while True:
+                state = self._stream_state(ours) or state
+                if state in ("gone", "other"):
+                    keep.server_lost()
+                if state != "waiting":
+                    break
+                if keep.keep_due(_clock()) and self._keep(ours, keep, verify=False) == "stop":
+                    state = "gone"
+                    break
+                left = deadline - _clock()
+                if progress.iscanceled():
+                    xbmc.log(f"[epgstation] stream: {ours[0]} cancelled", xbmc.LOGINFO)
+                    return False
+                if left <= 0:
+                    break
+                progress.update(int(100 * (1 - left / transcode.READY_TIMEOUT)))
+                if monitor.waitForAbort(min(transcode.READY_STEP, left)):
+                    return False
+        finally:
+            progress.close()
+        if state == "ready":
+            return True
+        xbmc.log(f"[epgstation] stream: {ours[0]} not ready ({state})", xbmc.LOGWARNING)
+        self._notify(strings["failed"], xbmcgui.NOTIFICATION_ERROR)
+        return False
+
+    def _stream_listitem(self, rec, nonce):
+        """The play item without its path: the recording's metadata, HLS mimetype, ISA properties when enabled."""
+        try:  # only for the studio name and logo: a short timeout, never block playback on it
+            channels, logos = self._channels(timeout=transcode.CHANNELS_TIMEOUT)
+        except ApiError as e:
+            xbmc.log(f"[epgstation] {e}", xbmc.LOGWARNING)
+            channels, logos = {}, None
+        d = items.recorded_item(rec, self.api, channels, _lang(), _item_strings(), None, _metadata_error,
+                                logos=logos, fallback_icon=_addon_icon())
+        d = transcode.stream_item(d, nonce)
+        if self._use_isa():
+            d["props"].update(transcode.isa_properties(self.api.kodi_headers()[len("|"):]))
+        return _listitem(d)
+
+    def _keep(self, ours, keep, verify=True):
+        """One PUT keep (timeout transcode.KEEP_TIMEOUT); verify: when keep.needs_verify(), GET /streams must still
+        show our stream (011 review L2). "stop" when the server no longer has it, else None (a failed keep is retried
+        soon, keep.keep_failed)."""
+        sent = _clock()
+        try:
+            self.api.keep_stream(ours[0], timeout=transcode.KEEP_TIMEOUT)
+        except ApiError as e:
+            xbmc.log(f"[epgstation] stream: {ours[0]} keep: {e}", xbmc.LOGWARNING)
+            return keep.keep_failed(e.status, e.detail, _clock())
+        keep.keep_ok(sent, _clock())
+        if verify and keep.needs_verify():
+            state = self._stream_state(ours)
+            if state in ("gone", "other"):
+                xbmc.log(f"[epgstation] stream: {ours[0]} is no longer ours on the server", xbmc.LOGWARNING)
+                return keep.server_lost()
+            if state is not None:
+                keep.verified(sent)
+        return None
+
+    def _play_stream(self, ours, keep, li):
+        """Play the ready stream and keep it alive (keep: the transcode.KeepAlive) until it should stop."""
+        if keep.keep_due(_clock()) and self._keep(ours, keep) == "stop":  # 011 review M2: fresh before play()
+            return
+        player = _StreamPlayer()
+        keep.playing_from(_clock(), _playing_file(player))
+        player.keep = keep
+        player.play(li.getPath(), li)
+        monitor = xbmc.Monitor()
+        while True:
+            if monitor.waitForAbort(1):
+                xbmc.log(f"[epgstation] stream: {ours[0]} Kodi is exiting", xbmc.LOGINFO)
+                break
+            path, tag = _playing_file(player), _playing_tag(player)
+            mine = keep.is_ours(path, tag)
+            action = keep.tick(_clock(), path, tag, _player_time(player) if mine else None)
+            if action == "keep":
+                action = self._keep(ours, keep)
+            if action == "stop":
+                xbmc.log(f"[epgstation] stream: {ours[0]} ends ({keep.reason}) at {keep.position:.0f} s",
+                         xbmc.LOGINFO)
+                if keep.reason in transcode.STOP_PLAYER and keep.is_ours(_playing_file(player), _playing_tag(player)):
+                    player.stop()
+                break
+
+    def _stop_stream(self, ours, keep):
+        """DELETE our stream only when GET /streams shows it as ours (id + file + mode where the item has them; 011
+        review L2: ids are reused, and another client, e.g. the web UI, may stop ours and get the id at once). Only
+        when GET /streams cannot be asked: DELETE while keep.trusted() (a good keep less than transcode.TRUST_WINDOW s
+        ago), else not (the server's 15 s timer is the backstop: leaving ours for 15 s beats killing someone else's).
+        stream_active.json forgets the stream once it is stopped or known gone; else the next start retries (F1)."""
+        if keep.reason == "gone":  # the server said it is gone or no longer ours: nothing of ours to stop
+            xbmc.log(f"[epgstation] stream: {ours[0]} not stopped: gone", xbmc.LOGINFO)
+            self._remember_stream(ours[0], ours[1], ours[2], False)
+            return
+        state = self._stream_state(ours)
+        if state is None and keep.trusted(_clock()):
+            state = "trusted"
+        if state not in ("trusted", "ready", "waiting"):
+            xbmc.log(f"[epgstation] stream: {ours[0]} not stopped: {state or 'server not reachable'}", xbmc.LOGINFO)
+            if state is not None:  # gone or another client's: nothing of ours left
+                self._remember_stream(ours[0], ours[1], ours[2], False)
+            return
+        try:
+            self.api.stop_stream(ours[0])
+            xbmc.log(f"[epgstation] stream: {ours[0]} stopped ({state})", xbmc.LOGINFO)
+        except ApiError as e:  # the server's 15 s timer stops it anyway
+            xbmc.log(f"[epgstation] stream: {ours[0]} stop: {e}", xbmc.LOGWARNING)
+            return
+        self._remember_stream(ours[0], ours[1], ours[2], False)
 
     # --- live TV (012) -------------------------------------------------------------------------------------------
 

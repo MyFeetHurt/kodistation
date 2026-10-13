@@ -281,13 +281,13 @@ class EPGStation:
 
     # --- writes (006, 007, 014, 018): only plugin.do_reserve_action (the reservation DELETEs), plugin.do_record (the
     # POST) and plugin.do_recorded_action (protect / unprotect / delete a recording, delete one file) call these, each
-    # after an explicit yes -
+    # after an explicit yes; plugin.do_stream (011) starts, keeps and stops its own transcoded stream (section below) -
     # The reservation DELETEs answer 200 with an empty body; errors (also an unknown id) come back as HTTP 500 with
     # {"errors": "ReservationIsNotFound"} etc. in ApiError.detail.
 
     def delete(self, path, timeout=None):
-        """DELETE an API path (the parsed answer or None). Only the reservation DELETEs below, delete_recorded and
-        delete_video_file call it."""
+        """DELETE an API path (the parsed answer or None). Only the reservation DELETEs below, delete_recorded,
+        delete_video_file and stop_stream (011) call it."""
         return self._request("DELETE", path, None, timeout)
 
     def cancel_reserve(self, reserve_id):
@@ -325,7 +325,8 @@ class EPGStation:
             raise ApiError(f"/reserves: unexpected answer {str(data)[:200]}", None, "unexpected answer") from e
 
     def put(self, path, timeout=None):  # protect / delete (006)
-        """PUT an API path without a body; the parsed answer ({"code": 200}). Only the two protect methods call it."""
+        """PUT an API path without a body; the parsed answer ({"code": 200}). Only the two protect methods and
+        keep_stream (011) call it."""
         return self._request("PUT", path, None, timeout)
 
     def protect_recorded(self, recorded_id):
@@ -354,7 +355,53 @@ class EPGStation:
         limit: the server keeps going)."""
         return self.delete(f"/videos/{int(video_file_id)}")
 
+    # --- transcoded playback (011): plugin.do_stream only. The start is a GET that starts ffmpeg on the server; the
+    # keep (PUT) and the stop (DELETE) are the stream's own writes (decision D5), never a recording or a reservation.
+
+    def start_recorded_hls(self, video_file_id, ss, mode, timeout=None):
+        """GET /streams/recorded/{videoFileId}/hls?ss=<sec>&mode=<index>: starts a transcode; the streamId (int).
+        HTTP 500 ApiError.detail: "OutOfRange", "ConfigIsUndefined", "VideoFileIsNotFound", "VideoIsNull",
+        "CreateStreamProcessError" / "EncodeProcessManageModelCreateError" (no free encoder slot)."""
+        data = self.get(f"/streams/recorded/{int(video_file_id)}/hls", _timeout=timeout, ss=int(ss), mode=int(mode))
+        try:
+            return int(data["streamId"])
+        except (KeyError, TypeError, ValueError) as e:
+            raise ApiError(f"/streams/recorded: unexpected answer {str(data)[:200]}", None, "unexpected answer") from e
+
+    def streams(self, timeout=None):
+        """GET /streams?isHalfWidth=true (StreamInfo {items}; isHalfWidth is required)."""
+        return self.get("/streams", _timeout=timeout, isHalfWidth=True)
+
+    def keep_stream(self, stream_id, timeout=3):
+        """PUT /streams/{id}/keep: 200 {"code":200}; a stopped stream: HTTP 500, ApiError.detail "StreamIsUndefined"."""
+        return self.put(f"/streams/{int(stream_id)}/keep", timeout)
+
+    def stop_stream(self, stream_id, timeout=3):
+        """DELETE /streams/{id}: stops ffmpeg and deletes the stream files; 200 also for an unknown id."""
+        return self.delete(f"/streams/{int(stream_id)}", timeout)
+
+    def stream_playlist_url(self, stream_id, nonce):
+        """The HLS playlist (served statically under /streamfiles, not /api); ?k=<nonce> makes the URL ours (the
+        static server ignores the query, stream ids are reused)."""
+        return f"{self.base_url}/streamfiles/stream{int(stream_id)}.m3u8?k={urllib.parse.quote(str(nonce))}"
+
     # --- end of writes ---------------------------------------------------------------------------------------------
+
+    def stream_playlist_status(self, stream_id, timeout=3):  # transcoded playback (011): stale cleanup
+        """HEAD /streamfiles/stream{id}.m3u8 (a static file, no side effect): the HTTP status (200 while the stream has
+        its playlist, 404 once its files are gone), None when the server cannot be reached."""
+        req = urllib.request.Request(f"{self.base_url}/streamfiles/stream{int(stream_id)}.m3u8", method="HEAD")
+        req.add_header("User-Agent", USER_AGENT)
+        if self._auth:
+            req.add_header("Authorization", self._auth)
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return resp.status
+        except urllib.error.HTTPError as e:
+            e.close()
+            return e.code
+        except (urllib.error.URLError, OSError, http.client.HTTPException):
+            return None
 
     def kodi_headers(self):
         """Header suffix for Kodi URLs ('|Authorization=...'), or ''."""

@@ -1,3 +1,8 @@
+v0.3.1 (2026-10-14)
+- 変換して再生 / Stream transcoded: play a recording transcoded by EPGStation (e.g. 720p / 480p) for weak clients; start from the beginning, a saved position or a chosen time; seeking within the transcoded part with inputstream.adaptive
+- New 変換再生 settings: transcode mode (server's first or last mode, or ask each time)
+- The stream is always stopped on the server when playback ends; a listing left by a killed Kodi is cleaned up on the next transcoded start
+
 v0.3.0 (2026-10-13)
 - Recording details: a 【録画情報】 block with channel, air time, video/audio format, files with sizes, drop/error counts, protection and encoding state; ドロップログ viewer when a recording has drops
 - ファイルを削除: delete one video file of a recording (e.g. the TS after an encode) and keep the others

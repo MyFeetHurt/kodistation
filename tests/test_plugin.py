@@ -3179,3 +3179,933 @@ def test_second_genres_open_is_probes_only(kodi, fake_server):
 def test_genre_views_bad_params(kodi, query):
     run_plugin(query)
     assert kodi.ended is False and xbmcgui.notifications
+
+
+# --- transcoded playback (011) ----------------------------------------------------------------------------------
+
+ISA_ON = "System.AddonIsEnabled(inputstream.adaptive)"
+KEEP = ("PUT", "/api/streams/0/keep")
+DELETE = ("DELETE", "/api/streams/0")
+
+
+def _run_stream(rec_id, handle="-1"):
+    """Like Kodi's RunPlugin of the context entry: no handle."""
+    from resources.lib.epgstation.plugin import Plugin
+
+    Plugin(["plugin://plugin.video.epgstation/", handle, f"?action=stream&id={rec_id}"]).run()
+
+
+@pytest.fixture
+def stream_rec(kodi, fake_server, handler, monkeypatch):
+    """A finished recording with a file; the plugin clock and the fake server's 15 s stream timer (011 review L4d)
+    follow the stub monitor's waits."""
+    from resources.lib.epgstation import items, plugin
+
+    monkeypatch.setattr(plugin, "_clock", lambda: xbmc.waited)
+    handler.stream_timer, handler.stream_clock = 15, lambda: xbmc.waited
+    rec = next(r for r in _get(fake_server, "/api/recorded?limit=50")["records"] if r.get("videoFiles"))
+    rec = _get(fake_server, f"/api/recorded/{rec['id']}")
+    video = items.pick_video(rec["videoFiles"], items.default_prefer(rec, "encoded"))
+    return dict(rec, _video=video)
+
+
+def _kodi_plays(start_at=1.0, stop_at=35.0, other=None, tag=False, stall_at=None):
+    """Kodi starts the played item `start_at` s after play() and plays it (time from 0; frozen from `stall_at`: paused);
+    at `stop_at` it stops it (onPlayBackStopped), or (other=URL) switches to another file. tag: Kodi reports the
+    item's nonce property (Player.getPlayingItem, Kodi 20+). Returns the hook (to chain)."""
+    state = {"t0": None, "done": False}
+
+    def hook(waited):
+        if not xbmc.played or state["done"]:
+            return
+        if state["t0"] is None:
+            state["t0"] = waited
+        t = waited - state["t0"]
+        if t >= stop_at:
+            state["done"] = True
+            if other:
+                xbmc.player_file, xbmc.player_tag = other, "" if tag else None
+            else:
+                xbmc.player_file = ""
+                xbmc.players[-1].onPlayBackStopped()
+        elif t >= start_at:
+            url, li = xbmc.played[-1]
+            xbmc.player_file = url
+            xbmc.player_tag = li.props["epgstation.stream"] if tag else None
+            xbmc.player_time = (min(t, stall_at) if stall_at is not None else t) - start_at
+    xbmc.wait_hook = hook
+    return hook
+
+
+def _chain(first, second):
+    def hook(waited):
+        first(waited)
+        second(waited)
+    xbmc.wait_hook = hook
+
+
+def _stream_writes(handler):
+    return [(m, p) for m, p, _ in handler.writes]
+
+
+def _toasts():
+    return [n[1] for n in xbmcgui.notifications]
+
+
+def _positions_file():
+    import xbmcvfs
+
+    return os.path.join(xbmcvfs.profile_dir, "addon_data", "plugin.video.epgstation", "stream_positions.json")
+
+
+def _saved(rec_id):
+    try:
+        return json.load(open(_positions_file(), encoding="utf-8"))["positions"].get(str(rec_id))
+    except OSError:
+        return None
+
+
+@pytest.mark.parametrize("tag", [False, True], ids=["path", "item-property"])
+def test_stream_happy_path(stream_rec, handler, tag):
+    """AC 2-4: start GET, keeps every 5 s (the fake server's 15 s timer never fires), DELETE at the end. 011 review
+    L4a: also with Kodi reporting the item's nonce property."""
+    vid = stream_rec["_video"]["id"]
+    xbmcgui.select_answers.append(0)  # 最初から
+    _kodi_plays(stop_at=35, tag=tag)
+    _run_stream(stream_rec["id"])
+    writes = _stream_writes(handler)
+    assert writes[0] == ("GET", f"/api/streams/recorded/{vid}/hls?ss=0&mode=0")
+    assert writes[1:-1] == [KEEP] * 7 and writes[-1] == DELETE  # keeps at 5, 10, ... 35 s
+    assert handler.streams == {}
+    url, li = xbmc.played[0]
+    assert re.search(r"/streamfiles/stream0\.m3u8\?k=[0-9a-f]{12}$", url) and "/api/" not in url
+    assert li.mimetype == "application/vnd.apple.mpegurl" and li.content_lookup is False
+    assert "duration" not in li.tag.data and li.tag.data["playcount"] == 0
+    assert li.tag.data["title"] and li.props["epgstation.stream"] == url.rsplit("k=", 1)[1]
+    assert "inputstream" not in li.props
+    assert xbmcgui.selects[0][1] == ["From the beginning", "From a position…"]  # no saved position yet
+    assert xbmcgui.progress_log[0][0] == "create" and xbmcgui.progress_log[-1] == ("close",)
+    assert not xbmcgui.notifications and xbmc.stop_calls == []
+    assert any("stream: 0 ends (stopped)" in m for _, m in xbmc.logs)
+
+
+def test_stream_keeps_alive_past_the_server_timer(stream_rec, handler):
+    """AC 3: the stream is still there after 46 s, kept every 5 s."""
+    xbmcgui.select_answers.append(0)
+    seen = {}
+
+    def peek(waited):
+        if abs(waited - 46) < 1e-9:
+            seen.update(streams={k: v["keeps"] for k, v in handler.streams.items()})
+    _chain(_kodi_plays(stop_at=50), peek)
+    _run_stream(stream_rec["id"])
+    assert seen["streams"] == {0: 9}
+    assert _stream_writes(handler)[-1] == DELETE
+
+
+def test_stream_survives_one_timed_out_keep(stream_rec, handler, monkeypatch):
+    """011 review M1: a keep that times out (3 s) is retried 2 s later and the server's 15 s timer never fires."""
+    from resources.lib.epgstation.api import ApiError, EPGStation
+
+    real, calls = EPGStation.keep_stream, []
+
+    def keep(self, stream_id, timeout=3):
+        calls.append((xbmc.waited, timeout))
+        if len(calls) == 2:  # the keep at 10 s hangs for its whole timeout
+            xbmc.waited += timeout
+            raise ApiError("/streams/0/keep: timed out")
+        return real(self, stream_id, timeout)
+    monkeypatch.setattr(EPGStation, "keep_stream", keep)
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=30)
+    _run_stream(stream_rec["id"])
+    times = [t for t, _ in calls]
+    assert times[:3] == [5, 10, 15] and all(t == 3 for _, t in calls)  # 10 + 3 s timeout + 2 s retry = 15
+    assert _stream_writes(handler)[-1] == DELETE and not any("ends (gone)" in m for _, m in xbmc.logs)
+    assert not xbmcgui.notifications
+
+
+def test_stream_repeated_timed_out_keeps_end_it(stream_rec, handler, monkeypatch):
+    """Keeps that keep timing out exceed the server's timer: the next keep that gets through finds the stream gone."""
+    from resources.lib.epgstation.api import ApiError, EPGStation
+
+    real, calls = EPGStation.keep_stream, []
+
+    def keep(self, stream_id, timeout=3):
+        calls.append(xbmc.waited)
+        if len(calls) in (2, 3, 4):
+            xbmc.waited += timeout
+            raise ApiError("/streams/0/keep: timed out")
+        return real(self, stream_id, timeout)
+    monkeypatch.setattr(EPGStation, "keep_stream", keep)
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=60)
+    _run_stream(stream_rec["id"])
+    assert any("ends (gone)" in m for _, m in xbmc.logs) and DELETE not in _stream_writes(handler)
+    assert _toasts() == ["Transcoded stream ended"] and len(xbmc.stop_calls) == 1
+
+
+def test_stream_slow_channels_before_the_start(stream_rec, handler, monkeypatch):
+    """011 review M2 / L4c: a slow GET /channels comes before the start GET (no request between ready and play)."""
+    from resources.lib.epgstation.api import EPGStation
+
+    real, timeouts = EPGStation.channels, []
+
+    def slow(self, timeout=None):
+        timeouts.append(timeout)
+        xbmc.waited += 12
+        return real(self, timeout=timeout)
+    monkeypatch.setattr(EPGStation, "channels", slow)
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=20)
+    _run_stream(stream_rec["id"])
+    assert timeouts == [3]
+    assert _stream_writes(handler)[-1] == DELETE and not xbmcgui.notifications
+
+
+def test_stream_channels_failing(stream_rec, handler, monkeypatch):
+    from resources.lib.epgstation.api import ApiError, EPGStation
+
+    def fail(self, timeout=None):
+        raise ApiError("/channels: timed out")
+    monkeypatch.setattr(EPGStation, "channels", fail)
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=8)
+    _run_stream(stream_rec["id"])
+    assert xbmc.played and xbmc.played[0][1].tag.data["title"] and _stream_writes(handler)[-1] == DELETE
+
+
+def test_stream_keep_right_before_play(stream_rec, handler):
+    """011 review M2: ready 5 s after the start -> a keep before play() (the server's timer runs from the start)."""
+    handler.stream_ready_after = 11  # polls at 0, 0.5, ... 5.0 s
+    xbmcgui.select_answers.append(0)
+    order = []
+
+    def peek(waited):
+        if xbmc.played and not order:
+            order.append(_stream_writes(handler))
+    _chain(_kodi_plays(stop_at=3), peek)
+    _run_stream(stream_rec["id"])
+    assert order[0][1:] == [KEEP]  # sent before Kodi got the item
+
+
+def test_stream_resume_position(stream_rec, handler):
+    """AC 8 (D2 B): stopped at ~1:13 absolute -> the next start offers "1:13" and starts there."""
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(start_at=1, stop_at=75)
+    _run_stream(stream_rec["id"])
+    handler.reset_state()
+    handler.stream_timer, handler.stream_clock = 15, lambda: xbmc.waited
+    xbmc.played.clear()
+    xbmc.player_file, xbmc.waited = "", 0.0
+    xbmcgui.select_answers.append(1)
+    _kodi_plays(stop_at=5)
+    _run_stream(stream_rec["id"])
+    assert xbmcgui.selects[-1][1] == ["From the beginning", "From 1:13", "From a position…"]
+    assert _stream_writes(handler)[0][1].endswith("?ss=73&mode=0")
+
+
+def test_stream_position_store_merges(stream_rec, handler):
+    """011 review C2: another transcoded play saved a position while this one ran: both stay."""
+    from resources.lib.epgstation import transcode
+
+    xbmcgui.select_answers.append(1)
+    xbmcgui.numeric_answers.append("00:05")
+
+    def other_play_saves(waited):
+        if abs(waited - 10) < 1e-9:
+            store = transcode.PositionStore(_positions_file(), handler_url[0])
+            store.put(424242, 900, None)
+            assert store.save()
+    handler_url = [None]
+    import xbmcaddon as addon_stub
+    handler_url[0] = addon_stub.settings["server_url"]
+    _chain(_kodi_plays(stop_at=20), other_play_saves)
+    _run_stream(stream_rec["id"])
+    assert _saved(424242) == 900 and _saved(stream_rec["id"]) == 300 + 18
+
+
+@pytest.mark.parametrize("how", ["other", "abort"])
+def test_stream_position_saved_when_another_file_plays_or_kodi_exits(stream_rec, handler, how):
+    """011 review L4f."""
+    xbmcgui.select_answers.append(1)
+    xbmcgui.numeric_answers.append("00:05")  # ss = 300
+    _kodi_plays(stop_at=12, other="http://x/api/videos/1" if how == "other" else None)
+    if how == "abort":
+        xbmc.abort_after = 10
+    _run_stream(stream_rec["id"])
+    assert _saved(stream_rec["id"]) == (300 + 10 if how == "other" else 300 + 7)  # the last time seen playing
+    assert _stream_writes(handler)[-1] == DELETE
+
+
+def test_stream_from_a_position(stream_rec, handler):
+    """AC 7: 位置を指定… with the time dialog's 00:05 (hours:minutes) starts at ss=300."""
+    xbmcgui.select_answers.append(1)
+    xbmcgui.numeric_answers.append("00:05")
+    _kodi_plays(stop_at=3)
+    _run_stream(stream_rec["id"])
+    assert xbmcgui.numerics[0][0] == 2
+    assert _stream_writes(handler)[0][1].endswith("?ss=300&mode=0")
+
+
+def test_stream_position_dialog_cancelled(stream_rec, handler):
+    xbmcgui.select_answers.append(1)
+    _run_stream(stream_rec["id"])
+    assert handler.writes == [] and not xbmc.played
+
+
+def test_stream_cancel_at_the_start_dialog(stream_rec, handler):
+    _run_stream(stream_rec["id"])
+    assert handler.writes == [] and not xbmc.played and xbmcgui.progress_log == []
+
+
+def test_stream_cancel_in_the_progress_dialog(stream_rec, handler):
+    """AC 5c: cancelling while it starts -> DELETE, no playback."""
+    handler.stream_ready_after = None
+    xbmcgui.progress_cancel_after = 3
+    xbmcgui.select_answers.append(0)
+    _run_stream(stream_rec["id"])
+    assert _stream_writes(handler)[1:] == [DELETE] and not xbmc.played
+    assert not xbmcgui.notifications and xbmcgui.progress_log[-1] == ("close",)
+
+
+def test_stream_never_ready(stream_rec, handler):
+    """AC 10: never ready in 20 s -> DELETE + toast (kept alive meanwhile: keeps at 5, 10, 15, 20 s)."""
+    handler.stream_ready_after = None
+    xbmcgui.select_answers.append(0)
+    _run_stream(stream_rec["id"])
+    assert _stream_writes(handler)[1:] == [KEEP] * 4 + [DELETE] and not xbmc.played
+    assert 20 <= xbmc.waited <= 21
+    assert _toasts() == ["Could not start transcoded stream"]
+
+
+def test_stream_disappears_while_starting(stream_rec, handler):
+    handler.stream_ready_after = None
+    xbmcgui.select_answers.append(0)
+    xbmc.wait_hook = lambda waited: handler.streams.clear() if waited >= 2 else None
+    _run_stream(stream_rec["id"])
+    assert [m for m, _ in _stream_writes(handler)] == ["GET"] and xbmc.waited < 5  # nothing of ours to DELETE
+    assert _toasts() == ["Could not start transcoded stream"]
+
+
+def test_stream_id_taken_by_another_client_while_starting(stream_rec, handler):
+    """011 review L2: our id shows another file (the server reused it): never kept or DELETEd again."""
+    handler.stream_ready_after = None
+    xbmcgui.select_answers.append(0)
+
+    def reuse(waited):
+        if waited >= 2 and handler.streams:
+            handler.streams[0]["item"]["viodeFileId"] = 999999
+    xbmc.wait_hook = reuse
+    _run_stream(stream_rec["id"])
+    assert [m for m, _ in _stream_writes(handler)] == ["GET"] and 0 in handler.streams
+
+
+def test_stream_id_taken_by_another_client_while_playing(stream_rec, handler):
+    """011 review L2: after a keep, GET /streams shows our id with another mode: gone, no DELETE of theirs."""
+    xbmcgui.select_answers.append(0)
+
+    def reuse(waited):
+        if abs(waited - 12) < 1e-9:
+            handler.streams[0]["item"]["mode"] = 1
+    _chain(_kodi_plays(stop_at=60), reuse)
+    _run_stream(stream_rec["id"])
+    assert _stream_writes(handler)[-1] == KEEP and 0 in handler.streams  # theirs survives
+    assert any("ends (gone)" in m for _, m in xbmc.logs) and _toasts() == ["Transcoded stream ended"]
+    assert len(xbmc.stop_calls) == 1
+
+
+def test_stream_not_deleted_when_the_server_cannot_be_asked(stream_rec, handler, monkeypatch):
+    """L2 / round 2 L-2: without a good keep in the last 12 s the DELETE needs GET /streams to show our stream; the
+    server unreachable -> no DELETE (its own 15 s timer stops the stream)."""
+    from resources.lib.epgstation.api import ApiError, EPGStation
+
+    real_keep, real_streams = EPGStation.keep_stream, EPGStation.streams
+
+    def keep(self, stream_id, timeout=3):
+        if xbmc.waited >= 7:  # the server becomes unreachable after the first keep
+            raise ApiError("connection refused")
+        return real_keep(self, stream_id, timeout)
+
+    def streams(self, timeout=None):
+        if xbmc.waited >= 7:
+            raise ApiError("connection refused")
+        return real_streams(self, timeout=timeout)
+    monkeypatch.setattr(EPGStation, "keep_stream", keep)
+    monkeypatch.setattr(EPGStation, "streams", streams)
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=18)
+    _run_stream(stream_rec["id"])
+    assert DELETE not in _stream_writes(handler)
+    assert any("not stopped: server not reachable" in m for _, m in xbmc.logs)
+
+
+def test_stream_delete_checks_ownership_first(stream_rec, fake_server, handler):
+    """Codex round 3: the DELETE always follows a GET /streams that shows our stream."""
+    import fake_epgstation
+
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=12)
+    fake_epgstation.REQUESTS[fake_server].clear()
+    _run_stream(stream_rec["id"])
+    assert _stream_writes(handler)[-1] == DELETE
+    assert fake_epgstation.REQUESTS[fake_server][-1][0] == "/api/streams"  # the last GET: the check before the DELETE
+
+
+def test_stream_id_reused_within_the_trust_window_is_not_deleted(stream_rec, handler):
+    """Codex round 3: another client (the web UI) stopped ours and got the id 2 s after our last good keep: GET
+    /streams shows their file, so no DELETE, although the keep was recent."""
+    xbmcgui.select_answers.append(0)
+    play = _kodi_plays(stop_at=12)
+
+    def reuse(waited):
+        play(waited)
+        if abs(waited - 12) < 1e-9:  # the keep at 10 s was good
+            handler.streams[0]["item"]["viodeFileId"] = 999999
+    xbmc.wait_hook = reuse
+    _run_stream(stream_rec["id"])
+    assert DELETE not in _stream_writes(handler) and 0 in handler.streams
+    assert any("not stopped: other" in m for _, m in xbmc.logs)
+
+
+def test_stream_trusted_delete_when_the_check_fails(stream_rec, handler, monkeypatch):
+    """Codex round 3: GET /streams fails at the end but the last good keep is < 12 s old -> DELETE anyway."""
+    from resources.lib.epgstation.api import ApiError, EPGStation
+
+    real = EPGStation.streams
+
+    def streams(self, timeout=None):
+        if xbmc.played and not xbmc.player_file and xbmc.waited > 3:
+            raise ApiError("/streams: timed out")
+        return real(self, timeout=timeout)
+    monkeypatch.setattr(EPGStation, "streams", streams)
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=12)
+    _run_stream(stream_rec["id"])
+    assert _stream_writes(handler)[-1] == DELETE
+    assert any("stopped (trusted)" in m for _, m in xbmc.logs)
+
+
+def test_stream_verify_every_third_keep(stream_rec, fake_server, handler):
+    """Round 2 L-3: the ownership GET follows keeps 1, 4, 7 (5, 20, 35 s), not every keep."""
+    import fake_epgstation
+
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=36)
+    fake_epgstation.REQUESTS[fake_server].clear()
+    _run_stream(stream_rec["id"])
+    # the readiness poll, the checks after keeps 1, 4, 7 and the one before the DELETE (Codex round 3)
+    assert sum(1 for p, _ in fake_epgstation.REQUESTS[fake_server] if p == "/api/streams") == 1 + 3 + 1
+
+
+def test_stream_gone_before_play_is_a_failed_start(stream_rec, handler, monkeypatch):
+    """Round 2 nit: the server lost the stream before play() (the keep right before it: StreamIsUndefined) -> "Could
+    not start", not "ended"; nothing to DELETE."""
+    from resources.lib.epgstation.api import ApiError, EPGStation
+
+    def gone(self, stream_id, timeout=3):
+        raise ApiError("HTTP 500", 500, "StreamIsUndefined")
+    monkeypatch.setattr(EPGStation, "keep_stream", gone)
+    handler.stream_ready_after = 11  # ready at 5.0 s: the keep before play() is due
+    xbmcgui.select_answers.append(0)
+    _run_stream(stream_rec["id"])
+    assert not xbmc.played and _toasts() == ["Could not start transcoded stream"]
+    assert DELETE not in _stream_writes(handler)
+
+
+@pytest.mark.parametrize("patch", [
+    {"isEnableTSRecordedStream": False, "isEnableEncodedRecordedStream": False},
+    {"streamConfig": {"recorded": {"ts": {"hls": []}, "encoded": {"hls": []}}}},
+    {"streamConfig": {}}])
+def test_stream_off_on_the_server(stream_rec, handler, patch):
+    """AC 10: streaming off or no mode -> toast, no start GET."""
+    handler.config_patch = patch
+    xbmcgui.select_answers.append(0)
+    _run_stream(stream_rec["id"])
+    assert handler.writes == [] and xbmcgui.selects == []
+    assert _toasts() == ["Server: streaming off"]
+
+
+@pytest.mark.parametrize("reason,toast", [
+    ("EncodeProcessManageModelCreateError", "No free encoder on the server"),
+    ("OutOfRange", "Start position is past the end"),
+    ("VideoFileIsNotFound", "Could not start transcoded stream (HTTP 500)")])
+def test_stream_start_errors(stream_rec, handler, reason, toast):
+    import fake_epgstation
+
+    handler.stream_error = (500, fake_epgstation.error_500(reason))
+    xbmcgui.select_answers.append(0)
+    _run_stream(stream_rec["id"])
+    assert [m for m, _ in _stream_writes(handler)] == ["GET"] and not xbmc.played
+    assert _toasts() == [toast]
+
+
+def test_stream_gone_on_the_server(stream_rec, handler):
+    """The server stopped it (keep -> StreamIsUndefined): the loop ends, Kodi's player is stopped, a toast; nothing
+    left to DELETE (nit 3)."""
+    xbmcgui.select_answers.append(0)
+
+    def gone(waited):
+        if abs(waited - 12) < 1e-9:
+            handler.streams.clear()
+    _chain(_kodi_plays(stop_at=100), gone)
+    _run_stream(stream_rec["id"])
+    assert _stream_writes(handler)[-1] == KEEP and DELETE not in _stream_writes(handler)
+    assert len(xbmc.stop_calls) == 1 and "/streamfiles/stream0.m3u8" in xbmc.stop_calls[0]
+    assert 15 <= xbmc.waited < 16 and _toasts() == ["Transcoded stream ended"]
+
+
+def test_stream_keep_connection_error_is_retried(stream_rec, handler, monkeypatch):
+    from resources.lib.epgstation.api import ApiError, EPGStation
+
+    real, calls = EPGStation.keep_stream, []
+
+    def flaky(self, stream_id, timeout=3):
+        calls.append(xbmc.waited)
+        if len(calls) == 1:
+            raise ApiError("connection refused")
+        return real(self, stream_id, timeout)
+    monkeypatch.setattr(EPGStation, "keep_stream", flaky)
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=14)
+    _run_stream(stream_rec["id"])
+    assert calls[:3] == [5, 7, 12] and _stream_writes(handler)[-1] == DELETE
+
+
+def test_stream_stops_when_another_file_plays(stream_rec, handler):
+    """AC 5a: playing another recording while the stream plays -> DELETE."""
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=12, other="http://x/api/videos/1")
+    _run_stream(stream_rec["id"])
+    assert _stream_writes(handler)[-1] == DELETE and xbmc.waited <= 14
+    assert xbmc.stop_calls == [] and not xbmcgui.notifications
+
+
+def test_stream_never_played(stream_rec, handler):
+    """Kodi never plays it and sends nothing: "timeout" after 20 s, toast (nit 3)."""
+    xbmcgui.select_answers.append(0)
+    _run_stream(stream_rec["id"])
+    assert _stream_writes(handler)[-1] == DELETE and 20 <= xbmc.waited <= 22
+    assert _toasts() == ["Could not start transcoded stream"]
+
+
+def test_stream_failed_start_is_seen_at_once(stream_rec, handler):
+    """011 review L1 / L4b: Kodi's failed start (onPlayBackStopped, nothing of ours played) -> stop after ~2.5 s."""
+    xbmcgui.select_answers.append(0)
+
+    def fail(waited):
+        if xbmc.played and abs(waited - 1) < 1e-9:
+            xbmc.players[-1].onPlayBackStarted()
+            xbmc.players[-1].onPlayBackStopped()
+    xbmc.wait_hook = fail
+    _run_stream(stream_rec["id"])
+    assert any("ends (failed)" in m for _, m in xbmc.logs) and xbmc.waited <= 5
+    assert _stream_writes(handler)[-1] == DELETE and _toasts() == ["Could not start transcoded stream"]
+
+
+def test_stream_switch_from_a_recording(stream_rec, handler):
+    """The previous file's stop (Kodi 21.3: one stop before our start) is not a failed start."""
+    xbmc.player_file = "http://x/api/videos/7"
+    xbmcgui.select_answers.append(0)
+    play = _kodi_plays(start_at=3, stop_at=10)
+
+    def switch(waited):
+        if abs(waited - 1) < 1e-9:
+            xbmc.player_file = ""
+            xbmc.players[-1].onPlayBackStopped()  # the recording's stop
+        play(waited)
+    xbmc.wait_hook = switch
+    _run_stream(stream_rec["id"])
+    assert any("ends (stopped)" in m for _, m in xbmc.logs) and not xbmcgui.notifications
+
+
+def test_stream_paused_too_long(stream_rec, handler, monkeypatch):
+    """011 review L3: paused (time stands still) for PAUSE_LIMIT -> stream and player stopped, position kept, toast."""
+    from resources.lib.epgstation import transcode
+
+    monkeypatch.setattr(transcode, "PAUSE_LIMIT", 20)
+    xbmcgui.select_answers.append(1)
+    xbmcgui.numeric_answers.append("00:05")
+    _kodi_plays(stop_at=100, stall_at=6)
+    _run_stream(stream_rec["id"])
+    assert any("ends (paused)" in m for _, m in xbmc.logs) and len(xbmc.stop_calls) == 1
+    assert _stream_writes(handler)[-1] == DELETE and _toasts() == ["Transcoded stream ended"]
+    assert _saved(stream_rec["id"]) == 305
+
+
+def test_stream_abort(stream_rec, handler):
+    """AC 5b: Kodi exits (waitForAbort True) -> DELETE."""
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=100)
+    xbmc.abort_after = 12
+    _run_stream(stream_rec["id"])
+    assert _stream_writes(handler)[-1] == DELETE and xbmc.waited == 12
+
+
+def test_stream_exception_in_the_loop_still_deletes(stream_rec, handler, monkeypatch):
+    from resources.lib.epgstation import transcode
+
+    def boom(self, *a, **k):
+        raise RuntimeError("boom")
+    monkeypatch.setattr(transcode.KeepAlive, "tick", boom)
+    xbmcgui.select_answers.append(0)
+    with pytest.raises(RuntimeError):
+        _run_stream(stream_rec["id"])
+    assert _stream_writes(handler)[-1] == DELETE
+
+
+@pytest.mark.parametrize("setting,answers,mode", [("1", [0], 1), ("0", [0], 0), ("2", [1, 0], 1), ("2", [0, 0], 0)])
+def test_stream_mode_setting(stream_rec, handler, setting, answers, mode):
+    """AC 6: last mode -> mode=1; ask -> a select of the server's mode names."""
+    xbmcaddon.settings["stream_mode"] = setting
+    xbmcgui.select_answers.extend(answers)
+    _kodi_plays(stop_at=3)
+    _run_stream(stream_rec["id"])
+    assert _stream_writes(handler)[0][1].endswith(f"&mode={mode}")
+    assert _stream_writes(handler)[-1] == DELETE  # the ownership check matched our mode
+    if setting == "2":
+        assert xbmcgui.selects[0][1] == ["720p", "480p"]
+
+
+def test_stream_mode_dialog_cancelled(stream_rec, handler):
+    xbmcaddon.settings["stream_mode"] = "2"
+    _run_stream(stream_rec["id"])
+    assert handler.writes == [] and len(xbmcgui.selects) == 1
+
+
+def test_stream_with_isa_and_auth(stream_rec, handler):
+    """D6: inputstream.adaptive with play_timeshift_buffer when enabled; auth goes into its header properties."""
+    xbmc.visible.add(ISA_ON)
+    xbmcaddon.settings.update(username="u", password="p")
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=3)
+    _run_stream(stream_rec["id"])
+    url, li = xbmc.played[0]
+    assert "|" not in url and li.props["inputstream"] == "inputstream.adaptive"
+    assert li.props["inputstream.adaptive.play_timeshift_buffer"] == "true"
+    assert li.props["inputstream.adaptive.manifest_headers"].startswith("Authorization=Basic%20")
+    assert li.props["inputstream.adaptive.stream_headers"] == li.props["inputstream.adaptive.manifest_headers"]
+
+
+def test_stream_plain_kodi_with_auth(stream_rec, handler):
+    xbmcaddon.settings.update(username="u", password="p")
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=3)
+    _run_stream(stream_rec["id"])
+    url, li = xbmc.played[0]
+    assert "?k=" in url and url.split("|", 1)[1].startswith("Authorization=Basic%20") and "inputstream" not in li.props
+
+
+def test_stream_isa_item_without_query_counts_as_ours(stream_rec, handler):
+    """inputstream.adaptive reports the playlist path without ?k= (seen on the dev Kodi): still ours."""
+    xbmcgui.select_answers.append(0)
+    play = _kodi_plays(stop_at=12)
+
+    def strip(waited):
+        play(waited)
+        if xbmc.player_file:
+            xbmc.player_file = xbmc.player_file.split("?", 1)[0]
+    xbmc.wait_hook = strip
+    _run_stream(stream_rec["id"])
+    assert _stream_writes(handler).count(KEEP) == 2 and any("ends (stopped)" in m for _, m in xbmc.logs)
+
+
+def test_stream_play_request_resolves_false(stream_rec, handler):
+    """A play request of the URL (a handle) is answered with a failed resolve first, never a directory."""
+    import xbmcplugin
+
+    _run_stream(stream_rec["id"], handle="1")
+    assert xbmcplugin.state.resolved is not None and xbmcplugin.state.resolved[0] is False
+    assert xbmcplugin.state.ended is None
+
+
+def test_stream_unknown_recording(kodi, fake_server, handler):
+    _run_stream(999999)
+    assert handler.writes == [] and xbmcgui.notifications  # the ApiError toast
+
+
+def _active_dir():
+    import xbmcvfs
+
+    return os.path.join(xbmcvfs.profile_dir, "addon_data", "plugin.video.epgstation", "stream_active")
+
+
+def _active():
+    """{(server_url, streamId): entry} of every file in stream_active/."""
+    out = {}
+    for name in os.listdir(_active_dir()) if os.path.isdir(_active_dir()) else []:
+        entry = json.load(open(os.path.join(_active_dir(), name), encoding="utf-8"))
+        out[(entry["server_url"], entry["streamId"])] = entry
+    return out
+
+
+def _leave_stale(fake_server, vid, mode=0, server=None, zombie=False, started=None):
+    """What a killed Kodi leaves: a stream on the (fake) server (zombie: EPGStation 2.10.0's dead listing, files gone)
+    and its entry in stream_active/."""
+    import xbmcaddon as addon_stub
+    from resources.lib.epgstation import transcode
+
+    sid = json.loads(_http(fake_server, "GET", f"/api/streams/recorded/{vid}/hls?ss=0&mode={mode}")[2])["streamId"]
+    fake_epgstation_handler(fake_server).streams[sid]["zombie"] = zombie
+    started = int(time.time() * 1000) if started is None else started
+    assert transcode.ActiveStreams(_active_dir()).add(server or addon_stub.settings["server_url"], sid, vid, mode,
+                                                      started)
+    return sid
+
+
+def fake_epgstation_handler(fake_server):
+    import fake_epgstation
+
+    return fake_epgstation.HANDLERS[fake_server]
+
+
+def test_stream_active_entry_while_playing_and_cleared(stream_rec, handler):
+    """Tester F1: the stream is in stream_active/ while it runs and gone from it after the DELETE."""
+    xbmcgui.select_answers.append(0)
+    seen = {}
+
+    def peek(waited):
+        if abs(waited - 5) < 1e-9:
+            seen["active"] = _active()
+    _chain(_kodi_plays(stop_at=8), peek)
+    _run_stream(stream_rec["id"])
+    (entry,) = seen["active"].values()
+    assert entry["streamId"] == 0 and entry["videoFileId"] == stream_rec["_video"]["id"] and entry["mode"] == 0
+    assert _stream_writes(handler)[-1] == DELETE and _active() == {}
+
+
+def test_stream_zombie_deleted_before_the_next_start(stream_rec, fake_server, handler):
+    """Tester F1 / AC 5b: Kodi was killed during playback, EPGStation 2.10.0 keeps the dead stream listed without its
+    files: the next transcoded start DELETEs it (listed, enabled, same file and mode, playlist 404)."""
+    import fake_epgstation
+
+    vid = stream_rec["_video"]["id"]
+    _leave_stale(fake_server, vid, zombie=True)
+    handler.writes.clear()
+    fake_epgstation.REQUESTS[fake_server].clear()
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=3)
+    _run_stream(stream_rec["id"])
+    writes = _stream_writes(handler)
+    assert writes[0] == DELETE and writes[1] == ("GET", f"/api/streams/recorded/{vid}/hls?ss=0&mode=0")
+    assert writes[-1] == DELETE and _active() == {}
+    assert ("HEAD /streamfiles/stream0.m3u8", {}) in fake_epgstation.REQUESTS[fake_server]
+    assert any("dead listing of an earlier run: stopped" in m for _, m in xbmc.logs)
+
+
+def test_stream_live_stream_with_the_same_id_file_and_mode_is_not_deleted(stream_rec, fake_server, handler):
+    """Final review round: a live stream (playlist there) with our recorded id, file and mode, e.g. another client's
+    after an id reuse, or this Kodi's own running one: never DELETEd; the entry stays."""
+    vid = stream_rec["_video"]["id"]
+    _leave_stale(fake_server, vid)
+    handler.writes.clear()
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=3)
+    _run_stream(stream_rec["id"])
+    assert _stream_writes(handler)[0][0] == "GET" and 0 in handler.streams  # ours was id 1
+    assert ("DELETE", "/api/streams/1") in _stream_writes(handler) and DELETE not in _stream_writes(handler)
+    assert list(_active()) == [(fake_server, 0)]
+    assert any("of an earlier run is live (playlist 200): kept" in m for _, m in xbmc.logs)
+
+
+def test_stream_running_stream_survives_a_failed_second_start(stream_rec, fake_server, handler):
+    """Final review round: this Kodi plays stream A (live, recorded); a second transcoded start fails at the start GET:
+    A is not DELETEd and its entry stays."""
+    import fake_epgstation
+
+    vid = stream_rec["_video"]["id"]
+    _leave_stale(fake_server, vid)  # A, running
+    handler.writes.clear()
+    handler.stream_error = (500, fake_epgstation.error_500("EncodeProcessManageModelCreateError"))
+    xbmcgui.select_answers.append(0)
+    _run_stream(stream_rec["id"])
+    assert [m for m, _ in _stream_writes(handler)] == ["GET"] and 0 in handler.streams
+    assert list(_active()) == [(fake_server, 0)] and _toasts() == ["No free encoder on the server"]
+
+
+def test_stream_second_start_while_playing(stream_rec, fake_server, handler):
+    """Final review round: a second transcoded start while ours plays: Kodi plays the new stream instead, our loop
+    sees another file and DELETEs its own stream through the normal stop path (GET /streams shows it as ours)."""
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=10, other=f"{fake_server}/streamfiles/stream1.m3u8?k=0123456789ab")
+    _run_stream(stream_rec["id"])
+    assert any("ends (other)" in m for _, m in xbmc.logs) and any("stopped (ready)" in m for _, m in xbmc.logs)
+    assert _stream_writes(handler)[-1] == DELETE and _active() == {}
+
+
+def test_stream_stale_entry_of_another_client_is_forgotten(stream_rec, fake_server, handler):
+    """The id now shows another file (someone else's): no DELETE, the entry is dropped."""
+    vid = stream_rec["_video"]["id"]
+    sid = _leave_stale(fake_server, vid, zombie=True)
+    handler.streams[sid]["item"]["viodeFileId"] = 999999
+    handler.writes.clear()
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=3)
+    _run_stream(stream_rec["id"])
+    assert _stream_writes(handler)[0][0] == "GET" and sid in handler.streams
+    assert any("of an earlier run: forget, forgotten" in m for _, m in xbmc.logs) and _active() == {}
+
+
+def test_stream_old_stale_entries_are_dropped(stream_rec, fake_server, handler):
+    """Entries older than 7 days are dropped without a check or a DELETE (even a dead listing)."""
+    from resources.lib.epgstation import transcode
+
+    vid = stream_rec["_video"]["id"]
+    _leave_stale(fake_server, vid, zombie=True, started=int(time.time() * 1000) - transcode.STALE_MAX_AGE_MS - 60000)
+    handler.writes.clear()
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=3)
+    _run_stream(stream_rec["id"])
+    assert DELETE not in _stream_writes(handler) and _active() == {}
+    assert any("of an earlier run: old, forgotten" in m for _, m in xbmc.logs)
+
+
+def test_stream_stale_entry_kept_when_the_server_cannot_be_asked(stream_rec, fake_server, handler, monkeypatch):
+    from resources.lib.epgstation.api import ApiError, EPGStation
+
+    vid = stream_rec["_video"]["id"]
+    _leave_stale(fake_server, vid, zombie=True)
+    handler.writes.clear()
+    real, calls = EPGStation.streams, []
+
+    def streams(self, timeout=None):
+        calls.append(1)
+        if len(calls) == 1:  # the stale check
+            raise ApiError("/streams: timed out")
+        return real(self, timeout=timeout)
+    monkeypatch.setattr(EPGStation, "streams", streams)
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=3)
+    _run_stream(stream_rec["id"])
+    assert _stream_writes(handler)[0][0] == "GET" and list(_active()) == [(fake_server, 0)]
+
+
+def test_stream_stale_entry_kept_when_the_playlist_cannot_be_asked(stream_rec, fake_server, handler, monkeypatch):
+    from resources.lib.epgstation.api import EPGStation
+
+    vid = stream_rec["_video"]["id"]
+    _leave_stale(fake_server, vid, zombie=True)
+    handler.writes.clear()
+    monkeypatch.setattr(EPGStation, "stream_playlist_status", lambda self, sid, timeout=3: None)
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=3)
+    _run_stream(stream_rec["id"])
+    assert DELETE not in _stream_writes(handler) and list(_active()) == [(fake_server, 0)]
+
+
+def test_stream_stale_entry_of_another_server_is_left_alone(stream_rec, fake_server, handler):
+    vid = stream_rec["_video"]["id"]
+    _leave_stale(fake_server, vid, server="http://other:8888", zombie=True)
+    handler.writes.clear()
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=3)
+    _run_stream(stream_rec["id"])
+    assert _stream_writes(handler)[0][0] == "GET" and 0 in handler.streams  # the new one is id 1
+    assert list(_active()) == [("http://other:8888", 0)]
+
+
+def test_stream_entry_kept_when_the_stop_cannot_be_checked(stream_rec, handler, monkeypatch):
+    """No DELETE (server unreachable, last good keep too old): the entry stays for the next start."""
+    from resources.lib.epgstation.api import ApiError, EPGStation
+
+    real_keep, real_streams = EPGStation.keep_stream, EPGStation.streams
+
+    def keep(self, stream_id, timeout=3):
+        if xbmc.waited >= 7:
+            raise ApiError("connection refused")
+        return real_keep(self, stream_id, timeout)
+
+    def streams(self, timeout=None):
+        if xbmc.waited >= 7:
+            raise ApiError("connection refused")
+        return real_streams(self, timeout=timeout)
+    monkeypatch.setattr(EPGStation, "keep_stream", keep)
+    monkeypatch.setattr(EPGStation, "streams", streams)
+    xbmcgui.select_answers.append(0)
+    _kodi_plays(stop_at=18)
+    _run_stream(stream_rec["id"])
+    assert DELETE not in _stream_writes(handler) and len(_active()) == 1
+
+
+def test_stream_entry_written_inside_the_try(stream_rec, handler, monkeypatch):
+    """Final review nit 1: a failure writing stream_active/ cannot skip the DELETE."""
+    from resources.lib.epgstation import transcode
+
+    def boom(self, *a, **k):
+        raise OSError("disk full")
+    monkeypatch.setattr(transcode.ActiveStreams, "add", boom)
+    xbmcgui.select_answers.append(0)
+    with pytest.raises(OSError):
+        _run_stream(stream_rec["id"])
+    assert _stream_writes(handler)[-1] == DELETE
+
+
+def test_fake_server_head_and_zombie(stream_rec, fake_server, handler):
+    vid = stream_rec["_video"]["id"]
+    _http(fake_server, "GET", f"/api/streams/recorded/{vid}/hls?ss=0&mode=0")
+    assert _http(fake_server, "HEAD", "/streamfiles/stream0.m3u8")[0] == 200
+    handler.streams[0]["zombie"] = True
+    assert _http(fake_server, "HEAD", "/streamfiles/stream0.m3u8")[0] == 404
+    assert _http(fake_server, "GET", "/streamfiles/stream0.m3u8")[0] == 404
+    assert json.loads(_http(fake_server, "GET", "/api/streams?isHalfWidth=true")[2])["items"][0]["streamId"] == 0
+
+
+def test_fake_server_stream_timer(stream_rec, fake_server, handler):
+    """011 review L4d: the fake server's stop timer (15 s after the start or the last keep, on the test clock)."""
+    vid = stream_rec["_video"]["id"]
+    _http(fake_server, "GET", f"/api/streams/recorded/{vid}/hls?ss=0&mode=0")
+    xbmc.waited = 14
+    assert _http(fake_server, "PUT", "/api/streams/0/keep")[0] == 200
+    xbmc.waited = 29
+    assert json.loads(_http(fake_server, "GET", "/api/streams?isHalfWidth=true")[2])["items"]
+    xbmc.waited = 29.5
+    assert json.loads(_http(fake_server, "GET", "/api/streams?isHalfWidth=true")[2]) == {"items": []}
+    assert _http(fake_server, "GET", "/streamfiles/stream0.m3u8")[0] == 404
+
+
+def _http(fake_server, method, path):
+    req = urllib.request.Request(fake_server + path, method=method)
+    try:
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            return resp.status, resp.headers.get("Content-Type"), resp.read()
+    except urllib.error.HTTPError as e:
+        body = e.read()
+        e.close()
+        return e.code, e.headers.get("Content-Type"), body
+
+
+def test_fake_server_stream_routes(stream_rec, fake_server, handler):
+    """The fake EPGStation's recorded HLS routes behave like 2.10.0 (backlog 011 Notes)."""
+    vid = stream_rec["_video"]["id"]
+    base = f"/api/streams/recorded/{vid}/hls"
+    assert _http(fake_server, "GET", base + "?ss=0")[0] == 400
+    status, _, body = _http(fake_server, "GET", base + "?ss=0&mode=5")
+    assert status == 500 and json.loads(body)["errors"] == "ConfigIsUndefined"
+    status, _, body = _http(fake_server, "GET", "/api/streams/recorded/999999/hls?ss=0&mode=0")
+    assert status == 500 and json.loads(body)["errors"] == "VideoFileIsNotFound"
+    assert json.loads(_http(fake_server, "GET", base + "?ss=0&mode=0")[2]) == {"streamId": 0}
+    assert json.loads(_http(fake_server, "GET", base + "?ss=0&mode=1")[2]) == {"streamId": 1}
+    assert _http(fake_server, "GET", "/api/streams")[0] == 400
+    items = json.loads(_http(fake_server, "GET", "/api/streams?isHalfWidth=true")[2])["items"]
+    assert [(i["streamId"], i["mode"], i["isEnable"], i["viodeFileId"], i["recordedId"], i["type"]) for i in items] == \
+        [(0, 0, True, vid, stream_rec["id"], "RecordedHLS"), (1, 1, True, vid, stream_rec["id"], "RecordedHLS")]
+    status, ctype, body = _http(fake_server, "GET", "/streamfiles/stream0.m3u8?k=x")
+    assert status == 200 and ctype == "video/MP2T" and b"stream0-000000000.ts" in body and b"ENDLIST" not in body
+    assert _http(fake_server, "GET", "/streamfiles/stream0-000000000.ts")[1] == "video/mpeg"
+    assert _http(fake_server, "PUT", "/api/streams/0/keep")[2] == b'{"code":200}'
+    assert _http(fake_server, "DELETE", "/api/streams/0")[0] == 200
+    assert _http(fake_server, "DELETE", "/api/streams/0")[0] == 200  # idempotent
+    assert _http(fake_server, "GET", "/streamfiles/stream0.m3u8")[0] == 404
+    status, _, body = _http(fake_server, "PUT", "/api/streams/0/keep")
+    assert status == 500 and json.loads(body)["errors"] == "StreamIsUndefined"
+    assert json.loads(_http(fake_server, "GET", base + "?ss=0&mode=0")[2]) == {"streamId": 0}  # ids are reused
+    assert [m for m, _, _ in handler.writes].count("GET") == 6  # every start attempt is recorded
+
+
+def test_fake_server_out_of_range(stream_rec, fake_server, handler):
+    vid = stream_rec["_video"]["id"]
+    path = os.path.join(FIXTURES, os.path.basename(handler.root), "api", "videos", str(vid), "duration.json")
+    if not os.path.isfile(path):
+        pytest.skip("no captured duration")
+    status, _, body = _http(fake_server, "GET", f"/api/streams/recorded/{vid}/hls?ss=999999&mode=0")
+    assert status == 500 and json.loads(body)["errors"] == "OutOfRange"

@@ -12,6 +12,11 @@ DLG_YESNO_NO_BTN, DLG_YESNO_YES_BTN, DLG_YESNO_CUSTOM_BTN = 10, 11, 12  # reserv
 yesno_answers = []  # reservations (007): test knob, answers of the next yes/no dialogs (empty: False = No)
 yesnos = []  # every yes/no dialog shown: dict of its arguments
 yesno_hook = None  # test knob: called while a yes/no dialog is "open" (before it answers)
+# transcoded playback (011)
+numeric_answers = []  # test knob: answers of the next Dialog().numeric() (empty: "" = cancelled)
+numerics = []  # (type, heading, default) of every numeric dialog
+progress_log = []  # ("create" | "update" | "close", args) of every DialogProgress
+progress_cancel_after = None  # test knob: iscanceled() is True from this many calls on
 
 
 class ListItem:
@@ -71,6 +76,28 @@ class Dialog:
             yesno_hook()
         return answer
 
+    def numeric(self, type, heading, defaultt="", bHiddenInput=False):  # noqa: A002, N803 - Kodi API (011)
+        numerics.append((type, heading, defaultt))
+        return numeric_answers.pop(0) if numeric_answers else ""
+
     def select(self, heading, items, autoclose=0, preselect=-1, useDetails=False):
         selects.append((heading, list(items)))
         return select_answers.pop(0) if select_answers else -1
+
+
+class DialogProgress:  # transcoded playback (011)
+    def __init__(self):
+        self.checks = 0
+
+    def create(self, heading, message=""):
+        progress_log.append(("create", heading, message))
+
+    def update(self, percent, message=""):
+        progress_log.append(("update", percent))
+
+    def iscanceled(self):
+        self.checks += 1
+        return progress_cancel_after is not None and self.checks >= progress_cancel_after
+
+    def close(self):
+        progress_log.append(("close",))

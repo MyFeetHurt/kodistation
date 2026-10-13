@@ -280,6 +280,8 @@ def recorded_item(rec, api, channels, lang="ja", strings=None, real_duration=Non
     playable = bool(rec.get("videoFiles"))
     context = [(strings["choose"], plugin_url(action="choose", id=rec["id"]))] \
         if len(rec.get("videoFiles") or []) > 1 else []
+    if playable and strings.get("stream"):  # transcoded playback (011): 変換して再生 (the click checks /config)
+        context.append((strings["stream"], plugin_url(action="stream", id=rec["id"])))
     if rec.get("isRecording"):  # reservations (007): 録画を停止 (stop, keep what was recorded)
         from . import reserves  # here: reserves imports items
         context.append(reserves.context_stop(rec["id"], strings))

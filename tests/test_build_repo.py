@@ -335,7 +335,7 @@ class _RangeHandler(kodi_repo_server.RangeHandler):
 @pytest.fixture
 def served_repo(tmp_path):
     """A published repository (plugin.test + the real repository addon rendered for the server URL), served with
-    Range support like kodi-repo.service."""
+    Range support (Kodi reads zips with Range requests)."""
     repo = tmp_path / "repo"
     repo.mkdir()
     srv, url = _serve(repo, _RangeHandler)
@@ -359,7 +359,7 @@ def test_verify_good_repo(served_repo):
 
 
 def test_verify_require_versions(served_repo):
-    """019: the LAN release job requires that Pages already serves the tag's plugin version and repository 1.1.0."""
+    """019: the Gitea release check requires that Pages already serves the tag's plugin version and repository 1.1.0."""
     _repo, url = served_repo
     ok = {"plugin.test": "0.2.0", "repository.kodistation": REPO_VERSION}
     assert build_repo.verify(url, require=ok) == []
@@ -583,12 +583,14 @@ def test_untracked_files_are_rejected(tmp_path):
 # --- concurrent publishes are serialized ----------------------------------------------------------------------
 
 def test_publish_waits_for_the_repo_lock(tmp_path):
+    """The flock is on the repository directory itself (backlog 023: no lock file in the published tree)."""
     import fcntl
     import time
     repo = tmp_path / "repo"
     repo.mkdir()
     z = make_zip(tmp_path, "plugin.test", "1.0.0")
-    with open(repo / ".lock", "a") as held:
+    held = os.open(repo, os.O_RDONLY)
+    try:
         fcntl.flock(held, fcntl.LOCK_EX)
         t = threading.Thread(target=build_repo.publish, args=(str(repo), [str(z)]))
         t.start()
@@ -596,7 +598,116 @@ def test_publish_waits_for_the_repo_lock(tmp_path):
         assert t.is_alive()
         assert not (repo / "addons.xml").exists()
         fcntl.flock(held, fcntl.LOCK_UN)
+    finally:
+        os.close(held)
     t.join(10)
     assert not t.is_alive()
     assert (repo / "addons.xml").is_file()
     assert ".lock" not in (repo / "index.html").read_text()
+
+
+def _dotfiles(root):
+    return [os.path.relpath(os.path.join(d, n), root) for d, dirs, files in os.walk(root)
+            for n in dirs + files if n.startswith(".")]
+
+
+def test_publish_leaves_no_lock_file_and_removes_an_old_one(tmp_path):
+    """023: the empty .lock of older publishes was committed to gh-pages; publish creates none and deletes it."""
+    repo = tmp_path / "repo"
+    build_repo.publish(str(repo), [str(make_zip(tmp_path, "plugin.test", "1.0.0"))])
+    assert _dotfiles(repo) == []
+    (repo / ".lock").write_text("")
+    (tmp_path / "z2").mkdir()
+    z2 = str(make_zip(tmp_path / "z2", "plugin.test", "1.0.1"))
+    build_repo.publish(str(repo), [z2])
+    assert _dotfiles(repo) == []
+    (repo / ".lock").write_text("")
+    build_repo.publish(str(repo), [z2])  # same bytes: nothing new, the old lock still goes
+    assert _dotfiles(repo) == []
+
+
+def test_publish_removes_the_old_lock_from_a_git_checkout_as_a_normal_change(tmp_path):
+    """023: on gh-pages `git add -A` stages the deletion; a plain commit on top (fast-forward), no rewrite."""
+    site = tmp_path / "site"
+    site.mkdir()
+    _git(tmp_path, "init", "-q", "-b", "gh-pages", str(site))
+    build_repo.publish(str(site), [str(make_zip(tmp_path, "plugin.test", "1.0.0"))])
+    (site / ".lock").write_text("")
+    _git(site, "add", "-A")
+    _git(site, "commit", "-qm", "Publish v0.3.0")
+    before = _git(site, "rev-parse", "HEAD").strip()
+    (tmp_path / "z2").mkdir()
+    build_repo.publish(str(site), [str(make_zip(tmp_path / "z2", "plugin.test", "1.0.1"))])
+    _git(site, "add", "-A")
+    status = _git(site, "diff", "--cached", "--name-status")
+    assert "D\t.lock" in status
+    _git(site, "commit", "-qm", "Publish v0.3.1")
+    assert _git(site, "rev-parse", "HEAD~1").strip() == before
+    assert ".lock" not in _git(site, "ls-files").split()
+
+
+def test_check_zip_without_git_skips_only_the_tracked_check(tmp_path, capsys):
+    """023: `make zip` in a GitHub "Download ZIP" tree (no .git) works; the development-file check still runs."""
+    src = make_addon(tmp_path, "plugin.test", "1.0.0")
+    good = tmp_path / "plugin.test-1.0.0.zip"
+    build_repo.make_zip(str(src), str(good))
+    root = tmp_path / "nogit"
+    root.mkdir()
+    assert build_repo.main(["check-zip", "--git-root", str(root), str(good)]) == 0
+    err = capsys.readouterr().err
+    assert "not a git work tree" in err and "skipped" in err and err.count("\n") == 1
+    bad = raw_zip(tmp_path / "bad.zip", {"plugin.test/addon.xml": "x", "plugin.test/.env": "SECRET=1"})
+    assert build_repo.main(["check-zip", "--git-root", str(root), str(bad)]) == 1
+
+
+def test_check_zip_without_a_git_binary(tmp_path, monkeypatch, capsys):
+    src = make_addon(tmp_path, "plugin.test", "1.0.0")
+    good = tmp_path / "plugin.test-1.0.0.zip"
+    build_repo.make_zip(str(src), str(good))
+    monkeypatch.setenv("PATH", str(tmp_path / "empty-path"))
+    assert build_repo.main(["check-zip", "--git-root", str(tmp_path), str(good)]) == 0
+    err = capsys.readouterr().err
+    assert "git not installed" in err and "skipped" in err
+
+
+def test_check_zip_other_git_failures_stay_errors(tmp_path, monkeypatch, capsys):
+    """023 review: only "no repository" / "no git" skip the check; a bad GIT_DIR (or dubious ownership, a corrupt
+    repo) is a hard error with git's stderr, never a silent skip."""
+    src = make_addon(tmp_path, "plugin.test", "1.0.0")
+    good = tmp_path / "plugin.test-1.0.0.zip"
+    build_repo.make_zip(str(src), str(good))
+    root = tmp_path / "nogit"
+    root.mkdir()
+    monkeypatch.setenv("GIT_DIR", str(tmp_path / "missing-git-dir"))
+    rc = build_repo.main(["check-zip", "--git-root", str(root), str(good)])
+    assert rc == 2
+    err = capsys.readouterr().err
+    assert "missing-git-dir" in err and "skipped" not in err
+
+
+def test_git_work_tree_states(tmp_path, monkeypatch):
+    def fake(stdout="", stderr="", rc=0):
+        monkeypatch.setattr(build_repo.subprocess, "run",
+                            lambda *a, **k: build_repo.subprocess.CompletedProcess(a, rc, stdout, stderr))
+    fake("true\n")
+    assert build_repo.git_work_tree(".") == "yes"
+    fake("false\n")
+    assert build_repo.git_work_tree(".") == "no-repo"
+    fake(stderr="fatal: not a git repository (or any of the parent directories): .git\n", rc=128)
+    assert build_repo.git_work_tree(".") == "no-repo"
+    fake(stderr="fatal: detected dubious ownership in repository at '/x'\n", rc=128)
+    with pytest.raises(build_repo.GitError, match="dubious ownership"):
+        build_repo.git_work_tree(".")
+
+
+def test_publish_removes_temp_files_of_a_crashed_write(tmp_path):
+    """023 review: write_atomic's .*.tmp files left by a crash are deleted under the lock, so no dotfile stays."""
+    repo = tmp_path / "repo"
+    z = str(make_zip(tmp_path, "plugin.test", "1.0.0"))
+    build_repo.publish(str(repo), [z])
+    (repo / ".abc123.tmp").write_bytes(b"half")
+    (repo / "plugin.test" / ".def456.tmp").write_bytes(b"half")
+    (repo / ".git").mkdir()
+    (repo / ".git" / ".keep.tmp").write_bytes(b"git's own")
+    build_repo.publish(str(repo), [z])
+    assert sorted(_dotfiles(repo)) == [".git", os.path.join(".git", ".keep.tmp")]

@@ -73,6 +73,11 @@ jobs:
           path: site
       - name: Publish into gh-pages
         run: python3 tools/build_repo.py publish --repo-dir site dist/*.zip
+      - name: No dotfiles in the published tree (publish deletes the old .lock, backlog 023)
+        run: |
+          if find site -mindepth 1 -name .git -prune -o -name '.*' -print | grep .; then
+            echo "dotfiles in the gh-pages tree" >&2; exit 1
+          fi
       - name: Verify the tree locally
         run: |
           python3 tools/dev/kodi_repo_server.py --port 8090 --bind 127.0.0.1 --directory site &

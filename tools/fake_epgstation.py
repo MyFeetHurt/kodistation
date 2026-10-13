@@ -78,6 +78,23 @@ write_error applies) like EPGStation's RecordedManageModel.deleteVideoFile: unkn
 "VideoFileIsNotFound"; protected recording -> 500 "RecordedIsProtected"; in progress -> the whole recording is stopped
 and deleted; else the file goes, and when none is left the whole recording is deleted; 200 {"code":200}. With
 --multiply > 1 it answers 405 (the copies share the original's video file ids).
+
+Transcoded playback (backlog 011; code hooks marked "transcoded playback (011)"): per class Handler.streams ({id:
+state}, reset by reset_state). GET /api/streams/recorded/{videoFileId}/hls?ss=&mode= (recorded in writes as ("GET",
+path?query, ""): it starts a transcode) like EPGStation's StreamManageModel.start: ss and mode required (400), an
+unknown file -> 500 "VideoFileIsNotFound", a mode outside /config streamConfig.recorded.{ts|encoded}.hls -> 500
+"ConfigIsUndefined", ss beyond the captured duration -> 500 "OutOfRange", Handler.stream_error = (status, body) forces
+an answer; else 200 {"streamId": the lowest free id}. GET /api/streams (isHalfWidth required) lists them in the
+captured item shape of tests/fixtures/streams/streams.json (incl. 2.10.0's "viodeFileId"); a stream is isEnable from
+its Handler.stream_ready_after-th listing on (None: never). PUT /api/streams/{id}/keep -> 200 {"code":200} (counted in
+the state), a gone id -> 500 "StreamIsUndefined"; DELETE /api/streams/{id} -> 200 {"code":200} always (removes it).
+/streamfiles/stream{id}.m3u8 answers a generated live-style playlist (video/MP2T, like express' mime table) while the
+stream exists, else 404; /streamfiles/stream{id}-NNNNNNNNN.ts the NULL_TS packets (no video file in the tree).
+Handler.stream_timer = seconds (None: off) applies EPGStation's stop timer (StreamBaseModel.setStopTimer, 15 s): a
+stream not kept for that long after its start or last keep disappears; Handler.stream_clock (default
+time.monotonic; tests: the Kodi stub's monitor clock) is its clock (011 review L4d). Handler.streams[id]["zombie"] =
+True is EPGStation 2.10.0's dead listing (tester F1): still in GET /streams, but its /streamfiles answer 404. HEAD
+/streamfiles/... answers like GET without a body.
 """
 import argparse
 import copy
@@ -93,6 +110,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."
 from resources.lib.epgstation.items import raw_extended, to_half  # noqa: E402
 
 LIVE_FIXTURES = os.path.join(os.path.dirname(__file__), "..", "tests", "fixtures", "live")
+STREAM_FIXTURES = os.path.join(os.path.dirname(__file__), "..", "tests", "fixtures", "streams")  # (011)
 # 1 second of black MPEG-TS is enough for Kodi to "play" something in tests.
 SAMPLE_VIDEO = os.path.join(os.path.dirname(__file__), "..", "tests", "fixtures", "sample.ts")
 
@@ -275,6 +293,25 @@ def same_program(r, rec):
 NOT_FOUND_500 = {"code": 500, "message": "Internal Server Error", "errors": "ReservationIsNotFound"}
 
 
+def stream_template():  # transcoded playback (011)
+    """The captured /streams item (tests/fixtures/streams/streams.json), or a minimal one without the fixture."""
+    path = os.path.join(STREAM_FIXTURES, "streams.json")
+    if os.path.isfile(path):
+        with open(path, "rb") as f:
+            items = json.loads(f.read()).get("items") or []
+        if items:
+            return items[0]
+    return {"streamId": 0, "type": "RecordedHLS", "mode": 0, "isEnable": False}
+
+
+def playlist_text(stream_id, segments=2):  # transcoded playback (011): EPGStation's live-style playlist (no ENDLIST)
+    lines = ["#EXTM3U", "#EXT-X-VERSION:3", "#EXT-X-ALLOW-CACHE:YES", "#EXT-X-TARGETDURATION:5",
+             "#EXT-X-MEDIA-SEQUENCE:0"]
+    for n in range(segments):
+        lines += ["#EXTINF:3.000000,", f"stream{stream_id}-{n:09d}.ts"]
+    return ("\n".join(lines) + "\n").encode()
+
+
 def error_500(name):
     """EPGStation's error body for an exception name (service/api.ts)."""
     return {"code": 500, "message": "Internal Server Error", "errors": name}
@@ -304,6 +341,11 @@ class Handler(BaseHTTPRequestHandler):
     recorded_protect = None  # {id: bool} set by PUT protect / unprotect (tests flip it directly)
     recorded_patch = None  # test knob: {id: {field: value}} merged into the recording (e.g. isEncoding)
     video_deleted = None  # delete a file (018): video file ids deleted through DELETE /videos/{id}
+    streams = None  # transcoded playback (011): {id: {"item", "listed", "keeps"}}
+    stream_ready_after = 1  # listings of /api/streams before a stream is isEnable (None: never)
+    stream_error = None  # (status, body dict): GET /streams/recorded/{id}/hls answers it
+    stream_timer = None  # seconds without a keep before a stream is stopped (EPGStation: 15), None = never
+    stream_clock = staticmethod(time.monotonic)  # the timer's clock (tests: the Kodi stub's waited seconds)
 
     @classmethod
     def reset_reserves(cls):
@@ -321,6 +363,11 @@ class Handler(BaseHTTPRequestHandler):
         cls.recorded_protect = {}
         cls.recorded_patch = {}
         cls.video_deleted = set()  # delete a file (018)
+        cls.streams = {}  # transcoded playback (011)
+        cls.stream_ready_after = 1
+        cls.stream_error = None
+        cls.stream_timer = None
+        cls.stream_clock = staticmethod(time.monotonic)
 
     @classmethod
     def reset_state(cls):  # protect / delete (006): every write state (reservations and recordings)
@@ -415,6 +462,111 @@ class Handler(BaseHTTPRequestHandler):
             cls.recorded_deleted.add(rec["id"])
         return self._send(200, b'{"code":200}')
 
+    # --- transcoded playback (011) -------------------------------------------------------------------------------
+
+    def _video_file(self, vid):
+        """(recording, video file) of a video file id now, or (None, None)."""
+        for recs in (type(self).recording_state, self._all_recorded()):
+            for r in recs:
+                view = self._recorded_view(r)
+                for v in (view or {}).get("videoFiles") or []:
+                    if v.get("id") == vid:
+                        return view, v
+        return None, None
+
+    def _expire_streams(self):
+        """EPGStation's stop timer (stream_timer s after the start or the last keep)."""
+        cls = type(self)
+        if cls.stream_timer is None:
+            return
+        now = cls.stream_clock()
+        for sid in [k for k, st in cls.streams.items() if now - st["last"] > cls.stream_timer]:
+            del cls.streams[sid]
+
+    def _start_stream(self, vid, qs, raw_query):
+        cls = type(self)
+        self._expire_streams()
+        cls.writes.append(("GET", f"/api/streams/recorded/{vid}/hls?{raw_query}", ""))
+        if cls.stream_error is not None:
+            status, err = cls.stream_error
+            return self._send(status, json.dumps(err, ensure_ascii=False).encode())
+        if "ss" not in qs or "mode" not in qs:
+            return self._send(400, json.dumps({"status": 400, "errors": [{"message": "ss and mode"}]}).encode())
+        rec, video = self._video_file(vid)
+        if video is None:
+            return self._send(500, json.dumps(error_500("VideoFileIsNotFound")).encode())
+        kind = "encoded" if video.get("type") == "encoded" else "ts"
+        config = self._live("/api/config", {}) or {}
+        modes = (((config.get("streamConfig") or {}).get("recorded") or {}).get(kind) or {}).get("hls") or []
+        mode = _int(qs, "mode", -1)
+        if not 0 <= mode < len(modes):
+            return self._send(500, json.dumps(error_500("ConfigIsUndefined")).encode())
+        duration = (self._json_file(f"/api/videos/{vid}/duration") or {}).get("duration")
+        if duration is not None and _int(qs, "ss") > duration:
+            return self._send(500, json.dumps(error_500("OutOfRange")).encode())
+        sid = 0
+        while sid in cls.streams:
+            sid += 1
+        item = dict(stream_template(), streamId=sid, mode=mode, isEnable=False, viodeFileId=vid, recordedId=rec["id"],
+                    channelId=rec.get("channelId"), name=rec.get("name"), startAt=rec.get("startAt"),
+                    endAt=rec.get("endAt"), description=rec.get("description"), extended=rec.get("extended"))
+        cls.streams[sid] = {"item": item, "listed": 0, "keeps": 0, "last": cls.stream_clock()}
+        return self._send(200, json.dumps({"streamId": sid}).encode())
+
+    def _list_streams(self, qs):
+        cls = type(self)
+        if "isHalfWidth" not in qs:
+            return self._send(400, json.dumps({"status": 400, "errors": [{"message": "isHalfWidth"}]}).encode())
+        self._expire_streams()
+        out = []
+        for sid in sorted(cls.streams):
+            st = cls.streams[sid]
+            st["listed"] += 1
+            ready = cls.stream_ready_after is not None and st["listed"] >= cls.stream_ready_after
+            out.append(dict(st["item"], isEnable=ready))
+        return self._send(200, json.dumps({"items": out}, ensure_ascii=False).encode())
+
+    def _stream_write(self, method, parts):
+        """PUT /api/streams/{id}/keep, DELETE /api/streams/{id} (already recorded in writes)."""
+        cls = type(self)
+        self._expire_streams()
+        sid = int(parts[3])
+        if method == "DELETE":
+            cls.streams.pop(sid, None)
+            return self._send(200, b'{"code":200}')
+        if sid not in cls.streams:
+            return self._send(500, json.dumps(error_500("StreamIsUndefined")).encode())
+        cls.streams[sid]["keeps"] += 1
+        cls.streams[sid]["last"] = cls.stream_clock()
+        return self._send(200, b'{"code":200}')
+
+    def _streamfile(self, name, head=False):
+        cls = type(self)
+        self._expire_streams()
+
+        def live(sid):
+            return sid.isdigit() and int(sid) in cls.streams and not cls.streams[int(sid)].get("zombie")
+        send = self._send_head if head else self._send
+        if name.endswith(".m3u8") and name.startswith("stream") and live(name[6:-5]):
+            return send(200, playlist_text(int(name[6:-5])), "video/MP2T")
+        if name.endswith(".ts") and name.startswith("stream") and "-" in name and live(name[6:].split("-", 1)[0]):
+            return send(200, NULL_TS, "video/mpeg")
+        return send(404, b"Not Found", "text/html")
+
+    def _send_head(self, code, body=b"", ctype="application/json"):
+        self.send_response(code)
+        self.send_header("Content-Type", ctype)
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+
+    def do_HEAD(self):  # noqa: N802 - transcoded playback (011): HEAD of a stream file (stale cleanup)
+        path = urlparse(self.path).path.rstrip("/")
+        self.requests.append(("HEAD " + path, {}))
+        parts = path.split("/")
+        if len(parts) == 3 and parts[1] == "streamfiles":
+            return self._streamfile(parts[2], head=True)
+        return self._send_head(404)
+
     def _find_reserve(self, rid):
         return next((r for r in self.reserves_state if str(r["id"]) == str(rid)), None)
 
@@ -464,6 +616,9 @@ class Handler(BaseHTTPRequestHandler):
             return self._recorded_write(method, parts)
         if method == "DELETE" and len(parts) == 4 and parts[2] == "videos" and parts[3].isdigit():  # 018
             return self._video_write(int(parts[3]))
+        if len(parts) >= 4 and parts[2] == "streams" and parts[3].isdigit() and (  # transcoded playback (011)
+                (method == "DELETE" and len(parts) == 4) or (method == "PUT" and parts[4:] == ["keep"])):
+            return self._stream_write(method, parts)
         is_reserve = method == "DELETE" and len(parts) in (4, 5) and parts[2] == "reserves" and parts[3].isdigit() \
             and (len(parts) == 4 or parts[4] in ("skip", "overlap"))
         if not is_reserve:
@@ -661,6 +816,13 @@ class Handler(BaseHTTPRequestHandler):
 
         if path.startswith("/api/streams/live/") and path.endswith("/m2ts"):
             return self._stream_live()
+        parts = path.split("/")  # transcoded playback (011)
+        if len(parts) == 6 and parts[2:4] == ["streams", "recorded"] and parts[4].isdigit() and parts[5] == "hls":
+            return self._start_stream(int(parts[4]), qs, url.query)
+        if path == "/api/streams":
+            return self._list_streams(qs)
+        if len(parts) == 3 and parts[1] == "streamfiles":
+            return self._streamfile(parts[2])
         live = self._live(path, qs)
         if live is self.NOT_FOUND:  # program guide (013)
             return self._send(404, b'{"code":404,"message":"program is not found"}')

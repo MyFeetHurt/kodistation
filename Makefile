@@ -4,6 +4,9 @@ VERSION := $(shell sed -n 's/.*<addon[^>]* version="\([^"]*\)".*/\1/p' $(ADDON)/
 # tree (keys: local.env.example). Command-line variables still win over it.
 LOCAL_ENV ?= $(HOME)/.config/epgstation-kodi/local.env
 -include $(LOCAL_ENV)
+# KODI_HOST as given (command line, environment or local.env), before the default: deploy and smoke refuse
+# without one (023).
+KODI_HOST_GIVEN := $(KODI_HOST)
 KODI_HOST    ?= localhost
 EPGS_DEV_URL ?= http://$(KODI_HOST):8888
 # No default production URL: snapshot-prod refuses without it, --dev captures need it to refuse it.
@@ -21,20 +24,19 @@ SNAP_DEV = python3 tools/snapshot_api.py --dev --prod-url "$(EPGS_PROD_URL)" $(E
 PROD_SNAPSHOT_DIR ?= $(HOME)/.cache/epgstation-kodi/prod-snapshot
 PROD_FINGERPRINTS ?= $(HOME)/.config/epgstation-kodi/prod_fingerprints.txt
 # Kodi repository (backlog 010). The base URL is baked into the repository addon at build time; since 1.1.0
-# (backlog 019) every build points at GitHub Pages, so Gitea and GitHub build the same bytes.
+# (backlog 019) every build points at GitHub Pages, the only host since the LAN repository was retired (022).
 REPO_ID       := repository.kodistation
 REPO_VERSION  := $(shell sed -n 's/.*<addon[^>]* version="\([^"]*\)".*/\1/p' $(REPO_ID)/addon.xml)
 PUBLIC_REPO_BASE_URL := https://myfeethurt.github.io/kodistation/
 REPO_BASE_URL ?= $(PUBLIC_REPO_BASE_URL)
 REPO_DIR      ?= dist/repo
-REPO_VERIFY_URL ?= $(REPO_BASE_URL)
 ZIPS := dist/$(ADDON)-$(VERSION).zip dist/$(REPO_ID)-$(REPO_VERSION).zip
 # Demo video (backlog 021): raw clips and tour logs are private, outside the tree. The demo targets need the dev
 # Kodi in local.env (KODI_HOST, KODI_SSH_USER): the localhost default and any loopback host are refused.
 DEMO_RAW ?= $(HOME)/.cache/epgstation-kodi/demo-021
 DEMO_HOST = python3 tools/demo/kodi_drive.py --check-host
 
-.PHONY: help lint test check build zip repo publish release deploy smoke screenshot ci audit-public export-public export-pages-init snapshot-prod snapshot-dev snapshot-dev2 snapshot-schedules snapshot-live snapshot-reserves fake fake-prod clean demo-probe demo-capture demo-edit demo-check
+.PHONY: help lint test check build zip repo release deploy smoke screenshot ci audit-public export-public export-pages-init snapshot-prod snapshot-dev snapshot-dev2 snapshot-schedules snapshot-live snapshot-reserves snapshot-stream fake fake-prod clean demo-probe demo-capture demo-edit demo-check
 
 help:            ## list targets
 	@grep -E '^[a-z-]+:.*##' $(MAKEFILE_LIST) | sed 's/:.*##/\t/'
@@ -66,22 +68,18 @@ zip: build       ## reproducible installable zips of both addons in dist/, check
 repo: zip        ## publish both zips into the Kodi repository directory REPO_DIR (default dist/repo)
 	python3 tools/build_repo.py publish --repo-dir $(REPO_DIR) $(ZIPS)
 
-publish:         ## CI release job only: publish to /srv/kodi-repo and verify it over HTTP
-	$(MAKE) repo REPO_DIR=/srv/kodi-repo
-	python3 tools/build_repo.py verify --base-url $(REPO_VERIFY_URL) --expect-base-url $(REPO_BASE_URL)
-
 release:         ## cut a release: make release VERSION=x.y.z (bump, <news>, commit, tag; never pushes)
 	@[ "$(origin VERSION)" = "command line" ] || { echo "usage: make release VERSION=x.y.z" >&2; exit 1; }
 	RELEASE_TRAILER="$(RELEASE_TRAILER)" tools/release.sh $(VERSION)
 
 deploy: build    ## install on the dev VM Kodi
-	tools/deploy.sh $(KODI_HOST)
+	KODI_HOST="$(KODI_HOST_GIVEN)" tools/deploy.sh "$(KODI_HOST_GIVEN)"
 
 smoke:           ## end-to-end check through Kodi JSON-RPC on the dev VM
-	uv run python tools/kodi_smoke.py --host $(KODI_HOST)
+	uv run python tools/kodi_smoke.py --host "$(KODI_HOST_GIVEN)"
 
 screenshot:      ## smoke + screenshot of the recordings list (dist/screenshot.png)
-	uv run python tools/kodi_smoke.py --host $(KODI_HOST) --screenshot dist/screenshot.png
+	uv run python tools/kodi_smoke.py --host "$(KODI_HOST_GIVEN)" --screenshot dist/screenshot.png
 
 ci: lint test check audit-public  ## everything that runs without the VM
 
@@ -118,6 +116,9 @@ snapshot-live:   ## refresh tests/fixtures/live (free channels, schedules now..+
 snapshot-reserves: ## refresh the reservation fixtures of dev and dev2 (backlog 007; GET only, <= 60 KB each)
 	$(SNAP_DEV) tests/fixtures/dev --reserves
 	$(SNAP_DEV) tests/fixtures/dev2 --reserves
+
+snapshot-stream: ## refresh tests/fixtures/streams (011): ONE dev recorded HLS stream (<= 30 s, always DELETEd; refuses production)
+	python3 tools/dev/snapshot_stream.py
 
 fake:            ## serve the dev2 fixtures as a fake EPGStation on :8889
 	python3 tools/fake_epgstation.py tests/fixtures/dev2 --port 8889

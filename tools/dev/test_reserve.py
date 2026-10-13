@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """DEV-ONLY test reservations for backlogs 007 (manage reservations) and 014 (record from the guide) and their testers.
 
-Refuses every EPGStation but the dev one ($EPGS_DEV_URL from local.env, backlog 019; on the VM also
-http://localhost:8888), always refuses production ($EPGS_PROD_URL, also by host), and refuses everything while
-EPGS_DEV_URL is unset. Prints every request it sends. It only ever changes what it created
+Refuses every EPGStation but the dev one ($EPGS_DEV_URL from local.env, backlog 019; on the VM itself, i.e. on
+$KODI_HOST, also http://localhost:8888), always refuses production ($EPGS_PROD_URL, also by host), and refuses
+everything while EPGS_DEV_URL is unset. Prints every request it sends. It only ever changes what it created
 itself: the ids of its reservations are kept in ~/.cache/kodistation-test-reserves.json.
 
     tools/dev/test_reserve.py [--base URL] create --program
@@ -139,14 +139,32 @@ def _same_server(a, b):
     return ha == hb or bool(_addresses(ha) & _addresses(hb))
 
 
+def _on_vm():
+    """True only on the dev VM itself: this machine owns an address of $KODI_HOST. A UDP socket "connected" to such
+    an address (no packet is sent) takes it as its source only on that machine; elsewhere the source is this machine's
+    own address. (011 review: localhost:8888 elsewhere could be a tunnel to production.)"""
+    host = os.environ.get("KODI_HOST")
+    for addr in _addresses(host) if host else ():
+        family = socket.AF_INET6 if ":" in addr else socket.AF_INET
+        try:
+            with socket.socket(family, socket.SOCK_DGRAM) as s:
+                s.connect((addr, 9))
+                if s.getsockname()[0] == addr:
+                    return True
+        except OSError:
+            continue
+    return False
+
+
 def check_base(base):
-    """base when it is the dev EPGStation ($EPGS_DEV_URL, or localhost:8888 on the VM); SystemExit otherwise."""
+    """base when it is the dev EPGStation ($EPGS_DEV_URL, or localhost:8888 when running on the VM = $KODI_HOST);
+    SystemExit otherwise."""
     base, dev, prod = _url(base), _url(os.environ.get("EPGS_DEV_URL")), _url(os.environ.get("EPGS_PROD_URL"))
     if not dev or not prod:
         sys.exit("refused: EPGS_DEV_URL and EPGS_PROD_URL must both be set (~/.config/epgstation-kodi/local.env)")
     if _same_server(base, prod) or _same_server(dev, prod):
         sys.exit(f"refused: {base} is the production EPGStation")
-    allowed = (dev,) + ON_VM
+    allowed = (dev,) + (ON_VM if base in ON_VM and _on_vm() else ())
     if base not in allowed:
         sys.exit(f"refused: {base} is not the dev EPGStation ({', '.join(allowed)})")
     return base

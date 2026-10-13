@@ -5,7 +5,6 @@ http.server ignores Range, and Kodi 21.3 failed ("Requested range was not delive
 """
 import http.client
 import os
-import re
 import sys
 import threading
 
@@ -118,25 +117,6 @@ def test_main_parses_arguments(monkeypatch, tmp_path):
     assert seen == {"b": "0.0.0.0", "p": 8091, "d": str(tmp_path), "served": True}
 
 
-def test_service_unit_is_hardened():
-    unit = open(os.path.join(os.path.dirname(kodi_repo_server.__file__), "kodi-repo.service")).read()
-    for line in ["User=@USER@", "Group=@USER@", "NoNewPrivileges=yes", "ProtectSystem=strict", "ProtectHome=yes",
-                 "PrivateTmp=yes",
-                 "PrivateDevices=yes", "ProtectKernelTunables=yes", "ProtectKernelModules=yes", "ProtectKernelLogs=yes",
-                 "ProtectControlGroups=yes", "RestrictAddressFamilies=AF_INET AF_INET6", "CapabilityBoundingSet=",
-                 "LockPersonality=yes", "MemoryDenyWriteExecute=yes", "SystemCallFilter=@system-service",
-                 "ReadOnlyPaths=/srv/kodi-repo"]:
-        assert line in unit.splitlines(), line
-
-
-def test_install_script_fills_in_the_service_user():
-    """019: no account name in the tree: the install script puts the box's ssh user into @USER@."""
-    script = open(os.path.join(os.path.dirname(kodi_repo_server.__file__), "install_kodi_repo_server.sh")).read()
-    assert 'sed "s/@USER@/$SVC_USER/g" "$UNIT"' in script
-    addresses = set(re.findall(r"\b\d+\.\d+\.\d+\.\d+\b", script))
-    assert "KODI_HOST:-}" in script and addresses <= {"127.0.0.1"}  # no LAN address
-
-
 def test_listing_hides_dotfiles_and_escaping_links(server):
     r, body = get(server, "/listing/")
     assert r.status == 200
@@ -153,7 +133,7 @@ def test_dotfiles_and_paths_outside_the_root_are_refused(server, path):
 
 
 def test_shell_tools_load_local_env_with_environment_overrides(tmp_path):
-    """Codex: deploy.sh / install_kodi_repo_server.sh run directly read local.env; the environment still wins."""
+    """Codex: deploy.sh run directly reads local.env; the environment still wins."""
     import subprocess
     env_file = tmp_path / "local.env"
     env_file.write_text("# c\nKODI_HOST=kodi-box.test  \r\n  export KODI_SSH_USER = kodi\nBAD-KEY=x\nEMPTY=\n")
@@ -169,6 +149,6 @@ def test_shell_tools_load_local_env_with_environment_overrides(tmp_path):
     import local_env
     assert {k: v for k, v in local_env.read(str(env_file)).items() if k in ("KODI_HOST", "KODI_SSH_USER")} == \
         {"KODI_HOST": "kodi-box.test", "KODI_SSH_USER": "kodi"}
-    for name in ("deploy.sh", os.path.join("dev", "install_kodi_repo_server.sh")):
+    for name in ("deploy.sh",):
         text = open(os.path.join(os.path.dirname(lib), name)).read()
         assert "local_env.sh" in text and text.index("local_env.sh") < text.index("HOST=${1:-")

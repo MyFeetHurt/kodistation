@@ -1,6 +1,7 @@
 """Backlog 013: program guide logic (resources/lib/epgstation/guide.py), against the shared live fixtures."""
 import json
 import os
+import re
 import time
 
 import pytest
@@ -513,6 +514,8 @@ def test_removal_checklist_lists_every_hook():
     assert not missing, missing
     # L7: the import of guide in plugin.py carries the marker too
     plugin = os.path.join(ROOT, "plugin.video.epgstation", "resources", "lib", "epgstation", "plugin.py")
-    imports = [line for line in open(plugin, encoding="utf-8") if line.startswith("from . import")]
-    assert any(" guide," in line or line.rstrip().endswith(" guide") for line in imports)
-    assert all("program guide (013)" in line for line in imports if " guide" in line), imports
+    # transcoded playback (011): ruff wraps the import in parentheses, the marker sits on its first line
+    imports = re.findall(r"^from \. import (?:\((.*?)^\)|(.*?)$)", open(plugin, encoding="utf-8").read(), re.M | re.S)
+    imports = [a or b for a, b in imports]
+    assert any(re.search(r"\bguide\b", text) for text in imports)
+    assert all("program guide (013)" in text for text in imports if re.search(r"\bguide\b", text)), imports

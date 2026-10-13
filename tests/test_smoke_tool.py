@@ -478,12 +478,27 @@ def test_hosts_come_from_local_env(monkeypatch, tmp_path):
     assert seen["host"] == "other.test"
 
 
-def test_default_host_without_local_env(monkeypatch):
-    seen = {}
-    monkeypatch.setattr(kodi_smoke, "listdir", lambda host, url: seen.setdefault("host", host) and [])
-    monkeypatch.setattr(sys, "argv", ["kodi_smoke.py", "--show", "plugin://x/"])
-    kodi_smoke.main()
-    assert seen["host"] == "localhost"
+def test_no_host_without_local_env_is_refused(monkeypatch, capsys):
+    """023: no local.env, no KODI_HOST -> one clear line and exit 1 (like deploy.sh), no request, no traceback."""
+    monkeypatch.delenv("KODI_HOST", raising=False)
+    monkeypatch.setattr(kodi_smoke, "listdir", lambda host, url: pytest.fail("no request without a host"))
+    for argv in (["--show", "plugin://x/"], [], ["--host", ""]):
+        monkeypatch.setattr(sys, "argv", ["kodi_smoke.py", *argv])
+        with pytest.raises(SystemExit) as e:
+            kodi_smoke.main()
+        assert e.value.code not in (0, None)
+        assert str(e.value).startswith("no Kodi host") and "\n" not in str(e.value)
+
+
+def test_no_host_cli_prints_one_line(tmp_path):
+    import subprocess
+    env = {k: v for k, v in os.environ.items() if k != "KODI_HOST"}
+    env["LOCAL_ENV"] = str(tmp_path / "missing.env")
+    r = subprocess.run([sys.executable, kodi_smoke.__file__, "--show", "plugin://x/"], env=env,
+                       capture_output=True, text=True, timeout=60)
+    assert r.returncode == 1
+    assert r.stdout == "" and r.stderr.startswith("no Kodi host") and r.stderr.count("\n") == 1
+    assert "Traceback" not in r.stderr
 
 
 def test_counts_are_print_only(monkeypatch):
@@ -737,3 +752,21 @@ def test_genre_smoke_helpers():  # subgenres (009)
     listed = [{"label": "x", "file": items.plugin_url(action="play", id=i)} for i in (3, 1)]
     assert kodi_smoke.subgenre_list_failures(listed, 6, 0, entries) == []
     assert kodi_smoke.subgenre_list_failures(listed[::-1], 6, 0, entries)
+
+
+def test_make_deploy_and_smoke_pass_only_a_given_host(tmp_path):
+    """023 review: without local.env / KODI_HOST, make deploy and make smoke hand an empty host to the tools (which
+    refuse), not the Makefile's localhost default; a host on the command line (Gitea CI: 127.0.0.1) passes through."""
+    import subprocess
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    env = {k: v for k, v in os.environ.items() if k not in ("KODI_HOST", "MAKEFLAGS", "MFLAGS")}
+    env["LOCAL_ENV"] = str(tmp_path / "missing.env")
+    out = subprocess.run(["make", "-n", "-C", root, "deploy", "smoke"], env=env, capture_output=True, text=True,
+                         check=True).stdout
+    assert 'KODI_HOST="" tools/deploy.sh ""' in out and 'kodi_smoke.py --host ""' in out
+    out = subprocess.run(["make", "-n", "-C", root, "deploy", "smoke", "KODI_HOST=127.0.0.1"], env=env,
+                         capture_output=True, text=True, check=True).stdout
+    assert 'tools/deploy.sh "127.0.0.1"' in out and 'kodi_smoke.py --host "127.0.0.1"' in out
+    r = subprocess.run(["bash", os.path.join(root, "tools", "deploy.sh"), ""], env=dict(env, KODI_HOST=""),
+                       capture_output=True, text=True, cwd=tmp_path, timeout=60)
+    assert r.returncode == 1 and r.stderr.startswith("no Kodi host") and r.stderr.count("\n") == 1

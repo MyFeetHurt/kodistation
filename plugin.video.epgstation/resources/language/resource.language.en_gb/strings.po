@@ -353,6 +353,26 @@ msgctxt "#30087"
 msgid "Protected (not auto-deleted)"
 msgstr ""
 
+msgctxt "#30088"
+msgid "Stream transcoded"
+msgstr ""
+
+msgctxt "#30089"
+msgid "From the beginning"
+msgstr ""
+
+msgctxt "#30090"
+msgid "From {0}"
+msgstr ""
+
+msgctxt "#30091"
+msgid "From a position…"
+msgstr ""
+
+msgctxt "#30092"
+msgid "Starting transcoded stream…"
+msgstr ""
+
 msgctxt "#30100"
 msgid "Cannot reach EPGStation"
 msgstr ""
@@ -367,6 +387,30 @@ msgstr ""
 
 msgctxt "#30103"
 msgid "Live streaming is disabled on the server"
+msgstr ""
+
+msgctxt "#30104"
+msgid "Server: streaming off"
+msgstr ""
+
+msgctxt "#30105"
+msgid "No free encoder on the server"
+msgstr ""
+
+msgctxt "#30106"
+msgid "Could not start transcoded stream"
+msgstr ""
+
+msgctxt "#30107"
+msgid "Start position is past the end"
+msgstr ""
+
+msgctxt "#30108"
+msgid "Start position (hours:minutes)"
+msgstr ""
+
+msgctxt "#30109"
+msgid "Transcoded stream ended"
 msgstr ""
 
 msgctxt "#30200"
@@ -531,4 +575,28 @@ msgstr ""
 
 msgctxt "#30270"
 msgid "All ({0})"
+msgstr ""
+
+msgctxt "#30280"
+msgid "Transcoded playback"
+msgstr ""
+
+msgctxt "#30281"
+msgid "Recording stream mode"
+msgstr ""
+
+msgctxt "#30282"
+msgid "Ask each time"
+msgstr ""
+
+msgctxt "#30283"
+msgid "Used by the context menu entry \"Stream transcoded\" on a recording: EPGStation re-encodes the recording as HLS in one of the recorded-stream modes of its config.yml (stream.recorded.ts.hls / stream.recorded.encoded.hls), first or last in that list, or you pick one each time. It loads the server's CPU and keeps the encoded segments of the rest of the recording in its data/streamfiles until playback stops (about 1.5 to 3 GB per hour). Seeking works only within the part already encoded, and only with inputstream.adaptive installed."
+msgstr ""
+
+msgctxt "#30284"
+msgid "The server's 1st mode (e.g. 720p)"
+msgstr ""
+
+msgctxt "#30285"
+msgid "The server's last mode (e.g. 480p)"
 msgstr ""

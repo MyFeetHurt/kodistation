@@ -6,7 +6,8 @@ whole chain. Exits non-zero on failure.
 
     tools/kodi_smoke.py [--host HOST] [--show URL] [--screenshot out.png]
 
-HOST defaults to $KODI_HOST (local.env, backlog 019), else localhost; ssh to the box uses $KODI_SSH_USER.
+HOST defaults to $KODI_HOST (local.env, backlog 019); without one it refuses (backlog 023).
+ssh to the box uses $KODI_SSH_USER.
 --screenshot grabs the VM console with `virsh screenshot $SCREENSHOT_VM` on $SCREENSHOT_SSH (both from local.env).
 """
 import argparse
@@ -462,10 +463,11 @@ def epgs_get(epgs, path, **params):
 
 
 def streams_failures(epgs, when):
-    """EPGStation must have no stream running (tuners are shared with production recordings)."""
+    """EPGStation must have no stream running (tuners are shared with production recordings; transcoded playback
+    (011): a recorded HLS stream left behind loads the server and fills data/streamfiles)."""
     streams = epgs_get(epgs, "/streams", isHalfWidth="true")
     print(f"streams {when}: {streams}")
-    return [] if streams == {"items": []} else [f"EPGStation has streams {when} the live checks: {streams}"]
+    return [] if streams == {"items": []} else [f"EPGStation has streams {when}: {streams}"]
 
 
 def expected_live(schedules, now_ms):
@@ -1119,11 +1121,13 @@ def write_failures(host, start, end, kodi_offset):
 def main():
     local_env.load()
     ap = argparse.ArgumentParser()
-    ap.add_argument("--host", default=local_env.get("KODI_HOST", "localhost"))
+    ap.add_argument("--host", default=local_env.get("KODI_HOST"))
     ap.add_argument("--epgs", help="EPGStation the addon uses (default http://HOST:8888)")
     ap.add_argument("--show", help="print every item in this plugin URL and exit")
     ap.add_argument("--screenshot", help="save a screenshot of the recent list here")
     args = ap.parse_args()
+    if not args.host.strip():
+        sys.exit("no Kodi host: pass --host or set KODI_HOST (~/.config/epgstation-kodi/local.env)")
     if args.screenshot:
         screenshot_target()  # refuse before the smoke runs
 
@@ -1209,7 +1213,7 @@ def main():
             failures.append(f"first {action} folder is empty")
 
     # live TV (012): listings only, never a stream; EPGStation must have no stream before and after
-    failures += streams_failures(epgs, "before")
+    failures += streams_failures(epgs, "before the live checks")
     failures += retry_once("live", lambda: check_live(args.host, epgs))
     failures += retry_once("gui live", lambda: check_live_gui(args.host, epgs))
     failures += retry_once("guide", lambda: check_guide(args.host, epgs))  # program guide (013)
@@ -1219,13 +1223,14 @@ def main():
     failures += retry_once("reserves", lambda: check_reserves(args.host, epgs))  # reservations (007)
     failures += retry_once("gui reserves", lambda: check_gui(args.host, PLUGIN + "?action=reserves",
                                                              RESERVE_HEADERS[None]))
-    failures += streams_failures(epgs, "after")
+    failures += streams_failures(epgs, "after the live checks")
 
     print(f"reserves/cnts at end: {epgs_get(epgs, '/reserves/cnts')} (start {cnts_start}; print only)")
     failures += write_failures(args.host, started, time.time(), kodi_offset)
 
     if args.screenshot:
         screenshot(args.host, PLUGIN + "?action=list", args.screenshot)
+    failures += streams_failures(epgs, "at the end of the smoke")  # transcoded playback (011)
 
     for f in failures:
         print("FAIL:", f, file=sys.stderr)

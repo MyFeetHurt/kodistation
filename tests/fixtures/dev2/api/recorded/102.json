@@ -1,0 +1,35 @@
+{
+ "id": 102,
+ "channelId": 400222,
+ "startAt": 1791799200000,
+ "endAt": 1791806100000,
+ "name": "映画「日本女侠伝　真赤な度胸花」",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 2,
+ "programId": 40022203426,
+ "description": "父を悪徳一味に殺された牧場主の娘に、流れ者の牧童が手を貸し、牧場を死守するため、悪徳一味に挑戦していく。「日本女侠伝」シリーズ第２作目。",
+ "extended": "◇出演者\n藤純子、高倉健、小沢栄太郎、石山健二郎、山城新伍、山本麟一、橘ますみ、三島ゆり子、浅松三紀子\n◇番組内容\n北海道の大荒野。その地平線を行く騎馬二つ！西部劇名画の感動を突き破る東映ウェスタン！！北海道の広大な原野を伐り拓いたのは、今から約１４０年前の明治になってからであった。その頃、開拓者たちは大自然の猛威に立ち向かうと共に、無法の暴力や権力に命を賭けて斗わねばならなかった…。父を悪徳一味に殺された牧場主の娘に、流れ者の牧童が手を貸し、牧場を死守するため、悪徳一味に挑戦していく。\n◇おしらせ\n◆最新の放送情報を発信中！公式X（旧Twitter）【@BS12_eiga】のフォローはこちらから。\r\nhttps://x.com/BS12_eiga",
+ "genre1": 6,
+ "subGenre1": 1,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  195
+ ],
+ "videoFiles": [
+  {
+   "id": 105,
+   "name": "TS",
+   "filename": "2026年10月12日19時00分00秒-映画「日本女侠伝　真赤な度胸花」.m2ts",
+   "type": "ts",
+   "size": 11950963164
+  }
+ ],
+ "tags": []
+}

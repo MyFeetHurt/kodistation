@@ -1,0 +1,32 @@
+{
+ "id": 5,
+ "channelId": 3210242032,
+ "startAt": 1791611700000,
+ "endAt": 1791612000000,
+ "name": "天気予報",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "programId": 321024203202299,
+ "genre1": 0,
+ "subGenre1": 1,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  5
+ ],
+ "videoFiles": [
+  {
+   "id": 5,
+   "name": "TS",
+   "filename": "2026年10月10日14時55分00秒-天気予報.m2ts",
+   "type": "ts",
+   "size": 611750872
+  }
+ ],
+ "tags": []
+}

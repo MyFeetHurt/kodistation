@@ -1,0 +1,534 @@
+# Kodi Media Center language file
+# Addon id: plugin.video.epgstation
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ja_JP\n"
+
+msgctxt "#30001"
+msgid "Recent recordings"
+msgstr "最近の録画"
+
+msgctxt "#30002"
+msgid "Recording now"
+msgstr "録画中"
+
+msgctxt "#30003"
+msgid "By channel"
+msgstr "放送局別"
+
+msgctxt "#30004"
+msgid "By genre"
+msgstr "ジャンル別"
+
+msgctxt "#30005"
+msgid "By rule"
+msgstr "ルール別"
+
+msgctxt "#30006"
+msgid "Search"
+msgstr "検索"
+
+msgctxt "#30007"
+msgid "Movies"
+msgstr "映画"
+
+msgctxt "#30008"
+msgid "TV shows"
+msgstr "TV番組"
+
+msgctxt "#30009"
+msgid "Browse"
+msgstr "分類から探す"
+
+msgctxt "#30010"
+msgid "Next page"
+msgstr "次のページ"
+
+msgctxt "#30011"
+msgid "Choose video file"
+msgstr "ビデオファイルを選択"
+
+msgctxt "#30012"
+msgid "Partial"
+msgstr "途中まで"
+
+msgctxt "#30013"
+msgid "Length"
+msgstr "長さ"
+
+msgctxt "#30014"
+msgid "Unknown"
+msgstr "不明"
+
+msgctxt "#30015"
+msgid "Live TV"
+msgstr "ライブTV"
+
+msgctxt "#30016"
+msgid "Terrestrial"
+msgstr "地上波"
+
+msgctxt "#30017"
+msgid "SKY"
+msgstr "SKY"
+
+msgctxt "#30018"
+msgid "Next"
+msgstr "次"
+
+msgctxt "#30019"
+msgid "{0} min left"
+msgstr "残り{0}分"
+
+msgctxt "#30020"
+msgid "What's on"
+msgstr "放送中"
+
+msgctxt "#30021"
+msgid "By genre"
+msgstr "ジャンル別"
+
+msgctxt "#30022"
+msgid "Schedule"
+msgstr "番組表"
+
+msgctxt "#30023"
+msgid "Now"
+msgstr "現在"
+
+msgctxt "#30024"
+msgid "Today"
+msgstr "今日"
+
+msgctxt "#30025"
+msgid "Tomorrow"
+msgstr "明日"
+
+msgctxt "#30026"
+msgid "Sun,Mon,Tue,Wed,Thu,Fri,Sat"
+msgstr "日,月,火,水,木,金,土"
+
+msgctxt "#30027"
+msgid "{0} schedule"
+msgstr "{0} 番組表"
+
+msgctxt "#30028"
+msgid "Program no longer in the guide"
+msgstr "番組表にない番組です"
+
+msgctxt "#30029"
+msgid "Invalid link"
+msgstr "無効なリンクです"
+
+msgctxt "#30030"
+msgid "Scheduled recordings"
+msgstr "録画予約"
+
+msgctxt "#30031"
+msgid "Conflicts"
+msgstr "競合"
+
+msgctxt "#30032"
+msgid "Duplicates"
+msgstr "重複"
+
+msgctxt "#30033"
+msgid "Skipped"
+msgstr "除外"
+
+msgctxt "#30034"
+msgid "Delete reservation"
+msgstr "予約を削除"
+
+msgctxt "#30035"
+msgid "Skip this airing"
+msgstr "この回を除外"
+
+msgctxt "#30036"
+msgid "Stop recording"
+msgstr "録画を停止"
+
+msgctxt "#30037"
+msgid "Undo skip"
+msgstr "除外を解除"
+
+msgctxt "#30038"
+msgid "Record anyway"
+msgstr "重複を解除して録画"
+
+msgctxt "#30039"
+msgid "Delete this reservation?"
+msgstr "この予約を削除しますか?"
+
+msgctxt "#30040"
+msgid "Do not record this airing? The rule stays."
+msgstr "この回を録画しません。ルールはそのままです。"
+
+msgctxt "#30041"
+msgid "Stop recording? What has been recorded so far is kept."
+msgstr "録画を停止しますか? ここまでの録画は残ります。"
+
+msgctxt "#30042"
+msgid "Undo the skip and record this airing?"
+msgstr "除外を解除して、この回を録画しますか?"
+
+msgctxt "#30043"
+msgid "This program was recorded before. Record it anyway?"
+msgstr "以前に録画済みの番組ですが、録画しますか?"
+
+msgctxt "#30044"
+msgid "This airing will not be recorded."
+msgstr "この回は録画されません。"
+
+msgctxt "#30045"
+msgid "Reservation deleted"
+msgstr "予約を削除しました"
+
+msgctxt "#30046"
+msgid "Airing will not record"
+msgstr "この回は録画しません"
+
+msgctxt "#30047"
+msgid "Recording stopped"
+msgstr "録画を停止しました"
+
+msgctxt "#30048"
+msgid "Skip undone"
+msgstr "除外を解除しました"
+
+msgctxt "#30049"
+msgid "Will record"
+msgstr "重複を解除しました"
+
+msgctxt "#30050"
+msgid "Failed: {0}"
+msgstr "失敗しました: {0}"
+
+msgctxt "#30051"
+msgid "Reservation is gone"
+msgstr "この予約はもうありません"
+
+msgctxt "#30052"
+msgid "Reservation has changed"
+msgstr "予約の状態が変わりました"
+
+msgctxt "#30053"
+msgid "Rule: {0}"
+msgstr "ルール: {0}"
+
+msgctxt "#30054"
+msgid "Manual reservation"
+msgstr "手動予約"
+
+msgctxt "#30055"
+msgid "Conflict: will not record"
+msgstr "競合のため録画されません"
+
+msgctxt "#30056"
+msgid "Recorded before: will not record"
+msgstr "録画済みのため録画しません"
+
+msgctxt "#30057"
+msgid "Skipped: will not record"
+msgstr "除外: 録画しません"
+
+msgctxt "#30058"
+msgid "Already airing: recording starts now"
+msgstr "放送中のため途中から録画されます"
+
+msgctxt "#30059"
+msgid "Failed (connection error)"
+msgstr "失敗しました (通信エラー)"
+
+msgctxt "#30060"
+msgid "The rest of this airing will not be recorded."
+msgstr "この回の残りは録画されません。"
+
+msgctxt "#30061"
+msgid "Record"
+msgstr "録画"
+
+msgctxt "#30062"
+msgid "Record this program?"
+msgstr "この番組を録画予約しますか?"
+
+msgctxt "#30063"
+msgid "On air: recording starts now, partway in"
+msgstr "放送中: 今から途中から録画します"
+
+msgctxt "#30064"
+msgid "Encode: {0}"
+msgstr "エンコード: {0}"
+
+msgctxt "#30065"
+msgid "Recording scheduled"
+msgstr "録画予約しました"
+
+msgctxt "#30066"
+msgid "Recording started"
+msgstr "録画を開始しました"
+
+msgctxt "#30067"
+msgid "Already scheduled"
+msgstr "すでに予約されています"
+
+msgctxt "#30068"
+msgid "Not scheduled: no free tuner (conflict)"
+msgstr "チューナーが足りないため予約できません (競合)"
+
+msgctxt "#30069"
+msgid "This program has ended"
+msgstr "放送は終了しました"
+
+msgctxt "#30070"
+msgid "Scheduled: rule"
+msgstr "録画予約: ルール"
+
+msgctxt "#30071"
+msgid "Scheduled: manual"
+msgstr "録画予約: 手動"
+
+msgctxt "#30072"
+msgid "Protect"
+msgstr "保護"
+
+msgctxt "#30073"
+msgid "Unprotect"
+msgstr "保護を解除"
+
+msgctxt "#30074"
+msgid "Delete"
+msgstr "削除"
+
+msgctxt "#30075"
+msgid "Protected"
+msgstr "保護"
+
+msgctxt "#30076"
+msgid "Protect this recording? It will not be auto-deleted and cannot be deleted while protected."
+msgstr "この録画を保護しますか? 自動削除されず、保護中は削除できません。"
+
+msgctxt "#30077"
+msgid "Remove protection? The recording can then be deleted, also automatically."
+msgstr "保護を解除しますか? 解除後は削除や自動削除の対象になります。"
+
+msgctxt "#30078"
+msgid "Delete this recording? The files cannot be recovered."
+msgstr "この録画を削除しますか? ファイルは元に戻せません。"
+
+msgctxt "#30079"
+msgid "Encoding: will be cancelled"
+msgstr "エンコード中: 中止されます"
+
+msgctxt "#30080"
+msgid "Files: {0}"
+msgstr "ファイル: {0}"
+
+msgctxt "#30081"
+msgid "Protected"
+msgstr "保護しました"
+
+msgctxt "#30082"
+msgid "Protection removed"
+msgstr "保護を解除しました"
+
+msgctxt "#30083"
+msgid "Recording deleted"
+msgstr "削除しました"
+
+msgctxt "#30084"
+msgid "Recording is gone"
+msgstr "この録画はもうありません"
+
+msgctxt "#30085"
+msgid "Recording has changed"
+msgstr "録画の状態が変わりました"
+
+msgctxt "#30086"
+msgid "Protected: cannot delete"
+msgstr "保護されているため削除できません"
+
+msgctxt "#30087"
+msgid "Protected (not auto-deleted)"
+msgstr "保護中 (自動削除の対象外)"
+
+msgctxt "#30100"
+msgid "Cannot reach EPGStation"
+msgstr "EPGStation に接続できません"
+
+msgctxt "#30101"
+msgid "No free tuner"
+msgstr "空きチューナーがありません"
+
+msgctxt "#30102"
+msgid "Could not start live stream"
+msgstr "ライブ配信を開始できません"
+
+msgctxt "#30103"
+msgid "Live streaming is disabled on the server"
+msgstr "サーバーでライブ配信が無効になっています"
+
+msgctxt "#30200"
+msgid "Server"
+msgstr "サーバー"
+
+msgctxt "#30201"
+msgid "EPGStation URL"
+msgstr "EPGStation URL"
+
+msgctxt "#30202"
+msgid "Username (optional, HTTP basic auth)"
+msgstr "ユーザー名 (任意・Basic 認証)"
+
+msgctxt "#30203"
+msgid "Password"
+msgstr "パスワード"
+
+msgctxt "#30210"
+msgid "Display"
+msgstr "表示"
+
+msgctxt "#30211"
+msgid "Recordings per page"
+msgstr "1ページの録画数"
+
+msgctxt "#30212"
+msgid "Genre names"
+msgstr "ジャンル名"
+
+msgctxt "#30213"
+msgid "Japanese"
+msgstr "日本語"
+
+msgctxt "#30214"
+msgid "English"
+msgstr "英語"
+
+msgctxt "#30215"
+msgid "Play by default"
+msgstr "標準で再生するファイル"
+
+msgctxt "#30216"
+msgid "Encoded file if available"
+msgstr "エンコード済み (あれば)"
+
+msgctxt "#30217"
+msgid "Original TS"
+msgstr "元の TS"
+
+msgctxt "#30218"
+msgid "Show real file length (asks the server, cached)"
+msgstr "実際の録画の長さを表示 (サーバーに問い合わせ、キャッシュ)"
+
+msgctxt "#30230"
+msgid "Live TV"
+msgstr "ライブTV"
+
+msgctxt "#30231"
+msgid "Live stream mode"
+msgstr "ライブ配信のモード"
+
+msgctxt "#30232"
+msgid "Original broadcast (unconverted)"
+msgstr "無変換 (放送そのまま)"
+
+msgctxt "#30233"
+msgid "Transcoded: the server's 1st mode (e.g. 720p)"
+msgstr "変換: サーバーの1番目のモード (例: 720p)"
+
+msgctxt "#30234"
+msgid "Transcoded: the server's last mode (e.g. 480p)"
+msgstr "変換: サーバーの最後のモード (例: 480p)"
+
+msgctxt "#30235"
+msgid "Unconverted sends the broadcast as it is (MPEG-2, about 16 Mbit/s). The transcoded options use the live m2ts modes in the server's EPGStation config.yml (stream.live.ts.m2ts), first or last in that list; the server re-encodes, which starts slower and loads the server."
+msgstr "無変換は放送をそのまま送ります (MPEG-2、約16Mbps)。変換はサーバーの EPGStation config.yml (stream.live.ts.m2ts) のライブ配信モードの1番目または最後を使い、サーバーで再エンコードします (開始が遅く、サーバーの負荷が上がります)。"
+
+msgctxt "#30240"
+msgid "Recording"
+msgstr "録画"
+
+msgctxt "#30241"
+msgid "Encode after recording"
+msgstr "録画後のエンコード"
+
+msgctxt "#30242"
+msgid "None (TS only)"
+msgstr "なし (TS のみ)"
+
+msgctxt "#30243"
+msgid "Server's encode mode"
+msgstr "サーバーのエンコード設定"
+
+msgctxt "#30244"
+msgid "Uses the server's first encode mode (EPGStation config.yml encode); ignored when the server has none. The original TS is always kept."
+msgstr "サーバーの最初のエンコード設定 (EPGStation config.yml の encode) でエンコードします。サーバーにない場合は無視します。元の TS は常に残ります。"
+
+msgctxt "#30245"
+msgid "Delete a file"
+msgstr "ファイルを削除"
+
+msgctxt "#30246"
+msgid "Choose the file to delete"
+msgstr "削除するファイルを選択"
+
+msgctxt "#30247"
+msgid "Delete this file? It cannot be recovered."
+msgstr "このファイルを削除しますか? 元に戻せません。"
+
+msgctxt "#30248"
+msgid "Delete: {0} / Keep: {1}"
+msgstr "削除: {0} / 残す: {1}"
+
+msgctxt "#30249"
+msgid "File deleted"
+msgstr "ファイルを削除しました"
+
+msgctxt "#30250"
+msgid "File is gone"
+msgstr "このファイルはもうありません"
+
+msgctxt "#30251"
+msgid "[Recording]"
+msgstr "【録画情報】"
+
+msgctxt "#30252"
+msgid "Broadcast: {0}"
+msgstr "放送: {0}"
+
+msgctxt "#30253"
+msgid "Genre: {0}"
+msgstr "ジャンル: {0}"
+
+msgctxt "#30254"
+msgid "Video: {0}"
+msgstr "映像: {0}"
+
+msgctxt "#30255"
+msgid "Audio: {0}"
+msgstr "音声: {0}"
+
+msgctxt "#30256"
+msgid "Drops {0} / Errors {1} / Scrambled {2}"
+msgstr "ドロップ {0} / エラー {1} / スクランブル {2}"
+
+msgctxt "#30257"
+msgid "Encoding"
+msgstr "エンコード中"
+
+msgctxt "#30258"
+msgid "Drop log"
+msgstr "ドロップログ"
+
+msgctxt "#30259"
+msgid "Drop log too large"
+msgstr "ドロップログが大きすぎます"
+
+msgctxt "#30260"
+msgid "No drop log"
+msgstr "ドロップログがありません"
+
+msgctxt "#30270"
+msgid "All ({0})"
+msgstr "すべて ({0})"

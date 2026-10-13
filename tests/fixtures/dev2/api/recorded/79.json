@@ -1,0 +1,35 @@
+{
+ "id": 79,
+ "channelId": 3208643056,
+ "startAt": 1791729000000,
+ "endAt": 1791730800000,
+ "name": "刃牙道（第１５話）",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 1,
+ "programId": 320864305603164,
+ "description": "死合い◇すべての闘いに生きる者たちを巻き込んだ時代を超えた史上最強決定戦が今、幕を開ける…！！",
+ "extended": "◇出演者\n範馬刃牙：島﨑信長\r\n範馬勇次郎：大塚明夫\r\n宮本武蔵：内田直哉\r\n徳川光成：辻親八\r\n徳川寒子：野沢雅子\r\n烈海王：小山力也\r\n花山薫：江口拓也\r\n愚地独歩：菅生隆之\r\n愚地克巳：川原慶久\r\n渋川剛気：島田敏\r\n本部以蔵：屋良有作\r\nジャック・ハンマー：三宅健太\r\nジョン・ホナー：金尾哲夫\r\n野々村仁：土門仁\r\n郭海皇：緒方賢一\r\n柴千春：鈴木達央\r\n鎬紅葉：成田剣\r\nガイア：村瀬歩\r\nピクル：草尾毅\r\nナレーション：古谷徹",
+ "genre1": 7,
+ "subGenre1": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  116
+ ],
+ "videoFiles": [
+  {
+   "id": 82,
+   "name": "TS",
+   "filename": "2026年10月11日23時30分00秒-刃牙道（第１５話）.m2ts",
+   "type": "ts",
+   "size": 3464633388
+  }
+ ],
+ "tags": []
+}

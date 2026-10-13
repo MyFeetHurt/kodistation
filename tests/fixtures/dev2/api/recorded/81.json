@@ -1,0 +1,35 @@
+{
+ "id": 81,
+ "channelId": 3208643056,
+ "startAt": 1791732600000,
+ "endAt": 1791734400000,
+ "name": "弱気ＭＡＸ令嬢なのに、辣腕婚約者様の賭けに乗ってしまった（第２話）",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 1,
+ "programId": 320864305603167,
+ "description": "◇最弱悪役令嬢×最強婚約者の“運命の賭け”がもたらす結末とは――？",
+ "extended": "◇出演者\nピア・ロックウェル：伊藤美来\r\nルーファス・スタン：逢坂良太\r\nキャロライン・ラムゼー：日高里菜\r\nエリン・ホワイト：雨宮天\r\nヘンリー・コックス：石谷春貴\r\nルーファス・スタン（幼少期）：石上静香\r\nアメリア・キース：白石晴香\r\nフィリップ：坂田将吾\r\nマイク：石毛翔弥",
+ "genre1": 7,
+ "subGenre1": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  113
+ ],
+ "videoFiles": [
+  {
+   "id": 84,
+   "name": "TS",
+   "filename": "2026年10月12日00時30分00秒-弱気ＭＡＸ令嬢なのに、辣腕婚約者様の賭けに乗ってしまった（第２話）.m2ts",
+   "type": "ts",
+   "size": 3495295060
+  }
+ ],
+ "tags": []
+}

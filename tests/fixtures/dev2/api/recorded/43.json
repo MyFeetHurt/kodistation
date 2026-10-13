@@ -1,0 +1,39 @@
+{
+ "id": 43,
+ "channelId": 3211240960,
+ "startAt": 1791673200000,
+ "endAt": 1791674700000,
+ "name": "小さな旅　選「愛しき里山　～鳥取県　南部町～」[解][字]",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 4,
+ "programId": 321124096029427,
+ "description": "自然豊かな里山として知られる鳥取県南部町を訪ねた。耕作放棄地を田んぼとして復活させた女性やオオサンショウウオの保護をする親子。里山の暮らしを未来へつなぐ物語。",
+ "extended": "◇番組内容\n自然豊かな里山として知られる鳥取県南部町。旅人・藤井彩子が出会った農家の女性。里山の米作りが絶えることのないように、耕作放棄地を田んぼとして復活させた。また町で唯一の窯元には、地元でとれた土や水、釉薬をつかって伝統の焼き物をつくる女性がいた。オオサンショウウオを「町の宝」と呼んで保護活動を続けてきた親子は、観察会を開いて子供たちに自然と触れあう喜びを伝える。里山の暮らしを未来へつなぐ物語。\n◇出演者\n【旅人】藤井彩子",
+ "genre1": 8,
+ "subGenre1": 1,
+ "genre2": 8,
+ "subGenre2": 0,
+ "genre3": 8,
+ "subGenre3": 4,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  150
+ ],
+ "videoFiles": [
+  {
+   "id": 46,
+   "name": "TS",
+   "filename": "2026年10月11日08時00分00秒-小さな旅　選「愛しき里山　～鳥取県　南部町～」[解][字].m2ts",
+   "type": "ts",
+   "size": 2980362496
+  }
+ ],
+ "tags": []
+}

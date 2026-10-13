@@ -1,0 +1,35 @@
+{
+ "id": 111,
+ "channelId": 3208643056,
+ "startAt": 1791817200000,
+ "endAt": 1791819000000,
+ "name": "ＰＳＹＲＥＮ　－サイレン－（第２話）",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 1,
+ "programId": 320864305603217,
+ "description": "禁人種【タヴー】◇アゲハは失踪事件の黒幕と噂される「秘密結社サイレン」へとアクセス。命を懸けたゲームが始まってしまった─",
+ "extended": "◇出演者\n夜科アゲハ：安田陸矢\r\n雨宮桜子：風間万裕子\r\n朝河飛龍：武内駿輔\r\n望月朧：斉藤壮馬\r\n霧崎兜：野津山幸宏",
+ "genre1": 7,
+ "subGenre1": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  203
+ ],
+ "videoFiles": [
+  {
+   "id": 114,
+   "name": "TS",
+   "filename": "2026年10月13日00時00分00秒-ＰＳＹＲＥＮ　－サイレン－（第２話）.m2ts",
+   "type": "ts",
+   "size": 3525224848
+  }
+ ],
+ "tags": []
+}

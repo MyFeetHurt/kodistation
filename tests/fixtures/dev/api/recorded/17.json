@@ -1,0 +1,37 @@
+{
+ "id": 17,
+ "channelId": 3272102056,
+ "startAt": 1791624000000,
+ "endAt": 1791624300000,
+ "name": "ミニアニメ　のりものまん　モービルランドのカークン「伝説ののりもの」",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 1,
+ "programId": 327210205631817,
+ "description": "見たことない部品を見つけたカークン。持ち主は伝説ののりものＴ型フォードのエリザベス！今ののりものと違う仕組みで動くエリザベスにカークンは興味しんしん！",
+ "extended": "◇番組内容\n「おれ、カークン。みんなに荷物をとどける『おとどけや』なんだ！」「モービルランド」はのりものたちが暮らす島。島にやってきたカークンは「おとどけや」を始めます。色々なのりものたちに、荷物をとどけるのです。皆をサビさせるサビビーにじゃまをされるときはあるけれど、一生懸命、おとどけを頑張るカークン。今日はどんなのりものに会えるかな？\n◇出演者\n【声】高垣彩陽，玄田哲章，阪口大助，佐藤せつじ，野沢雅子\n◇原作・脚本\n【脚本】村山功",
+ "genre1": 7,
+ "subGenre1": 0,
+ "genre2": 10,
+ "subGenre2": 8,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  14
+ ],
+ "videoFiles": [
+  {
+   "id": 20,
+   "name": "TS",
+   "filename": "2026年10月10日18時20分00秒-ミニアニメ　のりものまん　モービルランドのカークン「伝説ののりもの」.m2ts",
+   "type": "ts",
+   "size": 469684912
+  }
+ ],
+ "tags": []
+}

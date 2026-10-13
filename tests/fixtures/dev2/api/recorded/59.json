@@ -1,0 +1,37 @@
+{
+ "id": 59,
+ "channelId": 3272202064,
+ "startAt": 1791703800000,
+ "endAt": 1791705600000,
+ "name": "『アオのハコ』Ｓｅａｓｏｎ２　＃０２憧れ[字]",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 1,
+ "programId": 327220206442889,
+ "description": "青さが胸を衝く青春部活ラブストーリー、待望のＴＶアニメＳｅａｓｏｎ２",
+ "extended": "◇番組内容\n千夏との念願のデートに胸を弾ませる大喜。ふたりで買い物をし、楽しい時間を過ごすが、男子バスケ部の先輩・松岡の登場で空気は一変。強引な松岡に翻弄されるふたりだったが、紆余曲折を経て最後にとある場所に行くことに。そして夕暮れの下、大喜は意を決して千夏に気持ちを伝えようとするがーー。\r\n　\n◇出演者\n猪股大喜：千葉翔也\r\n鹿野千夏：上田麗奈\r\n蝶野 雛：鬼頭明里\r\n笠原 匡：小林千晃\r\n針生健吾：内田雄馬\r\n守屋菖蒲：市ノ瀬加那\r\n松岡一馬：梶 裕貴\r\n木戸夢佳：青山吉能\n◇音楽\n【OPアーティスト】\r\naiko「あなたの花の色」\r\nPONY CANYON\r\n\r\n【EDアーティスト】\r\nエルスウェア紀行「blue in」\r\nTOY'S FACTORY\n◇スタッフ\n原作 三浦糀（集英社ジャンプコミックス刊）\r\n監督 酒向 大輔\r\nキャラクターデザイン・総作画監督 谷野 美穂\r\nシリーズ構成・脚本 柿原 優子\r\nアニメーション制作 エレクトリックサーカス\n◇公式ページ\n[公式サイト]https://aonohako-anime.com/\r\n[公式X]@aonohako_PR\n◇おことわり\n番組の内容と放送時間は変更になる場合があります。",
+ "genre1": 7,
+ "subGenre1": 0,
+ "genre2": 11,
+ "subGenre2": 5,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  134
+ ],
+ "videoFiles": [
+  {
+   "id": 62,
+   "name": "TS",
+   "filename": "2026年10月11日16時30分00秒-『アオのハコ』Ｓｅａｓｏｎ２　＃０２憧れ[字].m2ts",
+   "type": "ts",
+   "size": 3544473040
+  }
+ ],
+ "tags": []
+}

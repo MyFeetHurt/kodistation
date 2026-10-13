@@ -1,0 +1,35 @@
+{
+ "id": 114,
+ "channelId": 3208643056,
+ "startAt": 1791819000000,
+ "endAt": 1791820800000,
+ "name": "転生ゴブリンだけど質問ある？（第２話）",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 1,
+ "programId": 320864305603218,
+ "description": "曲者じいさんと出会ったけど質問ある？◇“ゴブリン”が巻き起こす最強無双ファンタジー、ここに開幕！",
+ "extended": "◇出演者\nアキラ：戸谷菊之介\r\nカレン：日笠陽子\r\nクロエ：橘杏咲\r\nシモン：銀河万丈\r\nエイレーネ：鈴代紗弓\r\nディケ：Ｍ・Ａ・Ｏ\r\nエウノミア：倉持若菜\r\nアルバート：花江夏樹\r\nイズイーズ：下野紘\r\n天地開闢：田村ゆかり",
+ "genre1": 7,
+ "subGenre1": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  207
+ ],
+ "videoFiles": [
+  {
+   "id": 117,
+   "name": "TS",
+   "filename": "2026年10月13日00時30分00秒-転生ゴブリンだけど質問ある？（第２話）.m2ts",
+   "type": "ts",
+   "size": 3508291124
+  }
+ ],
+ "tags": []
+}

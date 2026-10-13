@@ -1,0 +1,108 @@
+# GitHub Actions for the public repository (backlog 019). Actions are pinned to commit SHAs (tag in the comment). The working repository is elsewhere; this repository gets
+# one exported commit per release. Every job is guarded by github.server_url, so no other forge that reads
+# .github/ ever runs or queues it.
+name: ci
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    if: github.server_url == 'https://github.com'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4.4.0
+        with:
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e  # v6.8.0
+        with:
+          python-version: '3.12'
+      - name: Install dev tools
+        run: uv sync --frozen
+      - name: Lint, tests, kodi-addon-checker
+        run: make lint test check
+      - name: Public audit of the tracked tree (generic rules; .venv and dist are not part of it)
+        run: python3 tools/public_audit.py --worktree .
+      - name: Public audit of the history (noreply identities only; pushes, not pull requests)
+        if: github.event_name != 'pull_request'
+        run: python3 tools/public_audit.py --history .
+
+  release:
+    # Publishes the tagged version to the gh-pages branch (the Kodi repository's files) and deploys that tree to
+    # GitHub Pages. Published zips never change: build_repo.py publish refuses a changed version, so a re-run is a
+    # no-op. Never force-pushes.
+    if: github.server_url == 'https://github.com' && startsWith(github.ref, 'refs/tags/v')
+    needs: check
+    runs-on: ubuntu-24.04
+    concurrency: gh-pages
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      PUBLIC_REPO_BASE_URL: https://myfeethurt.github.io/kodistation/
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4.4.0
+        with:
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e  # v6.8.0
+        with:
+          python-version: '3.12'
+      - name: Annotated tag on main, equal to the addon.xml version
+        env:
+          TAG: ${{ github.ref_name }}
+        run: tools/ci_release_guard.sh "$TAG"
+      - name: Repository addon not changed without a version bump
+        run: python3 tools/build_repo.py check-repo-addon --src repository.kodistation
+      - name: Build the zips
+        run: make zip
+      - name: Public audit of the zips
+        run: python3 tools/public_audit.py --zip dist/*.zip
+      - name: Check out gh-pages
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4.4.0
+        with:
+          ref: gh-pages
+          path: site
+      - name: Publish into gh-pages
+        run: python3 tools/build_repo.py publish --repo-dir site dist/*.zip
+      - name: Verify the tree locally
+        run: |
+          python3 tools/dev/kodi_repo_server.py --port 8090 --bind 127.0.0.1 --directory site &
+          for _ in $(seq 1 20); do curl -sf -o /dev/null http://127.0.0.1:8090/ && break; sleep 0.5; done
+          python3 tools/build_repo.py verify --base-url http://127.0.0.1:8090/ --expect-base-url "$PUBLIC_REPO_BASE_URL"
+      - name: Commit gh-pages (fast-forward only)
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          cd site
+          git add -A
+          if git diff --cached --quiet; then echo "gh-pages unchanged"; exit 0; fi
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -q -m "Publish $TAG"
+          git push origin HEAD:gh-pages
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa  # v3.0.1
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e  # v4.0.5
+      - name: Verify GitHub Pages serves this release (retried up to 10 minutes for the Pages cache)
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          repo_version=$(sed -n 's/.*<addon[^>]* version="\([^"]*\)".*/\1/p' repository.kodistation/addon.xml)
+          for i in $(seq 1 20); do
+            python3 tools/build_repo.py verify --base-url "$PUBLIC_REPO_BASE_URL" \
+              --expect-base-url "$PUBLIC_REPO_BASE_URL" \
+              --require "plugin.video.epgstation=${TAG#v}" --require "repository.kodistation=$repo_version" && exit 0
+            sleep 30
+          done
+          exit 1

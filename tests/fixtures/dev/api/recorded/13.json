@@ -1,0 +1,35 @@
+{
+ "id": 13,
+ "channelId": 3272502088,
+ "startAt": 1791621000000,
+ "endAt": 1791622800000,
+ "name": "[新]朱色の仮面　第１話「仮面屋ペル」[字][デ]",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 1,
+ "programId": 327250208808744,
+ "description": "立ち向かえ。強大な敵にーー。己の運命にーー。仮面バトルファンタジー、開幕！",
+ "extended": "◇監督・演出\n【監督】\r\n渡邉徹明\r\n【キャラクターデザイン】\r\n東島久志\n◇原作・脚本\n【原作】\r\n那波なばな\r\nDr.Poro\r\n【シリーズ構成】\r\n大東大介\n◇音楽\n【オープニング主題歌】\r\n「Firestarter」MAN WITH A MISSION\r\n\r\n【エンディング主題歌】\r\n「声」yutori\n◇制作\n【制作】\r\n100studio\n◇番組ホームページ\nhttps://the-vermilion-mask.com/\n◇番組ＳＮＳ\n【公式X】\r\nhttps://x.com/vermilion_PR\r\n【公式TikTok】\r\nhttps://www.tiktok.com/@vermilionmask_anime\n◇出演者\nペル：木村太飛\r\nソナ：山本悠有希\r\nゼント：榎木淳弥\r\nガストン：井上和彦\r\n武神の仮面：大塚明夫\r\n\r\nゴウオン：星野貴紀\r\nトトク：駒田航\r\nグレン：綿貫竜之介\r\nペル（幼少期）：石上静香\r\nレン：漆山ゆうき\r\nヤント：胡麻鶏彩\r\nコウレン：菊池ゆりな\n◇番組内容\n街中では『仮面舞踏会』を祝うのぼりや飾りつけの風船が浮かび賑わいを見せる一方で、人々の雰囲気はどこか暗い。そんな中、一人で愉快に露店を開き、客を引く旅の仮面屋・ペル。彼はそこでソナという少女に出会う。ペルはソナに「オレはガストン・ルーの仮面を壊すためにこの国に来た」と伝える。ガストンは、7年前にある事件で弟子たちと共に殺された世界三大仮面屋のひとりだった。",
+ "genre1": 7,
+ "subGenre1": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  13
+ ],
+ "videoFiles": [
+  {
+   "id": 16,
+   "name": "TS",
+   "filename": "2026年10月10日17時30分00秒-[新]朱色の仮面　第１話「仮面屋ペル」[字][デ].m2ts",
+   "type": "ts",
+   "size": 3179452052
+  }
+ ],
+ "tags": []
+}

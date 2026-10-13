@@ -1,0 +1,35 @@
+{
+ "id": 117,
+ "channelId": 3211240960,
+ "startAt": 1791832500000,
+ "endAt": 1791834600000,
+ "name": "空の島旅　南から西から",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 4,
+ "programId": 321124096031774,
+ "description": "豊かな自然と深い歴史に育まれた小さな島々の絶景をドローン映像を中心に紹介する。今回は南国沖縄県の奥武島から北へ東へ。最後は四国徳島県の出羽島まで１３の島を巡る。",
+ "extended": "◇番組内容\n日本の島を空から。１９８３年久米島と橋でつながった沖縄県奥武島　サンゴ礁に囲まれた鹿児島県請島　チョウの楽園宮崎県大島　１６００年オランダ船が漂着した大分県黒島　大小１５０以上の島々が浮かぶキリシタンの影響深い長崎県五島列島　黄島　葛島　日島　野崎島　炭鉱の廃虚の島長崎県永ノ島　あま漁が盛んな長崎県高島　絶海の孤島福岡県小呂島　砲台の跡が残る高知県鵜来島　漁村の風景が重伝建に選定された徳島県出羽島",
+ "genre1": 8,
+ "subGenre1": 1,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  210
+ ],
+ "videoFiles": [
+  {
+   "id": 120,
+   "name": "TS",
+   "filename": "2026年10月13日04時15分00秒-空の島旅　南から西から.m2ts",
+   "type": "ts",
+   "size": 4210231800
+  }
+ ],
+ "tags": []
+}

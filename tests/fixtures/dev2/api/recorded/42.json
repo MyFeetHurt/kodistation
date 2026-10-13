@@ -1,0 +1,35 @@
+{
+ "id": 42,
+ "channelId": 3211841008,
+ "startAt": 1791669600000,
+ "endAt": 1791671400000,
+ "name": "アニもり！[字]",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 1,
+ "programId": 321184100802974,
+ "description": "話題のショートアニメもりだくさん！\r\n「小3アシベ　QQゴマちゃん」「おでかけ子ザメ（シーズン２）」「ゆるゆる図鑑」「タヌキとキツネ」「あはれ！名作くん」ほか",
+ "extended": "◇番組概要\n「アニもり！」とは・・・番組をカプセルトイマシン、各ショートアニメをその中から次々飛び出すカプセルトイに見立て、週末の朝に子供から大人まで、みんながワクワクするような、話題のショートアニメもりだくさんのスペシャルプログラム。30分間で多種多様な世界観を楽しめる、“アニメ”+“アミューズメント”＝“アニミューズメント”を提供します。\n◇番組内容\n「小3アシベ　QQゴマちゃん」\r\n「おでかけ子ザメ（シーズン２）」\r\n「デザートキャッチ！ティニピン」\r\n「ゆるゆる図鑑」\r\n「タヌキとキツネ」\r\n「あはれ！名作くん」\n◇ホームページ\nhttps://www.tv-tokyo.co.jp/anime/animori/",
+ "genre1": 7,
+ "subGenre1": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  151
+ ],
+ "videoFiles": [
+  {
+   "id": 45,
+   "name": "TS",
+   "filename": "2026年10月11日07時00分00秒-アニもり！[字].m2ts",
+   "type": "ts",
+   "size": 3448065888
+  }
+ ],
+ "tags": []
+}

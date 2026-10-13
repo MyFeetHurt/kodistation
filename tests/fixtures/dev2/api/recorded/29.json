@@ -1,0 +1,35 @@
+{
+ "id": 29,
+ "channelId": 3208643056,
+ "startAt": 1791642600000,
+ "endAt": 1791644400000,
+ "name": "機動新世紀ガンダムＸ[終]（第３９話）",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 1,
+ "programId": 320864305603112,
+ "description": "月はいつもそこにある◇人類のほとんどが失われてしまうという最悪の形で戦争が終わった世界で、人々はどう生きて行くのか？月と荒野を舞台に描く少年・少女の成長譚。",
+ "extended": "◇出演者\nガロード・ラン：高木渉\r\nティファ・アディール：かないみか\r\nジャミル・ニート：堀内賢雄\r\nウィッツ・スー：中井和哉\r\nロアビィ・ロイ：山崎たくみ\r\nシャギア・フロスト：森川智之\r\nオルバ・フロスト：佐々木望\r\nトニヤ・マーム：三石琴乃\r\nサラ・タイレル：かかずゆみ\r\nシンゴ・モリ：中村大樹\r\nキッド・サルサミル：くまいもとこ\r\nテクス・ファーゼンバーグ：中博史\r\nエニル・エル：本多知恵子\r\nカリス・ノーティラス：水谷優子\n◇番組内容２\nランスロー・ダーウェル：竹村拓\r\nパーラ・シス：長沢美樹\r\nナレーション：光岡湧太郎",
+ "genre1": 7,
+ "subGenre1": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  163
+ ],
+ "videoFiles": [
+  {
+   "id": 32,
+   "name": "TS",
+   "filename": "2026年10月10日23時30分00秒-機動新世紀ガンダムＸ[終]（第３９話）.m2ts",
+   "type": "ts",
+   "size": 3475291484
+  }
+ ],
+ "tags": []
+}

@@ -1,0 +1,27 @@
+[project]
+name = "epgstation-kodi"
+version = "0.1.0"
+requires-python = ">=3.10"
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.6", "kodi-addon-checker>=0.0.35"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+# Warnings fail the tests (e.g. a FutureWarning from a regex). Unclosed fixture files/sockets in the older tests
+# are only ResourceWarnings (raised from finalizers, hence PytestUnraisableExceptionWarning) and stay allowed.
+filterwarnings = ["error", "ignore::ResourceWarning", "ignore::pytest.PytestUnraisableExceptionWarning"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py38"  # Kodi on some platforms still ships old Pythons
+extend-exclude = ["tests/fixtures"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "UP", "N", "I"]
+ignore = ["UP009", "UP015"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/kodi_stubs/*" = ["N"]  # must mirror Kodi's camelCase API
+"tools/fake_epgstation.py" = ["N802", "N815"]  # http.server do_GET naming

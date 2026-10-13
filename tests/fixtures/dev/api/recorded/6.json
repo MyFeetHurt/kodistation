@@ -1,0 +1,36 @@
+{
+ "id": 6,
+ "channelId": 3272302072,
+ "startAt": 1791617100000,
+ "endAt": 1791617400000,
+ "name": "土曜のにぼしいわし[字]",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "programId": 327230207212245,
+ "description": "女芸人№１決定戦 THE W 2024のチャンピオンのにぼしいわしが、週末のちょっと気になる話題を彼女たちのレポートで紹介する情報ミニ番組！",
+ "extended": "◇出演者\n香空にぼし・伽説いわし",
+ "genre1": 2,
+ "subGenre1": 15,
+ "genre2": 11,
+ "subGenre2": 5,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  6
+ ],
+ "videoFiles": [
+  {
+   "id": 7,
+   "name": "TS",
+   "filename": "2026年10月10日16時25分00秒-土曜のにぼしいわし[字].m2ts",
+   "type": "ts",
+   "size": 609430952
+  }
+ ],
+ "tags": []
+}

@@ -1,0 +1,348 @@
+{
+ "_comment": "Demo video (backlog 021): kept ranges per raw clip as [tour-log step, seconds]; offsets: clip time = log t + offset. Edited after the frame review; tools/demo/edit.py reads it.",
+ "offsets": {
+  "A1": -0.4,
+  "B1": -0.4,
+  "C1": -0.4,
+  "C2": -0.4,
+  "D1": -0.4,
+  "E2": -0.4
+ },
+ "crf": [
+  24,
+  26,
+  28,
+  30,
+  32
+ ],
+ "video": [
+  {
+   "clip": "A1",
+   "caption": "録画を見る / Browse recordings",
+   "keep": [
+    {
+     "from": [
+      "home",
+      -0.6
+     ],
+     "to": [
+      "root",
+      0.9
+     ],
+     "speed": 1.25
+    },
+    {
+     "from": [
+      "root",
+      0.9
+     ],
+     "to": [
+      "episode2",
+      -0.2
+     ],
+     "speed": 1.5
+    },
+    {
+     "from": [
+      "episode2",
+      1.6
+     ],
+     "to": [
+      "details",
+      4.6
+     ],
+     "speed": 1.0
+    },
+    {
+     "from": [
+      "root_back",
+      -0.3
+     ],
+     "to": [
+      "movie",
+      2.4
+     ],
+     "speed": 1.6
+    },
+    {
+     "from": [
+      "root_back2",
+      -0.2
+     ],
+     "to": [
+      "subgenre_item",
+      2.4
+     ],
+     "speed": 2.0
+    }
+   ]
+  },
+  {
+   "clip": "B1",
+   "caption": "ライブTV と番組表 / Live TV and guide",
+   "keep": [
+    {
+     "from": [
+      "root",
+      -0.5
+     ],
+     "to": [
+      "live_channel_focused",
+      2.3
+     ],
+     "speed": 1.6
+    },
+    {
+     "from": [
+      "live_playing",
+      0.3
+     ],
+     "to": [
+      "live_playing",
+      5.2
+     ],
+     "speed": 1.0
+    },
+    {
+     "from": [
+      "live_stopped",
+      1.6
+     ],
+     "to": [
+      "program_focused",
+      1.8
+     ],
+     "speed": 1.5
+    }
+   ]
+  },
+  {
+   "clip": "C1",
+   "caption": "番組表から録画予約 / Record from the guide",
+   "keep": [
+    {
+     "from": [
+      "program_focused",
+      -0.5
+     ],
+     "to": [
+      "record_toast",
+      3.6
+     ],
+     "speed": 1.2
+    }
+   ]
+  },
+  {
+   "clip": "C2",
+   "keep": [
+    {
+     "from": [
+      "record_mark",
+      -0.8
+     ],
+     "to": [
+      "cancelled",
+      1.2
+     ],
+     "speed": 1.5
+    }
+   ]
+  },
+  {
+   "clip": "D1",
+   "caption": "録画の管理 / Manage recordings",
+   "keep": [
+    {
+     "from": [
+      "root",
+      -0.4
+     ],
+     "to": [
+      "rec_focused",
+      1.0
+     ],
+     "speed": 2.5
+    },
+    {
+     "from": [
+      "rec_focused",
+      1.0
+     ],
+     "to": [
+      "protected",
+      1.0
+     ],
+     "speed": 1.6
+    },
+    {
+     "from": [
+      "protected",
+      1.0
+     ],
+     "to": [
+      "delete_question",
+      -0.2
+     ],
+     "speed": 1.7
+    },
+    {
+     "from": [
+      "delete_question",
+      -0.2
+     ],
+     "to": [
+      "delete_closed",
+      1.3
+     ],
+     "speed": 1.2
+    }
+   ]
+  },
+  {
+   "clip": "E2",
+   "caption": "英語表示 / English UI",
+   "keep": [
+    {
+     "from": [
+      "ja_root",
+      -0.6
+     ],
+     "to": [
+      "language_set",
+      0.5
+     ],
+     "speed": 1.0
+    },
+    {
+     "from": [
+      "settings",
+      -0.8
+     ],
+     "to": [
+      "root_en",
+      -0.6
+     ],
+     "speed": 1.6
+    },
+    {
+     "from": [
+      "root_en",
+      -0.6
+     ],
+     "to": [
+      "subgenre_en",
+      0.8
+     ],
+     "speed": 2.5
+    },
+    {
+     "from": [
+      "details_en",
+      -0.8
+     ],
+     "to": [
+      "details_en",
+      3.6
+     ],
+     "speed": 1.0
+    }
+   ]
+  }
+ ],
+ "gif": [
+  {
+   "clip": "A1",
+   "keep": [
+    {
+     "from": [
+      "root",
+      -0.3
+     ],
+     "to": [
+      "episode1",
+      1.8
+     ],
+     "speed": 2.2
+    },
+    {
+     "from": [
+      "details",
+      -0.6
+     ],
+     "to": [
+      "details",
+      2.8
+     ],
+     "speed": 1.0
+    }
+   ]
+  },
+  {
+   "clip": "B1",
+   "keep": [
+    {
+     "from": [
+      "ctx_guide",
+      -0.6
+     ],
+     "to": [
+      "program_focused",
+      1.2
+     ],
+     "speed": 2.5
+    }
+   ]
+  },
+  {
+   "clip": "C1",
+   "keep": [
+    {
+     "from": [
+      "ctx_record",
+      -1.0
+     ],
+     "to": [
+      "record_toast",
+      2.6
+     ],
+     "speed": 1.6
+    }
+   ]
+  }
+ ],
+ "screenshots": [
+  {
+   "name": "screenshot-recordings.png",
+   "clip": "A1",
+   "at": [
+    "episode1",
+    1.8
+   ]
+  },
+  {
+   "name": "screenshot-details.png",
+   "clip": "A1",
+   "at": [
+    "details",
+    3.0
+   ]
+  },
+  {
+   "name": "screenshot-guide.png",
+   "clip": "C2",
+   "at": [
+    "record_mark",
+    0.5
+   ]
+  },
+  {
+   "name": "screenshot-live.png",
+   "clip": "B1",
+   "at": [
+    "live_channel_focused",
+    1.0
+   ]
+  }
+ ]
+}

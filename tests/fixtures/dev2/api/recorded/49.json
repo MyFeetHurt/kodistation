@@ -1,0 +1,35 @@
+{
+ "id": 49,
+ "channelId": 3211841008,
+ "startAt": 1791677700000,
+ "endAt": 1791678600000,
+ "name": "ぷにるんず　ぷに４　第２話『あいるん　べびるんになるん♪』[字][デ]",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 1,
+ "programId": 321184100802978,
+ "description": "あいるんとゆかは「赤ちゃんをぷにぷにしたいな～」と話している。そこにやってきたえんじぇるん、ラッキーなことがおこる矢をはなつと、矢は、あいるんにめいちゅう。\r\n",
+ "extended": "◇お知らせ\n日曜日は「アイぷにサンデー」！\r\n「ぷにるんずぷに４」と「おねがいアイプリ」の放送を見て、番組の中で発表される「あいことば」を探してプレゼントに応募してね！\n◇出演者\nあいるん：潘めぐみ\r\nえねるん：小松未可子\r\nらぶるん：内田彩\r\nうるるん：山口智広\r\nくーるん：木野日菜\r\nともるん：朝日奈丸佳\r\nじゅえるん：和泉風花\r\n\r\nゆか：谷口夢奈\r\n\r\nナレーション：小野大輔\n◇原作脚本\n原作：タカラトミー\r\nシリーズ構成：市川十億衛門\r\nキャラクターデザイン：一石小百合\n◇監督・演出\n監督：春日森春木\r\n制作：OLM　Digital\n◇音楽\n音楽：小畑貴裕\r\n音楽監督：小沼則義\r\n\r\nテーマソング：「ぷにぷにぷにるんず　ぷにックスバージョン」ななひら\n◇ホームページ\nhttps://www.tv-tokyo.co.jp/anime/punirunes/",
+ "genre1": 7,
+ "subGenre1": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  144
+ ],
+ "videoFiles": [
+  {
+   "id": 52,
+   "name": "TS",
+   "filename": "2026年10月11日09時15分00秒-ぷにるんず　ぷに４　第２話『あいるん　べびるんになるん♪』[字][デ].m2ts",
+   "type": "ts",
+   "size": 1748841048
+  }
+ ],
+ "tags": []
+}

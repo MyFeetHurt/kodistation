@@ -1,0 +1,39 @@
+{
+ "id": 87,
+ "channelId": 3211240960,
+ "startAt": 1791746400000,
+ "endAt": 1791747900000,
+ "name": "小さな旅「花咲く丘で　～富山市　呉羽丘陵～」[解][字][再]",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 4,
+ "programId": 321124096030114,
+ "description": "富山県の真ん中に広がる呉羽丘陵は、市街地の近くにありながら豊かな自然が残る、地元の人たちの憩いの場。旅人・山本哲也が出会った花咲く丘の知られざる物語。",
+ "extended": "◇番組内容\n富山県の真ん中に広がる呉羽丘陵は、市街地の近くにありながら豊かな自然が残る、地元の人たちの憩いの場。旅人・山本哲也が花畑を訪ねると、呉羽丘陵を花でいっぱいにするのが夢と語る女性に出会う。展望台では、１０年にわたって掃除のボランティアを続ける男性と。梨畑では、祖母からあとを継ぐことに反対され、会社員をへてから呉羽丘陵へ帰ってきた農家の話を聞いた。人々から親しまれる花咲く丘の知られざる物語。\n◇出演者\n【旅人】山本哲也",
+ "genre1": 8,
+ "subGenre1": 1,
+ "genre2": 8,
+ "subGenre2": 0,
+ "genre3": 8,
+ "subGenre3": 4,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  108
+ ],
+ "videoFiles": [
+  {
+   "id": 90,
+   "name": "TS",
+   "filename": "2026年10月12日04時20分00秒-小さな旅「花咲く丘で　～富山市　呉羽丘陵～」[解][字][再].m2ts",
+   "type": "ts",
+   "size": 2930541932
+  }
+ ],
+ "tags": []
+}

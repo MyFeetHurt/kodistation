@@ -1,0 +1,35 @@
+{
+ "id": 54,
+ "channelId": 3208643056,
+ "startAt": 1791684000000,
+ "endAt": 1791687300000,
+ "name": "ドラマ　太陽にほえろ！（第５５話）",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 3,
+ "programId": 320864305603135,
+ "description": "再会◇石原裕次郎主演！！昭和の名作を一挙放送！！豪華俳優陣が“愛”と“友情”をテーマに、男の心意気・人間性を描く！！",
+ "extended": "◇出演者\n石原裕次郎\r\n木之元亮\r\n宮内淳\r\n露口茂\r\n竜雷太\r\n小野寺昭\r\n下川辰平\r\nほか",
+ "genre1": 3,
+ "subGenre1": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 1,
+ "thumbnails": [
+  137
+ ],
+ "videoFiles": [
+  {
+   "id": 57,
+   "name": "TS",
+   "filename": "2026年10月11日11時00分00秒-ドラマ　太陽にほえろ！（第５５話）.m2ts",
+   "type": "ts",
+   "size": 6420966288
+  }
+ ],
+ "tags": []
+}

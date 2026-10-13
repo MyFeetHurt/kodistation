@@ -1,0 +1,82 @@
+{
+ "channels": [
+  {
+   "cnt": 1,
+   "channelId": 400141
+  },
+  {
+   "cnt": 1,
+   "channelId": 400161
+  },
+  {
+   "cnt": 1,
+   "channelId": 400200
+  },
+  {
+   "cnt": 2,
+   "channelId": 400222
+  },
+  {
+   "cnt": 10,
+   "channelId": 3208643056
+  },
+  {
+   "cnt": 4,
+   "channelId": 3210242032
+  },
+  {
+   "cnt": 25,
+   "channelId": 3211240960
+  },
+  {
+   "cnt": 13,
+   "channelId": 3211841008
+  },
+  {
+   "cnt": 13,
+   "channelId": 3272102056
+  },
+  {
+   "cnt": 8,
+   "channelId": 3272202064
+  },
+  {
+   "cnt": 9,
+   "channelId": 3272302072
+  },
+  {
+   "cnt": 9,
+   "channelId": 3272402080
+  },
+  {
+   "cnt": 3,
+   "channelId": 3272502088
+  }
+ ],
+ "genres": [
+  {
+   "cnt": 5,
+   "genre": 2
+  },
+  {
+   "cnt": 16,
+   "genre": 3
+  },
+  {
+   "cnt": 1,
+   "genre": 5
+  },
+  {
+   "cnt": 5,
+   "genre": 6
+  },
+  {
+   "cnt": 56,
+   "genre": 7
+  },
+  {
+   "cnt": 16,
+   "genre": 8
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+v0.3.0 (2026-10-13)
+- Recording details: a 【録画情報】 block with channel, air time, video/audio format, files with sizes, drop/error counts, protection and encoding state; ドロップログ viewer when a recording has drops
+- ファイルを削除: delete one video file of a recording (e.g. the TS after an encode) and keep the others
+- ジャンル別 counts every genre a recording has, and genres open into subgenre folders with counts
+- English genre names now include subgenres; dubbed movies show the voice actor as "Dub: name"
+- The KODIstation Repository moves to GitHub Pages (https://myfeethurt.github.io/kodistation/); source on GitHub
+
+v0.2.0 (2026-10-13)
+- Movies and TV shows: recordings grouped into shows and episodes from the EPG text, newest first, plus browsing by genre (分類から探す)
+- Real file length on lists, partial recordings flagged, choose which file to play, full info while playing
+- ライブTV: watch live channels (terrestrial, BS, CS) with what is on now
+- Program guide inside ライブTV, with genre filter and on-air marker
+- 録画 from the guide: record a program (red ○ / ● marker) with a chosen encode setting
+- 録画予約: upcoming, conflicts and skipped programs; cancel, skip or un-skip a reservation, stop a recording
+- 保護 / 保護を解除 / 削除 for recordings
+- Artwork: recording thumbnails as posters and fanart, with Kodi icons as fallback
+- Installable from the KODIstation Repository with automatic updates
+
+v0.1.0 (2026-10-10)
+- Initial walking skeleton: browse and play EPGStation recordings with EPG information

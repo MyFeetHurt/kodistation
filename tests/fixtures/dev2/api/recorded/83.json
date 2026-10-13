@@ -1,0 +1,35 @@
+{
+ "id": 83,
+ "channelId": 3210242032,
+ "startAt": 1791733500000,
+ "endAt": 1791735300000,
+ "name": "弱気ＭＡＸ令嬢なのに、辣腕婚約者様の賭けに乗ってしまった　＃２",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 1,
+ "programId": 321024203202441,
+ "description": "最弱悪役令嬢×最強婚約者の“運命の賭け”がもたらす結末は―――？\r\n",
+ "extended": "◇出演者\n【声の出演】ピア・ロックウェル／伊藤美来　ルーファス・スタン／逢坂良太　キャロライン・ラムゼー／日高里菜　エリン・ホワイト／雨宮天　ヘンリー・コックス／石谷春貴　ルーファス・スタン（幼少期）／石上静香　アメリア・キース／白石晴香　フィリップ／坂田将吾　マイク／石毛翔弥\n◇番組内容\n「攻略キャラが集うお茶会」\r\n14歳になったピアは、ルーファスと共に王宮のお茶会に参加しなければならなくなった。エリンやアメリアと知り合うが、彼女たちもまた婚約者から断罪される運命。ピアは胸が苦しくなり休んでいると……。",
+ "genre1": 7,
+ "subGenre1": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  111
+ ],
+ "videoFiles": [
+  {
+   "id": 86,
+   "name": "TS",
+   "filename": "2026年10月12日00時45分00秒-弱気ＭＡＸ令嬢なのに、辣腕婚約者様の賭けに乗ってしまった　＃２.m2ts",
+   "type": "ts",
+   "size": 3654142276
+  }
+ ],
+ "tags": []
+}

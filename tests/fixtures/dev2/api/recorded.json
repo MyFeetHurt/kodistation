@@ -1,0 +1,3455 @@
+{
+ "records": [
+  {
+   "id": 125,
+   "channelId": 3272302072,
+   "startAt": 1791866700000,
+   "endAt": 1791870120000,
+   "name": "グ・ラ・メ！～総理の料理番～　＃２[再][字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 3,
+   "programId": 327230207212420,
+   "description": "７０年ぶりに総理任命の官邸料理人（剛力彩芽）が復活！\r\n一筋縄ではいかない国家レベルのゲストたちに、料理を武器に挑んでいく！\r\n日本を救う“究極の一皿”が誕生！",
+   "extended": "◇番組内容\n総理ｖｓアジアの女帝！\r\n資本撤退問題で、日本企業との関係が悪化したシンガポールのカリスマ女性経営者！もし撤退となれば、日本には１０万人の失業者が…最悪の事態を回避するために、阿藤総理が動きだす！しかし、会談目前、女性経営者は料理に対し次々に無理難題を押し付け、くるみはピンチに追い込まれる！さらに、官邸大食堂のライバル料理人が現れ、料理対決に！１０万人の日本人を救う料理は、果たして見つかるのか⁉\n◇出演者\n剛力彩芽、滝藤賢一、高橋一生、新川優愛、内藤理沙、松尾幸実、片桐仁、三宅弘城、小日向文世\r\n【ゲスト】ジュディ・オング",
+   "genre1": 3,
+   "subGenre1": 0,
+   "genre2": 11,
+   "subGenre2": 5,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    218
+   ],
+   "videoFiles": [
+    {
+     "id": 129,
+     "name": "TS",
+     "filename": "2026年10月13日13時45分00秒-グ・ラ・メ！～総理の料理番～　＃２[再][字].m2ts",
+     "type": "ts",
+     "size": 7038150736
+    }
+   ],
+   "dropLogFile": {
+    "id": 2,
+    "errorCnt": 1,
+    "dropCnt": 0,
+    "scramblingCnt": 0
+   }
+  },
+  {
+   "id": 124,
+   "channelId": 3211841008,
+   "startAt": 1791862620000,
+   "endAt": 1791869460000,
+   "name": "午後のサスペンス　刑事の十字架[字][解]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 3,
+   "programId": 321184100803069,
+   "description": "25年前、相棒・沢木(山田純大)を目の前で殺された島田(陣内孝則)。飲み屋で知り合った男との出会いが、島田が背負った十字架とかかわる連続事件への幕開けとなる…。",
+   "extended": "◇番組内容\n25年前、相棒の沢木（山田純大）を目前で殺された京都東署の刑事・島田直治（陣内孝則）。以来、その十字架を背負いながら生きてきた。ある日、不動産会社の営業マン・松村（山根誠示）の刺殺事件が発生。さらに島田の知人・鈴木（徳井優）が変死体で発見され、現場で松村殺しの凶器が見つかる。鈴木が犯人と断定される中、島田はある疑念から捜査の洗い直しを求める。そんな中、島田は沢木の事件につながる人物の存在に気づく。\n◇出演者\n島田直治…陣内孝則\r\n青木達也…渡辺大\r\n野村健一…植草克秀\r\n古賀…羽場裕一\r\n木田譲…近藤芳正\r\n鈴木久…徳井優\r\n広瀬隆一…春田純一\r\n島田瑠璃…藤井武美\r\n安藤麻里…三津谷葉子\r\n沢木…山田純大\r\n有馬篤子…有森也実\r\n郷田力…赤井英和\r\n河合敬一郎…津川雅彦　ほか\n◇原作脚本\n【原作】西川司「刑事の十字架」（祥伝社文庫刊）\r\n\r\n【脚本】鈴木康弘\n◇監督\n【監督】金澤克次",
+   "genre1": 3,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    217
+   ],
+   "videoFiles": [
+    {
+     "id": 128,
+     "name": "TS",
+     "filename": "2026年10月13日12時37分00秒-午後のサスペンス　刑事の十字架[字][解].m2ts",
+     "type": "ts",
+     "size": 14045380360
+    }
+   ],
+   "dropLogFile": {
+    "id": 1,
+    "errorCnt": 1,
+    "dropCnt": 0,
+    "scramblingCnt": 0
+   }
+  },
+  {
+   "id": 122,
+   "channelId": 3272102056,
+   "startAt": 1791848700000,
+   "endAt": 1791849000000,
+   "name": "ミニアニメ　がんばれ！ルルロロ「ママがおねつ！」",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327210205630574,
+   "description": "ふたごのルルとロロ。今日のお仕事は、いっぱい看病してママのおねつを治しちゃうことー！頭を冷やしたり、スープをつくったり。でもまったくよくなる気配がなくて…",
+   "extended": "◇番組内容\nふたごのルルとロロ。今日のお仕事は、いっぱいいっぱい看病して、ママのおねつを治しちゃうことー！　おばあちゃんに聞いて、タオルで頭を冷やしたり、スープをつくったり、がんばって看病（かんびょう）をする二人。しかし、まったくよくなる気配がありません。心配でしかたが無い二人は、お手紙を書いてみることにしました。心のこもったお手紙をもらったママは…。\n◇出演者\n【声】清水詩音，近貞月乃，小島一華，津田匠子，日髙のり子，鈴木琢磨，辻親八\n◇原作・脚本\n【脚本】あいはらひろゆき，岡田磨里",
+   "genre1": 7,
+   "subGenre1": 0,
+   "genre2": 10,
+   "subGenre2": 8,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    214
+   ],
+   "videoFiles": [
+    {
+     "id": 125,
+     "name": "TS",
+     "filename": "2026年10月13日08時45分00秒-ミニアニメ　がんばれ！ルルロロ「ママがおねつ！」.m2ts",
+     "type": "ts",
+     "size": 561938392
+    }
+   ]
+  },
+  {
+   "id": 121,
+   "channelId": 3272102056,
+   "startAt": 1791847500000,
+   "endAt": 1791848100000,
+   "name": "アニメ　おじゃる丸「うすい　紅茶の国への旅」[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327210205630572,
+   "description": "千年前のヘイアンチョウから月光町にやってきたおじゃる丸が、小学生のカズマや町の人々、あとを追ってきた子鬼（おに）たちとゆかいな騒動（そうどう）をまきおこします。",
+   "extended": "◇番組内容\n【第２９シリーズ第３５話】同じティーバッグを何度も使っていれたうすい紅茶（こうちゃ）をこよなく愛（あい）する、うすいさちよ。ある日、福引で「紅茶の国への旅」を当てる。その「紅茶の国」でうすいを待っていたのは、おじゃる丸そっくりのガイド、ミスター・オジャール。街では月光町の人たちにそっくりな人たちとも出会って大はしゃぎだったのだが…。うすいさんにしか味わえない？！「紅茶の国」のふしぎなお話。\n◇出演者\n【声】西村ちなみ，渕崎ゆり子，佐藤なる美，仲尾あづさ，井上ほの花，モリノリ久，内藤玲，小柳基\n◇原作・脚本\n【脚本】山田由香，【原案】犬丸りん\n◇監督・演出\n【監督】大地丙太郎",
+   "genre1": 7,
+   "subGenre1": 0,
+   "genre2": 10,
+   "subGenre2": 8,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    213
+   ],
+   "videoFiles": [
+    {
+     "id": 124,
+     "name": "TS",
+     "filename": "2026年10月13日08時25分00秒-アニメ　おじゃる丸「うすい　紅茶の国への旅」[字].m2ts",
+     "type": "ts",
+     "size": 1150372376
+    }
+   ]
+  },
+  {
+   "id": 120,
+   "channelId": 3211240960,
+   "startAt": 1791846900000,
+   "endAt": 1791849300000,
+   "name": "あさイチ　秋が勝負！冬に泣かない先回りスキンケア▽ときめき！ハピ技[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 4,
+   "programId": 321124096030453,
+   "description": "夏のダメージが残る１０月こそスキンケア。すでに体のある部分に乾燥のサインが出ているかも！？手、かかと、顔、視聴者の悩みにおこたえ。今日から試せる最短習慣",
+   "extended": "◇番組内容\n夏のダメージが残る１０月こそスキンケア。すでに体のある部分に乾燥のサインが出ているかも！？▼視聴者のお悩み１位は手、２位かかと、３位が顔。今日からできる最短習慣▼８６％の人が間違い！？本当に効果があるハンドクリームの塗り方▼金子エミの保湿習慣▼効果驚きの洗顔術【ゲスト】吉田羊・南沙良【キャスター】博多華丸・大吉、鈴木奈穂子\n◇出演者\n【ゲスト】吉田羊，南沙良，【キャスター】博多華丸，博多大吉，鈴木奈穂子，【リポーター】副島淳，【語り】日髙のり子",
+   "genre1": 2,
+   "subGenre1": 2,
+   "genre2": 2,
+   "subGenre2": 3,
+   "genre3": 8,
+   "subGenre3": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    216
+   ],
+   "videoFiles": [
+    {
+     "id": 123,
+     "name": "TS",
+     "filename": "2026年10月13日08時15分00秒-あさイチ　秋が勝負！冬に泣かない先回りスキンケア▽ときめき！ハピ技[字].m2ts",
+     "type": "ts",
+     "size": 4576317056
+    }
+   ]
+  },
+  {
+   "id": 119,
+   "channelId": 3272102056,
+   "startAt": 1791843600000,
+   "endAt": 1791844200000,
+   "name": "はなかっぱ「あまかっぱちゃんとアゲルちゃん」「はなかっぱ何級？」[字][デ]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327210205630566,
+   "description": "頭の上に花が咲くかっぱ「はなかっぱ」と個性豊かな仲間たち、そして謎の花「わか蘭」を狙う黒羽屋蝶兵衛一味が、緑いっぱいの「やまびこ村」で、てんやわんやの大騒ぎ！",
+   "extended": "◇番組内容\n緑いっぱいの「やまびこ村」に、頭に花が咲くかっぱの家族が住んでいる。「はなかっぱ」の頭には「とりあえずの花」が咲いている。大人になるまで花は決まらず、いろいろな花を咲かすのだ。中でも食べると若返ると言われている「わか蘭」という花を狙って、黒羽屋蝶兵衛一味があの手この手で悪だくみ。やまびこ村はてんやわんやの大騒ぎ。今日はどんな花が咲くのか。「わか蘭」は咲くのか。そして、はなかっぱの花は何になるのか。\n◇出演者\n【声】中川里江，杜野まこ，咲々木瞳，植田佳奈，宍戸留美，栗田エリナ，高瀬泰幸，山口勝平\n◇原作・脚本\n【脚本】成島由紀子，山下友弘，【原作】あきやまただし",
+   "genre1": 7,
+   "subGenre1": 0,
+   "genre2": 5,
+   "subGenre2": 3,
+   "genre3": 10,
+   "subGenre3": 8,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    212
+   ],
+   "videoFiles": [
+    {
+     "id": 122,
+     "name": "TS",
+     "filename": "2026年10月13日07時20分00秒-はなかっぱ「あまかっぱちゃんとアゲルちゃん」「はなかっぱ何級？」[字][デ].m2ts",
+     "type": "ts",
+     "size": 966863320
+    }
+   ]
+  },
+  {
+   "id": 118,
+   "channelId": 3272102056,
+   "startAt": 1791841200000,
+   "endAt": 1791841500000,
+   "name": "プチプチ・アニメ　ビップとバップ「ワルツの王様」",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327210205630562,
+   "description": "正義感あふれる少年探偵のビップと食べるのが大すきな相棒、カエルのバップ。謎の怪盗ピカロとその子分たちの悪だくみを、機転をきかせてみごと解決してゆきます。",
+   "extended": "◇番組内容\n正義感あふれる少年探偵のビップと食べるのが大すきな相棒、カエルのバップ。謎の怪盗ピカロとその子分たちの悪だくみを、機転をきかせてみごと解決してゆきます。",
+   "genre1": 7,
+   "subGenre1": 0,
+   "genre2": 7,
+   "subGenre2": 15,
+   "genre3": 10,
+   "subGenre3": 8,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    211
+   ],
+   "videoFiles": [
+    {
+     "id": 121,
+     "name": "TS",
+     "filename": "2026年10月13日06時40分00秒-プチプチ・アニメ　ビップとバップ「ワルツの王様」.m2ts",
+     "type": "ts",
+     "size": 609222836
+    }
+   ]
+  },
+  {
+   "id": 117,
+   "channelId": 3211240960,
+   "startAt": 1791832500000,
+   "endAt": 1791834600000,
+   "name": "空の島旅　南から西から",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 4,
+   "programId": 321124096031774,
+   "description": "豊かな自然と深い歴史に育まれた小さな島々の絶景をドローン映像を中心に紹介する。今回は南国沖縄県の奥武島から北へ東へ。最後は四国徳島県の出羽島まで１３の島を巡る。",
+   "extended": "◇番組内容\n日本の島を空から。１９８３年久米島と橋でつながった沖縄県奥武島　サンゴ礁に囲まれた鹿児島県請島　チョウの楽園宮崎県大島　１６００年オランダ船が漂着した大分県黒島　大小１５０以上の島々が浮かぶキリシタンの影響深い長崎県五島列島　黄島　葛島　日島　野崎島　炭鉱の廃虚の島長崎県永ノ島　あま漁が盛んな長崎県高島　絶海の孤島福岡県小呂島　砲台の跡が残る高知県鵜来島　漁村の風景が重伝建に選定された徳島県出羽島",
+   "genre1": 8,
+   "subGenre1": 1,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    210
+   ],
+   "videoFiles": [
+    {
+     "id": 120,
+     "name": "TS",
+     "filename": "2026年10月13日04時15分00秒-空の島旅　南から西から.m2ts",
+     "type": "ts",
+     "size": 4210231800
+    }
+   ]
+  },
+  {
+   "id": 116,
+   "channelId": 3211240960,
+   "startAt": 1791822000000,
+   "endAt": 1791823500000,
+   "name": "うまいッ！　旬到来！うまみ凝縮　かます～長崎・伊王島～[字][再]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 4,
+   "programId": 321124096030419,
+   "description": "長崎の海では今かます漁が最盛期。新鮮で脂の乗った高級かますが水揚げされています。地元ではこの魚を通して町おこしも！驚きの絶品アイデア料理も続々登場、お楽しみに！",
+   "extended": "◇番組内容\n長崎・伊王島のかます漁に食材ハンター・鈴之助さんが同行しました。獲物を狙うのは長さ７００ｍの刺し網、魚体を傷つけずに新鮮なまま捕える漁師のスゴワザを目撃します。水揚げ後はスマホを駆使して超スピーディーな出荷、どこまでも鮮度保持を追求します。かますで町おこしを進める地元では、定番の一夜干しに加え多彩な創作料理が次々に誕生、かますの魅力を広げています。日本有数の産地、長崎のかますフィーバーをご覧あれ！\n◇出演者\n【司会】天野ひろゆき，塚原愛，【出演】鈴之助，【リポーター】山口紗希",
+   "genre1": 2,
+   "subGenre1": 5,
+   "genre2": 5,
+   "subGenre2": 6,
+   "genre3": 8,
+   "subGenre3": 4,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    209
+   ],
+   "videoFiles": [
+    {
+     "id": 119,
+     "name": "TS",
+     "filename": "2026年10月13日01時20分00秒-うまいッ！　旬到来！うまみ凝縮　かます～長崎・伊王島～[字][再].m2ts",
+     "type": "ts",
+     "size": 2971528564
+    }
+   ]
+  },
+  {
+   "id": 115,
+   "channelId": 3210242032,
+   "startAt": 1791820800000,
+   "endAt": 1791822600000,
+   "name": "刃牙道　＃１５「死合い」",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 321024203202500,
+   "description": "地下闘技場戦士の面々や刃牙、そして勇次郎…すべての闘いに生きる者たちを巻き込んだ時代を超えた史上最強決定戦が今、幕を開ける…！！",
+   "extended": "◇番組内容\n【＃１５あらすじ】ピクルとの対戦が迫る武蔵の前に現れたのは、環境利用闘法の使い手であるガイア。ガイアは最新鋭の武器を用いて武蔵へと挑む。一方、ピクルはというと一切の食事をとらず、集中力を高め対戦の時を待っていた。そんなピクルのもとに刃牙が訪ねてくる。\n◇出演者\n【声の出演】範馬刃牙：島﨑信長　範馬勇次郎：大塚明夫　宮本武蔵：内田直哉　徳川光成：辻親八　徳川寒子：野沢雅子　烈海王：小山力也　花山薫：江口拓也　愚地独歩：菅生隆之　愚地克巳：川原慶久　渋川剛気：島田敏　本部以蔵：屋良有作　ジャック・ハンマー：三宅健太\n◇出演者２\nジョン・ホナー：金尾哲夫　野々村仁：土門仁　郭海皇：緒方賢一　柴千春：鈴木達央　鎬紅葉：成田剣　ガイア：村瀬歩　ピクル：草尾毅　【ナレーション】古谷徹",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    208
+   ],
+   "videoFiles": [
+    {
+     "id": 118,
+     "name": "TS",
+     "filename": "2026年10月13日01時00分00秒-刃牙道　＃１５「死合い」.m2ts",
+     "type": "ts",
+     "size": 3607844456
+    }
+   ]
+  },
+  {
+   "id": 114,
+   "channelId": 3208643056,
+   "startAt": 1791819000000,
+   "endAt": 1791820800000,
+   "name": "転生ゴブリンだけど質問ある？（第２話）",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 320864305603218,
+   "description": "曲者じいさんと出会ったけど質問ある？◇“ゴブリン”が巻き起こす最強無双ファンタジー、ここに開幕！",
+   "extended": "◇出演者\nアキラ：戸谷菊之介\r\nカレン：日笠陽子\r\nクロエ：橘杏咲\r\nシモン：銀河万丈\r\nエイレーネ：鈴代紗弓\r\nディケ：Ｍ・Ａ・Ｏ\r\nエウノミア：倉持若菜\r\nアルバート：花江夏樹\r\nイズイーズ：下野紘\r\n天地開闢：田村ゆかり",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    207
+   ],
+   "videoFiles": [
+    {
+     "id": 117,
+     "name": "TS",
+     "filename": "2026年10月13日00時30分00秒-転生ゴブリンだけど質問ある？（第２話）.m2ts",
+     "type": "ts",
+     "size": 3508291124
+    }
+   ]
+  },
+  {
+   "id": 113,
+   "channelId": 3211841008,
+   "startAt": 1791817200000,
+   "endAt": 1791819000000,
+   "name": "『BLEACH　千年血戦篇クライマックスセレクション』48話[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 321184100803258,
+   "description": "雨竜は高エネルギーを持つ真世界城の中央島を「歪み」にぶつけ、対消滅を成功させた。だが、全ての聖文字を取り戻したユーハバッハにとって、「歪み」はもはや不要だった。",
+   "extended": "◇番組内容\n死神と滅却師、千年に亘る血戦の果てに滅びの未来が視えようとも…。\r\n《真世界城》各地で、護廷十三隊と親衛隊の激戦が繰り広げられる。一護は雨竜の真意を知り、互いに信じあう友として、世界を護る決意を新たにする。\r\n『全知全能』をも越えた存在となったユーハバッハ。三界の存亡を懸けた壮絶な戦いは終焉へと向かう。\r\n混沌の禍を進んだ先に待つのは絶望か希望か。\n◇原作脚本\n【原作・総監修】\r\n　　久保帯人「BLEACH」\r\n　　（集英社　ジャンプコミックス刊）\r\n【シリーズ構成】\r\n　田口智久\r\n　平松正樹\r\n【総監督】\r\n　田口智久\r\n【監督】\r\n　村田光\n◇出演者\n黒崎一護：森田成一\r\n石田雨竜：杉山紀彰\r\n井上織姫：松岡由貴\r\n茶渡泰虎：安元洋貴\r\n浦原喜助：三木眞一郎\r\n四楓院夜一：ゆきのさつき\r\n朽木白哉：置鮎龍太郎\r\n日番谷冬獅郎：朴ロ美\r\n更木剣八：立木文彦\r\n朽木ルキア：折笠富美子\r\n阿散井恋次：伊藤健太郎\r\nユーハバッハ：菅生隆之\r\nユーグラム・ハッシュヴァルト：梅原裕一郎\r\nアスキン・ナックルヴァール：武内駿輔\r\nジェラルド・ヴァルキリー：小山剛志\r\nほか\n◇音楽\n【音楽】鷺巣詩郎\r\n【オープニングテーマ】\r\n「I-BULL」jo0ji\r\n【エンディングテーマ】\r\n「螺旋」9Lana\n◇制作\n【アニメーション制作】\r\n　PIERROT　FILMS\r\n【製作】\r\n　集英社\r\n　テレビ東京\r\n　電通\r\n　ぴえろ",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    202
+   ],
+   "videoFiles": [
+    {
+     "id": 116,
+     "name": "TS",
+     "filename": "2026年10月13日00時00分00秒-『BLEACH　千年血戦篇クライマックスセレクション』48話[字].m2ts",
+     "type": "ts",
+     "size": 3643219664
+    }
+   ]
+  },
+  {
+   "id": 112,
+   "channelId": 3210242032,
+   "startAt": 1791817200000,
+   "endAt": 1791819000000,
+   "name": "ロメリア戦記　＃２「砦攻略開始」",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 321024203202498,
+   "description": "魔王討伐の『その後』を描く、「一人の少女」と「彼女を支える騎士たち」の、再起の物語。",
+   "extended": "◇出演者\n【声の出演】ロメリア・フォン・グラハム／根本優奈　アル／小笠原仁　レイ／大野智敬　アンリ・レウス・ライオネル／広瀬裕也　エリザベート／千本木彩花　エカテリーナ／伊瀬茉莉也　リョキ／亜咲花　グラン／千葉翔也　ラグン／梶原岳人　カイル／堀江瞬　オットー／綿貫竜之介　ハンス／手塚ヒロミチ　グレイン／山口智広　ジニ／広瀬竜一　タース／細田健太　セイ／海渡翼　ゼゼ／安田陸矢　ブライ／松川裕輝\n◇出演者２\nベン／山下タイキ　ガット／堀金蒼平　レット／櫻井尚輝　シュロー／石井瑞樹　メリル／木村颯　ボレル／原俊太郎　ミーチャ／峯田大夢\n◇番組内容\n【＃02あらすじ】辺境カルルス砦へ赴き、自ら討伐隊を率いることを宣言するロメリア。しかし、急に訪れた伯爵令嬢に領地を自由にさせてなるものかと息巻く代官・セルベクは、砦内で持て余していた田舎者の新兵たちをロメリアに寄越す。ロメリアは彼らを前に、こんな辺境の地には王国軍は来ないという現実と、故郷を守るため戦う意味を問うも、彼らの反応は芳しくなかった。そこで、彼女は報酬を示して彼らの覚悟を引き出す。\n◇番組内容２\n訓練を経て即座に実戦へ向かう一行だが、新兵のアル・レイはそれぞれ、心の内で彼女を信用しきれずにいた。",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    204
+   ],
+   "videoFiles": [
+    {
+     "id": 115,
+     "name": "TS",
+     "filename": "2026年10月13日00時00分00秒-ロメリア戦記　＃２「砦攻略開始」.m2ts",
+     "type": "ts",
+     "size": 3613304916
+    }
+   ]
+  },
+  {
+   "id": 111,
+   "channelId": 3208643056,
+   "startAt": 1791817200000,
+   "endAt": 1791819000000,
+   "name": "ＰＳＹＲＥＮ　－サイレン－（第２話）",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 320864305603217,
+   "description": "禁人種【タヴー】◇アゲハは失踪事件の黒幕と噂される「秘密結社サイレン」へとアクセス。命を懸けたゲームが始まってしまった─",
+   "extended": "◇出演者\n夜科アゲハ：安田陸矢\r\n雨宮桜子：風間万裕子\r\n朝河飛龍：武内駿輔\r\n望月朧：斉藤壮馬\r\n霧崎兜：野津山幸宏",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    203
+   ],
+   "videoFiles": [
+    {
+     "id": 114,
+     "name": "TS",
+     "filename": "2026年10月13日00時00分00秒-ＰＳＹＲＥＮ　－サイレン－（第２話）.m2ts",
+     "type": "ts",
+     "size": 3525224848
+    }
+   ]
+  },
+  {
+   "id": 110,
+   "channelId": 3272502088,
+   "startAt": 1791817140000,
+   "endAt": 1791820440000,
+   "name": "「大悟の芸人領収書」元社会人芸人が集結ＳＰ！＆ドラマＤＥＥＰ「十六夜膳房」＃１[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 3,
+   "programId": 327250208808818,
+   "description": "＜芸人領収書＞社会人経験は芸人に活かされるのか？会社勤めを知らない大悟にダメ出し▼＜ドラマ＞中村蒼主演！中国・韓国で人気のヒューマングルメ小説、初の映像化！",
+   "extended": "◇出演者\n【大悟の芸人領収書】\r\n＜MC＞\r\n大悟（千鳥）\r\n＜ゲスト＞\r\n尾形貴弘（パンサー）、土佐兄弟、タイ（やさしいズ）\r\n\r\n【ドラマDEEP「十六夜膳房」】\r\n中村蒼・渋谷凪咲・秋谷郁甫・鈴木伸之・本多力・辻陸・三原羽衣・伊東蒼\r\n・門脇麦・倉悠貴・石野真子・田中美久・野波麻帆・木野花・近藤公園・大西礼芳・曽田陵介・高山のえみ\n◇番組内容\n▼＜ドラマ＞「ようこそ黄泉の食堂へ」死者のために、“最後の一皿”をふるまう料理人の孟婆（もうば・中村蒼）。今宵の客は、絵師の女性（伊東蒼）。３つのおにぎりが紐解く、彼女の心残りとは…？\n◇原作・脚本\n【ドラマDEEP「十六夜膳房」】\r\n■原作\r\n毛無「十六夜膳房」(ポプラ社)\r\n■脚本\r\n狩山俊輔\n◇音楽\n【ドラマDEEP「十六夜膳房」】\r\n音楽：Jun Futamata\r\n主題歌：KI_EN「夢のまた夢」（TOY’S FACTORY）\n◇制作\n【ドラマDEEP「十六夜膳房」】\r\n【演出】\r\n　狩山俊輔\r\n【制作】　\r\n　関根龍太郎\r\n【プロデュース】\r\n　柿野寛将\r\n【プロデューサー】\r\n　鈴間広枝\r\n　市山竜次（オフィスクレッシェンド）",
+   "genre1": 5,
+   "subGenre1": 2,
+   "genre2": 5,
+   "subGenre2": 3,
+   "genre3": 3,
+   "subGenre3": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    206
+   ],
+   "videoFiles": [
+    {
+     "id": 113,
+     "name": "TS",
+     "filename": "2026年10月12日23時59分00秒-「大悟の芸人領収書」元社会人芸人が集結ＳＰ！＆ドラマＤＥＥＰ「十六夜膳房」＃１[字].m2ts",
+     "type": "ts",
+     "size": 6214057624
+    }
+   ]
+  },
+  {
+   "id": 109,
+   "channelId": 3211240960,
+   "startAt": 1791816600000,
+   "endAt": 1791819300000,
+   "name": "歴史探偵　暗殺事件と日本人[解][字][再]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 4,
+   "programId": 321124096030197,
+   "description": "坂本龍馬・大久保利通・犬養毅など、かつて日本に要人暗殺が相次いだ時代あり。今回は幕末から昭和までの暗殺事件を徹底調査！日本人は暗殺事件をどう受け止めてきたのか？",
+   "extended": "◇番組内容\n坂本龍馬・井伊直弼・大久保利通・犬養毅。共通点は“暗殺”されたこと。かつて日本に暗殺はびこる時代あり…。今回は幕末から昭和初期までの暗殺事件を徹底調査！幕末に暗殺が多発した理由は？明治時代、暗殺犯を主人公にした小説はなぜ流行したのか？五・一五事件で全国から暗殺犯の減刑を強く求める声が湧き上がったのは一体なぜ？時代が大きく変わりゆく中、日本人は暗殺事件をどのように受け止めてきたのか、その背景に迫る。\n◇出演者\n【司会】佐藤二朗，片山千恵子，【出演】多摩大学客員教授・歴史研究家…河合敦，【リポーター】秋鹿真人",
+   "genre1": 8,
+   "subGenre1": 1,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    205
+   ],
+   "videoFiles": [
+    {
+     "id": 112,
+     "name": "TS",
+     "filename": "2026年10月12日23時50分00秒-歴史探偵　暗殺事件と日本人[解][字][再].m2ts",
+     "type": "ts",
+     "size": 5223263972
+    }
+   ]
+  },
+  {
+   "id": 108,
+   "channelId": 3208643056,
+   "startAt": 1791815400000,
+   "endAt": 1791817200000,
+   "name": "ロメリア戦記（第２話）",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 320864305603216,
+   "description": "砦攻略開始◇これは、魔王討伐の『その後』を描く、「一人の少女」と「彼女を支える騎士たち」の、再起の物語。",
+   "extended": "◇出演者\nロメリア・フォン・グラハム：根本優奈\r\nアル：小笠原仁\r\nレイ：大野智敬\r\nアンリ・レウス・ライオネル：広瀬裕也\r\nエリザベート：千本木彩花\r\nエカテリーナ：伊瀬茉莉也\r\nリョキ：亜咲花\r\nグラン：千葉翔也\r\nラグン：梶原岳人\r\nカイル：堀江瞬\r\nオットー：綿貫竜之介\r\nハンス：手塚ヒロミチ\r\nグレイン：山口智広\r\nジニ：広瀬竜一\r\nタース：細田健太\r\nセイ：海渡翼\r\nゼゼ：安田陸矢\r\nブライ：松川裕輝\r\nベン：山下タイキ\n◇出演者２\nガット：堀金蒼平\r\nレット：櫻井尚輝\r\nシュロー：石井瑞樹\r\nメリル：木村　颯\r\nボレル：原俊太郎\r\nミーチャ：峯田大夢",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    201
+   ],
+   "videoFiles": [
+    {
+     "id": 111,
+     "name": "TS",
+     "filename": "2026年10月12日23時30分00秒-ロメリア戦記（第２話）.m2ts",
+     "type": "ts",
+     "size": 3487945764
+    }
+   ]
+  },
+  {
+   "id": 107,
+   "channelId": 3211841008,
+   "startAt": 1791813960000,
+   "endAt": 1791816900000,
+   "name": "妻を引退します　第２話　権力者のパワーと闇[字][多][解]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 3,
+   "programId": 321184100803042,
+   "description": "元天才子役の穂奈未は夫の不倫と娘の事故への関与が疑われるトップ俳優イズマイへの復讐を誓い、大嫌いで一度は去った芸能界へ再び戻ることに。しかし現実は甘くなく…。",
+   "extended": "◇番組内容\n突如発覚した夫・鮎川蓮也(犬飼貴丈)とトップ俳優の泉舞花(新川優愛)の不倫。しかも愛娘の転落事故は２人の不貞が関わっている可能性が。あの日、何があったのか…。元天才子役の鮎川穂奈未(朝日奈央)は、真相を探るために、芸能界への復帰を決意。舞花に近づき、情報を集めていく。そして、舞花も参加する新ドラマのオーディションで再び対面した穂奈未。子役時代の演技力を武器に、舞花に対抗していく。\n◇出演者\n朝日奈央、新川優愛、時任勇気、犬飼貴丈、松田好花、本髙克樹(B＆ZAI)、髙取青依良、日下莉帆、宮田早苗、山下容莉枝、阪田マサノブ、勝村政信\r\n\r\n\n◇スタッフ\n【原作】赤石真菜「妻を引退します」(HykeComic/AMUSE　CREATIVE　STUDIO)\r\n\r\n【脚本】神田優\r\n\r\n【監督】二宮崇\r\n\r\n【チーフプロデューサー】倉地雄大(テレビ東京)\r\n\r\n【プロデューサー】二瓶朔也(テレビ東京)、阿南史剛(アミューズクリエイティブスタジオ)、清家優輝(ファインエンターテイメント)、卜部龍(ファインエンターテイメント)\n◇音楽\n【音楽】齋藤優輝\r\n\r\n【オープニングテーマ】hiro「「大丈夫--。」」(SONIC　GROOVE)\r\n\r\n【エンディングテーマ】yukaDD「いま光った」(avex　trax)\r\n\n◇制作\n【制作】テレビ東京、ファインエンターテイメント\r\n\r\n【製作著作】「妻を引退します」製作委員会\n◇関連情報\n【HP】https://www.tv-tokyo.co.jp/tsumaintai/\r\n\r\n【公式X】@premiere23_tx　https://x.com/premiere23_tx\r\n\r\n【公式Instagram】@premiere23_tx　https://www.instagram.com/premiere23_tx\r\n\r\n【公式TikTok】@premiere23_tx　https://www.tiktok.com/@premiere23_tx\r\n\r\n【ハッシュタグ】#ツマイン",
+   "genre1": 3,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    200
+   ],
+   "videoFiles": [
+    {
+     "id": 110,
+     "name": "TS",
+     "filename": "2026年10月12日23時06分00秒-妻を引退します　第２話　権力者のパワーと闇[字][多][解].m2ts",
+     "type": "ts",
+     "size": 5934471356
+    }
+   ]
+  },
+  {
+   "id": 106,
+   "channelId": 3211240960,
+   "startAt": 1791813600000,
+   "endAt": 1791815220000,
+   "name": "熱談プレイバック　恋とおしゃれと桜・作家宇野千代の痛快人生[字][再]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 4,
+   "programId": 321124096030178,
+   "description": "数々の恋を文学へと昇華させ、ファッション誌を創刊するも借金地獄。作家・宇野千代の「好きなものを追い求めた生涯」を、お宝映像と田辺いちかによる講談で描く！",
+   "extended": "◇番組内容\n『おはん』『色ざんげ』などの名作小説を世に送り出した作家・宇野千代の、明治から平成まで９８年の生涯に迫る！「文学」「おしゃれ」「桜」をこよなく愛した宇野千代は、数々の恋を小説へと昇華させてゆく。さらに、ファッション誌を創刊するも多額の借金を背負ってしまう。そんな宇野千代が繰り出した起死回生の一手とは？晩年の「淡墨桜」にまつわるエピソードも含めた宇野千代の痛快人生を、お宝映像と講談で熱く語る。\n◇出演者\n【出演】田辺いちか",
+   "genre1": 8,
+   "subGenre1": 15,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    199
+   ],
+   "videoFiles": [
+    {
+     "id": 109,
+     "name": "TS",
+     "filename": "2026年10月12日23時00分00秒-熱談プレイバック　恋とおしゃれと桜・作家宇野千代の痛快人生[字][再].m2ts",
+     "type": "ts",
+     "size": 2050756452
+    }
+   ]
+  },
+  {
+   "id": 105,
+   "channelId": 3211240960,
+   "startAt": 1791808200000,
+   "endAt": 1791810900000,
+   "name": "感情の惑星　ＡＩで世界の心を追跡[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 4,
+   "programId": 321124096034041,
+   "description": "世界各地で盛り上がる感情をＡＩで分析し、なぜその感情が沸き上がっているか、実際に現地を訪ねて追跡していくドキュメンタリー。今回は、アメリカ、インド、日本。",
+   "extended": "◇番組内容\n春に放送した「エモーション・ジャーニー」が、「感情の惑星」としてパワーアップ！世界各地で人々の感情が沸き立つ現場を追跡取材する。▼アメリカで高まる「自己愛」。その発信源に集合していたのは究極の長寿を追い求める改造人間▼インドで渦巻く「恐怖」。人々を震え上がらせていたのは、７か月間で２５件もの結婚詐欺をした極悪“泥棒花嫁”▼日本で「悲しみ」を辿った先にあったのは…「あの世の結婚式」\n◇出演者\n【出演】マヂカルラブリー，ヒコロヒー",
+   "genre1": 8,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    198
+   ],
+   "videoFiles": [
+    {
+     "id": 108,
+     "name": "TS",
+     "filename": "2026年10月12日21時30分00秒-感情の惑星　ＡＩで世界の心を追跡[字].m2ts",
+     "type": "ts",
+     "size": 5105384964
+    }
+   ]
+  },
+  {
+   "id": 104,
+   "channelId": 3272402080,
+   "startAt": 1791806400000,
+   "endAt": 1791810540000,
+   "name": "[新]救命病棟２４時　＃０１[字][解]【江口洋介×松嶋菜々子！１６年ぶりに最強タッグ復活】",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 3,
+   "programId": 327240208036370,
+   "description": "医療ドラマの金字塔が再始動！▼主題歌は今作もドリカム新曲！２０２６年現代で奮闘する医師たちの新たな救命物語が幕をあける▼豪華キャストたちが集結！",
+   "extended": "◇番組内容\n小島楓（松嶋菜々子）は再び都立第三病院救命救急センターに戻ってきていた。副センター長として若手医師たちを育て、チームを作っていこうと使命を抱くが、合理性を求める若手医師、看護師たちと、働き方や患者との向き合い方などで価値観の違いが生じる。変わるべきものは変えながら、それでも医師として失ってはいけないものとは何なのか…。そんな悩みを抱えている折、ある出来事をきっかけに進藤一生（江口洋介）と再会。\n◇番組内容２\n数々の命と向き合ってきた進藤と小島は、若者たちとぶつかり、時には自らの価値観も問い直しながら、救命医として大切なことを伝えていこうとするが…。新たな命の物語が、いま幕を開ける！\n◇出演者\n江口洋介、松嶋菜々子、木戸大聖、萩原利久、白石聖、横田真悠、中山翔貴、杏花、金田哲、長井短、田島亮、谷恭輔　／　宮野真守　／　八嶋智人、沢村一樹\n◇スタッフ\n【脚本】\r\n田辺満、市東さやか、三浦駿斗、ひかわかよ　\r\n\r\n【音楽】\r\n得田真裕　\r\n\r\n【主題歌】\r\nＤＲＥＡＭＳ　ＣＯＭＥ　ＴＲＵＥ『サヨナラとバトン』（ＤＣＴ　ｒｅｃｏｒｄｓ／ＵＮＩＶＥＲＳＡＬ　ＳＩＧＭＡ）　\r\n\r\n【プロデュース】\r\n足立遼太朗　\r\n【プロデューサー】\r\n鹿内植　\r\n大瀬花恵（ＦＣＣ）　\r\n【演出】\r\n柳沢凌介、水田成英（ＦＣＣ）、星野和成、日髙貴士\n◇スタッフ２\n【制作協力】\r\nＦＣＣ　\r\n\r\n【制作著作】\r\nフジテレビジョン",
+   "genre1": 3,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    197
+   ],
+   "videoFiles": [
+    {
+     "id": 107,
+     "name": "TS",
+     "filename": "2026年10月12日21時00分00秒-[新]救命病棟２４時　＃０１[字][解]【江口洋介×松嶋菜々子！１６年ぶりに最強タッグ復活】.m2ts",
+     "type": "ts",
+     "size": 8240551548
+    }
+   ]
+  },
+  {
+   "id": 103,
+   "channelId": 3272102056,
+   "startAt": 1791805920000,
+   "endAt": 1791806400000,
+   "name": "手話アニメーション　しゅわわん！（１８）まっとうする　※字幕スーパー",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327210205630274,
+   "description": "ろうの先輩の葬儀に向かうはるみち。その人は、ろうの俳優・演出家として日本の手話の世界を広げてきた「手話のお父さん」とも言える人。はるみちに勇気をくれる存在だった",
+   "extended": "◇番組内容\n写真家・文筆家として活躍する、ろう者の齋藤陽道さん。妻もろう者、２人の息子は聴者で、家族の会話は「手話」。世界を見て、感じて、互いに手話でおしゃべりしている様子をひと言で表すと・・・「しゅわわん！」。手話ならではの親子の豊かなコミュニケーションやユーモラスな日常をアニメでお届けします。今回は第１８話「まっとうする」。ある知人との別れをきっかけに、思いを新たにするはるみち。その胸に刻んだのは・・・。\n◇出演者\n【語り】窪田正孝",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    196
+   ],
+   "videoFiles": [
+    {
+     "id": 106,
+     "name": "TS",
+     "filename": "2026年10月12日20時52分00秒-手話アニメーション　しゅわわん！（１８）まっとうする　※字幕スーパー.m2ts",
+     "type": "ts",
+     "size": 935450212
+    }
+   ]
+  },
+  {
+   "id": 102,
+   "channelId": 400222,
+   "startAt": 1791799200000,
+   "endAt": 1791806100000,
+   "name": "映画「日本女侠伝　真赤な度胸花」",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 2,
+   "programId": 40022203426,
+   "description": "父を悪徳一味に殺された牧場主の娘に、流れ者の牧童が手を貸し、牧場を死守するため、悪徳一味に挑戦していく。「日本女侠伝」シリーズ第２作目。",
+   "extended": "◇出演者\n藤純子、高倉健、小沢栄太郎、石山健二郎、山城新伍、山本麟一、橘ますみ、三島ゆり子、浅松三紀子\n◇番組内容\n北海道の大荒野。その地平線を行く騎馬二つ！西部劇名画の感動を突き破る東映ウェスタン！！北海道の広大な原野を伐り拓いたのは、今から約１４０年前の明治になってからであった。その頃、開拓者たちは大自然の猛威に立ち向かうと共に、無法の暴力や権力に命を賭けて斗わねばならなかった…。父を悪徳一味に殺された牧場主の娘に、流れ者の牧童が手を貸し、牧場を死守するため、悪徳一味に挑戦していく。\n◇おしらせ\n◆最新の放送情報を発信中！公式X（旧Twitter）【@BS12_eiga】のフォローはこちらから。\r\nhttps://x.com/BS12_eiga",
+   "genre1": 6,
+   "subGenre1": 1,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    195
+   ],
+   "videoFiles": [
+    {
+     "id": 105,
+     "name": "TS",
+     "filename": "2026年10月12日19時00分00秒-映画「日本女侠伝　真赤な度胸花」.m2ts",
+     "type": "ts",
+     "size": 11950963164
+    }
+   ]
+  },
+  {
+   "id": 101,
+   "channelId": 3272102056,
+   "startAt": 1791798600000,
+   "endAt": 1791799200000,
+   "name": "アニメ　忍たま乱太郎「おつかいの旅の段」[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327210205630264,
+   "description": "乱太郎・きり丸・しんべヱは、忍術学園で学ぶ忍者のたまご「忍たま」。ユニークな先生や仲間たちと、明るく・たのしく・ゆかいな毎日がくり広げられる。",
+   "extended": "◇番組内容\n【第３４シリーズ第２６話】乱太郎、きり丸、しんべヱは土井先生と、ある田舎（いなか）へ旅をすることになった。そこに住む祈とう師（きとうし）のもとへ行き、忍術学園の発展（はってん）をいのってもらうようにと学園長先生からたのまれたのだ。一同はさっそく出発するのだが……。\n◇出演者\n【声】高山みなみ，田中真弓，一龍斎貞友，大塚明夫，関俊彦，浦山迅，巴菁子\n◇原作・脚本\n【原作】尼子騒兵衛，【脚本】浦沢義雄",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    194
+   ],
+   "videoFiles": [
+    {
+     "id": 104,
+     "name": "TS",
+     "filename": "2026年10月12日18時50分00秒-アニメ　忍たま乱太郎「おつかいの旅の段」[字].m2ts",
+     "type": "ts",
+     "size": 986264732
+    }
+   ]
+  },
+  {
+   "id": 100,
+   "channelId": 3211841008,
+   "startAt": 1791792000000,
+   "endAt": 1791797100000,
+   "name": "孤独のグルメ　傑作選　Ｓｅａｓｏｎ２　＃１　＃３[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 3,
+   "programId": 321184100803193,
+   "description": "異色のグルメコミックを松重豊主演で実写ドラマ化！輸入雑貨商を営む井之頭五郎は仕事で訪れた町で、ふと店に立ち寄り食事をするのだが…。",
+   "extended": "◇番組内容\n個人で輸入雑貨商を営む男・井之頭五郎（いのがしら　ごろう）が、仕事の合間に立ち寄った店で食事をする様子を淡々と描く異色のグルメドキュメンタリードラマ。原作は単行本・文庫本合わせて累計20万部を突破しているロング＆ベストセラーコミック。登場する店は全て実在し、ドラマオリジナルの選定となる。ただ料理のうんちくを述べるのではなく、ひたすらに主人公の食事シーンと心理描写をつづり淡々とストーリーが流れていく。\n◇＃１あらすじ\n「神奈川県川崎市新丸子のネギ肉イタメ」\r\n商用で神奈川県「新丸子」のダンススタジオを訪れた井之頭五郎。西園寺という女性オーナーのパッションに少々怖気づいたが、五郎がその日入ったお店は…！昼間からパッションそのものだった。\n◇＃３あらすじ\n「中野区沼袋のわさびカルビと卵かけご飯」\r\n井之頭五郎にとって今日は初めてづくし。沼袋という町、そして二件の商談の相手も初めて会う。一件目の商談が終わり、自分へのご褒美に甘いものをいただき緊張をほぐす。また少し緊張して二件目へ…。なんとか仕事を終えた五郎はスタミナ系を入れたくなり、店を探す。やがて住宅街のど真ん中に“スタミナ一番”という、オアシスのような看板を見つけるのだった。\n◇出演者\n井之頭五郎…松重豊\r\n\r\n〈第１話ゲスト〉\r\n西園寺…佐藤藍子\r\nマスター…斉藤暁\r\nお客…おぼんこぼん\r\n\r\n〈第３話ゲスト〉\r\n真田香織…中山エミリ\r\n真田良子…大島蓉子\r\nマスター…鈴木正幸\n◇原作脚本演出\n【原作】「孤独のグルメ」\r\n作・久住昌之　画・谷口ジロー(週刊SPA!)\r\n\r\n【脚本】田口佳宏\r\n\r\n【監督】溝口憲司\n◇音楽\n【音楽】The　Screen　Tones:久住昌之、フクムラサトシ、河野文彦、Shake、栗木健、戸田高弘\r\n■オープニングテーマ「荒野のグルメ」\r\n（作曲：久住昌之／フクムラサトシ）\r\n■松重“五郎”豊のテーマ「Stay　Alone」（作曲：久住昌之／フクムラサトシ）\r\n■エンディングテーマ「五郎の12PM」\r\n(作曲：久住昌之　歌：伝美）",
+   "genre1": 3,
+   "subGenre1": 0,
+   "genre2": 2,
+   "subGenre2": 5,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    193
+   ],
+   "videoFiles": [
+    {
+     "id": 103,
+     "name": "TS",
+     "filename": "2026年10月12日17時00分00秒-孤独のグルメ　傑作選　Ｓｅａｓｏｎ２　＃１　＃３[字].m2ts",
+     "type": "ts",
+     "size": 10503592524
+    }
+   ]
+  },
+  {
+   "id": 99,
+   "channelId": 3272302072,
+   "startAt": 1791783720000,
+   "endAt": 1791787200000,
+   "name": "相棒　ｓｅａｓｏｎ２０　＃１０[再][解][字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 3,
+   "programId": 327230207212389,
+   "description": "第１０話「紅茶のおいしい喫茶店」\r\n右京と亘がカフェの店員に⁉\r\n詐欺グループ摘発のため特命係が動く！\r\n果たして、真犯人の正体とは…？",
+   "extended": "◇番組内容\n特命係は、角田からの頼みで張り込みを手伝うことに。捜査対象は詐欺のグループで、怪しまれずに張り込むため、喫茶店に目をつける。オーナーの真鍋に捜査への協力を持ち掛け、さっそく接客を担当することになった右京は、瑞枝という紅茶好きの女性と知り合い意気投合。そんな中、詐欺グループの男女２人が喫茶店にやってくる。亘は、店を出た男女の尾行を試みるが取り逃がしてしまう。その後、男が転落死体で見つかり…⁉\n◇出演者\n水谷豊、反町隆史、森口瑤子、川原和久、山中崇史、篠原ゆき子、山西惇、田中隆三 ほか\r\n【ゲスト】麻丘めぐみ、酒井敏也 ほか",
+   "genre1": 3,
+   "subGenre1": 0,
+   "genre2": 11,
+   "subGenre2": 5,
+   "genre3": 11,
+   "subGenre3": 6,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    192
+   ],
+   "videoFiles": [
+    {
+     "id": 102,
+     "name": "TS",
+     "filename": "2026年10月12日14時42分00秒-相棒　ｓｅａｓｏｎ２０　＃１０[再][解][字].m2ts",
+     "type": "ts",
+     "size": 7192826044
+    }
+   ]
+  },
+  {
+   "id": 98,
+   "channelId": 3211240960,
+   "startAt": 1791781200000,
+   "endAt": 1791782700000,
+   "name": "Ｙスペ！　宇野千代の人生旅行　～私だけの道を探して～[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 4,
+   "programId": 321124096000452,
+   "description": "秋の連続テレビ小説「ブラッサム」のモデルとなった作家・宇野千代。その人生をタレントの西村知美さんと紐解く。そこには人生を自分らしく生き抜くヒントが！",
+   "extended": "◇番組内容\n秋からの連続テレビ小説「ブラッサム」のモデルとなった作家・宇野千代。彼女が一体どんな人生を歩んだのかご存じですか？今回のＹスペは山口県出身のタレント・西村知美さんと千代の知られざる人生を紐解きます。４度の結婚と離婚、会社の倒産と莫大な借金、まさに波乱万丈。しかし、千代はどんな時も前を向き人生の花を咲かせていきました。自分らしく生きるとはどういうことなのか？そのヒントを千代の人生から探ります！\n◇出演者\n【出演】西村知美，綿矢りさ，尾形明子，【語り】堀田智之",
+   "genre1": 8,
+   "subGenre1": 1,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    98
+   ],
+   "videoFiles": [
+    {
+     "id": 101,
+     "name": "TS",
+     "filename": "2026年10月12日14時00分00秒-Ｙスペ！　宇野千代の人生旅行　～私だけの道を探して～[字].m2ts",
+     "type": "ts",
+     "size": 2618881736
+    }
+   ]
+  },
+  {
+   "id": 97,
+   "channelId": 3272102056,
+   "startAt": 1791780000000,
+   "endAt": 1791780600000,
+   "name": "アニメ　おじゃる丸「もいちど初恋」[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327210205634090,
+   "description": "千年前のヘイアンチョウから月光町にやってきたおじゃる丸が、小学生のカズマや町の人々、あとを追ってきた子鬼（おに）たちとゆかいな騒動（そうどう）をまきおこします。",
+   "extended": "◇番組内容\n【第２８シリーズ第２４話】今日はなんだかいつもと様子（ようす）がちがう喫茶一服（きっさいっぷく）のマスター・マイク。その理由（りゆう）は、道ばたで初恋（はつこい）の人とばったり再会（さいかい）し「近くでお店をしているので、いらしてください」とつい言ってしまったからだった。それからお客さんが来るたびに、初恋の人かもしれないとドキドキしてしまうというマイク。はたして初恋の人はあらわれるのか…？\n◇出演者\n【声】西村ちなみ，佐藤なる美，小柳基，西村知道，一条和矢，沼田祐介，内藤玲，榊原るみ\n◇原作・脚本\n【脚本】福嶋幸典，【原案】犬丸りん\n◇監督・演出\n【監督】大地丙太郎",
+   "genre1": 7,
+   "subGenre1": 0,
+   "genre2": 10,
+   "subGenre2": 8,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    99
+   ],
+   "videoFiles": [
+    {
+     "id": 100,
+     "name": "TS",
+     "filename": "2026年10月12日13時40分00秒-アニメ　おじゃる丸「もいちど初恋」[字].m2ts",
+     "type": "ts",
+     "size": 1169514160
+    }
+   ]
+  },
+  {
+   "id": 96,
+   "channelId": 3211240960,
+   "startAt": 1791777900000,
+   "endAt": 1791780600000,
+   "name": "プロフェッショナル　神と呼ばれる男　警視庁警部補の記録[解][字][再]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 4,
+   "programId": 321124096033935,
+   "description": "誰にも認められず挫折を重ねた１人の刑事。だが彼は防犯カメラ映像から容疑者特定へ導く独自の技術を生み出し、捜査の常識を変える。荒野を歩き続けた警視庁警部補の記録。",
+   "extended": "◇番組内容\n防犯カメラに映った一瞬の映像から容疑者特定へと導き、「神」と呼ばれる警部補が警視庁にいる。その人生は栄光とはほど遠いものだった。昇任試験に落ち続け、孤独と絶望の中で「死んでもいい」と思ったこともあった。それでも自転車モンタージュという独自の手法を編み出し、数々の事件解決に貢献。人生を自らの手で変えた。根底にあるのは「救える被害者を救いたい」という思い。警視庁捜査支援分析センター、異例の密着。\n◇出演者\n【出演】警視庁捜査支援分析担当…三浦達也，【語り】橋本さとし，河合優実",
+   "genre1": 8,
+   "subGenre1": 7,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    100
+   ],
+   "videoFiles": [
+    {
+     "id": 99,
+     "name": "TS",
+     "filename": "2026年10月12日13時05分00秒-プロフェッショナル　神と呼ばれる男　警視庁警部補の記録[解][字][再].m2ts",
+     "type": "ts",
+     "size": 4498446892
+    }
+   ]
+  },
+  {
+   "id": 94,
+   "channelId": 3272102056,
+   "startAt": 1791766500000,
+   "endAt": 1791766800000,
+   "name": "アニメまとめＰＲ　放送中！注目の４番組[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327210205630234,
+   "description": "１０月から放送開始した注目のＮＨＫアニメ「恐怖コレクター」「マロニエ王国の七人の騎士」「パンどろぼう」「アオアシＳｅａｓｏｎ２」の見どころを紹介！",
+   "extended": "◇番組内容\n秋のＮＨＫアニメは新作目白押し！１０月から放送開始した４番組の見どころを紹介。▼Ｅテレ「マロニエ王国の七人の騎士」毎週（土）午後６：２５　▼総合テレビ「恐怖コレクター」毎週（土）夜１１：４５　▼Ｅテレ「パンどろぼう」毎週（金）午後６：４０　▼Ｅテレ「アオアシＳｅａｓｏｎ２」毎週（日）午後５：００　▼ＮＨＫ　ＯＮＥで配信もおこなっています。\n◇出演者\n【語り】吉川未来",
+   "genre1": 2,
+   "subGenre1": 7,
+   "genre2": 7,
+   "subGenre2": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    101
+   ],
+   "videoFiles": [
+    {
+     "id": 97,
+     "name": "TS",
+     "filename": "2026年10月12日09時55分00秒-アニメまとめＰＲ　放送中！注目の４番組[字].m2ts",
+     "type": "ts",
+     "size": 532127420
+    }
+   ]
+  },
+  {
+   "id": 93,
+   "channelId": 3272102056,
+   "startAt": 1791762300000,
+   "endAt": 1791762600000,
+   "name": "ミニアニメ　チキップダンサーズ「はみがきでゴシゴシ」",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327210205630225,
+   "description": "つむぎちゃんが歯をみがいています。ほねチキンも歯みがきに挑戦しますが、歯ブラシが大きすぎてゴシゴシできません。すると、くしかつが小さな歯ブラシを作ってくれて…",
+   "extended": "◇番組内容\nちょっぴりチキン（こわがり）だけど、好奇心いっぱいの骨つきチキンの「ほねチキン」。スキップしながら近づいてくるダンスの先生「スキップガエル先生」など、個性あふれるキャラクターたちがダンスで大活躍！おうちなどさまざまな場所で「からだがうごくと、こころもおどる♪」おはなしです。\n◇出演者\n【声】花江夏樹，石川由依，弓木英梨乃\n◇原作・脚本\n【脚本】ラレコ",
+   "genre1": 7,
+   "subGenre1": 0,
+   "genre2": 10,
+   "subGenre2": 8,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    102
+   ],
+   "videoFiles": [
+    {
+     "id": 96,
+     "name": "TS",
+     "filename": "2026年10月12日08時45分00秒-ミニアニメ　チキップダンサーズ「はみがきでゴシゴシ」.m2ts",
+     "type": "ts",
+     "size": 380618784
+    }
+   ]
+  },
+  {
+   "id": 92,
+   "channelId": 3272102056,
+   "startAt": 1791761100000,
+   "endAt": 1791761700000,
+   "name": "アニメ　おじゃる丸「ささやき電ボ」[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327210205630223,
+   "description": "千年前のヘイアンチョウから月光町にやってきたおじゃる丸が、小学生のカズマや町の人々、あとを追ってきた子鬼（おに）たちとゆかいな騒動（そうどう）をまきおこします。",
+   "extended": "◇番組内容\n【第２９シリーズ第３４話】宇宙一（うちゅういち）のお星もちの星野は、おじゃる丸に「チキュウクレ」と言いたいのだが、本人を前にすると緊張（きんちょう）して何も言えなくなってしまう。そこで星野は、おしゃべりが得意（とくい）な電ボのアドバイスを受けながらおじゃる丸に話しかけようとするのだが、やっぱり言葉が出ない。そんな星野を見かねた電ボは耳元でささやき始め、その言葉を星野はおじゃる丸に伝えるのだが…\n◇出演者\n【声】西村ちなみ，佐藤なる美，三瓶由布子，内藤玲，七緒はるひ\n◇原作・脚本\n【原案】犬丸りん，【脚本】神山修一\n◇監督・演出\n【監督】大地丙太郎",
+   "genre1": 7,
+   "subGenre1": 0,
+   "genre2": 10,
+   "subGenre2": 8,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    103
+   ],
+   "videoFiles": [
+    {
+     "id": 95,
+     "name": "TS",
+     "filename": "2026年10月12日08時25分00秒-アニメ　おじゃる丸「ささやき電ボ」[字].m2ts",
+     "type": "ts",
+     "size": 1151428936
+    }
+   ]
+  },
+  {
+   "id": 91,
+   "channelId": 3208643056,
+   "startAt": 1791757800000,
+   "endAt": 1791759600000,
+   "name": "魔神英雄伝ワタル２",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 320864305603179,
+   "description": "キンババのおいしい話◇創界山の遥か上空、星界山に魔界の者ドワルダーが侵略開始！ワタル、虎王、海火子──三人の少年たちの超激闘が、星々の間に展開される！",
+   "extended": "◇出演者\n戦部ワタル：田中真弓\r\n忍部ヒミコ：林原めぐみ\r\n剣部シバラク：西村知道\r\n海火子：高乃麗\r\n龍神丸：玄田哲章\r\n渡部クラマ：山寺宏一\r\nドワルダー：緒方賢一\r\nドアクダー：飯塚昭三\r\n虎王・翔龍子：伊倉一恵",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 1,
+   "thumbnails": [
+    104
+   ],
+   "videoFiles": [
+    {
+     "id": 94,
+     "name": "TS",
+     "filename": "2026年10月12日07時30分00秒-魔神英雄伝ワタル２.m2ts",
+     "type": "ts",
+     "size": 3495418952
+    }
+   ]
+  },
+  {
+   "id": 90,
+   "channelId": 3272102056,
+   "startAt": 1791757200000,
+   "endAt": 1791757800000,
+   "name": "はなかっぱ「大怪獣プラちゃん（前編）」「大怪獣プラちゃん（後編）」[字][デ]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327210205630217,
+   "description": "頭の上に花が咲くかっぱ「はなかっぱ」と個性豊かな仲間たち、そして謎の花「わか蘭」を狙う黒羽屋蝶兵衛一味が、緑いっぱいの「やまびこ村」で、てんやわんやの大騒ぎ！",
+   "extended": "◇番組内容\n緑いっぱいの「やまびこ村」に、頭に花が咲くかっぱの家族が住んでいる。「はなかっぱ」の頭には「とりあえずの花」が咲いている。大人になるまで花は決まらず、いろいろな花を咲かすのだ。中でも食べると若返ると言われている「わか蘭」という花を狙って、黒羽屋蝶兵衛一味があの手この手で悪だくみ。やまびこ村はてんやわんやの大騒ぎ。今日はどんな花が咲くのか。「わか蘭」は咲くのか。そして、はなかっぱの花は何になるのか。\n◇出演者\n【声】中川里江，柳原哲也，菊池こころ，栗田エリナ，尾崎恵，木内秀信，植田佳奈，宍戸留美，洞内愛，高木渉，橋本まい，三谷翔子\n◇原作・脚本\n【原作】あきやまただし，【脚本】岡部優子",
+   "genre1": 7,
+   "subGenre1": 0,
+   "genre2": 5,
+   "subGenre2": 3,
+   "genre3": 10,
+   "subGenre3": 8,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    105
+   ],
+   "videoFiles": [
+    {
+     "id": 93,
+     "name": "TS",
+     "filename": "2026年10月12日07時20分00秒-はなかっぱ「大怪獣プラちゃん（前編）」「大怪獣プラちゃん（後編）」[字][デ].m2ts",
+     "type": "ts",
+     "size": 1022514704
+    }
+   ]
+  },
+  {
+   "id": 89,
+   "channelId": 3272102056,
+   "startAt": 1791754800000,
+   "endAt": 1791755100000,
+   "name": "プチプチ・アニメ　ビップとバップ「怪盗ピカロ登場」",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327210205630213,
+   "description": "正義感あふれる少年探偵のビップと、食べるのが大すきな相棒、カエルのバップ。謎の怪盗ピカロとその子分たちの悪だくみを、機転をきかせてみごと解決してゆきます。",
+   "extended": "◇番組内容\n正義感あふれる少年探偵のビップと、食べるのが大すきな相棒、カエルのバップ。謎の怪盗ピカロとその子分たちの悪だくみを、機転をきかせてみごと解決してゆきます。",
+   "genre1": 7,
+   "subGenre1": 0,
+   "genre2": 7,
+   "subGenre2": 15,
+   "genre3": 10,
+   "subGenre3": 8,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    106
+   ],
+   "videoFiles": [
+    {
+     "id": 92,
+     "name": "TS",
+     "filename": "2026年10月12日06時40分00秒-プチプチ・アニメ　ビップとバップ「怪盗ピカロ登場」.m2ts",
+     "type": "ts",
+     "size": 607825996
+    }
+   ]
+  },
+  {
+   "id": 88,
+   "channelId": 3211240960,
+   "startAt": 1791749400000,
+   "endAt": 1791751020000,
+   "name": "発見！あおもり深世界　大河ドラマ『豊臣兄弟！』トークライブｉｎ弘前[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 4,
+   "programId": 321124096000904,
+   "description": "大河ドラマ『豊臣兄弟！』で石田三成を演じる松本怜生さんがゲスト。役作りや制作秘話を語るほか、“青森と石田三成”の知られざる縁やサプライズメッセージも紹介",
+   "extended": "◇番組内容\nトークライブのゲストは、大河ドラマ『豊臣兄弟！』で石田三成を演じる松本怜生さん。役作りや制作秘話、“座禅”シーンの舞台裏、今後の見どころをたっぷり語る。歴史パートでは、秀吉への鷹献上や関ヶ原屏風、津軽家が引き取った三成の子の末裔・杉山家など、“青森と石田三成”の知られざる縁を紹介。さらにドラマで共演するあの人からのサプライズメッセージも届けられ、松本怜生さんも感激！\n◇出演者\n【ゲスト】松本怜生，青森県立郷土館ゲスト・キュレーター…本田伸，【司会】中村瑞季，ほか",
+   "genre1": 8,
+   "subGenre1": 0,
+   "genre2": 8,
+   "subGenre2": 7,
+   "genre3": 0,
+   "subGenre3": 9,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    107
+   ],
+   "videoFiles": [
+    {
+     "id": 91,
+     "name": "TS",
+     "filename": "2026年10月12日05時10分00秒-発見！あおもり深世界　大河ドラマ『豊臣兄弟！』トークライブｉｎ弘前[字].m2ts",
+     "type": "ts",
+     "size": 3106291288
+    }
+   ]
+  },
+  {
+   "id": 87,
+   "channelId": 3211240960,
+   "startAt": 1791746400000,
+   "endAt": 1791747900000,
+   "name": "小さな旅「花咲く丘で　～富山市　呉羽丘陵～」[解][字][再]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 4,
+   "programId": 321124096030114,
+   "description": "富山県の真ん中に広がる呉羽丘陵は、市街地の近くにありながら豊かな自然が残る、地元の人たちの憩いの場。旅人・山本哲也が出会った花咲く丘の知られざる物語。",
+   "extended": "◇番組内容\n富山県の真ん中に広がる呉羽丘陵は、市街地の近くにありながら豊かな自然が残る、地元の人たちの憩いの場。旅人・山本哲也が花畑を訪ねると、呉羽丘陵を花でいっぱいにするのが夢と語る女性に出会う。展望台では、１０年にわたって掃除のボランティアを続ける男性と。梨畑では、祖母からあとを継ぐことに反対され、会社員をへてから呉羽丘陵へ帰ってきた農家の話を聞いた。人々から親しまれる花咲く丘の知られざる物語。\n◇出演者\n【旅人】山本哲也",
+   "genre1": 8,
+   "subGenre1": 1,
+   "genre2": 8,
+   "subGenre2": 0,
+   "genre3": 8,
+   "subGenre3": 4,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    108
+   ],
+   "videoFiles": [
+    {
+     "id": 90,
+     "name": "TS",
+     "filename": "2026年10月12日04時20分00秒-小さな旅「花咲く丘で　～富山市　呉羽丘陵～」[解][字][再].m2ts",
+     "type": "ts",
+     "size": 2930541932
+    }
+   ]
+  },
+  {
+   "id": 86,
+   "channelId": 3272402080,
+   "startAt": 1791741120000,
+   "endAt": 1791742800000,
+   "name": "マリッジトキシン　＃０２[再]　「魅力って何？」毒をもって恋を制す！",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327240208037993,
+   "description": "一流の殺し屋が凄腕結婚詐欺師をアドバイザーに人生初の超難関ミッション『婚活』を開始⁉殺し屋×結婚詐欺師の最強バディが挑む、世界一ハードな婚活バトルアクション！",
+   "extended": "◇番組内容\n第２話　魅力って何？\r\n結婚詐欺師・城崎をアドバイザーにした下呂の婚活がスタート。３０秒でどんな相手もオトせるという城崎は、下呂を輝かせる婚活方法は「人助け」だと主張。「殺し屋がどうやって人助けを…」と悩む下呂に城崎は、裏社会の仕事仲介サイトを使うことを提案する。ある日、デートの予行演習のために二人が訪れた豪華客船で絵画の盗難事件が発生。\n◇番組内容２\nそこで下呂は、裏の世界では悪名高い美術品専門の泥棒・姫川杏子と出会う。\n◇出演者\n下呂ヒカル：石谷春貴　\r\n城崎メイ：若山詩音　\r\n姫川杏子：永瀬アンナ　\r\n潮雫：伊瀬茉莉也　\r\n嬉野シオリ：結川あさき　\r\n鳴子弦弥：斉藤壮馬　\r\n嵐山キミ恵：白浜灯奈乃　\r\n中川桃壱：土屋神葉　\r\n下呂アカリ：白石晴香　\r\n花巻トシキ：祐仙　勇\n◇スタッフ\n【原作】「マリッジトキシン」静脈・依田瑞稀（集英社「少年ジャンプ＋」連載）\r\n【監督】堀　元宣\r\n【シリーズ構成・脚本】うえのきみこ\r\n【キャラクターデザイン・総作画監督】徳岡紘平\r\n【サブキャラクターデザイン】迫　由里香\r\n【衣装デザイン】琴乃\r\n【プロップデザイン】永木歩実　ヒラタリョウ\r\n【美術デザイン】天田俊貴\r\n【美術監督】横山勇生\r\n【色彩設計】梅崎ひろこ\r\n【撮影監督】神林　剛\n◇スタッフ２\n【３ＤＣＧ】サンジゲン\r\n【ＣＧディレクター】永嶋大輝\r\n【編集】坂本久美子\r\n【音響監督】山田　陽\r\n【音響効果】三井友和\r\n【音楽】岩崎太整　ｙｕｍａ　ｙａｍａｇｕｃｈｉ\r\n【プロダクション・スーパーバイズ】ボンズ\r\n【アニメーション制作】ボンズフィルム\r\n【製作】マリッジトキシン製作委員会\r\n【オープニング主題歌】平手友梨奈「Ｋｉｌｌ　ｏｒ　Ｋｉｓｓ」\r\n【エンディング主題歌】ＡＫＡＳＡＫＩ「シャケナベイベー」",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    109
+   ],
+   "videoFiles": [
+    {
+     "id": 89,
+     "name": "TS",
+     "filename": "2026年10月12日02時52分00秒-マリッジトキシン　＃０２[再]　「魅力って何？」毒をもって恋を制す！.m2ts",
+     "type": "ts",
+     "size": 3317315272
+    }
+   ]
+  },
+  {
+   "id": 84,
+   "channelId": 3272402080,
+   "startAt": 1791739440000,
+   "endAt": 1791741120000,
+   "name": "野生のラスボスが現れた！　＃１４",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327240208038018,
+   "description": "２００年前に封印された“黒翼の覇王”ルファス・マファールが復活！魔神族に脅かされる世界で、かつての覇王が再び運命を動かす憑依転生ダークファンタジー。",
+   "extended": "◇番組内容\n『野生のラスボスが現れた！』は、原作：炎頭、\r\n原作イラスト・キャラクターデザイン原案：ＹａｈａＫｏ（アース・スターノベル　アース・スター　エンターテイメント刊）、\r\nコミカライズ：葉月翼による、\r\nシリーズ累計１７０万部突破の大人気憑依転生ダークファンタジー。\r\nミズガルズ暦２８００年、\r\n“黒翼の覇王”と人々から恐れられた「ルファス・マファール」は、\r\n「七英雄」と呼ばれる勇者たちとの最終決戦による激闘の末、\n◇番組内容２\nその覇道に終焉を迎える。\r\n覇王の封印によって安寧の時代が訪れるかに思われたが・・・、\r\n力の均衡が崩れた事で、世界は魔神族の脅威にさらされるのであった。\r\nそれから２００年後──、\r\n魔神族に対抗すべく人類は新たな勇者の召喚を試みる。\r\nしかしそこに現れたのは、長き封印から目覚めた覇王ルファスの姿だった！\n◇出演者\nルファス・マファール：小清水亜美\r\nディーナ：薄井友里\r\nアリエス：首藤志奈\r\nリーブラ：東城日沙子\r\nアイゴケロス：内田直哉\r\nパルテノス：かないみか\r\nウィルゴ：大森こころ\r\nカルキノス：鈴木崚汰\r\nスコルピウス：たかはし智秋\r\nカストール：櫻井孝宏\r\nアリオト：武内駿輔\r\nメグレズ：前野智昭\r\nメラク：平川大輔\r\nベネトナシュ：明坂聡美\r\nミザール：辻親八\r\n量産型リーブラ：瀬戸桃子\r\n南十字瀬衣：堀江瞬\r\n魔神王オルム：速水奨\n◇出演者２\nマルス：入野自由\r\nユピテル：松岡禎丞\r\nテラ：梅原裕一郎\r\nルーナ：Ｍ・Ａ・Ｏ\n◇スタッフ\n原作：炎頭（アース・スターノベル　アース・スター　エンターテイメント刊）\r\n原作イラスト・キャラクターデザイン原案：ＹａｈａＫｏ\r\nコミカライズ：葉月　翼\r\n監督：ほりうちゆうや\r\nシリーズ構成：筆安一幸\r\nキャラクターデザイン：中村　統子・小林　多加志・上野　翔太・佐藤　秋子・水谷　麻美子・三浦　貴弘・海老澤　舞子\r\n色彩設計：小日置知子\r\n美術監督：安田ゆかり\r\n撮影監督：寺本憲正\r\n編集：小口理菜\r\n音響監督：久保宗一郎\n◇スタッフ２\n音響制作：東北新社\r\n音楽：ＴＥＣＨＮＯＢＯＹＳ　ＰＵＬＣＲ　ＡＦＴ　ＧＲＥＥＮ－ＦＵＮＤ\r\nアニメーション制作：ワオワールド\r\nオープニング・テーマ：Ｓｕｓｐｅｎｄｅｄ　４ｔｈ「ＭｅｌｏｄｉｃＩｍｐａｃｔ」\r\nエンディング・テーマ：ちゃくら「揺れてスカート」",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    110
+   ],
+   "videoFiles": [
+    {
+     "id": 87,
+     "name": "TS",
+     "filename": "2026年10月12日02時24分00秒-野生のラスボスが現れた！　＃１４.m2ts",
+     "type": "ts",
+     "size": 3349477936
+    }
+   ]
+  },
+  {
+   "id": 83,
+   "channelId": 3210242032,
+   "startAt": 1791733500000,
+   "endAt": 1791735300000,
+   "name": "弱気ＭＡＸ令嬢なのに、辣腕婚約者様の賭けに乗ってしまった　＃２",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 321024203202441,
+   "description": "最弱悪役令嬢×最強婚約者の“運命の賭け”がもたらす結末は―――？\r\n",
+   "extended": "◇出演者\n【声の出演】ピア・ロックウェル／伊藤美来　ルーファス・スタン／逢坂良太　キャロライン・ラムゼー／日高里菜　エリン・ホワイト／雨宮天　ヘンリー・コックス／石谷春貴　ルーファス・スタン（幼少期）／石上静香　アメリア・キース／白石晴香　フィリップ／坂田将吾　マイク／石毛翔弥\n◇番組内容\n「攻略キャラが集うお茶会」\r\n14歳になったピアは、ルーファスと共に王宮のお茶会に参加しなければならなくなった。エリンやアメリアと知り合うが、彼女たちもまた婚約者から断罪される運命。ピアは胸が苦しくなり休んでいると……。",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    111
+   ],
+   "videoFiles": [
+    {
+     "id": 86,
+     "name": "TS",
+     "filename": "2026年10月12日00時45分00秒-弱気ＭＡＸ令嬢なのに、辣腕婚約者様の賭けに乗ってしまった　＃２.m2ts",
+     "type": "ts",
+     "size": 3654142276
+    }
+   ]
+  },
+  {
+   "id": 82,
+   "channelId": 3272302072,
+   "startAt": 1791733200000,
+   "endAt": 1791735000000,
+   "name": "魔法の姉妹ルルットリリィ　第２クール【ＡＮｉＭｉＤＮｉＧＨＴ！！！】＃１４",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327230207212367,
+   "description": "ときめきを呼び覚ます　ぴえろ魔法少女シリーズ最新作！",
+   "extended": "◇番組内容\n野々山 風（ののやま・ふう）は夏休みが待ち遠しい無邪気な小学生。\r\n野々山 流（ののやま・るい）は控えめだけど頑張り屋さんの中学生。\r\nむかしは仲良し姉妹だったふたりも、最近、心の距離がなんだか遠くて……。\r\nある日、風は不思議な宇宙船に出会い、魔法の力を授かる。\r\nそして一方で流もまた、素敵な魔法の力を手にしていた。\n◇あらすじ\n喫茶だぶだぶの地下フロアで、魔法の国の住人たちと祝祭の相談をするオリンズ。一方、あいかわらず風を探っていた流は、あさひを新メンバーとして紹介するライブ配信の間もリリィのことが気になっていた。\n◇スタッフ\n原作：スタジオぴえろ・バンダイナムコフィルムワークス\r\n監督・キャラクター原案：道解慎太郎\r\n副監督：増原光幸\r\nシリーズ構成・脚本：柿原優子\r\nキャラクターデザイン：鳥井なみこ・錦 寛乃・袖山麻美\r\nアニメーション制作：スタジオぴえろ\r\n製作：ルルットリリィ製作委員会\n◇キャスト\n野々山 風＆こんぺとリリィ：橘 めい\r\n野々山 流＆ましゅールル：小鹿なお\r\nうぐいす：七海ひろき\r\nあずき：茅野愛衣\r\n神立塔子：和泉風花\r\n青園せな：廣原ふう\r\n新木あさひ：根本京里\r\nミーター：八乙女 光\r\n瀬尾翔太：天﨑滉平\r\n角谷久士：橘 龍丸\r\n神立矢須王：杉田智和\r\n野々山桂一：笠間 淳\r\n野々山 汐：大原めぐみ\r\n日の浦茉莉：遠藤 綾\r\nオリンズ：広瀬裕也\r\nムッチ：白井悠介\r\nシロモフ：夏吉ゆうこ\n◇音楽\n・オープニング主題歌\r\n曲名：「Swingin' Magic」\r\nアーティスト名：ILLIT\r\n\r\n・エンディング主題歌\r\n曲名：「どりぃむアラモード」\r\nアーティスト名：ルルットリリィ［こんぺとリリィ（CV.橘 めい）、ましゅールル（CV.小鹿なお）］\n◇WEB\n公式サイト：https://luluttolilly.com\r\n公式X：@luluttolilly\r\n公式Instagram：@luluttolilly\r\n公式TikTok：@luluttolilly\n◇制作\n原作：スタジオぴえろ・バンダイナムコフィルムワークス\r\n監督・キャラクター原案：道解慎太郎\r\n副監督：増原光幸\r\nシリーズ構成・脚本：柿原優子\r\nキャラクターデザイン：鳥井なみこ・錦 寛乃・袖山麻美\r\nアニメーション制作：スタジオぴえろ\r\n製作：ルルットリリィ製作委員会\n◇おしらせ\n公式サイト：https://luluttolilly.com\r\n公式X：@luluttolilly\r\n公式Instagram：@luluttolilly\r\n公式TikTok：@luluttolilly",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    112
+   ],
+   "videoFiles": [
+    {
+     "id": 85,
+     "name": "TS",
+     "filename": "2026年10月12日00時40分00秒-魔法の姉妹ルルットリリィ　第２クール【ＡＮｉＭｉＤＮｉＧＨＴ！！！】＃１４.m2ts",
+     "type": "ts",
+     "size": 3375887988
+    }
+   ]
+  },
+  {
+   "id": 81,
+   "channelId": 3208643056,
+   "startAt": 1791732600000,
+   "endAt": 1791734400000,
+   "name": "弱気ＭＡＸ令嬢なのに、辣腕婚約者様の賭けに乗ってしまった（第２話）",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 320864305603167,
+   "description": "◇最弱悪役令嬢×最強婚約者の“運命の賭け”がもたらす結末とは――？",
+   "extended": "◇出演者\nピア・ロックウェル：伊藤美来\r\nルーファス・スタン：逢坂良太\r\nキャロライン・ラムゼー：日高里菜\r\nエリン・ホワイト：雨宮天\r\nヘンリー・コックス：石谷春貴\r\nルーファス・スタン（幼少期）：石上静香\r\nアメリア・キース：白石晴香\r\nフィリップ：坂田将吾\r\nマイク：石毛翔弥",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    113
+   ],
+   "videoFiles": [
+    {
+     "id": 84,
+     "name": "TS",
+     "filename": "2026年10月12日00時30分00秒-弱気ＭＡＸ令嬢なのに、辣腕婚約者様の賭けに乗ってしまった（第２話）.m2ts",
+     "type": "ts",
+     "size": 3495295060
+    }
+   ]
+  },
+  {
+   "id": 80,
+   "channelId": 3211841008,
+   "startAt": 1791732300000,
+   "endAt": 1791734100000,
+   "name": "ホテル・インヒューマンズ　request　15.[字][多][解]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 321184100803002,
+   "description": "そのホテルの…「お客様は殺し屋様」。\r\n決して『ＮＯと告げない』コンシェルジュ、生朗と沙羅が応える殺し屋達の願いとはーー\r\n鮮烈のキリング・ホテル・ドラマ…開幕！",
+   "extended": "◇作品概要①\nそのホテルの…「お客様は殺し屋様」。\r\n最高のホテルには条件がある。\r\n「極上の食事」、「至高の癒やし」、「魅惑の娯楽」…\r\nそして、“最新の武器手配”、“安心の身元詐称”、“完璧な死体処理”ーー!?\n◇作品概要②\n死の境界線で、決して『ＮＯと告げない』二人のコンシェルジュ、生朗と沙羅が応える殺し屋達の願いとはーー\r\nいざ、鮮烈のキリング・ホテル・ドラマ…開幕！\n◇出演者\n星　生朗：小林裕介\r\n灰咲沙羅：白浜灯奈乃\r\n桐原シバ：羊宮妃那\r\n\r\nほか\n◇原作脚本\n原作：田島　青（小学館「サンデーうぇぶり」　連載）\n◇監督・演出\n監督：アミノテツロ\r\nシリーズ構成：米村正二\r\nキャラクターデザイン：藤崎真吾\n◇音楽\nオープニングテーマ：GAN　(岩田剛典)「螺旋」\r\nエンディングテーマ：ファントムシータ「スイートピー」\r\n\r\n音楽：小春(チャラン・ポ・ランタン)\n◇制作\nアニメーション制作：ブリッジ\r\n　　　　　　　　アイル\r\n\r\n製作：ホテル・インヒューマンズ製作委員会\n◇放送形態\n解説放送あり\n◇ホームページ\nhttps://www.tv-tokyo.co.jp/anime/hotel-inhumans/",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    114
+   ],
+   "videoFiles": [
+    {
+     "id": 83,
+     "name": "TS",
+     "filename": "2026年10月12日00時25分00秒-ホテル・インヒューマンズ　request　15．[字][多][解].m2ts",
+     "type": "ts",
+     "size": 3438554968
+    }
+   ]
+  },
+  {
+   "id": 79,
+   "channelId": 3208643056,
+   "startAt": 1791729000000,
+   "endAt": 1791730800000,
+   "name": "刃牙道（第１５話）",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 320864305603164,
+   "description": "死合い◇すべての闘いに生きる者たちを巻き込んだ時代を超えた史上最強決定戦が今、幕を開ける…！！",
+   "extended": "◇出演者\n範馬刃牙：島﨑信長\r\n範馬勇次郎：大塚明夫\r\n宮本武蔵：内田直哉\r\n徳川光成：辻親八\r\n徳川寒子：野沢雅子\r\n烈海王：小山力也\r\n花山薫：江口拓也\r\n愚地独歩：菅生隆之\r\n愚地克巳：川原慶久\r\n渋川剛気：島田敏\r\n本部以蔵：屋良有作\r\nジャック・ハンマー：三宅健太\r\nジョン・ホナー：金尾哲夫\r\n野々村仁：土門仁\r\n郭海皇：緒方賢一\r\n柴千春：鈴木達央\r\n鎬紅葉：成田剣\r\nガイア：村瀬歩\r\nピクル：草尾毅\r\nナレーション：古谷徹",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    116
+   ],
+   "videoFiles": [
+    {
+     "id": 82,
+     "name": "TS",
+     "filename": "2026年10月11日23時30分00秒-刃牙道（第１５話）.m2ts",
+     "type": "ts",
+     "size": 3464633388
+    }
+   ]
+  },
+  {
+   "id": 78,
+   "channelId": 3272202064,
+   "startAt": 1791729000000,
+   "endAt": 1791730800000,
+   "name": "転生貴族、鑑定スキルで成り上がる　第３期[字]　＃２７「ザットとブラッハム」",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327220206442900,
+   "description": "【アガルアニメ】ひとりじゃない、信じる仲間と共に。",
+   "extended": "◇みどころ\n人の能力やステータスを見抜くことが出来る“鑑定スキル”を持って異世界に転生したアルス・ローベント。ミーシアン継承戦争での功績を認められ、カナレ郡長へと就任したアルスは、新しい仲間を迎え、新生ローベント家としての体制を整えていた。そんな中、バサマークと同盟を結んだサイツ州からの巨大な軍勢がカナレに襲いかかる。それぞれの想いを胸に、次なる敵との戦いが始まるーー。\n◇みどころ２\nそれぞれの想いを胸に、次なる敵との戦いが始まるーー。 新たな仲間たちとともに激動の新章へ突入！\n◇主な声の出演者\nアルス・ローベント…藤原夏海\r\nリーツ・ミューセス…坂佳穂成美\r\nロセル・キーシャ…岡咲美保\r\nリシア・ローベント…花澤香菜\r\nミレーユ・グランジオン…生天目仁美\r\nファム…戸松遥\r\nシン・セイマーロ…加藤渉\r\nブラッハム・ジョー…内田修一\r\nムーシャ・トリック…諸星すみれ\r\nザット・ブロズド…田所陽向\r\n　\n◇主なスタッフ\n【原作】\r\n未来人A『転生貴族、鑑定スキルで成り上がる～弱小領地を受け継いだので、優秀な人材を増やしていたら、最強領地になってた～』(講談社「Kラノベブックス」刊)\r\n【キャラクター原案】\r\njimmy\r\n【漫画】\r\n井上菜摘(講談社「マガジンポケット」連載) \r\n\r\n【監督】\r\n加戸誉夫\r\n【副監督】\r\n松島弘明\r\n【シリーズ構成】\r\n大東大介\r\n【キャラクターデザイン】\r\n八尋裕子\r\n【音楽】\r\n夢見クジラ\r\n【音響監督】\r\n亀山俊樹\n◇公式ページ\n【公式ＨＰ】\r\nhttps://kanteiskill.com/\r\n\r\n【公式Ｘ】\r\nhttps://x.com/kanteiskill\r\n@kanteiskill\r\n\r\n【アガルアニメ公式ＨＰ】\r\nhttps://hicbc.com/tv/agaruanime/\r\n\r\n【アガルアニメ公式Ｘ】\r\nhttps://x.com/cbc_agaruanime\r\n@cbc_agaruanime\r\n　\n◇制作\n【アニメーション制作】\r\nGeyeG Pictures\r\n　\n◇おことわり\n番組内容や出演者、放送時間などは都合により変更となる場合があります。\n◇番組内容\n大規模魔法作戦により勝利したカナレ軍だったが、敵の第２波攻撃を受け一時退却を余儀なくされる。追撃を防ぐためブラッハム率いる精鋭部隊が殿（しんがり）を務めることになるがーー。",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    115
+   ],
+   "videoFiles": [
+    {
+     "id": 81,
+     "name": "TS",
+     "filename": "2026年10月11日23時30分00秒-転生貴族、鑑定スキルで成り上がる　第３期[字]　＃２７「ザットとブラッハム」.m2ts",
+     "type": "ts",
+     "size": 3419567532
+    }
+   ]
+  },
+  {
+   "id": 77,
+   "channelId": 3272402080,
+   "startAt": 1791728100000,
+   "endAt": 1791729900000,
+   "name": "[新]ドラゴンボール超　ビルス[字][解]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327240208036349,
+   "description": "鳥山明が原作・ストーリー・キャラクターデザインを手掛ける「ドラゴンボール超」が“エンハンスド版”で登場！破壊神と悟空たちの超絶バトルが幕を開ける！",
+   "extended": "◇番組内容\n鳥山明先生による世界的大人気漫画作品『ＤＲＡＧＯＮ　ＢＡＬＬドラゴンボール』。ＴＶアニメ・映画・ゲームなど様々なメディアミックスでファンを魅了しながら、モンスタータイトルとして全世界で桁外れの人気を誇る。\r\nそして、２０２６年―。鳥山明先生が原作・ストーリー・キャラクターデザインを手掛けるアニメ『ドラゴンボール超』が『ドラゴンボール超　ビルス』として新たに始動！本作では、\n◇番組内容２\n大幅な新規カットの追加や描き直し、さらに物語の再構築を行い“エンハンスド”。最新の映像表現により、バトルシーンのさらなる臨場感と、より精密な原作再現がほどこされたエンハンスド版としてここに登場する。\r\n魔人ブウとの壮絶な闘いから数年が経ち、地球は束の間の平和を取り戻していた。時を同じくして、長い眠りから目覚めた破壊神・ビルス。星々を破壊する圧倒的な力を持つビルスの目覚めを、\n◇番組内容３\n界王や界王神たちですら畏れをもって見守っていたのだが…そのさなか、フリーザを倒したサイヤ人の噂を聞きつけたビルスは、突如悟空の前に現れる―。かつてない力を持つビルスの襲来により、消滅の危機に直面する地球…破壊神と悟空たちの宇宙を揺るがす超絶バトルが幕を開ける―。\n◇出演者\n孫悟空：　野沢雅子　\r\nビルス：　山寺宏一　\r\nほか\n◇スタッフ\n【原作・ストーリー・キャラクターデザイン】\r\n鳥山明　\r\n【演出構成】\r\n瀬谷沫人　\r\n【アニメーションキャラクターデザイン・総作画監督】\r\n山室直儀　\r\n【編集】\r\n西村英一　\r\n【撮影監督】\r\n元木洋介　\r\n【音楽】\r\n住友紀人",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    117
+   ],
+   "videoFiles": [
+    {
+     "id": 80,
+     "name": "TS",
+     "filename": "2026年10月11日23時15分00秒-[新]ドラゴンボール超　ビルス[字][解].m2ts",
+     "type": "ts",
+     "size": 3568096368
+    }
+   ]
+  },
+  {
+   "id": 76,
+   "channelId": 3272502088,
+   "startAt": 1791725400000,
+   "endAt": 1791728700000,
+   "name": "ハイド＆シーク　０秒前の彼女＃０２「なぜ、敵の隣に死んだはずの恋人が…」[解][字][デ]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 3,
+   "programId": 327250208808788,
+   "description": "福士蒼汰×ミステリー作家・今村昌弘！死んだはずの恋人から突然の電話。爆弾テロの濡れ衣を着せられ警察から逃げながら恋人を探す！国家陰謀を巡る極限の隠れんぼ！",
+   "extended": "◇出演者\n福士蒼汰\r\n志田彩良\r\n田中樹\r\n葉山奨之\r\n志賀李玖\r\n藤﨑ゆみあ\r\n\r\n成海璃子\r\n岩井拳士朗\r\n櫻井淳子\r\n\r\n袴田吉彦\r\n松尾諭\r\n勝村政信\r\n風間俊介\n◇監督・演出\n【演出】\r\n鈴木勇馬\n◇原作・脚本\n【原作】\r\n今村昌弘『0秒前の彼女』（双葉社）\r\n【脚本】\r\n山崎太基\n◇音楽\n【音楽】\r\nゲイリー芦屋\r\n重盛康平\r\nGAK SATO\r\n【主題歌】\r\nマルシィ「光」（UNIVERSAL SIGMA）\n◇制作\n【チーフプロデューサー】\r\n松本京子　\r\n【プロデューサー】\r\n伊藤裕史\r\n渡辺良介\r\n八木亜未\r\n【制作協力】\r\n大映テレビ\r\n【製作著作】\r\n日本テレビ\n◇番組内容\n死んだはずの恋人・紗奈（志田彩良）は生きていたーーしかし彼女は政治団体リヴ・コモンズの代表・兵頭誠（田中樹）に「京佳」と呼ばれ、連れ去られた。混乱する津倉（福士蒼汰）に、紗奈から「助けて。ひとりで来て」のメッセージが届く。翔太（志賀李玖）は罠だと止めるが、「俺は紗奈を信じる」と津倉は倉庫街へ。江田（松尾諭）が張る包囲網、SATの突入をかいくぐった先に待っていたのは、二丁拳銃の謎の女…！？",
+   "genre1": 3,
+   "subGenre1": 0,
+   "genre2": 3,
+   "subGenre2": 15,
+   "genre3": 3,
+   "subGenre3": 1,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    118
+   ],
+   "videoFiles": [
+    {
+     "id": 79,
+     "name": "TS",
+     "filename": "2026年10月11日22時30分00秒-ハイド＆シーク　０秒前の彼女＃０２「なぜ、敵の隣に死んだはずの恋人が…」[解][字][デ].m2ts",
+     "type": "ts",
+     "size": 6609977540
+    }
+   ]
+  },
+  {
+   "id": 75,
+   "channelId": 3272302072,
+   "startAt": 1791724500000,
+   "endAt": 1791727740000,
+   "name": "ドラマ・もうパパ！＃２土下座で卒業撤回!?夜の雨で三角関係が燃え上がる！[解][字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 3,
+   "programId": 327230207212363,
+   "description": "脚本・吉田恵里香！パパ（堤真一）が土下座で卒業撤回！？逃げ出す娘（原菜乃華）…。雨の中で急接近する陽日（岩瀬洋志）に俊也（塩﨑太智）が激突！嵐の三角関係大勃発！",
+   "extended": "◇番組内容\n紀子（原菜乃華）は、父・良詫（堤真一）が自分の初恋を動画のネタにしようとしていたと知り、「タラちゃんねる」からの卒業を決意。良詫は狼狽しつつも、自身の「ナイスファーザー賞」授賞式で発表することを条件に承諾する。期限は２週間。紀子と陽日（岩瀬洋志）は卒業を一緒に祝う約束を交わし、初デートをやり直すことに。撮影に追われ疲労困憊の中、迎えた授賞式当日、良詫は紀子の卒業を発表しようとするが…！？\n◇出演者\n原菜乃華 \r\n岩瀬洋志 塩﨑太智　林芽亜里　星乃夢奈　\r\n加部亜門　大友一生　円井わん \r\nDAIGO\r\n堤真一\n◇脚本\n吉田恵里香\n◇音楽\n青木沙也果\n◇主題歌\nあいみょん「さながらロンリー」\r\n（unBORDE／WARNER MUSIC JAPAN）\n◇挿入歌\n丸山純奈「大スキ I love you」\r\n（Sony Music Labels inc.）\n◇演出\n池田克彦\n◇おしらせ\n◆放送後、TVerで見逃し配信！\r\n　オリジナルコンテンツも配信予定です。お気に入り登録をして、配信をお待ちください。\r\n\r\n◆U-NEXT、Prime Videoでは全話配信！",
+   "genre1": 3,
+   "subGenre1": 0,
+   "genre2": 11,
+   "subGenre2": 5,
+   "genre3": 11,
+   "subGenre3": 6,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    119
+   ],
+   "videoFiles": [
+    {
+     "id": 78,
+     "name": "TS",
+     "filename": "2026年10月11日22時15分00秒-ドラマ・もうパパ！＃２土下座で卒業撤回!？夜の雨で三角関係が燃え上がる！[解][字].m2ts",
+     "type": "ts",
+     "size": 6650704544
+    }
+   ]
+  },
+  {
+   "id": 73,
+   "channelId": 3211240960,
+   "startAt": 1791720000000,
+   "endAt": 1791723600000,
+   "name": "ＮＨＫスペシャル　靖国神社　スクープ資料“空白の戦後史”　秘録に何が[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 4,
+   "programId": 321124096029510,
+   "description": "２年に及ぶ交渉で初めて開示された「秘録」。そこにはＡ級戦犯の合祀をめぐる知られざる事実が－。政治家の参拝などをめぐり国内外で議論が続く靖国神社。歴史の空白に迫る",
+   "extended": "◇番組内容\n２年に及ぶ交渉の結果「秘録」が初めて開示された。そこには、これまで表に出ることのなかったＡ級戦犯の合祀をめぐる内幕など“空白の歴史”が記されていた－。政治家の参拝などをめぐり国内外で議論が続く宗教法人・靖国神社。その存在はなぜ今も波紋を広げているのか。戦争を知る世代が少なくなる中、ＮＨＫは戦後８０年を機に取材を開始。「スクープ資料」の分析と２００人を超える関係者への取材から、知られざる内実に迫る。",
+   "genre1": 8,
+   "subGenre1": 0,
+   "genre2": 8,
+   "subGenre2": 7,
+   "genre3": 0,
+   "subGenre3": 8,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    122
+   ],
+   "videoFiles": [
+    {
+     "id": 76,
+     "name": "TS",
+     "filename": "2026年10月11日21時00分00秒-ＮＨＫスペシャル　靖国神社　スクープ資料“空白の戦後史”　秘録に何が[字].m2ts",
+     "type": "ts",
+     "size": 5818775780
+    }
+   ]
+  },
+  {
+   "id": 72,
+   "channelId": 400161,
+   "startAt": 1791720000000,
+   "endAt": 1791727200000,
+   "name": "永野映画ＣＨＡＮＮＥＬ「猛獣大脱走」【字幕】",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 2,
+   "programId": 40016102076,
+   "description": "全て、永野が選んだ映画。今夜お届けするのはリアル・アニマル・パニック映画「猛獣大脱走」（１９８３年／イタリア）。本編ノーカット＆字幕放送。",
+   "extended": "◇出演者\n【シネマニスト】永野【出演】リップ（ジョン・アルドリッチ）、ローラ（ロレーヌ・ド・セル）、スージー（ルイーザ・ロイド）、ウェルナー警部（ウーゴ・ボローニャ）\n◇番組内容\n芸人・永野がどうしても世に知らしめたい映画を独断と偏見でセレクトしてお届け！\r\n映画の前後では独自の視点と解釈で”偏愛”をじっくりと語る。\n◇あらすじ\n数千頭もの動物たちがコンピュータ制御で管理されている巨大動物園があった。ここ最近、動物たちの異常行動が際立ち、獣医のリップは頭を悩ませていた…。遂には動物たちが一斉に狂暴化！ライオン・トラ・チーター・ゾウ・シロクマをはじめとする”猛獣”たちにより電気系統が破壊され、全てのセキュリティがダウン。猛獣たちは檻から一斉に大都会へと解き放たれ次々と人間を襲い始めるのだった…。動物たちを狂暴化させた原因とは\n◇あらすじ２\n何なのか…。当時、一部の劇場ではジャッキー・チェン主演の香港映画『プロジェクトＡ』と同時上映された本作。ＣＧを使わずに撮影された、”今”ではもう撮れないリアルを追求した伝説の一本！\n◇監督・脚本・製作\n【監督／脚本】フランコ・Ｅ・プロスペリ【製作】フェデリコ・プロスペリ\n◇翻訳\n【翻訳】進藤光太\n◇制作\n2026年\r\nＩＶＳ４１／オムニバスジャパン",
+   "genre1": 6,
+   "subGenre1": 0,
+   "genre2": 5,
+   "subGenre2": 2,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    121
+   ],
+   "videoFiles": [
+    {
+     "id": 75,
+     "name": "TS",
+     "filename": "2026年10月11日21時00分00秒-永野映画ＣＨＡＮＮＥＬ「猛獣大脱走」【字幕】.m2ts",
+     "type": "ts",
+     "size": 10243041068
+    }
+   ]
+  },
+  {
+   "id": 71,
+   "channelId": 3272202064,
+   "startAt": 1791720000000,
+   "endAt": 1791723240000,
+   "name": "日曜劇場「ＶＩＶＡＮＴ」第２０話　決死の奪還決着へ…愛しき仲間との再会、そして…",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 3,
+   "programId": 327220206442895,
+   "description": "[解][字]遂にシャキ城に乗り込む乃木たち。迫り来るシンシー兵士に立ち向かう乃木、ノコル、新庄、そして秘密兵器チョッキー。遂に黒須たちが囚われた牢獄に辿り着くのだが…",
+   "extended": "◇番組内容\n遂にシャキ城への潜入を決行する乃木たち。綿密に練られた作戦を実行していくのだが、シンシー兵士が立ち塞がる。そして、赤外線センサーの地点へ辿り着くのだが、そこには、予行演習をも遥かに超える難易度の罠が待っていた。尻込むチョッキーに檄を入れる新庄、果たして・・・そして遂に、別班員が囚われた牢獄まで辿り着くのだが・・・\n◇番組内容２\nここからは毎回驚愕のドンデン返しの繰り返し！リアタイ必須！よりシンプルに、乃木憂助の冒険物語として視聴いただくことをお勧めします。\n◇出演者\n堺雅人、阿部寛、二階堂ふみ、松坂桃李、二宮和也　役所広司\r\n竜星涼、山中崇、Barslkhagva Batbold、宮下今日子\r\n富栄ドラム、林原めぐみ（声の出演）、高山みなみ（声の出演）、林遣都、内村遥、井上肇\r\n林泰文　吉原光夫　市川笑三郎、平山祐介、珠城りょう、西山潤　Tanapak Jongjaiphar　\r\n濱田岳、坂東彌十郎　／　小日向文世、キムラ緑子\n◇音楽\n音楽総監督　千住明\r\n音楽：千住 明　斎木達彦　兼松 衆\n◇スタッフ\n原作・脚本　福澤克雄　　演出　宮崎陽平　加藤亜季子\r\nプロデューサー　飯田和孝　戸村光来　　脚本　宮本勇人　李正美　山本奈奈　土井笑生\n◇公式ページ\n◇番組ＨＰ\r\nhttps://www.tbs.co.jp/VIVANT_tbs/\r\n◇twitter\r\n＠TBS_VIVANT\r\nhttps://twitter.com/TBS_VIVANT/\r\n◇instagram\r\n@tbs_vivant\r\nhttps://www.instagram.com/tbs_vivant/\n◇おことわり\n番組の内容と放送時間は変更になる場合があります。\n◇おしらせ\nVIVANTの始まりの物語「チンギス　VIVANT THE ORIGIN STORY」\r\nU-NEXTにて絶賛配信中！\r\n\r\n１１／２７まで、体験型イベント「VIVANT IMMERSIVE MISSION」東京京橋にて絶賛開催中！あなたも別班、公安、テントになれる！！適性診断ありの完全没入型アトラクション！\r\n\r\nコラボレーション商品多数販売中！！！要チェック！！！",
+   "genre1": 3,
+   "subGenre1": 0,
+   "genre2": 11,
+   "subGenre2": 6,
+   "genre3": 11,
+   "subGenre3": 5,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    120
+   ],
+   "videoFiles": [
+    {
+     "id": 74,
+     "name": "TS",
+     "filename": "2026年10月11日21時00分00秒-日曜劇場「ＶＩＶＡＮＴ」第２０話　決死の奪還決着へ…愛しき仲間との再会、そして….m2ts",
+     "type": "ts",
+     "size": 6320380648
+    }
+   ]
+  },
+  {
+   "id": 70,
+   "channelId": 3211240960,
+   "startAt": 1791716400000,
+   "endAt": 1791719100000,
+   "name": "豊臣兄弟！（３９）茶々の本心[解][字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 3,
+   "programId": 321124096029504,
+   "description": "最終章「豊臣兄弟編」ついに開幕！！兄弟の最後の戦いが始まる！！",
+   "extended": "◇番組内容\n秀吉（池松壮亮）は数正（迫田孝也）を大坂城に呼び、徳川と真田の和睦を命じる。豊臣家の財力と勢いを目の当たりにした数正は家康（松下洸平）を説得しようとするが、家康は和睦を拒否、対豊臣の戦支度を始める。一方、秀長（仲野太賀）は秀吉に、後継者となる実子をもうけるため新たに妻をめとるよう勧める。相手は織田の血を引く茶々（井上和）しかいないと言われた秀吉は、寧々（浜辺美波）の心中を慮り猛反発するが…。\n◇出演者\n【出演】仲野太賀，池松壮亮，浜辺美波，坂井真紀，宮澤エマ，倉沢杏菜，井上和，迫田孝也，渋谷謙人，前原瑞樹，松本怜生，松崎優輝，伊藤絃，天野ひろゆき，栗原類，阿久津仁愛，山田涼介，松下洸平，ほか\n◇原作・脚本\n【作】八津弘幸\n◇音楽\n【音楽】木村秀彬",
+   "genre1": 3,
+   "subGenre1": 0,
+   "genre2": 3,
+   "subGenre2": 2,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    123
+   ],
+   "videoFiles": [
+    {
+     "id": 73,
+     "name": "TS",
+     "filename": "2026年10月11日20時00分00秒-豊臣兄弟！（３９）茶々の本心[解][字].m2ts",
+     "type": "ts",
+     "size": 4272858736
+    }
+   ]
+  },
+  {
+   "id": 69,
+   "channelId": 3211240960,
+   "startAt": 1791714600000,
+   "endAt": 1791716400000,
+   "name": "ダーウィンが来た！　ふたりは最強！ハタ＆ウツボ」[解][字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 4,
+   "programId": 321124096029494,
+   "description": "インドネシア・バリ島の沈没船にひそむ巨大なハタとウツボ。姿形が全く違う２匹の怪魚がなぜか夜な夜なコンビを組んで泳ぎ出す！スクープ満載！驚きのコンビ生態に迫る！",
+   "extended": "◇番組内容\nインドネシア・バリ島の海底に眠る１隻の沈没船。様々な魚が集うこの船の頂点に君臨するのが、巨大なアカマダラハタとドクウツボだ。一瞬の早ワザで次々と魚を丸のみにするハタ、一方ウツボは長い体を自在に操って狭い隙間に隠れた魚を襲う。そんな、姿も行動も全く違う２つの魚が、夜な夜なコンビを組んで狩りに出発！一体なぜ？スクープ映像満載の密着取材で種を超えた驚異の協力関係が明らかに！\n◇出演者\n【語り】龍田直樹，豊嶋真千子，山田孝之，水瀬いのり，浅井理",
+   "genre1": 8,
+   "subGenre1": 2,
+   "genre2": 10,
+   "subGenre2": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    124
+   ],
+   "videoFiles": [
+    {
+     "id": 72,
+     "name": "TS",
+     "filename": "2026年10月11日19時30分00秒-ダーウィンが来た！　ふたりは最強！ハタ＆ウツボ」[解][字].m2ts",
+     "type": "ts",
+     "size": 3480762848
+    }
+   ]
+  },
+  {
+   "id": 68,
+   "channelId": 400222,
+   "startAt": 1791712800000,
+   "endAt": 1791721200000,
+   "name": "映画「ジョン・ウィック：チャプター２」（字幕）【完全ノーカット版】",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 2,
+   "programId": 40022203397,
+   "description": "『マトリックス』キアヌ・リーブス主演、世界中の殺し屋を敵に回した伝説の男を描くネオ・ノワール・アクション第2章。",
+   "extended": "◇出演者\n役名：キャスト\r\nジョン・ウィック：キアヌ・リーブス\r\nカシアン：コモン\r\nバワリー・キング：ローレンス・フィッシュバーン\r\nサンティーノ・ダントニオ：リッカルド・スカマルチョ\r\nオーレリオ：ジョン・レグイザモ\r\nウィンストン：イアン・マクシェーン\r\nシャロン：ランス・レディック\r\nアブラム：ピーター・ストーメア\r\nヘレン：ブリジット・モイナハン\r\nジュリアス：フランコ・ネロ\n◇番組内容\nキアヌ・リーブス主演、世界中の殺し屋を敵に回した伝説の男を描くネオ・ノワール・アクション第2章。ニューヨークからローマへと舞台を広げ、殺し屋社会を支配する組織や掟が本格的に描かれる。華麗な銃撃戦と洗練された映像美で、シリーズの世界観を飛躍的に発展させた。ローレンス・フィッシュバーンがシリーズ初参戦し、リーブスとは『マトリックス』シリーズに続き共演が実現。\n◇音声\n英語・日本語字幕\r\n5.1chサラウンド\n◇今後の放送予定\n10月の「土曜洋画劇場」は、『ジョン・ウィック』シリーズと、『ショーシャンクの空に』、『ダイ・ハード3』を放送！\r\n\r\n10月17日（土）『ジョン・ウィック:パラべラム』\r\n10月24日（土）『ジョン・ウィック:コンセクエンス』\r\n10月31日（土）『ダイ・ハード3』\n◇おしらせ\n◆BS12「土曜洋画劇場」は、選りすぐりの名作映画をお届けします。\r\n毎週土曜よる7時～\r\n\r\n◆最新の放送情報を発信中！公式X（旧Twitter）【@BS12_eiga】のフォローはこちらから。\r\nhttps://x.com/BS12_eiga",
+   "genre1": 6,
+   "subGenre1": 1,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 9,
+   "thumbnails": [
+    126
+   ],
+   "videoFiles": [
+    {
+     "id": 71,
+     "name": "TS",
+     "filename": "2026年10月11日19時00分00秒-映画「ジョン・ウィック：チャプター２」（字幕）【完全ノーカット版】.m2ts",
+     "type": "ts",
+     "size": 14521393164
+    }
+   ]
+  },
+  {
+   "id": 67,
+   "channelId": 400141,
+   "startAt": 1791712800000,
+   "endAt": 1791720000000,
+   "name": "映画「トランスポーター３ アンリミテッド」▽ステイサム主演！シリーズ最大ヒット！",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 2,
+   "programId": 40014113948,
+   "description": "シリーズ史上最高興収となった第３弾！リュック・ベッソン率いる最強チームが再結集！手首に罠、依頼品は\"赤い代物\" ― 天才運び屋、絶体絶命！",
+   "extended": "◇番組内容\nプロの運び屋、フランク・マーティンは、凶悪な依頼人・ジョンソンの仕事を一度は断るものの、不意打ちにあい、手首に\"愛車から２０ｍ離れると爆死\"という罠を仕掛けられた。依頼品は\"赤い代物\"…愛車には、同じ罠を仕掛けられた謎の美女の姿。組織の追跡をかわしながら、フランクは次第にヴァレンティーナと名乗った美女と心を通わすようになる。この依頼の裏に隠された世界規模の陰謀とは！？果たして二人の運命とは！？\n◇出演者\nジェイソン・ステイサム\r\nロバート・ネッパー\r\nフランソワ・ベルレアン\r\nナターリア・ルダコワ\r\nセーム・シュルト\r\n他\r\n\r\n【スタッフ】\r\n監督：オリヴィエ・メガトン\r\n製作・脚本：リュック・ベッソン　他\r\n\r\n２００８年／フランス\n◇おしらせ\n１０月１８日（日）よる７時からは「トランスポーター　イグニション」を放送！最速最強の殺し屋が再始動！依頼品は3人の美女　報酬は父の命…お楽しみに！\n◇ホームページ\nhttps://www.bs4.jp/cinema/",
+   "genre1": 6,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    125
+   ],
+   "videoFiles": [
+    {
+     "id": 70,
+     "name": "TS",
+     "filename": "2026年10月11日19時00分00秒-映画「トランスポーター３ アンリミテッド」▽ステイサム主演！シリーズ最大ヒット！.m2ts",
+     "type": "ts",
+     "size": 14341097404
+    }
+   ]
+  },
+  {
+   "id": 66,
+   "channelId": 3272402080,
+   "startAt": 1791711000000,
+   "endAt": 1791712800000,
+   "name": "サザエさん[字][解][デ]【一日お姉ちゃん／カツオのお下がり　ほか】",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327240208036330,
+   "description": "▽一日お姉ちゃん\r\n▽カツオのお下がり\r\n▽大人たちの運動会",
+   "extended": "◇番組内容\n【一日お姉ちゃん】\r\n花子がカツオに「お姉さんを１日貸してほしい」とお願いしてくる。花子は一人っ子なので、一日でいいから“お姉ちゃん”と過ごしてみたいというのだ。話を聞いたサザエは、快く引き受ける。当日、待ちきれない花子は磯野家まで迎えに来て、サザエと一緒に出掛けて行く。気になるカツオはこっそり後をつける。\n◇出演者\nサザエ：　加藤みどり　\r\nカツオ：　冨永みーな　\r\nワカメ：　津村まこと　\r\nタラオ：　愛河里花子　\r\nフネ：　寺内よりえ　\r\nマスオ：　田中秀幸　\r\n波平：　茶風林　\r\n\r\nほか\n◇スタッフ\n【原作】\r\n長谷川町子\n◇番組内容２\n【カツオのお下がり】\r\n波平は通勤途中、近所の男性が「最近息子のお下がりばかり着させられて気が滅入る」とボヤくのを聞く。磯野家では、サザエが勘違いして、カツオに大人用の靴下を買ってしまっていた。サザエたちは帰宅した波平にその靴下を薦めるが、カツオのお下がりは履かないと、波平は断固拒否する。\n◇番組内容３\n【大人たちの運動会】\r\nマスオがタラオと公園に行くと、体格のよい父親が鉄棒で懸垂（けんすい）して、子供たちから喜ばれていた。マスオも負けじと懸垂するが、一回もできず、タラオに格好悪いと言われてしまう。来週、町内運動会があると知ったマスオは、そこで活躍して名誉挽回しようとする。マスオは会社の行き帰りにランニングしたりと、トレーニングを始める。",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    127
+   ],
+   "videoFiles": [
+    {
+     "id": 69,
+     "name": "TS",
+     "filename": "2026年10月11日18時30分00秒-サザエさん[字][解][デ]【一日お姉ちゃん／カツオのお下がり　ほか】.m2ts",
+     "type": "ts",
+     "size": 3574267092
+    }
+   ]
+  },
+  {
+   "id": 65,
+   "channelId": 3272402080,
+   "startAt": 1791709200000,
+   "endAt": 1791711000000,
+   "name": "ちびまる子ちゃん[字][解]【おばあちゃんとアケビとり／お母さんの秋休み】",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327240208036332,
+   "description": "「まる子、おばあちゃんとアケビとり」の巻\r\n「お母さんの秋休み」の巻",
+   "extended": "◇番組内容\n「え～、お母さんにお休みをあげるためにあたし達が家のことやるの？だったら夕飯に作りたいものがあるよ。くだものの女王様の皮でてんぷらを作りたいな」\r\n\r\n今回のちびまる子ちゃんは『まる子、おばあちゃんとアケビとり』『お母さんの秋休み』の２本だよ。お楽しみにね。\n◇出演者\nまる子：　菊池こころ　\r\nおじいちゃん：　島田敏　\r\nお父さん：　屋良有作　\r\nお母さん：　一龍斎貞友　\r\nおばあちゃん：　佐々木優子　\r\nお姉ちゃん：　豊嶋真千子　\r\nたまちゃん：　渡辺菜生子　\r\n花輪クン：　菊池正美　\r\n丸尾君：　飛田展男　\r\n野口さん：　田野めぐみ　\r\nはまじ：　カシワクラツトム　\r\nみぎわさん：　ならはしみき　\r\n永沢：　茶風林　\r\n藤木：　中友子　\r\n山田：　本井えみ　\r\n山根：　陶山章央\n◇出演者２\n小杉：　一龍斎貞友　\r\nブー太郎：　永澤菜教　\r\n大野君：　沼田祐介　\r\n杉山君：　真山亜子　\r\nナレーション：　きむらきょうや　\r\nほか\n◇スタッフ\n【原作】\r\nさくらももこ\r\n集英社「りぼんマスコットコミックス」刊　\r\n【音楽】\r\n中村暢之　\r\n【キャラクターデザイン】\r\n船越英之　\r\n【美術監督】\r\n野村可南子　\r\n【音響監督】\r\n早瀬博雪　\r\n【音響効果】\r\n松田昭彦　\r\n【プロデューサー】\r\n竹枝義典（フジテレビ）／小黒凜々花（フジテレビ）／落合智　\r\n【監督】\r\n高木淳　\r\n【脚本】\r\n田嶋久子／折笠雄一　\r\n【絵コンテ】\r\n入好さとる／ハーフヤードソフィア\n◇スタッフ２\n【演出】\r\n入好さとる／尾崎正善　\r\n【作画監督】\r\n入好さとる／島袋美由紀　\r\n\r\n【オープニング主題歌】\r\n「おどるポンポコリン」\r\n作詞：さくらももこ　\r\n作曲：織田哲郎　\r\n編曲：ヒャダイン　\r\n歌：Ａｄｏ（ユニバーサル　ミュージック）　\r\n\r\n【エンディング主題歌】\r\n「パッパパラダイス」\r\n作詞：宇多田ヒカル　\r\n作曲：宇多田ヒカル　\r\n歌：宇多田ヒカル　\r\n（ソニー・ミュージックレーベルズ）",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    128
+   ],
+   "videoFiles": [
+    {
+     "id": 68,
+     "name": "TS",
+     "filename": "2026年10月11日18時00分00秒-ちびまる子ちゃん[字][解]【おばあちゃんとアケビとり／お母さんの秋休み】.m2ts",
+     "type": "ts",
+     "size": 3576487184
+    }
+   ]
+  },
+  {
+   "id": 64,
+   "channelId": 3211240960,
+   "startAt": 1791707400000,
+   "endAt": 1791709200000,
+   "name": "ニッポンふきにくいビル名鑑　新宿　コクーンタワー　[字][再]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 4,
+   "programId": 321124096000282,
+   "description": "日本各地にある斬新かつ個性的なビル。だけど、とっても窓がふきにくそう。窓ふきの視点からビルの魅力にせまる挑戦的な番組。今回は西新宿の象徴とも言える、あのビル。",
+   "extended": "◇番組内容\n魅力的なデザインや高度な技術で世界的に注目を集める日本のビル建築。斬新で奇抜な形状のものも増えてきたが、どうやって窓を拭いているのか、想像がつかないものも多い。実は窓ふきを入り口にして見ていくとビルの奥深い魅力に気づく。今回は西新宿のシンボル的な高層ビル、コクーンタワーが舞台。地上５０階、高さ２００ｍの繭のような不思議な形。その窓ふきに挑む職人たちの姿と、その形に隠された豊かな設計思想を深堀する。\n◇出演者\n【司会】矢作兼，櫻井梨央，【ゲスト】建築家…丹下憲孝，建築メディア　編集長…宮沢洋",
+   "genre1": 8,
+   "subGenre1": 4,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    130
+   ],
+   "videoFiles": [
+    {
+     "id": 67,
+     "name": "TS",
+     "filename": "2026年10月11日17時30分00秒-ニッポンふきにくいビル名鑑　新宿　コクーンタワー　[字][再].m2ts",
+     "type": "ts",
+     "size": 3554579732
+    }
+   ]
+  },
+  {
+   "id": 63,
+   "channelId": 3211841008,
+   "startAt": 1791707400000,
+   "endAt": 1791709200000,
+   "name": "[新]ダイヤのＡ　ａｃｔⅡ－Ｓｅｃｏｎｄ　Ｓｅａｓｏｎ－　第14話[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 321184100802992,
+   "description": "沢村栄純が青道高校野球部のエースナンバーを背負い、2年生の夏が再び始まる。沢村、降谷、御幸らが揃う最後の夏。彼らの雄姿と激闘をその目に。",
+   "extended": "◇出演者１\n沢村栄純：逢坂良太\r\n降谷　暁：島﨑信長\r\n御幸一也：櫻井孝宏\r\n倉持洋一：浅沼晋太郎\r\n小湊春市：花江夏樹\r\n川上憲史：下野　紘\r\n前園健太：田尻浩章\r\n白州健二郎：下妻由幸\r\n麻生　尊：村田太志\r\n渡辺久志：石田　彰\r\n金丸信二：松岡禎丞\r\n東条秀明：蒼井翔太\r\n奥村光舟：内田雄馬\r\n結城将司：武内駿輔\r\n瀬戸拓馬：山下大輝\r\n由井　薫：村瀬　歩\r\n浅田浩文：畠中　祐\r\n\n◇出演者２\n結城　哲也：細谷佳正\r\n小湊　亮介：岡本信彦\r\n滝川・クリス・優：浪川大輔\r\n増子　透：羽多野渉\r\n片岡鉄心：東地宏樹\r\n落合博光：赤城　進\r\n太田一義：竹内栄治\r\n高島　礼：内山夕実\r\n\n◇出演者３\n成宮　鳴：梶裕貴\r\n神谷　カルロス　俊樹：KENN\r\n白河勝之：保志総一朗\r\n山岡　陸：熊谷健太郎\r\n矢部浩二：宮崎貴宜\r\n多田野樹：山谷祥生\r\n赤松晋二：代永翼\r\n国友広重：仲野裕\r\n早乙女慎一郎：佐久間大介\r\n轟　雷市：小野賢章\r\n真田俊平：神谷浩史　\r\n三島優太：鈴木達央\r\n秋葉一真：金本涼輔\r\n轟　雷蔵：西凜太朗\r\n天久光聖：木村良平\r\n千丸浩二：宮田俊哉\r\n田原利彦：加藤亮夫\r\n卜部昂也：仲村宗悟\r\n柳楽宗一：田丸篤志\r\n奈良晃司：濱　健人\r\n\n◇原作・脚本\n原作：寺嶋裕二（講談社「週刊少年マガジン」所載）\r\n\r\nシリーズ構成：古怒田健志\n◇監督・演出\n監督：大庭秀昭\n◇音楽\n第2クールオープニングテーマ：GLAY「NEVER　SAY　NEVER　AGAIN」\r\n第2クールエンディングテーマ：OxT「ROAD　TO　BE　BLUE」\r\n\n◇ホームページ\nhttps://www.tv-tokyo.co.jp/anime/diaace2_2nd/\n◇番組概要\n沢村栄純が青道高校野球部のエースナンバーを背負い、2年生の夏が再び始まる。\r\n悔しさをバネに一歩ずつ成長を続けてきた沢村。\r\n故障と好不調の波ゆえにエースナンバーを沢村に託した降谷。\r\n青道のキャプテンとして圧倒的な存在感とチームを支える大黒柱となった御幸。\r\n沢村、降谷、御幸らが揃う最後の夏。彼らの雄姿と激闘をその目に。",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    129
+   ],
+   "videoFiles": [
+    {
+     "id": 66,
+     "name": "TS",
+     "filename": "2026年10月11日17時30分00秒-[新]ダイヤのＡ　ａｃｔⅡ－Ｓｅｃｏｎｄ　Ｓｅａｓｏｎ－　第14話[字].m2ts",
+     "type": "ts",
+     "size": 3534691964
+    }
+   ]
+  },
+  {
+   "id": 62,
+   "channelId": 3272102056,
+   "startAt": 1791705600000,
+   "endAt": 1791707100000,
+   "name": "アニメ　アオアシ　シーズン２（２）「考える葦」[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327210205629568,
+   "description": "東京シティ・エスペリオンユースのＡチームに昇格することができた青井葦人（アシト）。しかし、待ち受けるのは“圧倒的な技術力の差”。激闘のプレミアリーグ戦へ…。",
+   "extended": "◇番組内容\nＡチームのレベルの高さに衝撃を受けるアシトたちを、平や松永が夕食に誘う。すると、エスペリオンが生んだ天才・栗林もその場に合流することに。一見すると物腰の柔らかい人物に見える栗林。しかし彼を知る遊馬は、その人柄を“怖い”と言う。やがてはじまった食事会で、アシトたちはその言葉の真意を知ることとなる。\n◇出演者\n【声】大鈴功起，橘龍丸，八代拓，堀江瞬，榎木淳弥，梅原裕一郎，武内駿輔，内山昂輝，小野賢章，古川慎，虎島貴明，左座翔丸，興津和幸，江越彬紀，寺島拓篤，小林親弘，稲田徹，坂口大助，河瀬茉希，上田麗奈ほか\n◇原作・脚本\n【原作】小林有吾，【脚本】横谷昌宏\n◇監督・演出\n【監督】横山和基",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    132
+   ],
+   "videoFiles": [
+    {
+     "id": 65,
+     "name": "TS",
+     "filename": "2026年10月11日17時00分00秒-アニメ　アオアシ　シーズン２（２）「考える葦」[字].m2ts",
+     "type": "ts",
+     "size": 2213364984
+    }
+   ]
+  },
+  {
+   "id": 61,
+   "channelId": 3272202064,
+   "startAt": 1791705600000,
+   "endAt": 1791707400000,
+   "name": "[新]日５「夜桜さんちの大作戦」　＃４０「ファミレス父子会談」[字][デ]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327220206442890,
+   "description": "夜桜歴代当主に関わる一連の騒動が、愛する妻・零の復活を企む百の策略だったことが判明…！一方、太陽の「万花繚乱」によって救われた凶一郎は、兄妹たちの元へ帰宅しーー",
+   "extended": "◇番組内容\n夜桜歴代当主に関わる一連の騒動が、愛する妻・零（声・日髙のり子）の復活を企む百（声・山寺宏一）の策略だったことが判明。歪んだ家族愛をささやきながら、百は六美たちの前から姿を消した。\r\n　\n◇声の出演\n（朝野太陽）川島零士\r\n（夜桜六美）本渡楓\r\n（夜桜凶一郎）小西克幸\r\n（夜桜二刃）鬼頭明里\r\n（夜桜辛三）興津和幸\r\n（夜桜四怨）悠木碧\r\n（夜桜嫌五）松岡禎丞\r\n（夜桜七悪）内山夕実\r\n（ゴリアテ）松岡禎丞\r\n（切崎殺香）伊瀬茉莉也\r\n（不動りん）朴ろ美※「ろ」は王偏に路\r\n（蒼翠）内山昂輝\r\n（犬神王牙）濱野大輝\r\n（仏山聖司）加瀬康之\r\n（黒百合義正）堀秀行\r\n（秋風 薫）玉井勇輝\r\n（秋風もみじ）河瀬茉希\r\n　\n◇声の出演２\n（星降月夜）福山潤\r\n（夜桜万）井上和彦\r\n（夜桜京子）山田栄子\r\n（皮下真）うえだゆうじ\r\n（ノウメン）松風雅也\r\n（山ちゃん）綿貫竜之介\r\n（アイ）久野美咲\r\n（夜桜百）山寺宏一\r\n（北里りんね）南條愛乃\r\n（ハクジャ）佐藤利奈\r\n（ミズキ）野島健児\r\n（鳩田飛鳥）石田彰\r\n（アカイ）小清水亜美\r\n（アオヌマ）小林千晃\r\n（クロサワ）\r\n（チャチャ）真殿光昭\r\n（夜桜零）日髙のり子\r\n（夜桜つぼみ）ゆかな\r\n（道端草助）石川界人\n◇声の出演３\n（ケンヂ）中野さいま\r\n（地獄耳の宇佐）宮本侑芽\r\n（ニノ前御前）久川綾\r\n（五輪太夫）中原麻衣\r\n（出雲灰）神谷浩史\r\n（アレクサンド龍）大塚芳忠\r\n（修羅）伊藤美来\r\n（電脳大魔王「G」）花守ゆみり\r\n（Dr.もず）上坂すみれ\r\n（虎狼）進藤尚美\r\n（秋桜こすもす）\r\nほか\r\n　\n◇原作\n【原作】\r\n権平ひつじ『夜桜さんちの大作戦』\r\n（集英社ジャンプコミックス刊）\r\n　\n◇スタッフ\n総監督：湊未來\r\n監督：中津川孝広\r\nシリーズ構成：湊未來\r\nキャラクターデザイン：髙橋瑞紀\r\n美術監督：中原英統\r\n色彩設計：山口真奈美\r\n撮影監督：佐藤敦（スタジオシャムロック）\r\n３Ｄ監督：平田洋平\r\n編集：近藤勇二(REAL-T)\r\n音響監督：鐘江徹\r\n音楽：藤本コウジ（Sus4 Inc.）\r\n　\n◇音楽\n【第２クール　オープニングテーマ】\r\nハンブレッダーズ「フォーエバーソング」\r\n\r\n【第２クール　エンディングテーマ】\r\nKID PHENOMENON「I'm still breathing」\r\n　\n◇公式ＨＰ\n【番組ＨＰ】\r\nhttps://mission-yozakura-family.com/\r\n　\n◇公式ＳＮＳ\n【公式Ｘ】\r\nhttps://x.com/OfficialHitsuji\r\n@OfficialHitsuji\r\n#夜桜さんちの大作戦 #アニメ夜桜さん\r\n\r\n【TikTok】\r\nhttps://www.tiktok.com/@yozakura_family_anime\r\n　\n◇制作\n【アニメーション制作】\r\nSILVER LINK.\r\n【製作】\r\n夜桜さんちの大作戦製作委員会\n◇おことわり\n番組の内容と放送時間は、変更になる場合があります。\n◇番組内容２\n一方、太陽（声・川島零士）の「万花繚乱」によって救われた凶一郎（声・小西克幸）は、兄妹たちの元へ帰宅。感動の再会はつかの間、家族を守るために自らを犠牲にしようとした凶一郎を反省させるべく、凶一郎の家族サービスデーが幕を開ける！長男を待ち受けるのは、弟妹たちからの容赦ないリクエスト…！？\r\nそんな折、六美（声・本渡楓）に一通のメッセージ届く。\r\n　\n◇原作／スタッフ\n【原作】\r\n権平ひつじ『夜桜さんちの大作戦』\r\n（集英社ジャンプコミックス刊）\r\n\r\n【スタッフ】\r\n総監督：湊未來\r\n監督：中津川孝広\r\nシリーズ構成：湊未來\r\nキャラクターデザイン：髙橋瑞紀\r\n美術監督：中原英統\r\n色彩設計：山口真奈美\r\n撮影監督：佐藤敦（スタジオシャムロック）\r\n３Ｄ監督：平田洋平\r\n編集：近藤勇二(REAL-T)\r\n音響監督：鐘江徹\r\n音楽：藤本コウジ（Sus4 Inc.）",
+   "genre1": 7,
+   "subGenre1": 0,
+   "genre2": 11,
+   "subGenre2": 5,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    131
+   ],
+   "videoFiles": [
+    {
+     "id": 64,
+     "name": "TS",
+     "filename": "2026年10月11日17時00分00秒-[新]日５「夜桜さんちの大作戦」　＃４０「ファミレス父子会談」[字][デ].m2ts",
+     "type": "ts",
+     "size": 3322166612
+    }
+   ]
+  },
+  {
+   "id": 60,
+   "channelId": 3211841008,
+   "startAt": 1791704700000,
+   "endAt": 1791706500000,
+   "name": "ホテル・インヒューマンズ　request　14.[再][字][多][解]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 321184100804107,
+   "description": "そのホテルの…「お客様は殺し屋様」。\r\n決して『ＮＯと告げない』コンシェルジュ、生朗と沙羅が応える殺し屋達の願いとはーー\r\n鮮烈のキリング・ホテル・ドラマ…開幕！",
+   "extended": "◇作品概要①\nそのホテルの…「お客様は殺し屋様」。\r\n最高のホテルには条件がある。\r\n「極上の食事」、「至高の癒やし」、「魅惑の娯楽」…\r\nそして、“最新の武器手配”、“安心の身元詐称”、“完璧な死体処理”ーー!?\n◇作品概要②\n死の境界線で、決して『ＮＯと告げない』二人のコンシェルジュ、生朗と沙羅が応える殺し屋達の願いとはーー\r\nいざ、鮮烈のキリング・ホテル・ドラマ…開幕！\n◇出演者\n星　生朗：小林裕介\r\n灰咲沙羅：白浜灯奈乃\r\n桐原シバ：羊宮妃那\r\n\r\nほか\n◇原作脚本\n原作：田島　青（小学館「サンデーうぇぶり」　連載）\n◇監督・演出\n監督：アミノテツロ\r\nシリーズ構成：米村正二\r\nキャラクターデザイン：藤崎真吾\n◇音楽\nオープニングテーマ：GAN　(岩田剛典)「螺旋」\r\nエンディングテーマ：ファントムシータ「スイートピー」\r\n\r\n音楽：小春(チャラン・ポ・ランタン)\n◇制作\nアニメーション制作：ブリッジ\r\n　　　　　　　　アイル\r\n\r\n製作：ホテル・インヒューマンズ製作委員会\n◇放送形態\n解説放送あり\n◇ホームページ\nhttps://www.tv-tokyo.co.jp/anime/hotel-inhumans/",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    133
+   ],
+   "videoFiles": [
+    {
+     "id": 63,
+     "name": "TS",
+     "filename": "2026年10月11日16時45分00秒-ホテル・インヒューマンズ　request　14．[再][字][多][解].m2ts",
+     "type": "ts",
+     "size": 3490532832
+    }
+   ]
+  },
+  {
+   "id": 59,
+   "channelId": 3272202064,
+   "startAt": 1791703800000,
+   "endAt": 1791705600000,
+   "name": "『アオのハコ』Ｓｅａｓｏｎ２　＃０２憧れ[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327220206442889,
+   "description": "青さが胸を衝く青春部活ラブストーリー、待望のＴＶアニメＳｅａｓｏｎ２",
+   "extended": "◇番組内容\n千夏との念願のデートに胸を弾ませる大喜。ふたりで買い物をし、楽しい時間を過ごすが、男子バスケ部の先輩・松岡の登場で空気は一変。強引な松岡に翻弄されるふたりだったが、紆余曲折を経て最後にとある場所に行くことに。そして夕暮れの下、大喜は意を決して千夏に気持ちを伝えようとするがーー。\r\n　\n◇出演者\n猪股大喜：千葉翔也\r\n鹿野千夏：上田麗奈\r\n蝶野 雛：鬼頭明里\r\n笠原 匡：小林千晃\r\n針生健吾：内田雄馬\r\n守屋菖蒲：市ノ瀬加那\r\n松岡一馬：梶 裕貴\r\n木戸夢佳：青山吉能\n◇音楽\n【OPアーティスト】\r\naiko「あなたの花の色」\r\nPONY CANYON\r\n\r\n【EDアーティスト】\r\nエルスウェア紀行「blue in」\r\nTOY'S FACTORY\n◇スタッフ\n原作 三浦糀（集英社ジャンプコミックス刊）\r\n監督 酒向 大輔\r\nキャラクターデザイン・総作画監督 谷野 美穂\r\nシリーズ構成・脚本 柿原 優子\r\nアニメーション制作 エレクトリックサーカス\n◇公式ページ\n[公式サイト]https://aonohako-anime.com/\r\n[公式X]@aonohako_PR\n◇おことわり\n番組の内容と放送時間は変更になる場合があります。",
+   "genre1": 7,
+   "subGenre1": 0,
+   "genre2": 11,
+   "subGenre2": 5,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    134
+   ],
+   "videoFiles": [
+    {
+     "id": 62,
+     "name": "TS",
+     "filename": "2026年10月11日16時30分00秒-『アオのハコ』Ｓｅａｓｏｎ２　＃０２憧れ[字].m2ts",
+     "type": "ts",
+     "size": 3544473040
+    }
+   ]
+  },
+  {
+   "id": 58,
+   "channelId": 400200,
+   "startAt": 1791696600000,
+   "endAt": 1791703800000,
+   "name": "[映][字]LiLiCoのLovin’Movies『卒業白書』",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 2,
+   "programId": 40020016510,
+   "description": "トム・クルーズ最新作『DIGGER/ディガー』公開記念！彼の出世作となった青春コメディをお届け！横浜流星×広瀬すず『汝、星のごとく』最新情報＆木村佳乃コメントも",
+   "extended": "◇番組内容\n裕福な家庭の高校生ジョエルは、両親の留守中にコールガールのラナを家に呼んで羽を伸ばす。しかし、トラブルから高価なガラスの卵を盗まれ、父親のポルシェを水没させてしまう。窮地に陥った彼は、弁償代を稼ぐため自宅を売春宿にするという大胆な計画を企てるが…◆新作紹介は横浜流星×広瀬すずダブル主演の話題作『汝、星のごとく』◆広瀬すずの母親役、木村佳乃に直撃インタビュー！\n◇出演者\nLiLiCo\r\n\r\n【映画出演】\r\nトム・クルーズ\r\nレベッカ・デモーネイ\r\nジョー・パントリアーノ\r\nカーティス・アームストロング\r\n\r\n【汝、星のごとく】\r\n木村佳乃\n◇おことわり\n番組の内容と放送時間は変更になる場合があります。",
+   "genre1": 6,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    135
+   ],
+   "videoFiles": [
+    {
+     "id": 61,
+     "name": "TS",
+     "filename": "2026年10月11日14時30分00秒-[映][字]LiLiCoのLovin’Movies『卒業白書』.m2ts",
+     "type": "ts",
+     "size": 10313170332
+    }
+   ]
+  },
+  {
+   "id": 57,
+   "channelId": 3211240960,
+   "startAt": 1791691500000,
+   "endAt": 1791694200000,
+   "name": "１００カメ　競馬トレセン　非公開の馬の惑星へ潜入！夢のＧⅠレースに挑む[解][字][再]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 4,
+   "programId": 321124096036886,
+   "description": "２千頭もの競走馬がひしめく「ＪＲＡ栗東トレーニング・センター」。通常非公開の“馬の惑星”に１００台の固定カメラが潜入！夢のＧⅠレースにむけた人馬の奮闘に密着",
+   "extended": "◇出演者\n【司会】若林正恭，春日俊彰\n◇番組内容\n年間のべ２億人が参加し、３兆円が動く“超巨大エンタメ”競馬。「１００カメなら…」と、真剣勝負の舞台裏を記録する特別な許可がおりた。厩舎の飾らない日常や、レース前後の関係者の姿を通して、競馬の世界を生きる人たちの気概に迫る。レース直前の調教の極意、言葉を超えた人馬の絆、調教スタッフや騎手の素顔など、見所いっぱいの４５分。競馬好きのオードリー若林も興奮！「これは馬券の買い方が変わってきますよ」",
+   "genre1": 8,
+   "subGenre1": 7,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    136
+   ],
+   "videoFiles": [
+    {
+     "id": 60,
+     "name": "TS",
+     "filename": "2026年10月11日13時05分00秒-１００カメ　競馬トレセン　非公開の馬の惑星へ潜入！夢のＧⅠレースに挑む[解][字][再].m2ts",
+     "type": "ts",
+     "size": 5391524536
+    }
+   ]
+  },
+  {
+   "id": 56,
+   "channelId": 3211240960,
+   "startAt": 1791684000000,
+   "endAt": 1791687240000,
+   "name": "ＡＢＵロボコン２０２６中国・香港大会　究めよ！カンフーの奥義[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 4,
+   "programId": 321124096029456,
+   "description": "中国の古代武術カンフーをモチーフにしたロボコン世界一決定戦！日本代表の豊橋技術科学大学は世界の強豪にどう挑む？ロボコン応援団長・マヂカルラブリーと熱戦を見守る。",
+   "extended": "◇番組内容\n香港で８月に開かれた世界一をかけた熱い戦い、ＡＢＵアジア太平洋ロボットコンテスト。各地の国内大会を制した強豪１６チームが“カンフーの奥義”を究めるべく、壮絶な攻防戦を繰り広げる。日本代表・豊橋技術科学大学が仕上げたのは安定感バツグンのロボット。だがそこに中国や香港、ベトナムといった世界の強豪たちが立ちはだかる。ものづくりに青春をかける若者たちの物語に思わず涙。マヂカルラブリーのふたりが熱～く応援！\n◇出演者\n【出演】マヂカルラブリー，【実況】瀬戸光，【語り】井上和",
+   "genre1": 8,
+   "subGenre1": 3,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    139
+   ],
+   "videoFiles": [
+    {
+     "id": 59,
+     "name": "TS",
+     "filename": "2026年10月11日11時00分00秒-ＡＢＵロボコン２０２６中国・香港大会　究めよ！カンフーの奥義[字].m2ts",
+     "type": "ts",
+     "size": 6385761784
+    }
+   ]
+  },
+  {
+   "id": 55,
+   "channelId": 3210242032,
+   "startAt": 1791684000000,
+   "endAt": 1791685800000,
+   "name": "ポケットモンスター　＃１５１「ナヴィと不思議な仮面の子」",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 321024203202411,
+   "extended": "◇番組内容\nキタカミの里のお祭りにやってきたライジングボルテッカーズ！ゼイユと再会するリコたちの一方、ナヴィとメタモンは、はじめてのキタカミのお祭りに大はしゃぎ！そんな中、仮面をかぶった不思議な子と出会う─。一緒に遊んで仲良くなるが、その子の正体は、伝説のポケモン・オーガポンで…！？\n◇出演者\n【声の出演】リコ：鈴木みのり　マスカーニャ：林原めぐみ　ロイ：寺崎裕香　ラウドボーン：山下大輝　ドット：青山吉能　ウェーニバル：浪川大輔　ウルト：藤原夏海　キャプテンピカチュウ：大谷育江",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    138
+   ],
+   "videoFiles": [
+    {
+     "id": 58,
+     "name": "TS",
+     "filename": "2026年10月11日11時00分00秒-ポケットモンスター　＃１５１「ナヴィと不思議な仮面の子」.m2ts",
+     "type": "ts",
+     "size": 3651484144
+    }
+   ]
+  },
+  {
+   "id": 54,
+   "channelId": 3208643056,
+   "startAt": 1791684000000,
+   "endAt": 1791687300000,
+   "name": "ドラマ　太陽にほえろ！（第５５話）",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 3,
+   "programId": 320864305603135,
+   "description": "再会◇石原裕次郎主演！！昭和の名作を一挙放送！！豪華俳優陣が“愛”と“友情”をテーマに、男の心意気・人間性を描く！！",
+   "extended": "◇出演者\n石原裕次郎\r\n木之元亮\r\n宮内淳\r\n露口茂\r\n竜雷太\r\n小野寺昭\r\n下川辰平\r\nほか",
+   "genre1": 3,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 1,
+   "thumbnails": [
+    137
+   ],
+   "videoFiles": [
+    {
+     "id": 57,
+     "name": "TS",
+     "filename": "2026年10月11日11時00分00秒-ドラマ　太陽にほえろ！（第５５話）.m2ts",
+     "type": "ts",
+     "size": 6420966288
+    }
+   ]
+  },
+  {
+   "id": 53,
+   "channelId": 3211240960,
+   "startAt": 1791682320000,
+   "endAt": 1791682380000,
+   "name": "アニメ　恐怖コレクターＰＲ番組　放送中！注目の新番組",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 321124096033414,
+   "description": "総合（土）夜１１：４５放送中！赤いフードの少年が、相棒の人面犬とともに都市伝説に挑む「恐怖コレクター」。あなたに恐怖が忍び寄る、Ｊホラーアニメの魅力を紹介。",
+   "genre1": 7,
+   "subGenre1": 0,
+   "genre2": 2,
+   "subGenre2": 7,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    140
+   ],
+   "videoFiles": [
+    {
+     "id": 56,
+     "name": "TS",
+     "filename": "2026年10月11日10時32分00秒-アニメ　恐怖コレクターＰＲ番組　放送中！注目の新番組.m2ts",
+     "type": "ts",
+     "size": 106914848
+    }
+   ]
+  },
+  {
+   "id": 52,
+   "channelId": 3211240960,
+   "startAt": 1791680700000,
+   "endAt": 1791682200000,
+   "name": "明日をまもるナビ　選“スーパー台風”上陸？　どうする海抜ゼロメートル地帯[解][字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 4,
+   "programId": 321124096029439,
+   "description": "気候変動での海水温上昇で、いま次々と発生している“スーパー台風”といわれる猛烈な勢力の台風。３大都市圏に広がる“海抜ゼロメートル地帯”はどう備えるのか？",
+   "extended": "◇番組内容\nいま次々と発生している“スーパー台風”といわれる猛烈な勢力の台風。もし接近・上陸すると東京・大阪・名古屋の３大都市圏などに広がる“海抜ゼロメートル地帯”は、高潮や河川氾濫などの甚大な被害が懸念される。東京での浸水は１週間以上続くとされ、住民は自分が住んでいる区から外へと避難する「広域避難」が必要だとされる。広域避難は可能なのか？課題は？いのちを守る避難のあり方を考える。\n◇出演者\n【出演】東京大学大学院　特任教授…片田敏孝，雛形あきこ，【司会】山内泉",
+   "genre1": 2,
+   "subGenre1": 2,
+   "genre2": 0,
+   "subGenre2": 2,
+   "genre3": 8,
+   "subGenre3": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    141
+   ],
+   "videoFiles": [
+    {
+     "id": 55,
+     "name": "TS",
+     "filename": "2026年10月11日10時05分00秒-明日をまもるナビ　選“スーパー台風”上陸？　どうする海抜ゼロメートル地帯[解][字].m2ts",
+     "type": "ts",
+     "size": 2838486228
+    }
+   ]
+  },
+  {
+   "id": 51,
+   "channelId": 3272402080,
+   "startAt": 1791678600000,
+   "endAt": 1791680400000,
+   "name": "テレビアニメ「鬼滅の刃」シリーズ全編再放送[字][解][デ]【無限列車編】",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327240208036645,
+   "description": "「無限列車編」第一話『炎柱・煉獄杏寿郎』",
+   "extended": "◇番組内容\n炎柱・煉獄杏寿郎に、新たな指令が下された。\r\nそれは、四十人以上もの行方不明者が出たという「無限列車」――その現地へ赴き、調査を行うというもの。\r\n鬼殺隊本部を後にし、無限列車の任務へと旅立つ煉獄だったが――。\n◇出演者\n竈門炭治郎（かまど・たんじろう）：　花江夏樹　\r\n竈門禰豆子（かまど・ねずこ）※：　鬼頭明里　\r\n我妻善逸（あがつま・ぜんいつ）：　下野紘　\r\n嘴平伊之助（はしびら・いのすけ）：　松岡禎丞　\r\n煉獄杏寿郎（れんごく・きょうじゅろう）※：　日野聡　\r\n魘夢（下弦の壱）（えんむ・かげんのいち）：　平川大輔　\r\n猗窩座（上弦の参）（あかざ・じょうげんのさん）：　石田彰　\r\n\r\n※禰豆子の「禰」は「ネ＋爾」が正しい表記。\n◇出演者２\n※煉獄杏寿郎の「煉」は「火＋東」が正しい表記。\n◇スタッフ\n【原作】\r\n吾峠呼世晴（集英社ジャンプ　コミックス刊）　\r\n【監督】\r\n外崎春雄　\r\n【キャラクターデザイン・総作画監督】\r\n松島晃　\r\n【脚本制作】\r\nｕｆｏｔａｂｌｅ　\r\n【サブキャラクターデザイン】\r\n佐藤美幸、梶山庸子、菊池美花　\r\n【プロップデザイン】\r\n小山将治　\r\n【コンセプトアート】\r\n衛藤功二、矢中勝、樺澤侑里　\r\n【撮影監督】\r\n寺尾優一　\r\n【３Ｄ監督】\r\n西脇一樹　\r\n【色彩設計】\r\n大前祐子\n◇スタッフ２\n【編集】\r\n神野学　\r\n【音楽】\r\n梶浦由記、椎名豪　\r\n【アニメーション制作】\r\nｕｆｏｔａｂｌｅ　\r\n\r\n【オープニングテーマ】\r\nＬｉＳＡ「明け星」（ＳＡＣＲＡ　ＭＵＳＩＣ）　\r\n【エンディングテーマ】\r\nＬｉＳＡ「白銀」（ＳＡＣＲＡ　ＭＵＳＩＣ）",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    143
+   ],
+   "videoFiles": [
+    {
+     "id": 54,
+     "name": "TS",
+     "filename": "2026年10月11日09時30分00秒-テレビアニメ「鬼滅の刃」シリーズ全編再放送[字][解][デ]【無限列車編】.m2ts",
+     "type": "ts",
+     "size": 3579547636
+    }
+   ]
+  },
+  {
+   "id": 50,
+   "channelId": 3211841008,
+   "startAt": 1791678600000,
+   "endAt": 1791680400000,
+   "name": "おねがいアイプリ　とどけ！ピュアハート[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 321184100802979,
+   "description": "芸術の秋。おねがい広場ではアートフェスティバルが開催され、大盛り上がり。だが、あおい・おりびあ・エマは早く三人でのライブを成功させなければと焦っていた。",
+   "extended": "◇お知らせ\n４週連続「アイぷにサンデー」プレゼントキャンペーン！\r\n毎週「ぷにるんず　ぷに４」と「ひみつのアイプリ」で発表されるあいことばを２つ揃えて応募すると素敵なプレゼントがもらえるよ！\r\n詳しくは【アイぷにサンデー　あにてれ】で検索してね。\n◇番組内容\nおねがい町に引っ越してきた好実いのりは“アイプリ”が大好きな中学1年生！「アイプリになるチャンスをください！」\r\nいのりが女神像にお願いしていると偶然、人気アイプリのあおいとぬいぐるみのようなフォーチュに出会ったの。あおいにもらったミラーパクトを開いて…いのり、あこがれのアイプリデビュー！\r\nあおいとフォーチュはいのりに運命を感じたというけれど…。\r\nこれからアイプリでどんな出会いが待っているのでしょう？\n◇声の出演\n好実いのり：小川華果\r\n夢宮あおい：叶矢りか\r\n友坂ぐみ：丸岡和佳奈\r\n勇樹おりびあ：岡村明香\r\n熱海ナナ：藤寺美徳\r\n望永エマ：鈴木みのり\r\nフォーチュ：大地葉\n◇監督・演出\n監督：藤咲淳一・松永昌弘\r\nシリーズ構成：市川十億衛門",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    142
+   ],
+   "videoFiles": [
+    {
+     "id": 53,
+     "name": "TS",
+     "filename": "2026年10月11日09時30分00秒-おねがいアイプリ　とどけ！ピュアハート[字].m2ts",
+     "type": "ts",
+     "size": 3323323564
+    }
+   ]
+  },
+  {
+   "id": 49,
+   "channelId": 3211841008,
+   "startAt": 1791677700000,
+   "endAt": 1791678600000,
+   "name": "ぷにるんず　ぷに４　第２話『あいるん　べびるんになるん♪』[字][デ]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 321184100802978,
+   "description": "あいるんとゆかは「赤ちゃんをぷにぷにしたいな～」と話している。そこにやってきたえんじぇるん、ラッキーなことがおこる矢をはなつと、矢は、あいるんにめいちゅう。\r\n",
+   "extended": "◇お知らせ\n日曜日は「アイぷにサンデー」！\r\n「ぷにるんずぷに４」と「おねがいアイプリ」の放送を見て、番組の中で発表される「あいことば」を探してプレゼントに応募してね！\n◇出演者\nあいるん：潘めぐみ\r\nえねるん：小松未可子\r\nらぶるん：内田彩\r\nうるるん：山口智広\r\nくーるん：木野日菜\r\nともるん：朝日奈丸佳\r\nじゅえるん：和泉風花\r\n\r\nゆか：谷口夢奈\r\n\r\nナレーション：小野大輔\n◇原作脚本\n原作：タカラトミー\r\nシリーズ構成：市川十億衛門\r\nキャラクターデザイン：一石小百合\n◇監督・演出\n監督：春日森春木\r\n制作：OLM　Digital\n◇音楽\n音楽：小畑貴裕\r\n音楽監督：小沼則義\r\n\r\nテーマソング：「ぷにぷにぷにるんず　ぷにックスバージョン」ななひら\n◇ホームページ\nhttps://www.tv-tokyo.co.jp/anime/punirunes/",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    144
+   ],
+   "videoFiles": [
+    {
+     "id": 52,
+     "name": "TS",
+     "filename": "2026年10月11日09時15分00秒-ぷにるんず　ぷに４　第２話『あいるん　べびるんになるん♪』[字][デ].m2ts",
+     "type": "ts",
+     "size": 1748841048
+    }
+   ]
+  },
+  {
+   "id": 48,
+   "channelId": 3272402080,
+   "startAt": 1791676800000,
+   "endAt": 1791678600000,
+   "name": "僕らが選んだベストアドベンチャー　＃０２[字][解][デ]【デジモンアドベンチャー】",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327240208036642,
+   "description": "『デジモンアドベンチャー』第１０話「守護者ケンタルモン！」",
+   "extended": "◇番組内容\n１９９７年に発売された液晶玩具「デジタルモンスター」から始まった『デジモン』は、２０２７年に３０周年の節目を迎える。これを記念した「デジモン３０周年プロジェクト」が始動。その第１弾企画として、デジモンアニメシリーズの始まりともいえる『デジモンアドベンチャー』、２５周年イヤーを迎えた『デジモンテイマーズ』の２作品の中から、世界各国のデジモンファンの投票によって選ばれた至極のエピソードを、\n◇番組内容２\n全編リマスター版でお届けする！\n◇出演者\n八神太一：　藤田淑子　\r\nアグモン：　坂本千夏　\r\n石田ヤマト：　風間勇刀　\r\nガブモン：　山口眞弓　\r\n武之内空：　水谷優子　\r\nピヨモン：　重松花鳥　\r\n泉光子郎：　天神有海　\r\nテントモン：　櫻井孝宏　\r\n太刀川ミミ：　前田愛　\r\nパルモン：　溝脇しほみ　\r\n城戸丈：　菊池正美　\r\nゴマモン：　竹内順子　\r\n高石タケル：　小西寛子　\r\nパタモン：　松本美和　\r\n八神ヒカリ：　荒木香恵　\r\nテイルモン：　徳光由香\n◇スタッフ\n【企画】\r\n川上大輔、木村京太郎、関弘美　\r\n【原案】\r\n本郷あきよし　\r\n【シリーズディレクター】\r\n角銅博之　\r\n【シリーズ構成】\r\n西園悟　\r\n【キャラクターデザイン】\r\n中鶴勝祥　\r\n【総作画監督】\r\n宮原直樹　\r\n【音楽】\r\n有澤孝紀　\r\n【制作協力】\r\n東映　\r\n【製作】\r\nフジテレビ、読売広告、東映アニメーション",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    146
+   ],
+   "videoFiles": [
+    {
+     "id": 51,
+     "name": "TS",
+     "filename": "2026年10月11日09時00分00秒-僕らが選んだベストアドベンチャー　＃０２[字][解][デ]【デジモンアドベンチャー】.m2ts",
+     "type": "ts",
+     "size": 3587781472
+    }
+   ]
+  },
+  {
+   "id": 47,
+   "channelId": 3211841008,
+   "startAt": 1791676800000,
+   "endAt": 1791677700000,
+   "name": "ギャビーのドールハウス　１２９話　願いがかなうふん水（後編）[字][二]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 321184100802977,
+   "description": "ギャビーはまほうのネコ耳（みみ）をつけると、からだがちいさくなってふしぎなドールハウスにはいってあそべちゃう！まほうのおへやでたのしいぼうけんがはじまるよ！",
+   "extended": "◇番組内容\n「ねがいがかなうふんすい」で、ネコちゃんたちのおねがいをかなえるよ。ベビー・ボックスはいっぱいぬりえがしたくて、おへやをぬりえにしちゃった！キャットラットのおねがいは「おほしさまブランコ」であそぶことだけど、あそんでいたら、ブランコからおちそうになっちゃった！パンディは、ピンチのキャットラットをどうやってたすけるのかな？\n◇出演者\nギャビー：小澤美優\r\nパンディ・ポーズ：髙橋輝\r\nベビー・ボックス：梅﨑音羽\r\nケーキー：鈴木柊真\r\nキャットラット：櫻井トオル\r\nキティ・フェアリー：佐倉綾音\n◇音楽\nオープニングテーマ\r\n「ドールハウスへ行こう」\n◇制作\n日本語版制作：ブロードメディア\r\n演出：甲斐樹美子",
+   "genre1": 7,
+   "subGenre1": 0,
+   "genre2": 10,
+   "subGenre2": 8,
+   "genre3": 10,
+   "subGenre3": 7,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    145
+   ],
+   "videoFiles": [
+    {
+     "id": 50,
+     "name": "TS",
+     "filename": "2026年10月11日09時00分00秒-ギャビーのドールハウス　１２９話　願いがかなうふん水（後編）[字][二].m2ts",
+     "type": "ts",
+     "size": 1770569900
+    }
+   ]
+  },
+  {
+   "id": 46,
+   "channelId": 3272302072,
+   "startAt": 1791675000000,
+   "endAt": 1791676800000,
+   "name": "名探偵プリキュア！ #37 ウソノワールとニジーのティータイム[デ][字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327230207212343,
+   "description": "「探偵」のプリキュアが誕生！！そのナゾ！キュアット解決！",
+   "extended": "◇番組内容\nマコトジュエルが宿った商店街の「マコピョン」という着ぐるみに入り、あんなたちから逃げるウソノワールとニジー。捜索が落ち着くまで、客に変装してパティスリーチュチュで様子を見ることにするがーー\n◇声の出演\nキュアアンサー／明智あんな：千賀光莉\r\nキュアミスティック／小林みくる：本渡楓\r\nキュアエクレール／帆羽くれあ：長谷川育美\r\nキュアアルカナ／森亜るるか：東山奈央\r\nポチタン：加藤英美里\r\nシュシュタン：礒部花凜\r\nマシュタン：羊宮妃那\r\nジェット先輩：梶裕貴\n◇スタッフ\n【脚本】村山功\r\n【演出】土田豊\n◇音楽１\n★オープニング主題歌\r\n「ハートにヒント！名探偵プリキュア！」\r\n歌：石井あみ\n◇音楽２\n★エンディング主題歌\r\n「いつかわかる☆きっとあえる」\r\n歌：熊田茜音＆増井優花\n◇制作\nＡＢＣテレビ \r\nＡＢＣアニメーション \r\nＡＤＫエモーションズ \r\n東映アニメーション\n◇おしらせ\n【番組公式サイト】\r\nhttps://www.asahi.co.jp/precure/",
+   "genre1": 7,
+   "subGenre1": 0,
+   "genre2": 11,
+   "subGenre2": 5,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    148
+   ],
+   "videoFiles": [
+    {
+     "id": 49,
+     "name": "TS",
+     "filename": "2026年10月11日08時30分00秒-名探偵プリキュア！ #37 ウソノワールとニジーのティータイム[デ][字].m2ts",
+     "type": "ts",
+     "size": 3334885000
+    }
+   ]
+  },
+  {
+   "id": 45,
+   "channelId": 3211841008,
+   "startAt": 1791675000000,
+   "endAt": 1791676800000,
+   "name": "トミプラワールドのりのりタイムズ！！[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 321184100802976,
+   "description": "車や電車、人気ののりもの大集合！めずらしい映像、楽しい歌とダンスやアニメでのりタイのりものゼッタイ見つかる！のりもの情報キッズバラエティ",
+   "extended": "◇番組内容１\n▽パトカー、救急車、消防車・・・サイレンひびく緊急車両を徹底捜査「しゅつどう！ピカピカサイレン捜査一課」のりおボスの元に届いたのは【あおいけいさつのバイク】の目撃情報！白バイならぬ青バイ！？大阪のまちを守るスカイブルー隊が登場！\n◇番組内容２\n▽とれたての電車の動画をご紹介「トレとれ鉄どうが！」今日の素晴らしいトレインアーンな鉄どうがは京都と大阪をむすぶ「京阪8000系プレミアムカー電車」エレガントで一流、金ピカなプレミアム電車！▽トミカ＆プラレールの世界でのりのりで放送スタート！\n◇番組内容３\n▽アニメ「トミカとトム」【ヒヨコさんたちの大移動！？】人気クリエイターつむぱぱとトミカがコラボした絵本『トミカとトム』毎回　巻き起こる出来事をトムが色々なトミカで解決！▽「のりたかったら答えよう！のりタイクイズ！」シンカリオンがも～っとすきになっちゃうクイズにチャレンジ！\n◇番組内容４\n▽『新幹線変形ロボ　シンカリオン　特別ダイヤ版』【救援!!シンカリオン　ドクターイエロー】▽シンカリオンの運転士として成長著しいハヤト。しかし、彼はまだ自分に足りないものがあるのではないかと感じていた。そんな中、新たなシンカリオンの開発のため名古屋に出張していた出水指令長が帰ってくる。出水といえば突然の謎企画だ。それは『超進化研究所　大宮支部　大運動会』だった！\n◇番組内容５\n▽「パシャっとのりものコレクション！」全国ののりっこが大好きな乗り物と一緒に撮った写真を紹介！\n◇出演者\n【ＭＣ】小島よしお、佐藤和奏\r\n【出演者】ティーくん、プラくん\r\n【ナレーション】武内駿輔\r\n【声の出演】ほんとまこと、喜羽彩夏",
+   "genre1": 7,
+   "subGenre1": 0,
+   "genre2": 10,
+   "subGenre2": 8,
+   "genre3": 5,
+   "subGenre3": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    147
+   ],
+   "videoFiles": [
+    {
+     "id": 48,
+     "name": "TS",
+     "filename": "2026年10月11日08時30分00秒-トミプラワールドのりのりタイムズ！！[字].m2ts",
+     "type": "ts",
+     "size": 3619077832
+    }
+   ]
+  },
+  {
+   "id": 44,
+   "channelId": 3211240960,
+   "startAt": 1791674700000,
+   "endAt": 1791676440000,
+   "name": "フロンティアで会いましょう！（２６）　宇宙創成のカギ“ニュートリノ”[解][字][再]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 4,
+   "programId": 321124096003083,
+   "description": "芸人・永野が全力でプレゼンする科学番組「フロンティアで会いましょう！」。ノーベル物理学賞に選ばれた研究を紹介した「フロンティアで会いましょう！」を再放送します。",
+   "extended": "◇番組内容\n現在「ニュートリノ天文学」という新しい研究分野が開かれている。その主役となるのは、想像を絶する小ささで、しかも全てのものをすり抜けてしまうという素粒子「ニュートリノ」だ。この謎に満ちた素粒子は、実は「私たちがこの宇宙に存在できる理由」を語るカギを握っているという。これまで、日本人が次々にノーベル賞を受賞してきた日本のお家芸研究を追い、宇宙誕生の壮大な秘密に迫る研究最前線を紹介する！\n◇出演者\n　【司会】永野，野口葵衣，【出演】ＹＯＵ，勝村政信，副島淳，千葉大学教授…石原安野，【語り】杉本るみ",
+   "genre1": 8,
+   "subGenre1": 3,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    149
+   ],
+   "videoFiles": [
+    {
+     "id": 47,
+     "name": "TS",
+     "filename": "2026年10月11日08時25分00秒-フロンティアで会いましょう！（２６）　宇宙創成のカギ“ニュートリノ”[解][字][再].m2ts",
+     "type": "ts",
+     "size": 3379822076
+    }
+   ]
+  },
+  {
+   "id": 43,
+   "channelId": 3211240960,
+   "startAt": 1791673200000,
+   "endAt": 1791674700000,
+   "name": "小さな旅　選「愛しき里山　～鳥取県　南部町～」[解][字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 4,
+   "programId": 321124096029427,
+   "description": "自然豊かな里山として知られる鳥取県南部町を訪ねた。耕作放棄地を田んぼとして復活させた女性やオオサンショウウオの保護をする親子。里山の暮らしを未来へつなぐ物語。",
+   "extended": "◇番組内容\n自然豊かな里山として知られる鳥取県南部町。旅人・藤井彩子が出会った農家の女性。里山の米作りが絶えることのないように、耕作放棄地を田んぼとして復活させた。また町で唯一の窯元には、地元でとれた土や水、釉薬をつかって伝統の焼き物をつくる女性がいた。オオサンショウウオを「町の宝」と呼んで保護活動を続けてきた親子は、観察会を開いて子供たちに自然と触れあう喜びを伝える。里山の暮らしを未来へつなぐ物語。\n◇出演者\n【旅人】藤井彩子",
+   "genre1": 8,
+   "subGenre1": 1,
+   "genre2": 8,
+   "subGenre2": 0,
+   "genre3": 8,
+   "subGenre3": 4,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    150
+   ],
+   "videoFiles": [
+    {
+     "id": 46,
+     "name": "TS",
+     "filename": "2026年10月11日08時00分00秒-小さな旅　選「愛しき里山　～鳥取県　南部町～」[解][字].m2ts",
+     "type": "ts",
+     "size": 2980362496
+    }
+   ]
+  },
+  {
+   "id": 42,
+   "channelId": 3211841008,
+   "startAt": 1791669600000,
+   "endAt": 1791671400000,
+   "name": "アニもり！[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 321184100802974,
+   "description": "話題のショートアニメもりだくさん！\r\n「小3アシベ　QQゴマちゃん」「おでかけ子ザメ（シーズン２）」「ゆるゆる図鑑」「タヌキとキツネ」「あはれ！名作くん」ほか",
+   "extended": "◇番組概要\n「アニもり！」とは・・・番組をカプセルトイマシン、各ショートアニメをその中から次々飛び出すカプセルトイに見立て、週末の朝に子供から大人まで、みんながワクワクするような、話題のショートアニメもりだくさんのスペシャルプログラム。30分間で多種多様な世界観を楽しめる、“アニメ”+“アミューズメント”＝“アニミューズメント”を提供します。\n◇番組内容\n「小3アシベ　QQゴマちゃん」\r\n「おでかけ子ザメ（シーズン２）」\r\n「デザートキャッチ！ティニピン」\r\n「ゆるゆる図鑑」\r\n「タヌキとキツネ」\r\n「あはれ！名作くん」\n◇ホームページ\nhttps://www.tv-tokyo.co.jp/anime/animori/",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    151
+   ],
+   "videoFiles": [
+    {
+     "id": 45,
+     "name": "TS",
+     "filename": "2026年10月11日07時00分00秒-アニもり！[字].m2ts",
+     "type": "ts",
+     "size": 3448065888
+    }
+   ]
+  },
+  {
+   "id": 41,
+   "channelId": 3211240960,
+   "startAt": 1791666600000,
+   "endAt": 1791669180000,
+   "name": "【特選！時代劇】浮浪雲（２）「龍馬が来た」[解][字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 3,
+   "programId": 321124096029417,
+   "description": "品川宿に坂本龍馬（中山優馬）がやって来た。居酒屋で浮浪雲（佐々木蔵之介）は龍馬と居合わせ意気投合して飲む。が、店を出た後、龍馬は刺客に襲われるが浮浪雲が助ける。",
+   "extended": "◇番組内容\n品川宿に坂本龍馬（中山優馬）がやって来た。かめ（倉科カナ）、新之助（川原瑛都）、青田先生（渡部豪太）らは色めき立つ。お倫（中越典子）の居酒屋「ちょっとこ」で浮浪雲（佐々木蔵之介）は龍馬と居合わせ意気投合して飲む。が、店を出た後、刺客に襲われた龍馬を助けた浮浪雲は、龍馬の未来に不安を覚える。一方、龍馬に感化された新之助は、大坂で蘭学を学ぶ決心の親友・小太郎（村上秋峨）とともに、家出を決行する！\n◇出演者\n【出演】佐々木蔵之介，倉科カナ，川原瑛都，六平直政，渡部豪太，前野朋哉，入山法子，中山優馬，村上秋峨，中越典子，佐戸井けん太，イッセー尾形\n◇原作・脚本\n【原作】ジョージ秋山，【脚本】高田亮\n◇監督・演出\n【演出】一色隆司\n◇音楽\n【音楽】遠藤浩二",
+   "genre1": 3,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    152
+   ],
+   "videoFiles": [
+    {
+     "id": 44,
+     "name": "TS",
+     "filename": "2026年10月11日06時10分00秒-【特選！時代劇】浮浪雲（２）「龍馬が来た」[解][字].m2ts",
+     "type": "ts",
+     "size": 5096341976
+    }
+   ]
+  },
+  {
+   "id": 40,
+   "channelId": 3272202064,
+   "startAt": 1791660480000,
+   "endAt": 1791662280000,
+   "name": "正反対な君と僕　＃１４[再]「冬の夜のジレンマ」",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327220206442871,
+   "description": "冬休みに入り、西との関係がなかなか進展せず焦る山田。宿題を口実に西と会うものの、告白のタイミングを掴めず……。",
+   "extended": "◇番組内容\nクリスマス当日、サンタのコスプレでバイトをする平（声・加藤渉）は、過去の恋愛を思い出して少し憂鬱になっていたが、そこに谷（声・坂田将吾）と山田（声・岩田アンジ）が現れ、クリスマスケーキを囲んで楽しい時間を過ごす。\r\nそして冬休み。離れて過ごす間にも、心が動いた瞬間があると、お互いに真っ先に伝えたくなることを再確認した鈴木（声・鈴代紗弓）と谷は、さらに絆を深めていく。\r\n　\n◇番組内容２\n一方、西（声・大森こころ）との関係がなかなか進展していないことに気付いた山田だったが、宿題を口実に西と会うものの、告白のタイミングを掴めず…。\r\n　\n◇声の出演\n（鈴木）鈴代紗弓\r\n（谷）坂田将吾\r\n（渡辺）谷口夢奈\r\n（佐藤）平林瑚夏\r\n（山田）岩田アンジ\r\n（東）島袋美由利\r\n（平）加藤渉\r\n（西）大森こころ\r\n（本田）楠木ともり\r\nほか\r\n　\n◇スタッフ\n【原作】\r\n「正反対な君と僕」阿賀沢紅茶\r\n（集英社 ジャンプ コミックス刊）\r\n\r\n【監督】\r\n長友孝和\r\n【シリーズ構成・アニメーションプロデューサー】\r\n内海照子\r\n【キャラクターデザイン】\r\nみやこまこ\r\n【サブキャラクターデザイン・総作画監督】\r\n小園菜穂\r\n【総作画監督】\r\n﨑本さゆり\r\n伊澤珠美\r\n迫江沙羅\r\n　\n◇音楽\n【オープニングテーマ】\r\n7co「猫じゃらし」\r\n【エンディングテーマ】\r\nMega Shinnosuke「運命の君」\r\n\r\n【音楽】\r\ntofubeats\r\n　\n◇公式ＨＰ\n【番組ＨＰ】\r\nhttps://sh-anime.shochiku.co.jp/seihantai_anime/\r\n\r\n【公式Ｘ】\r\nhttps://x.com/seihantai_x\r\n@seihantai_x\r\n#正反対な君と僕\r\n　\n◇制作\n【アニメーション制作】\r\nラパントラック\r\n【製作幹事】\r\n松竹アニメ事業部\r\n　\n◇おことわり\n番組の内容と放送時間は、変更になる場合があります。",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    153
+   ],
+   "videoFiles": [
+    {
+     "id": 43,
+     "name": "TS",
+     "filename": "2026年10月11日04時28分00秒-正反対な君と僕　＃１４[再]「冬の夜のジレンマ」.m2ts",
+     "type": "ts",
+     "size": 3074083504
+    }
+   ]
+  },
+  {
+   "id": 39,
+   "channelId": 3272202064,
+   "startAt": 1791658680000,
+   "endAt": 1791660480000,
+   "name": "[新]塩対応の佐藤さんが俺にだけ甘い　＃０１",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327220206442870,
+   "description": "▼もどかしくて、愛おしい。世界で一番甘い両片思いに、きっとあなたもとろけてしまうーー。不器用な二人が織りなす“甘くてしょっぱい”青春ラブコメディ！",
+   "extended": "◇番組内容\n押尾颯太は実家のカフェでバイト中に、同じ高校の佐藤こはるが絡まれているところを助ける。「塩対応の佐藤さん」と呼ばれる高嶺の花の彼女が、実は人見知りで写真下手という素顔を知った颯太は、。彼女の友達作りのため写真の撮り方を教えると寄り添うが、お互いに秘めた想いがあるようで……。\n◇番組内容２\nもどかしくて、愛おしい。\r\n世界で一番甘い両片思いに、きっとあなたもとろけてしまうーー。\r\n\r\n不器用な二人が織りなす\r\n“甘くてしょっぱい”青春ラブコメディ！\r\n　\n◇声の出演\n（押尾颯太）石橋陽彩\r\n（佐藤こはる）伊藤美来\r\n（須藤凛香）富田美憂\r\n（三園蓮）小林千晃\r\n（三園雫）青山吉能\r\n（根津麻世）金元寿子\r\n（押尾清左衛門）松本保典\r\n（村崎円花）若井友希\r\nほか\r\n　\n◇スタッフ\n【原作】\r\n猿渡かざみ『塩対応の佐藤さんが俺にだけ甘い』（小学館「ガガガ文庫」刊）\r\n【キャラクター原案】\r\nAちき\r\n【監督】\r\n吉村文宏\r\n【シリーズ構成】\r\nあおしまたかし\r\n【キャラクターデザイン】\r\n奥嶋大介\n◇音楽\n【オープニングテーマ】\r\nオーイシマサヨシ「シュガーソルト」\r\n【エンディングテーマ】\r\nHoneyWorks feat.星川サラ「初恋リプライ」\r\n\r\n【音楽】\r\n成田旬\r\n　\n◇公式ＨＰ\n【番組ＨＰ】\r\nhttps://shioama-anime.com/\r\n\r\n【公式Ｘ】\r\nhttps://x.com/shioamaofficial\r\n@shioamaofficial\r\n#しおあま\r\n　\n◇制作\n【制作】\r\n手塚プロダクション\r\n　\n◇おことわり\n番組の内容と放送時間は、変更になる場合があります。",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    154
+   ],
+   "videoFiles": [
+    {
+     "id": 42,
+     "name": "TS",
+     "filename": "2026年10月11日03時58分00秒-[新]塩対応の佐藤さんが俺にだけ甘い　＃０１.m2ts",
+     "type": "ts",
+     "size": 3437850720
+    }
+   ]
+  },
+  {
+   "id": 38,
+   "channelId": 3272202064,
+   "startAt": 1791656880000,
+   "endAt": 1791658680000,
+   "name": "[新]世界最強の魔女、始めました　＃０１「インターネットを使ってみた！」",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327220206442869,
+   "description": "▼SSSランク級のチートスキル【インターネット】を持つ“世界最強の魔女”ローナ。自由で平和な生活を求めて旅するハチャメチャな冒険の日々が2026年10月ついにアニメ化！",
+   "extended": "◇番組内容\n名門ググレカース家に生まれるも、ハズレスキルを発現したとして理不尽に追放されてしまった15歳の少女・ローナ。\r\nそれでもポジティブに外の世界を満喫しようと旅に出るが、彼女のスキル【インターネット】は、この世界の全てを自由に検索・閲覧できる、SSSランク級の神能力だった！\r\n　\n◇声の出演\n（ローナ・ハーミット）橘 杏咲\r\n（エリミナ・マナフレイム）ファイルーズあい\r\n（エルナ）井上ほの花\r\n（アリエス・ティア・ブルームーン）花澤香菜\r\n（ルル・ル・リエー）長縄まりあ\r\n（ラインハルテ・ハイウィンド）上村祐翔\r\nほか\r\n　\n◇スタッフ\n【監督】\r\n古田丈司\r\n【シリーズ構成】\r\n米村正二\r\n【キャラクターデザイン】\r\n森本由布希\r\n　\n◇音楽\n【オープニングテーマ】\r\n「影響力∞アイドル」\r\nHoneyWorks feat.ハコニワリリィ\r\n【エンディングテーマ】\r\n「星を巡る」\r\nロクデナシ\r\n\r\n【音楽】\r\n桶狭間ありさ / RYOSHI TAKAGI\r\n　\n◇公式ＨＰ\n【番組ＨＰ】\r\nhttps://sekamajo-anime.com/\r\n\r\n【公式Ｘ】\r\nhttps://x.com/sekamajo_anime\r\n@sekamajo_anime\r\n#せかまじょ #世界最強魔女\r\n　\n◇制作\n【アニメーション制作】\r\nブリッジ ／ アイル\r\n　\n◇おことわり\n番組の内容と放送時間は、変更になる場合があります。\n◇番組内容２\nさっそく『攻略wiki』の通りに森を進んでいくと、現環境最強のチート武器をあっさりゲット！？瞬く間に「世界最強の魔女」となってしまったローナの自由な旅が幕を開ける！",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    155
+   ],
+   "videoFiles": [
+    {
+     "id": 41,
+     "name": "TS",
+     "filename": "2026年10月11日03時28分00秒-[新]世界最強の魔女、始めました　＃０１「インターネットを使ってみた！」.m2ts",
+     "type": "ts",
+     "size": 3413080968
+    }
+   ]
+  },
+  {
+   "id": 37,
+   "channelId": 3272202064,
+   "startAt": 1791655080000,
+   "endAt": 1791656880000,
+   "name": "[新]獣王武神ダンデヴァイン　＃０１「時代遅れの守護神」",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327220206442868,
+   "description": "「普通」の毎日は、「合体＜キセキ＞」の連続でできている▼オリジナル合体ロボットアニメーション",
+   "extended": "◇番組内容\n第1話\r\n時代遅れの守護神\r\n異次元からの侵略を打ち破り、巨大ロボ「ダンデヴァイン」が世界を救ってから20年。\r\nかつての守護神は、いまや埃を被る「オモチャ」へと成り下がっていた。\r\n玩具会社のキャスガは過去の栄光を切り売りする斜陽の会社。\r\n社長・弦十郎が再起を狙う中、謎の三姉妹の手で「アポスドール」が復活する。\r\n　\n◇番組内容２\n顔だけが取り柄の高校生・静寂 戟刃（しじま げきは）は、抗う間もなく運命の奔流に飲み込まれ、気づけばその操縦席に座っていた。\r\n　\n◇声の出演\n（静寂戟刃）寺島拓篤\r\n（久住茜）白石晴香\r\n（静寂きれい）会沢紗弥\r\n（ハル）東山奈央\r\n（ナツ）山根綺\r\n（アキ）久野美咲\r\n（世良濠）泊明日菜 \r\n（黒岩勇作）小西克幸 \r\n（静寂醍醐）置鮎龍太郎 \r\n（静寂弦十郎）斧アツシ \r\n（東雲優雅）青木瑠璃子 \r\nほか\r\n　\n◇スタッフ\n【原作】\r\nグッドスマイルカンパニー・ライデンフィルム\r\n\r\n【監督】\r\n曹毅\r\n【シリーズ構成・脚本】\r\n井上敏樹\r\n【キャラクターデザイン原案】\r\nまじろ\r\n【アニメーションキャラクターデザイン】\r\nrobin\r\n　\n◇音楽\n【オープニングテーマ】\r\n西川貴教「残響≠ブラスター」\r\n【エンディングテーマ】\r\nDayRe:「ミカンセイオーディナリー」\r\n\r\n【音楽】\r\n朝比奈健人\r\n　\n◇公式ＨＰ\n【番組ＨＰ】\r\nhttps://gattaishin.com/dandivine/\r\n\r\n【公式Ｘ】\r\nhttps://x.com/gattaishin\r\n@gattaishin\r\n#獣王武神ダンデヴァイン\r\n　\n◇制作\n【アニメーション制作】\r\nライデンフィルム・カヤックアニメーション\r\n　\n◇おことわり\n番組の内容と放送時間は、変更になる場合があります。",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    156
+   ],
+   "videoFiles": [
+    {
+     "id": 40,
+     "name": "TS",
+     "filename": "2026年10月11日02時58分00秒-[新]獣王武神ダンデヴァイン　＃０１「時代遅れの守護神」.m2ts",
+     "type": "ts",
+     "size": 3241387524
+    }
+   ]
+  },
+  {
+   "id": 36,
+   "channelId": 3272302072,
+   "startAt": 1791653400000,
+   "endAt": 1791655200000,
+   "name": "[新]彼方から【ＡＮｉＭＡＺｉＮＧ²！！！】",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327230207212262,
+   "description": "「愛」と「滅び」の物語がいま目覚めるー",
+   "extended": "◇スタッフ\n原作・脚本監修：ひかわきょうこ「彼方から」（白泉社）\r\n監督：阿部記之\r\nシリーズ構成：たかすぎ梨香\r\nキャラクターデザイン：安彦英二\r\n美術監督：黛昌樹\r\n色彩設計：桂木今里\r\n撮影監督：李仁周\r\n編集：白石あかね\r\n音楽：はまたけし（Cosmic Wave）\r\n音響監督：矢野さとし\r\n音響効果：田中秀実\r\n音響制作：Ai Addiction\r\nアニメーション制作：スタジオディーン\r\n製作：彼方から製作委員会\n◇キャスト\n立木典子：CV.黒沢ともよ\r\nイザーク・キア・タージ：CV.熊谷健太郎\r\nラチェフ：CV.梅原裕一郎\r\nケイモス・リー・ゴーダ：CV.竹内栄治\r\nガーヤ：CV.齋藤貴美子\r\nゴーリヤ：CV.宮澤正\r\nアゴル：CV.中野泰佑\r\nジーナハース：CV.伊藤美来\n◇主題歌\nオープニング主題歌：原因は自分にある。「逃光行」\r\nエンディング主題歌：名無し之太郎「光の側で」\n◇おしらせ\n【公式HP】\r\nhttps://kanatakara-anime.com/\r\n\r\n【公式X】\r\nhttps://x.com/kanatakara_anm",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    157
+   ],
+   "videoFiles": [
+    {
+     "id": 39,
+     "name": "TS",
+     "filename": "2026年10月11日02時30分00秒-[新]彼方から【ＡＮｉＭＡＺｉＮＧ²！！！】.m2ts",
+     "type": "ts",
+     "size": 3625643356
+    }
+   ]
+  },
+  {
+   "id": 35,
+   "channelId": 3272302072,
+   "startAt": 1791649800000,
+   "endAt": 1791651600000,
+   "name": "貸した魔力は【リボ払い】で強制徴収　＃２【ヌマニメーション】[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327230207212260,
+   "description": "ギフト妖精エムピーの導きで、レントはガイたちにスキル【強制徴収】を発動。笑顔の裏に危険な本性を隠すエムピーが選んだ返済方法は、逃げ場なき“魔力リボ払い”で…。",
+   "extended": "◇番組内容\n魔力を貸し与えるＳランクギフト【魔蔵庫】を授かったレント。幼馴染のガイとミサ、回復士のエルとともにパーティー「断空の剣」を結成し、冒険のサポートをしてきた。しかし、弱いままの彼は次第にお荷物と見なされ、無情にもパーティーを追放されてしまう。すべてを失い絶望する中、ギフトに異変が起こり…。\n◇声の出演\nレント　CV.川島零士\r\nエムピー　CV.加藤英美里\r\nガイ　CV.濱野大輝\r\nミサ　CV.関根明良\r\nエル　CV.小林ゆう\n◇スタッフ\n原作：まさキチ\r\n漫画：飯島しんごう\r\n監督：球野たかひろ\r\nシリーズ構成：森龍介\r\nキャラクターデザイン：森和江\r\n色彩設計：のぼりはるこ\r\n美術監督：荒井和浩\r\n撮影監督：小西庸平\r\n編集：坂本雅紀\r\n音響監督：浦上慶子\r\n音楽：大谷幸\r\nアニメーション制作：SynergySP\n◇主題歌\nオープニング主題歌：BUDDiiS/「リスクレート」\r\nエンディング主題歌：こたに/「いれもの」\n◇おしらせ\n【アニメ公式サイト】https://revo-anime.com/\r\n【アニメ公式X】https://x.com/revo_anime\n◇スタッフ２",
+   "genre1": 7,
+   "subGenre1": 0,
+   "genre2": 11,
+   "subGenre2": 5,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    158
+   ],
+   "videoFiles": [
+    {
+     "id": 38,
+     "name": "TS",
+     "filename": "2026年10月11日01時30分00秒-貸した魔力は【リボ払い】で強制徴収　＃２【ヌマニメーション】[字].m2ts",
+     "type": "ts",
+     "size": 3634076472
+    }
+   ]
+  },
+  {
+   "id": 34,
+   "channelId": 3208643056,
+   "startAt": 1791646200000,
+   "endAt": 1791648000000,
+   "name": "笑ゥせぇるすまん",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 320864305603115,
+   "description": "長距離通勤／夢の楽園◇藤子不二雄Ａ原作、ブラックユーモアたっぷりの大人の寓話をアニメ化。人間の本質であるいい加減さ、弱さ、愚かさを描く！",
+   "extended": "◇出演者\n喪黒福造：大平透",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 1,
+   "thumbnails": [
+    159
+   ],
+   "videoFiles": [
+    {
+     "id": 37,
+     "name": "TS",
+     "filename": "2026年10月11日00時30分00秒-笑ゥせぇるすまん.m2ts",
+     "type": "ts",
+     "size": 3490762380
+    }
+   ]
+  },
+  {
+   "id": 33,
+   "channelId": 3211240960,
+   "startAt": 1791645000000,
+   "endAt": 1791647700000,
+   "name": "エモーション・ジャーニー　大追跡！「お金」にまつわる世界の感情[字][再]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 4,
+   "programId": 321124096032809,
+   "description": "世界８０億人が抱く「感情」をＡＩで可視化。怒りや喜びが脈打つ場所を訪ね、奥深き人間の物語に迫る新たなドキュメンタリー。今回は「お金」にまつわる世界の感情を追跡。",
+   "extended": "◇番組内容\n世界８０億人が抱く「感情」をＡＩで地図上に可視化。怒りや喜びが脈打つ場所へ向かい、その深層に迫るドキュメンタリー。今回は「お金」をめぐる感情を追跡する。違法な金採掘に沸くガーナの“大興奮”と闇、ＳＮＳでのひけらかしへの“怒り”が国を揺るがすネパール、生涯４度宝くじを当て３２億円を得た米国人“驚き”の手法、世界最高額１６億円の牛への“畏敬”…。お金と感情が交差する先に、人間のリアルが浮かび上がる。\n◇出演者\n【司会】野田クリスタル，村上，【ゲスト】ヒコロヒー，【アナウンサー】高瀬耕造",
+   "genre1": 8,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    160
+   ],
+   "videoFiles": [
+    {
+     "id": 36,
+     "name": "TS",
+     "filename": "2026年10月11日00時10分00秒-エモーション・ジャーニー　大追跡！「お金」にまつわる世界の感情[字][再].m2ts",
+     "type": "ts",
+     "size": 5223269988
+    }
+   ]
+  },
+  {
+   "id": 32,
+   "channelId": 3272402080,
+   "startAt": 1791644100000,
+   "endAt": 1791647400000,
+   "name": "土ドラ・再生のウズメ　＃０２[字]【イモトアヤコ主演・おひとりさまのかくしごと⁉】",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 3,
+   "programId": 327240208036327,
+   "description": "元引きこもりの４０女、人生再チャレンジ中！人気作家の隠し子役に悪戦苦闘！？再会する相手は娘の父親！？水色のマニキュアに隠された５０年の想いとは・・・？",
+   "extended": "◇番組内容\n１２年間の引きこもり生活から一歩を踏み出し、便利屋「救ちゃん」で働き始めたウズメ（イモトアヤコ）。代行サービスのスタッフとして謝罪代行担当の鳩山（相島一之）のガチ土下座に若干引きつつ、一歩ずつ社会との関わりを増やしていく。\r\nそんな彼女のもとに舞い込んだ次の依頼は、ニコ（前田美波里）の友人でコメンテーターとしても活躍する人気作家・大河内順子（大島蓉子）の“隠し子役”だった。\n◇番組内容２\n海外にいる娘の代わりに古い友人・黒木（佐々木省三）に一緒に会ってほしいという。順子は未婚のおひとり様を売りにしていたこともあり、驚くウズメや興梠（白洲迅）。\r\n完璧主義の順子による娘役の特訓に悪戦苦闘するウズメ。そんな中、ウズメは順子の中に、５０年前、若き日の黒木（堀海登）との間に起きたほろ苦い思い出がくすぶっていることを知り…\n◇番組内容３\n見ている人もやさしく包み込むデトックス系ヒューマンドラマ爆誕！\n◇出演者\nイモトアヤコ　\r\n白洲迅　\r\n大原梓　\r\n柴野晃太朗\r\n　・　\r\n前田美波里\r\n　・　\r\n相島一之　\r\n菅原大吉　\r\n市毛良枝　\r\n\r\n【２話ゲスト】\r\n大島蓉子　\r\n堀海登\n◇スタッフ\n【原作】\r\n天堂きりん「再生のウズメ」（祥伝社　ＦＥＥＬ　ＣＯＭＩＣＳ）　\r\n\r\n【脚本】\r\n鎌田智恵　\r\n\r\n【音楽】\r\n鈴木ヤスヨシ　\r\n\r\n【主題歌】\r\nＭＡＺＺＥＬ「Ｔｏｕｃｈ」（ユニバーサル　ミュージック）　\r\n\r\n【オープニングテーマ】\r\nレトロリロン「Ｄｅａｒ」（ユニバーサル　ミュージック）　\r\n\r\n【企画】\r\n稲吉豊（東海テレビ）、伊藤真保（東海テレビ）\n◇スタッフ２\n【プロデュース】\r\n松本圭右（東海テレビ）、河角直樹（東海テレビ）、古林都子（ジ・アイコン）、渋谷未来（ジ・アイコン）　\r\n\r\n【演出】\r\n古澤健　\r\n\r\n【制作】\r\n東海テレビ、ジ・アイコン",
+   "genre1": 3,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    161
+   ],
+   "videoFiles": [
+    {
+     "id": 35,
+     "name": "TS",
+     "filename": "2026年10月10日23時55分00秒-土ドラ・再生のウズメ　＃０２[字]【イモトアヤコ主演・おひとりさまのかくしごと⁉】.m2ts",
+     "type": "ts",
+     "size": 6559131624
+    }
+   ]
+  },
+  {
+   "id": 31,
+   "channelId": 3211240960,
+   "startAt": 1791643500000,
+   "endAt": 1791645000000,
+   "name": "アニメ　恐怖コレクター　[新]（１）赤イ手帳[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 321124096028714,
+   "description": "ただのウワサと思われていた“都市伝説”が、次々と現実になっていく…。都市伝説を回収する少年が、相棒の人面犬とともに怪奇現象に挑み続けるジャパニーズホラーアニメ。",
+   "extended": "◇番組内容\n都市伝説は存在する。フードをかぶった見知らぬ子供に出会うと、不思議なことが必ず起こるのだという。高校生の香川裕美は、転校先でできた友人から都市伝説のウワサを聞く。「夕方から雪が降った日、午前０時に窓の外を見ると女の幽霊に呪い殺されてしまう」。おびえる裕美は、自分を見つめる少年がいることに気づかなかった。季節外れの雪の日の深夜、ふと目を覚ました裕美はウワサが気になり、カーテンに手を伸ばしてしまう…。\n◇出演者\n【出演】石橋陽彩，福山潤，早見沙織，石川由依，前田弘喜，河村梨恵，丸岡和佳奈，日笠陽子，くじら，富田美憂，楠木ともり，大西沙織，藤井隼，逢坂良太，橘杏咲，岩橋由佳，藤代侑李，大森こころ，ほか\n◇原作・脚本\n【原作】佐東みどり，鶴田法男\n◇監督・演出\n【監督】稲葉友紀\n◇音楽\n【音楽】甲田雅人",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    162
+   ],
+   "videoFiles": [
+    {
+     "id": 34,
+     "name": "TS",
+     "filename": "2026年10月10日23時45分00秒-アニメ　恐怖コレクター　[新]（１）赤イ手帳[字].m2ts",
+     "type": "ts",
+     "size": 1682635344
+    }
+   ]
+  },
+  {
+   "id": 30,
+   "channelId": 3272302072,
+   "startAt": 1791642600000,
+   "endAt": 1791644400000,
+   "name": "#ゾンビさがしてます　＃２【イマニメーション】[デ][字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 327230207212256,
+   "description": "ホームセンターを新たな拠点にしたアキたちは、水や食料を確保しながら生活基盤を整えていく。\r\nそんな中、ユウは近々やってくる“来訪者”を警戒していた。",
+   "extended": "◇番組内容\n「これは人違い……いや、ゾンビ違い」\r\n\r\n人類の9割が謎の感染症に感染・死亡した“あかいひ”から13年。\r\n隔離された村で育った新世代のアキは、かつて村を出て行った父親を探すため、\r\n幼馴染のナツキ、ハルと共に村を抜け出す。\r\n村から出ると、どこもかしこもゾンビだらけ。\r\nそれでも初めて感じる“外の世界”は、広大で、新鮮で、美しい！\r\n道中出会ったユウ、サクラも加わって、\r\n少年少女の過酷で楽しい新生活がはじまる\n◇声の出演\nアキ：根本京里\r\nナツキ：Lynn\r\nハル：宮田俊哉\r\nユウ：山村 響\r\nサクラ：貫井柚佳\r\nミカヅキ：日笠陽子\r\nトウカ：小市眞琴\r\nタカモ：高柳知葉\r\nサイゴ：島田愛野\r\nアキの父：鳥海浩輔\n◇スタッフ\n原作：カツヲ「#ゾンビさがしてます」（KADOKAWA刊）\r\n監督：宇根信也\r\n助監督：鈴木恭兵\r\nシリーズ構成・脚本：山下憲一／伊丹あき\r\nキャラクターデザイン：下地なるみ\r\n音楽：東大路憲太\r\nアニメーション制作：スタジオコメット\n◇主題歌\nOP：すりぃ「ラキラキ」\r\nED：cadode「ソフトアポカリプス」\n◇おしらせ\n公式サイト：https://zommasu.com/\r\n公式X：@zommasu_anime（https://x.com/zommasu_anime）",
+   "genre1": 7,
+   "subGenre1": 0,
+   "genre2": 11,
+   "subGenre2": 5,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    164
+   ],
+   "videoFiles": [
+    {
+     "id": 33,
+     "name": "TS",
+     "filename": "2026年10月10日23時30分00秒-#ゾンビさがしてます　＃２【イマニメーション】[デ][字].m2ts",
+     "type": "ts",
+     "size": 3660131768
+    }
+   ]
+  },
+  {
+   "id": 29,
+   "channelId": 3208643056,
+   "startAt": 1791642600000,
+   "endAt": 1791644400000,
+   "name": "機動新世紀ガンダムＸ[終]（第３９話）",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 320864305603112,
+   "description": "月はいつもそこにある◇人類のほとんどが失われてしまうという最悪の形で戦争が終わった世界で、人々はどう生きて行くのか？月と荒野を舞台に描く少年・少女の成長譚。",
+   "extended": "◇出演者\nガロード・ラン：高木渉\r\nティファ・アディール：かないみか\r\nジャミル・ニート：堀内賢雄\r\nウィッツ・スー：中井和哉\r\nロアビィ・ロイ：山崎たくみ\r\nシャギア・フロスト：森川智之\r\nオルバ・フロスト：佐々木望\r\nトニヤ・マーム：三石琴乃\r\nサラ・タイレル：かかずゆみ\r\nシンゴ・モリ：中村大樹\r\nキッド・サルサミル：くまいもとこ\r\nテクス・ファーゼンバーグ：中博史\r\nエニル・エル：本多知恵子\r\nカリス・ノーティラス：水谷優子\n◇番組内容２\nランスロー・ダーウェル：竹村拓\r\nパーラ・シス：長沢美樹\r\nナレーション：光岡湧太郎",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    163
+   ],
+   "videoFiles": [
+    {
+     "id": 32,
+     "name": "TS",
+     "filename": "2026年10月10日23時30分00秒-機動新世紀ガンダムＸ[終]（第３９話）.m2ts",
+     "type": "ts",
+     "size": 3475291484
+    }
+   ]
+  },
+  {
+   "id": 28,
+   "channelId": 3211841008,
+   "startAt": 1791640800000,
+   "endAt": 1791642600000,
+   "name": "ブラッククローバー　#172『地獄への扉』[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 321184100802953,
+   "description": "モリスの手によってスペード王国に突如出現した魔神に対して、圧倒的な魔力を見せつけるメレオレオナ。同時刻、スペード城に侵入した魔法騎士団たちは三手に分かれて…",
+   "extended": "◇番組概要\n2015年2月～2026年5月まで「週刊少年ジャンプ」「ジャンプGIGA」（集英社）にて連載され、全世界シリーズ累計発行部数は2，450万部を突破。世界中を魅了し続ける『ブラッククローバー』。TVアニメは87の国と地域で視聴数1位を獲得。映画『ブラッククローバー　魔法帝の剣』はNetflix週間グローバルTOP10で第2位の快挙を成し遂げた。ーーそして2026年、新たな伝説が幕をあける。\n◇番組内容１\nかつてない暴威が、クローバー王国に渾沌をもたらした。上位悪魔の力を宿す、「漆黒の三極性（ダークトライアド）」の襲来。魔法騎士団長すら抗えず連れ去られ、最後の希望は崩れ堕ちた。\n◇番組内容２\n絶望的な戦況、だがそれでもなお立ち上がり続ける者がいる。魔法がすべての世界で、魔法の理の外にいる唯一の存在ーーアスタ。仲間を取り戻し、ライバルとの約束を果たす為にすべてを懸ける！限界を超えろ。諦めるな。ーーそれが、運命に抗う者の魔法。王道のその先を往く“限界突破魔法バトル”が開幕！「オマエを斃（たお）して、生きる」\n◇原作脚本\n【原作】「ブラッククローバー」田畠裕基（集英社ジャンプコミックス刊）\r\n\n◇出演者１\n【声優】\r\nアスタ：梶原岳人\r\nユノ：島﨑信長\r\nヤミ・スケヒロ：諏訪部順一\r\nノエル・シルヴァ：優木かな\r\nナハト・ファウスト：下野　紘\r\nリーベ：岡本信彦\r\nダンテ・ゾグラティス：小山力也\r\nゼノン・ゾグラティス：鈴木達央\r\nヴァニカ・ゾグラティス：小倉　唯\r\nフィンラル・ルーラケイス：福山　潤\r\nマグナ・スウィング：室　元気\r\nラック・ボルティア：村瀬　歩\r\nゴーシュ・アドレイ：日野　聡\r\nバネッサ・エノテーカ：水樹奈々\n◇出演者２\nチャーミー・パピットソン：安野希世乃\r\nゴードン・アグリッパ：松田健一郎\r\nグレイ：髙橋ミナミ\r\nヘンリー・レゴラント：斎賀みつき\r\nゾラ・イデアーレ：緑川　光\r\nセクレ・スワロテイル（ネロ）：佐倉綾音\r\nユリウス・ノヴァクロノ：森川智之\r\nメレオレオナ・ヴァーミリオン：皆川純子\r\nミモザ・ヴァーミリオン：西　明日香\r\n\n◇出演者３\nノゼル・シルヴァ：鳥海浩輔\r\nフエゴレオン・ヴァーミリオン：小西克幸\r\nウィリアム・ヴァンジャンス：小野大輔\r\nシャーロット・ローズレイ：小林ゆう\r\nジャック・ザリッパー：浪川大輔\r\nリル・ボワモルティエ：花江夏樹\r\nドロシー・アンズワース：伊瀬茉莉也\r\nカイゼル・グランボルカ：松田健一郎\r\nロロペチカ：芹澤　優\r\nウンディーネ：植田佳奈\r\nガジャ：置鮎龍太郎\n◇監督・演出\n【監督】種村綾隆\r\n【シリーズ構成】大知慶一郎\r\n【音響監督】高桑　一\n◇音楽\n【音楽】関　美奈子\r\n【オープニングテーマ】\r\nWANIMA「消えない理由」\r\n【エンディングテーマ】\r\nONE　OR　EIGHT「Yellow　Brick　Road」\r\n\n◇制作\n【アニメーション制作】スタジオぴえろ\r\n【製作】ブラッククローバー製作委員会\n◇ホームページ\n【テレ東公式アニメHP】\r\nhttps://www.tv-tokyo.co.jp/anime/bclover/",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    165
+   ],
+   "videoFiles": [
+    {
+     "id": 31,
+     "name": "TS",
+     "filename": "2026年10月10日23時00分00秒-ブラッククローバー　#172『地獄への扉』[字].m2ts",
+     "type": "ts",
+     "size": 3656466520
+    }
+   ]
+  },
+  {
+   "id": 27,
+   "channelId": 3211240960,
+   "startAt": 1791639900000,
+   "endAt": 1791640200000,
+   "name": "アニメまとめＰＲ　１０月スタート！注目の４番組[字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 321124096031748,
+   "description": "１０月から放送スタート！この秋、注目のＮＨＫアニメ「恐怖コレクター」「マロニエ王国の七人の騎士」「パンどろぼう」「アオアシ　Ｓｅａｓｏｎ２」の見どころを紹介！",
+   "extended": "◇番組内容\n秋のＮＨＫアニメは、新作アニメが目白押し！１０月から放送する４番組の見どころを紹介！　▼１０／３スタート！　Ｅテレ「マロニエ王国の七人の騎士」毎週（土）午後６：２５　▼１０／１０スタート！　総合テレビ「恐怖コレクター」毎週（土）夜１１：４５　▼１０／２スタート！　Ｅテレ「パンどろぼう」毎週（金）午後６：４０　▼１０／４スタート！　Ｅテレ「アオアシ　Ｓｅａｓｏｎ２」毎週（日）午後５：００\n◇出演者\n【語り】吉川未来",
+   "genre1": 2,
+   "subGenre1": 7,
+   "genre2": 7,
+   "subGenre2": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    166
+   ],
+   "videoFiles": [
+    {
+     "id": 30,
+     "name": "TS",
+     "filename": "2026年10月10日22時45分00秒-アニメまとめＰＲ　１０月スタート！注目の４番組[字].m2ts",
+     "type": "ts",
+     "size": 554977128
+    }
+   ]
+  },
+  {
+   "id": 26,
+   "channelId": 3208643056,
+   "startAt": 1791639000000,
+   "endAt": 1791640800000,
+   "name": "転生した大聖女は、聖女であることをひた隠す（第２話）",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 1,
+   "programId": 320864305603110,
+   "description": "フィーアと騎士団◇騎士を目指す少女・フィーア。死にかけた彼女が思い出したのは、なんと規格外のチート能力を持つ「大聖女」としての前世で！？",
+   "extended": "◇出演者\nフィーア・ルード：若山詩音\r\nザビリア：徳留慎乃佑\r\nサヴィス・ナーヴ：梅原裕一郎\r\nシリル・サザランド：島﨑信長\r\nデズモンド・ローナン：畠中祐\r\nザカリー・タウンゼント：濱野大輝\r\nクェンティン・アガター：杉田智和\r\nクラリッサ・アバネシー：田村ゆかり\r\nイーノック：土岐隼一\r\nファビアン・ワイナー：山下大輝\r\nシャーロット：島袋美由利\r\nカーティス・バニスター：戸谷菊之介",
+   "genre1": 7,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    167
+   ],
+   "videoFiles": [
+    {
+     "id": 29,
+     "name": "TS",
+     "filename": "2026年10月10日22時30分00秒-転生した大聖女は、聖女であることをひた隠す（第２話）.m2ts",
+     "type": "ts",
+     "size": 3517461576
+    }
+   ]
+  },
+  {
+   "id": 25,
+   "channelId": 3211240960,
+   "startAt": 1791637200000,
+   "endAt": 1791639780000,
+   "name": "【土曜ドラマ】おもかげ（２）[解][字]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 3,
+   "programId": 321124096028704,
+   "description": "意識不明の中、不思議な体験を続ける竹脇正一（中村雅俊）は入江静（余貴美子）や榊原勝男（不破万作）と出会い、忘れようとしていた過去の記憶に向き合いはじめる。",
+   "extended": "◇番組内容\n意識不明の中、不思議な体験を続ける竹脇正一（中村雅俊）は見覚えのある入江で謎の女性、入江静（余貴美子）と出会い、忘れようとした過去の辛い記憶を思い出す。正一の人生の謎が徐々に明かされていく中、隣のベッドの患者・榊原勝男（不破万作）と共に銭湯へ行き、戦後の闇市での昔話を聞かされる。正一も孤児で孤独だった自分の過去を振り返り…。\n◇出演者\n【出演】中村雅俊，浅田美代子，不破万作，モロ師岡，前田亜季，板橋駿谷，大後寿々花，田島亮，大月美里果，さとうほなみ，余貴美子\n◇原作・脚本\n【原作】浅田次郎，【脚本】吉田康弘\n◇音楽\n【音楽】富貴晴美",
+   "genre1": 3,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    168
+   ],
+   "videoFiles": [
+    {
+     "id": 28,
+     "name": "TS",
+     "filename": "2026年10月10日22時00分00秒-【土曜ドラマ】おもかげ（２）[解][字].m2ts",
+     "type": "ts",
+     "size": 4382185248
+    }
+   ]
+  },
+  {
+   "id": 24,
+   "channelId": 3272502088,
+   "startAt": 1791633600000,
+   "endAt": 1791639240000,
+   "name": "[新]俺たちの箱根駅伝＃０１【池井戸潤×大泉洋】転んだままで、終われるか！[解][字][デ]",
+   "isRecording": false,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 3,
+   "programId": 327250208808748,
+   "description": "改革か、信念か。異端の新監督と崖っぷちの学生達が再び箱根を目指す。その走りを届けるテレビ中継チームには、組織の不条理が立ちはだかる！魂震わす不屈の逆転劇、開幕‼",
+   "extended": "◇出演者\n大泉洋\r\n伊藤沙莉\r\n\r\n小林虎之介\r\n奥智哉\r\n山田杏奈　\r\n市川猿弥\r\n浅香航大\r\n望月歩\r\n河内大和\r\n平原テツ\r\n駿河太郎\r\n阿部翔平\r\n清水麻璃亜\r\n島丈明\r\n樋口拓哉\r\n小日向文世\r\n生瀬勝久\r\n寺尾聰\r\n\r\n水沢林太郎\r\n菅生新樹\r\n荒木飛羽\r\n杢代和人\r\n庄司浩平\r\n林裕太\r\n樋之津琳太郎\r\n浅野竣哉\r\n堀家一希\r\n齋藤璃佑\r\n池田匡志\r\n西野遼\r\n山崎雄大\r\n相馬理\r\n旭惟吹\r\n大原由暉\r\n\r\n石丸幹二\r\n金田明夫\r\n高橋克典\r\n\r\n山下智久\n◇番組内容\n池井戸潤が「もう二度と書けない」と語る渾身の傑作、ついにドラマ化！運命の箱根駅伝予選会。中継を担う徳重（大泉洋）と菜月（伊藤沙莉）は、「紅白超え」の視聴率を命じる上層部の無理難題に、信念で立ち向かうが…。一方、名門・明誠学院大学には、異端の新監督・甲斐（山下智久）が就任。異例の人事にチームはバラバラに…！\r\n定石か、異端か、改革か、信念か。箱根駅伝にすべてをかける者たちの、不屈の逆転劇が始まる！\n◇監督・演出\n猪股隆一\n◇原作・脚本\n【原作】\r\n池井戸潤「俺たちの箱根駅伝」（文藝春秋）\r\n【脚本】\r\n鈴木すみれ\n◇音楽\n【主題歌】\r\n桑田佳祐（タイシタレーベル／ビクターエンタテインメント）\r\n【音楽】\r\n得田真裕\n◇制作\n【協力】\r\n一般社団法人　関東学生陸上競技連盟\n◇おしらせ\n【TＶer】https://tver.jp/series/srxeh\r\n【公式HP】https://www.ntv.co.jp/orehako/\r\n【公式X】https://x.com/orehako_ntv\r\n【公式インスタ】https://www.instagram.com/orehako_ntv\r\n【公式TikTok】https://www.tiktok.com/@orehako_ntv",
+   "genre1": 3,
+   "subGenre1": 0,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [
+    169
+   ],
+   "videoFiles": [
+    {
+     "id": 27,
+     "name": "TS",
+     "filename": "2026年10月10日21時00分00秒-[新]俺たちの箱根駅伝＃０１【池井戸潤×大泉洋】転んだままで、終われるか！[解][字][デ].m2ts",
+     "type": "ts",
+     "size": 11388008068
+    }
+   ]
+  }
+ ],
+ "total": 98
+}

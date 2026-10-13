@@ -1,0 +1,33 @@
+{
+ "id": 3,
+ "channelId": 3212741080,
+ "startAt": 1791608400000,
+ "endAt": 1791610200000,
+ "name": "なつかしの昭和歌謡３６　季節の中で／松山千春　赤い風船／浅田美代子",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "programId": 321274108020036,
+ "description": "探偵物語／薬師丸ひろ子　もう恋なのか／にしきのあきら　ルージュの伝言／荒井由実　白いパラソル／松田聖子　つぐない／テレサ・テン　ぬれて大阪／秋庭豊とアローナイツ　他",
+ "genre1": 4,
+ "subGenre1": 4,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  3
+ ],
+ "videoFiles": [
+  {
+   "id": 3,
+   "name": "TS",
+   "filename": "2026年10月10日14時00分00秒-なつかしの昭和歌謡３６　季節の中で／松山千春　赤い風船／浅田美代子.m2ts",
+   "type": "ts",
+   "size": 1197458480
+  }
+ ],
+ "tags": []
+}

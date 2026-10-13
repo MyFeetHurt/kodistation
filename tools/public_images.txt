@@ -1,0 +1,13 @@
+# Images and videos allowed in the public tree besides the generated fixture placeholders (backlog 019):
+# media/*.png, *.gif, *.mp4 (README demo and screenshots) and the add-on icons.
+# tools/public_audit.py checks each against its sha256 and requires stripped metadata.
+# Add a file only after the user approved it (screenshots, demo video: free channels only, no addresses).
+# Format: sha256  path
+3f643aa42cf41e01297c0b4151f6f5a89d2adc02c7a65a256d2361ba1c288f1a  plugin.video.epgstation/resources/icon.png
+3f643aa42cf41e01297c0b4151f6f5a89d2adc02c7a65a256d2361ba1c288f1a  repository.kodistation/resources/icon.png
+9cad6c3381b2cadad21671e6e7678a9b1b13aaa921af853cb4e0e8afeb05cc54  media/kodistation-demo.mp4
+c452aace688f709af401b10afe2e123924e3522210d23318f8b9cd66c578190b  media/demo.gif
+5b7cf52b20fcffafd698ce4dd8ff0aa908dea258c5636943d7c2ec9da5a68d4c  media/screenshot-recordings.png
+6ef2a5bec38869e232425022cfc564cd59782fbdf509cf89fd494d53115bd8df  media/screenshot-details.png
+3d8b62d2c0b8992f6236ccbd4c8dd21156575153f88e6ee3b57b348c22fdbfa8  media/screenshot-guide.png
+8963a06273d5e14f4c372fab4510f02cbb95b64c020b4ff47cd9519558c0b821  media/screenshot-live.png

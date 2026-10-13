@@ -1,0 +1,25 @@
+{"_synthetic": "hand-written for KODIstation tests (backlog 020): invented titles and people, never broadcast. EPG shapes the free channels lack (dubbed movies, PG/R15+, genre2-only, episode ranges, rare genres); replace an entry with a real dev capture when one appears.",
+ "items": [
+  {"key": "dub-movie", "why": "dubbed movie: version 吹替版, tags 吹替版 + 字幕, dub voices as roles, year (YYYY年 country), writers", "name": "[映]ネオン・ハーバー（吹替版）[字]", "description": "港町で起きた連続失踪事件を追う二人の刑事を描くサスペンス。Ｍ・ベルウッド、Ｊ・カーステアズらが出演。", "extended": "◇番組名\nネオン・ハーバー（吹替版）\n◇番組内容\n霧の港町で、夜ごとに人が消える事件が続く。ベテラン刑事ノーランは、新人刑事エヴァと組んで捜査を始めるが、手がかりは古い灯台に残された暗号だけだった……。\n◇出演／関連情報\n（１９９４年　アメリカ）\r\n【原題】Ｎｅｏｎ　Ｈａｒｂｏｒ\r\n【監督】トマス・ヘイウッド\r\n【脚本】リディア・モーガン、ケネス・ブライト\r\n【出演】マーカス・ベルウッド（森川陽太）、ジェーン・カーステアズ（香坂みのり）、オーウェン・リード（大槻健二）、ニナ・ソレンセン（早瀬ひかる）\n◇ \n【次回放送】１１／２（月）　２０：００", "genre1": 6, "subGenre1": 0, "genre2": 6, "subGenre2": 15},
+  {"key": "dub-japanese", "why": "【日本語吹替版】, genre2 only, ◇声の出演 with ／ separators (lost when half-width), (YYYY年：country)", "name": "ラスト・ミレニアム・ナイト【日本語吹替版】", "description": "世紀末の大都市を舞台に、元刑事が謎の教団に立ち向かうアクション大作。", "extended": "◇番組内容\n１９９９年の暮れ、元刑事ハリスは奇妙な予言を口にする男を追ううち、教団に狙われる女性マリアを守ることになる。(1999年：アメリカ)\n◇監督\nピーター・ランズベリー\n◇出演者\nアレクサンダー・ハートフィールド／ガブリエル・モンテス／ロビン・タリー\n◇声の出演\n岩城鉄平／小川信吾／北村さやの", "genre2": 6, "subGenre2": 0},
+  {"key": "dub-paren-version", "why": "（吹替版）in a drama episode name and [吹] flag", "name": "海外ドラマ　ザ・ファーム・ロード　＃３（吹替版）［吹］", "description": "農場を継いだ兄弟が町の陰謀に巻き込まれていく。", "extended": "◇出演者\n【出演】ダニエル・クロフォード（村上拓真）、エミリー・ハート（新井るみ）", "genre1": 3, "subGenre1": 1},
+  {"key": "edition-pg", "why": "movie with an edition <4Kデジタルリマスター版> and <PG-12>, year and director in the description", "name": "[2K][映]北の灯台守＜4Kデジタルリマスター版＞＜PG-12＞", "description": "出演：川端伸介／青木奈央／宮下千春　監督：佐伯隆一　北の岬で灯台を守る一家の三十年を描いた人間ドラマ。　※４K化ＴＶ初（1981年　128分）", "extended": "◇番組詳細\n～特別企画　佐伯隆一４Ｋ～\r\n北の岬の灯台で暮らす守人の一家。嵐の夜に流れ着いた青年をきっかけに、家族の関係が少しずつ変わっていく。", "genre1": 6, "subGenre1": 1},
+  {"key": "r15", "why": "movie with ＜R15+＞, edition 4K修復版 and a year in the name", "name": "[映]夜明けのアジト（２０１９）＜4K修復版＞＜R15+＞[SS]", "description": "裏社会から抜け出そうとする男の一夜を描くクライム映画。", "extended": "◇出演／関連情報\n（２０１９年　韓国）\r\n【監督】キム・ソヌ\r\n【出演】パク・ジュンホ、イ・ソラ", "genre1": 6, "subGenre1": 0},
+  {"key": "range", "why": "episode range #1-5（全10話）, cast in the description, no extended", "name": "放課後のグループ課題 #1-5（全10話）", "description": "出演：藤原陽太／森田奏／桐谷蓮（サンプルボーイズ）／原田湊　※放送時間の詳細は番組ＨＰへ", "genre1": 3, "subGenre1": 0},
+  {"key": "range-comma", "why": "episode list #5,6 with a season (第2期) and subtitles in the description", "name": "[字]魔法学園クロニクル （第2期）#5,6", "description": "#5「放課後の時間」\r\n#6「秘密の時間」\r\n魔法学園の落ちこぼれクラスに集められた生徒たちは…", "genre1": 7, "subGenre1": 0},
+  {"key": "bang-tilde", "why": "\"!?~\": the title is cut at the first ~ after ! or ?", "name": "なぜ光る!?~深海サンプル生物の秘密~", "description": "深海に暮らす光る生き物の不思議に迫る。", "genre1": 8, "subGenre1": 2},
+  {"key": "first-run", "why": "[初] flag and a sports subgenre", "name": "[初]サンプル・ボクシングナイト「王座決定戦」　＃２４", "description": "世界王座をかけた一戦を解説付きで振り返る。", "extended": "◇出演者\n【解説】高木一郎、【実況】村井大介", "genre1": 1, "subGenre1": 5},
+  {"key": "motorsports", "why": "genre スポーツ/モータースポーツ", "name": "サンプル・モーターレース２０２６　第８戦", "description": "シーズン終盤の一戦を中継。", "genre1": 1, "subGenre1": 8},
+  {"key": "winter-sports", "why": "genre スポーツ/マリン・ウィンタースポーツ", "name": "サンプル・スキージャンプ大会", "description": "雪山の大会を中継。", "genre1": 1, "subGenre1": 9},
+  {"key": "boat-race", "why": "genre スポーツ/競馬・公営競技", "name": "サンプル・ボートレース中継", "description": "今日の注目レースを紹介。", "genre1": 1, "subGenre1": 10},
+  {"key": "ball-games", "why": "genre スポーツ/その他の球技", "name": "サンプル・バレーボール選手権", "description": "決勝トーナメントを中継。", "genre1": 1, "subGenre1": 4},
+  {"key": "karaoke", "why": "genre 音楽/カラオケ・のど自慢 and ランキング・リクエスト", "name": "サンプルのど自慢大会", "description": "各地の予選を勝ち抜いた歌自慢が集合。", "genre1": 4, "subGenre1": 7, "genre2": 4, "subGenre2": 6},
+  {"key": "kabuki", "why": "genre 劇場・公演/歌舞伎・古典 and 落語・演芸", "name": "サンプル古典芸能鑑賞", "description": "歌舞伎と落語の名演を紹介。", "genre1": 9, "subGenre1": 4, "genre2": 9, "subGenre2": 3},
+  {"key": "musical", "why": "genre 劇場・公演/ミュージカル", "name": "サンプル・ミュージカル劇場", "description": "人気ミュージカルの舞台を紹介。", "genre1": 9, "subGenre1": 1},
+  {"key": "anime-film", "why": "genre 映画/アニメ, edition オリジナル版", "name": "[映]サンプル・アニメ映画　星の約束【オリジナル版】", "description": "少年と星の物語。", "genre1": 6, "subGenre1": 2},
+  {"key": "restored", "why": "edition 4Kレストア, film text with a year and length", "name": "[映]サンプル港の休日　4Kレストア", "description": "名作サンプル映画を修復版で。（1958年　102分）", "genre1": 6, "subGenre1": 1},
+  {"key": "education", "why": "genre 趣味・教育/教育問題 and 囲碁・将棋", "name": "サンプル教育フォーラム", "description": "これからの学びを考える。", "genre1": 10, "subGenre1": 12, "genre2": 10, "subGenre2": 3},
+  {"key": "welfare", "why": "genre 福祉/高齢者 and 障害者", "name": "サンプル福祉の時間", "description": "暮らしを支える取り組みを紹介。", "genre1": 11, "subGenre1": 0, "genre2": 11, "subGenre2": 1},
+  {"key": "folk", "why": "genre 音楽/民謡・邦楽 and スポーツ/相撲・格闘技 (thin classes)", "name": "サンプル民謡と相撲の夕べ", "description": "民謡と相撲の名場面。", "genre1": 4, "subGenre1": 8, "genre2": 1, "subGenre2": 5}
+ ]
+}

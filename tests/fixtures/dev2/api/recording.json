@@ -1,0 +1,41 @@
+{
+ "records": [
+  {
+   "id": 126,
+   "channelId": 3272302072,
+   "startAt": 1791870120000,
+   "endAt": 1791873600000,
+   "name": "相棒　ｓｅａｓｏｎ２０＃１２[再][解][字]",
+   "isRecording": true,
+   "isEncoding": false,
+   "isProtected": false,
+   "ruleId": 3,
+   "programId": 327230207212421,
+   "description": "第１２話「お宝探し」\r\n右京が埋蔵金ハンターに転身⁉\r\n殺された元刑事が掴んだ真相とは…？\r\n特命係が隠された真実を暴く‼",
+   "extended": "◇番組内容\n元刑事の安岡が自宅で撲殺された。捜査一課は刑事時代の逆恨みも視野に捜査を始めるが、右京と亘は安岡が埋蔵金探しの動画を投稿していたことに注目。発掘現場の赤城山を訪れた右京は、安岡の宝探し仲間に接触する。一方、東京で調べていた亘により、発掘現場はすでに不動産会社を営む東堂という男が探し回った場所だったことが分かる。さらに東堂の長男の妻が３年前に行方不明になり、その直後に東堂が発掘中止の指示を出していた\n◇出演者\n水谷豊、反町隆史、森口瑤子、川原和久、山中崇史、篠原ゆき子、山西惇、浅利陽介、小野了 ほか\r\n【ゲスト】小宮孝泰、目黒祐樹 ほか",
+   "genre1": 3,
+   "subGenre1": 0,
+   "genre2": 11,
+   "subGenre2": 5,
+   "genre3": 11,
+   "subGenre3": 6,
+   "videoType": "mpeg2",
+   "videoResolution": "1080i",
+   "videoStreamContent": 1,
+   "videoComponentType": 179,
+   "audioSamplingRate": 48000,
+   "audioComponentType": 3,
+   "thumbnails": [],
+   "videoFiles": [
+    {
+     "id": 130,
+     "name": "TS",
+     "filename": "2026年10月13日14時42分00秒-相棒　ｓｅａｓｏｎ２０＃１２[再][解][字].m2ts",
+     "type": "ts",
+     "size": 0
+    }
+   ]
+  }
+ ],
+ "total": 1
+}

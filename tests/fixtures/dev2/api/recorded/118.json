@@ -1,0 +1,39 @@
+{
+ "id": 118,
+ "channelId": 3272102056,
+ "startAt": 1791841200000,
+ "endAt": 1791841500000,
+ "name": "プチプチ・アニメ　ビップとバップ「ワルツの王様」",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 1,
+ "programId": 327210205630562,
+ "description": "正義感あふれる少年探偵のビップと食べるのが大すきな相棒、カエルのバップ。謎の怪盗ピカロとその子分たちの悪だくみを、機転をきかせてみごと解決してゆきます。",
+ "extended": "◇番組内容\n正義感あふれる少年探偵のビップと食べるのが大すきな相棒、カエルのバップ。謎の怪盗ピカロとその子分たちの悪だくみを、機転をきかせてみごと解決してゆきます。",
+ "genre1": 7,
+ "subGenre1": 0,
+ "genre2": 7,
+ "subGenre2": 15,
+ "genre3": 10,
+ "subGenre3": 8,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  211
+ ],
+ "videoFiles": [
+  {
+   "id": 121,
+   "name": "TS",
+   "filename": "2026年10月13日06時40分00秒-プチプチ・アニメ　ビップとバップ「ワルツの王様」.m2ts",
+   "type": "ts",
+   "size": 609222836
+  }
+ ],
+ "tags": []
+}

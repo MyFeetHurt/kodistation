@@ -1,0 +1,10 @@
+# Generic words that may occur both in the user's private production recordings and in the public free-channel
+# fixtures (backlog 020). tools/snapshot_api.py --fingerprints never turns these into fingerprints. Frozen and
+# reviewed: add a line only for a word that identifies nothing (programme formats, weather, numbers), never a
+# title or a person; those go into the private ~/.config/epgstation-kodi/fingerprint_allow_private.txt.
+# Format: token<TAB># reason
+天気予報	# generic programme name (weather forecast), on every channel
+テレビショッピング	# generic programme name (shopping slot)
+オールド	# generic word ("old"), a parsed subtitle fragment
+ポール	# generic word / common first name fragment
+300	# a number

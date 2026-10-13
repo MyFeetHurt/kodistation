@@ -1,0 +1,26 @@
+# Generated fixture thumbnails (tools/make_placeholder_thumbs.py writes this list; do not edit).
+# tools/public_audit.py accepts a fixture JPEG only when it is listed here with these bytes.
+bec725c7d29bf6115308b88320c7acdb08017178870e11b5751d652897f776f2  tests/fixtures/dev/api/thumbnails/11.jpg
+c4dc14041c6d34d65373fbbf3a07fbc8a40bb6c7d67cb9ba8a9db7a3979b4884  tests/fixtures/dev/api/thumbnails/12.jpg
+b54cc3303307053f8850c445a41efad34bf2697c1d7399ec37dc1ddb962e3cec  tests/fixtures/dev/api/thumbnails/13.jpg
+6dccdfe5e0b465e1aec2480bc410d37255a78738ace769ed5ede1d8b74d469c1  tests/fixtures/dev/api/thumbnails/14.jpg
+76c046ad0320c84f07b19926e9f8472d95ef5b42a7d433f94f2887e492b8395d  tests/fixtures/dev/api/thumbnails/15.jpg
+3bdaefe060eda57fa7c2b7230d6274516c270d35c0d47175072dcd8280749323  tests/fixtures/dev/api/thumbnails/16.jpg
+f4d208b92738f1da6e64f25a37daecb9be77c3030e5a405cd4117f635c7b9d45  tests/fixtures/dev/api/thumbnails/17.jpg
+acf95480eebc17b8e9198167187e71ac6ecaac828e4448c2e0d6fd1135d83bfc  tests/fixtures/dev/api/thumbnails/18.jpg
+cd82e07743d2cabaf8e466fc0563e126f742873605413d1481c5625ac17a979d  tests/fixtures/dev/api/thumbnails/19.jpg
+c6d465190fa97f70233d44f1480e6f8b2b4fa805b2b148f2c7336a42c9052f70  tests/fixtures/dev/api/thumbnails/20.jpg
+d1f9e815ea8d2b0ab7833a1dc434197af5bf7907c136425e370158bd538a0fd5  tests/fixtures/dev/api/thumbnails/21.jpg
+0dcdd34c19691acf43b9ae1d11e5b1f2e05cd01c6d56d0ff08c06175451b75f3  tests/fixtures/dev/api/thumbnails/22.jpg
+741f83a9715f78c0d517a3dd4b2b2e713f7a1a64fd1ad6ff37bd6184e3432f9b  tests/fixtures/dev/api/thumbnails/6.jpg
+27e7ad81a949ff0f6e41c3d98015331d914e6a4b774a11408b580a67294fdcc5  tests/fixtures/dev/api/thumbnails/9.jpg
+315ddf0799d8315e97c2904b20b718c82ff908c3e602e6a8c7cb9ca89893146d  tests/fixtures/dev2/api/thumbnails/208.jpg
+a11e92451bfd89786cf8b2f13f4fb5378d4fbe9cb59caaa035570903bb68c192  tests/fixtures/dev2/api/thumbnails/209.jpg
+cf9e8d18a3c89280efd59426dd6d30da5001dea7f727f50396f4e86c0150689e  tests/fixtures/dev2/api/thumbnails/210.jpg
+f32cedb63799498e8bb685e612fcdececdd66a6bdb983d309221a292a3e79785  tests/fixtures/dev2/api/thumbnails/211.jpg
+fff5df5e948fc785d74e90b8d8871e3da77a51e112b25799bdbd6d2d219b92f8  tests/fixtures/dev2/api/thumbnails/212.jpg
+a731d1b6f3882249ea8d641f91af286581bdf3e8b8b779d0c7a70660c7952d4c  tests/fixtures/dev2/api/thumbnails/213.jpg
+9e54c4ee9c7eb86b877ef7c3c62fd6ff438abb3e5d0910418cc6843a59413610  tests/fixtures/dev2/api/thumbnails/214.jpg
+362f32db9529878a51668a2c12de500831ebc6f3747c1064936f05373eda1cbf  tests/fixtures/dev2/api/thumbnails/216.jpg
+8c6effa4107a8c238cd9b935633a3f702a18360e6594cc4354b90e26373cac8b  tests/fixtures/dev2/api/thumbnails/217.jpg
+2c343abe14ce73d14424067cc406feded4bce93a75e46989061ac34537faee12  tests/fixtures/dev2/api/thumbnails/218.jpg

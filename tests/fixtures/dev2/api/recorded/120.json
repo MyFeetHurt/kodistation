@@ -1,0 +1,39 @@
+{
+ "id": 120,
+ "channelId": 3211240960,
+ "startAt": 1791846900000,
+ "endAt": 1791849300000,
+ "name": "あさイチ　秋が勝負！冬に泣かない先回りスキンケア▽ときめき！ハピ技[字]",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 4,
+ "programId": 321124096030453,
+ "description": "夏のダメージが残る１０月こそスキンケア。すでに体のある部分に乾燥のサインが出ているかも！？手、かかと、顔、視聴者の悩みにおこたえ。今日から試せる最短習慣",
+ "extended": "◇番組内容\n夏のダメージが残る１０月こそスキンケア。すでに体のある部分に乾燥のサインが出ているかも！？▼視聴者のお悩み１位は手、２位かかと、３位が顔。今日からできる最短習慣▼８６％の人が間違い！？本当に効果があるハンドクリームの塗り方▼金子エミの保湿習慣▼効果驚きの洗顔術【ゲスト】吉田羊・南沙良【キャスター】博多華丸・大吉、鈴木奈穂子\n◇出演者\n【ゲスト】吉田羊，南沙良，【キャスター】博多華丸，博多大吉，鈴木奈穂子，【リポーター】副島淳，【語り】日髙のり子",
+ "genre1": 2,
+ "subGenre1": 2,
+ "genre2": 2,
+ "subGenre2": 3,
+ "genre3": 8,
+ "subGenre3": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  216
+ ],
+ "videoFiles": [
+  {
+   "id": 123,
+   "name": "TS",
+   "filename": "2026年10月13日08時15分00秒-あさイチ　秋が勝負！冬に泣かない先回りスキンケア▽ときめき！ハピ技[字].m2ts",
+   "type": "ts",
+   "size": 4576317056
+  }
+ ],
+ "tags": []
+}

@@ -1,0 +1,35 @@
+{
+ "id": 34,
+ "channelId": 3208643056,
+ "startAt": 1791646200000,
+ "endAt": 1791648000000,
+ "name": "笑ゥせぇるすまん",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 1,
+ "programId": 320864305603115,
+ "description": "長距離通勤／夢の楽園◇藤子不二雄Ａ原作、ブラックユーモアたっぷりの大人の寓話をアニメ化。人間の本質であるいい加減さ、弱さ、愚かさを描く！",
+ "extended": "◇出演者\n喪黒福造：大平透",
+ "genre1": 7,
+ "subGenre1": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 1,
+ "thumbnails": [
+  159
+ ],
+ "videoFiles": [
+  {
+   "id": 37,
+   "name": "TS",
+   "filename": "2026年10月11日00時30分00秒-笑ゥせぇるすまん.m2ts",
+   "type": "ts",
+   "size": 3490762380
+  }
+ ],
+ "tags": []
+}

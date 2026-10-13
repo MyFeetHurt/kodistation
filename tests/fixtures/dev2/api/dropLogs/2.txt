@@ -1,0 +1,26 @@
+error: (pid: 0x16FC, counter: -, expected: -, time: -)
+
+pid: 0x0000, error: 0, drop: 0, scrambling: 0, packet: 34255, name: PAT
+pid: 0x0001, error: 0, drop: 0, scrambling: 0, packet: 342, name: CAT
+pid: 0x0010, error: 0, drop: 0, scrambling: 0, packet: 3426, name: NIT
+pid: 0x0011, error: 0, drop: 0, scrambling: 0, packet: 1713, name: SDT/BAT
+pid: 0x0012, error: 0, drop: 0, scrambling: 0, packet: 202744, name: EIT
+pid: 0x0014, error: 0, drop: 0, scrambling: 0, packet: 685, name: TDT/TOT
+pid: 0x0023, error: 0, drop: 0, scrambling: 0, packet: 19, name: SDTT
+pid: 0x0024, error: 0, drop: 0, scrambling: 0, packet: 3426, name: BIT
+pid: 0x0028, error: 0, drop: 0, scrambling: 0, packet: 95, name: SDTT
+pid: 0x0029, error: 0, drop: 0, scrambling: 0, packet: 109, name: CDT
+pid: 0x0060, error: 0, drop: 0, scrambling: 0, packet: 34255, name: -
+pid: 0x0100, error: 0, drop: 0, scrambling: 0, packet: 59230, name: -
+pid: 0x0111, error: 0, drop: 0, scrambling: 0, packet: 30865604, name: MPEG2 VIDEO
+pid: 0x0112, error: 0, drop: 0, scrambling: 0, packet: 608386, name: MPEG2 AAC
+pid: 0x0114, error: 0, drop: 0, scrambling: 0, packet: 3941, name: 字幕
+pid: 0x0115, error: 0, drop: 0, scrambling: 0, packet: 3425, name: 字幕
+pid: 0x0818, error: 0, drop: 0, scrambling: 0, packet: 68510, name: -
+pid: 0x1100, error: 0, drop: 0, scrambling: 0, packet: 287978, name: データカルーセル
+pid: 0x1101, error: 0, drop: 0, scrambling: 0, packet: 2448560, name: データカルーセル
+pid: 0x1102, error: 0, drop: 0, scrambling: 0, packet: 11421, name: データカルーセル
+pid: 0x1103, error: 0, drop: 0, scrambling: 0, packet: 2739851, name: データカルーセル
+pid: 0x1104, error: 0, drop: 0, scrambling: 0, packet: 55145, name: データカルーセル
+pid: 0x1106, error: 0, drop: 0, scrambling: 0, packet: 3427, name: データカルーセル
+pid: 0x16FC, error: 1, drop: 0, scrambling: 0, packet: 1, name: -

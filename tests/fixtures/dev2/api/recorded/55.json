@@ -1,0 +1,34 @@
+{
+ "id": 55,
+ "channelId": 3210242032,
+ "startAt": 1791684000000,
+ "endAt": 1791685800000,
+ "name": "ポケットモンスター　＃１５１「ナヴィと不思議な仮面の子」",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 1,
+ "programId": 321024203202411,
+ "extended": "◇番組内容\nキタカミの里のお祭りにやってきたライジングボルテッカーズ！ゼイユと再会するリコたちの一方、ナヴィとメタモンは、はじめてのキタカミのお祭りに大はしゃぎ！そんな中、仮面をかぶった不思議な子と出会う─。一緒に遊んで仲良くなるが、その子の正体は、伝説のポケモン・オーガポンで…！？\n◇出演者\n【声の出演】リコ：鈴木みのり　マスカーニャ：林原めぐみ　ロイ：寺崎裕香　ラウドボーン：山下大輝　ドット：青山吉能　ウェーニバル：浪川大輔　ウルト：藤原夏海　キャプテンピカチュウ：大谷育江",
+ "genre1": 7,
+ "subGenre1": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  138
+ ],
+ "videoFiles": [
+  {
+   "id": 58,
+   "name": "TS",
+   "filename": "2026年10月11日11時00分00秒-ポケットモンスター　＃１５１「ナヴィと不思議な仮面の子」.m2ts",
+   "type": "ts",
+   "size": 3651484144
+  }
+ ],
+ "tags": []
+}

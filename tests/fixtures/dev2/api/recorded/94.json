@@ -1,0 +1,37 @@
+{
+ "id": 94,
+ "channelId": 3272102056,
+ "startAt": 1791766500000,
+ "endAt": 1791766800000,
+ "name": "アニメまとめＰＲ　放送中！注目の４番組[字]",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 1,
+ "programId": 327210205630234,
+ "description": "１０月から放送開始した注目のＮＨＫアニメ「恐怖コレクター」「マロニエ王国の七人の騎士」「パンどろぼう」「アオアシＳｅａｓｏｎ２」の見どころを紹介！",
+ "extended": "◇番組内容\n秋のＮＨＫアニメは新作目白押し！１０月から放送開始した４番組の見どころを紹介。▼Ｅテレ「マロニエ王国の七人の騎士」毎週（土）午後６：２５　▼総合テレビ「恐怖コレクター」毎週（土）夜１１：４５　▼Ｅテレ「パンどろぼう」毎週（金）午後６：４０　▼Ｅテレ「アオアシＳｅａｓｏｎ２」毎週（日）午後５：００　▼ＮＨＫ　ＯＮＥで配信もおこなっています。\n◇出演者\n【語り】吉川未来",
+ "genre1": 2,
+ "subGenre1": 7,
+ "genre2": 7,
+ "subGenre2": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  101
+ ],
+ "videoFiles": [
+  {
+   "id": 97,
+   "name": "TS",
+   "filename": "2026年10月12日09時55分00秒-アニメまとめＰＲ　放送中！注目の４番組[字].m2ts",
+   "type": "ts",
+   "size": 532127420
+  }
+ ],
+ "tags": []
+}

@@ -1,0 +1,158 @@
+{
+ "_synthetic": "hand-written for KODIstation tests (backlog 020): paid channels that do not exist, so the live TV tests keep a paid (isFree false) BS channel, a CS folder and a data service (type 192) that live TV leaves out. tools/fake_epgstation.py merges them into /channels, /schedules and /schedules/broadcasting; startOffset / endOffset are ms from live_meta.json capturedAt.",
+ "schedules": [
+  {
+   "channel": {
+    "id": 400999,
+    "serviceId": 999,
+    "networkId": 4,
+    "name": "（合成）有料ＢＳ",
+    "hasLogoData": false,
+    "channelType": "BS",
+    "type": 1
+   },
+   "programs": [
+    {
+     "id": 4009990000001,
+     "channelId": 400999,
+     "startOffset": -1800000,
+     "endOffset": 3600000,
+     "isFree": false,
+     "name": "（合成）有料映画サンプル［字］",
+     "description": "合成データ。実在しない有料放送の番組です。",
+     "genre1": 6,
+     "subGenre1": 1,
+     "videoType": "mpeg2",
+     "videoResolution": "1080i",
+     "videoStreamContent": 1,
+     "videoComponentType": 179,
+     "audioSamplingRate": 48000,
+     "audioComponentType": 3
+    },
+    {
+     "id": 4009990000002,
+     "channelId": 400999,
+     "startOffset": 3600000,
+     "endOffset": 10800000,
+     "isFree": false,
+     "name": "（合成）有料ドラマサンプル　＃１",
+     "description": "合成データ。実在しない有料放送の番組です。",
+     "genre1": 3,
+     "subGenre1": 0,
+     "videoType": "mpeg2",
+     "videoResolution": "1080i",
+     "videoStreamContent": 1,
+     "videoComponentType": 179,
+     "audioSamplingRate": 48000,
+     "audioComponentType": 3
+    }
+   ]
+  },
+  {
+   "channel": {
+    "id": 799999,
+    "serviceId": 9999,
+    "networkId": 7,
+    "name": "（合成）有料ＣＳ",
+    "hasLogoData": false,
+    "channelType": "CS",
+    "type": 1
+   },
+   "programs": [
+    {
+     "id": 7999990000001,
+     "channelId": 799999,
+     "startOffset": -3600000,
+     "endOffset": 3600000,
+     "isFree": false,
+     "name": "（合成）有料スポーツサンプル",
+     "description": "合成データ。実在しない有料放送の番組です。",
+     "genre1": 1,
+     "subGenre1": 1,
+     "videoType": "mpeg2",
+     "videoResolution": "1080i",
+     "videoStreamContent": 1,
+     "videoComponentType": 179,
+     "audioSamplingRate": 48000,
+     "audioComponentType": 3
+    },
+    {
+     "id": 7999990000002,
+     "channelId": 799999,
+     "startOffset": 3600000,
+     "endOffset": 7200000,
+     "isFree": false,
+     "name": "（合成）有料アニメサンプル",
+     "description": "合成データ。実在しない有料放送の番組です。",
+     "genre1": 7,
+     "subGenre1": 0,
+     "videoType": "mpeg2",
+     "videoResolution": "1080i",
+     "videoStreamContent": 1,
+     "videoComponentType": 179,
+     "audioSamplingRate": 48000,
+     "audioComponentType": 3
+    }
+   ]
+  },
+  {
+   "channel": {
+    "id": 400998,
+    "serviceId": 998,
+    "networkId": 4,
+    "name": "（合成）有料データ",
+    "hasLogoData": false,
+    "channelType": "BS",
+    "type": 192
+   },
+   "programs": [
+    {
+     "id": 4009980000001,
+     "channelId": 400998,
+     "startOffset": -1800000,
+     "endOffset": 5400000,
+     "isFree": false,
+     "name": "（合成）データ放送サンプル",
+     "description": "合成データ。実在しないデータ放送です。",
+     "genre1": 2,
+     "subGenre1": 0
+    }
+   ]
+  }
+ ],
+ "channels": [
+  {
+   "id": 400999,
+   "serviceId": 999,
+   "networkId": 4,
+   "name": "（合成）有料ＢＳ",
+   "halfWidthName": "(合成)有料BS",
+   "hasLogoData": false,
+   "channelType": "BS",
+   "channel": "BS99_9",
+   "type": 1
+  },
+  {
+   "id": 799999,
+   "serviceId": 9999,
+   "networkId": 7,
+   "name": "（合成）有料ＣＳ",
+   "halfWidthName": "(合成)有料CS",
+   "hasLogoData": false,
+   "channelType": "CS",
+   "channel": "CS99",
+   "type": 1
+  },
+  {
+   "id": 400998,
+   "serviceId": 998,
+   "networkId": 4,
+   "name": "（合成）有料データ",
+   "halfWidthName": "(合成)有料データ",
+   "hasLogoData": false,
+   "channelType": "BS",
+   "channel": "BS99_8",
+   "type": 192
+  }
+ ]
+}

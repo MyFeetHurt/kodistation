@@ -1,0 +1,37 @@
+{
+ "id": 69,
+ "channelId": 3211240960,
+ "startAt": 1791714600000,
+ "endAt": 1791716400000,
+ "name": "ダーウィンが来た！　ふたりは最強！ハタ＆ウツボ」[解][字]",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 4,
+ "programId": 321124096029494,
+ "description": "インドネシア・バリ島の沈没船にひそむ巨大なハタとウツボ。姿形が全く違う２匹の怪魚がなぜか夜な夜なコンビを組んで泳ぎ出す！スクープ満載！驚きのコンビ生態に迫る！",
+ "extended": "◇番組内容\nインドネシア・バリ島の海底に眠る１隻の沈没船。様々な魚が集うこの船の頂点に君臨するのが、巨大なアカマダラハタとドクウツボだ。一瞬の早ワザで次々と魚を丸のみにするハタ、一方ウツボは長い体を自在に操って狭い隙間に隠れた魚を襲う。そんな、姿も行動も全く違う２つの魚が、夜な夜なコンビを組んで狩りに出発！一体なぜ？スクープ映像満載の密着取材で種を超えた驚異の協力関係が明らかに！\n◇出演者\n【語り】龍田直樹，豊嶋真千子，山田孝之，水瀬いのり，浅井理",
+ "genre1": 8,
+ "subGenre1": 2,
+ "genre2": 10,
+ "subGenre2": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  124
+ ],
+ "videoFiles": [
+  {
+   "id": 72,
+   "name": "TS",
+   "filename": "2026年10月11日19時30分00秒-ダーウィンが来た！　ふたりは最強！ハタ＆ウツボ」[解][字].m2ts",
+   "type": "ts",
+   "size": 3480762848
+  }
+ ],
+ "tags": []
+}

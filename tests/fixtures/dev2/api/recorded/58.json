@@ -1,0 +1,35 @@
+{
+ "id": 58,
+ "channelId": 400200,
+ "startAt": 1791696600000,
+ "endAt": 1791703800000,
+ "name": "[映][字]LiLiCoのLovin’Movies『卒業白書』",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 2,
+ "programId": 40020016510,
+ "description": "トム・クルーズ最新作『DIGGER/ディガー』公開記念！彼の出世作となった青春コメディをお届け！横浜流星×広瀬すず『汝、星のごとく』最新情報＆木村佳乃コメントも",
+ "extended": "◇番組内容\n裕福な家庭の高校生ジョエルは、両親の留守中にコールガールのラナを家に呼んで羽を伸ばす。しかし、トラブルから高価なガラスの卵を盗まれ、父親のポルシェを水没させてしまう。窮地に陥った彼は、弁償代を稼ぐため自宅を売春宿にするという大胆な計画を企てるが…◆新作紹介は横浜流星×広瀬すずダブル主演の話題作『汝、星のごとく』◆広瀬すずの母親役、木村佳乃に直撃インタビュー！\n◇出演者\nLiLiCo\r\n\r\n【映画出演】\r\nトム・クルーズ\r\nレベッカ・デモーネイ\r\nジョー・パントリアーノ\r\nカーティス・アームストロング\r\n\r\n【汝、星のごとく】\r\n木村佳乃\n◇おことわり\n番組の内容と放送時間は変更になる場合があります。",
+ "genre1": 6,
+ "subGenre1": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  135
+ ],
+ "videoFiles": [
+  {
+   "id": 61,
+   "name": "TS",
+   "filename": "2026年10月11日14時30分00秒-[映][字]LiLiCoのLovin’Movies『卒業白書』.m2ts",
+   "type": "ts",
+   "size": 10313170332
+  }
+ ],
+ "tags": []
+}

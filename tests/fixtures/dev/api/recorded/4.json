@@ -1,0 +1,39 @@
+{
+ "id": 4,
+ "channelId": 3211240960,
+ "startAt": 1791611400000,
+ "endAt": 1791611700000,
+ "name": "ニュース・気象情報[字]",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "programId": 321124096028667,
+ "genre1": 0,
+ "subGenre1": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  4
+ ],
+ "videoFiles": [
+  {
+   "id": 4,
+   "name": "TS",
+   "filename": "2026年10月10日14時50分00秒-ニュース・気象情報[字].m2ts",
+   "type": "ts",
+   "size": 536873480
+  },
+  {
+   "id": 6,
+   "name": "H.264",
+   "filename": "2026年10月10日14時50分00秒-ニュース・気象情報[字].mp4",
+   "type": "encoded",
+   "size": 39370796
+  }
+ ],
+ "tags": []
+}

@@ -1,0 +1,35 @@
+{
+ "id": 26,
+ "channelId": 3208643056,
+ "startAt": 1791639000000,
+ "endAt": 1791640800000,
+ "name": "転生した大聖女は、聖女であることをひた隠す（第２話）",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 1,
+ "programId": 320864305603110,
+ "description": "フィーアと騎士団◇騎士を目指す少女・フィーア。死にかけた彼女が思い出したのは、なんと規格外のチート能力を持つ「大聖女」としての前世で！？",
+ "extended": "◇出演者\nフィーア・ルード：若山詩音\r\nザビリア：徳留慎乃佑\r\nサヴィス・ナーヴ：梅原裕一郎\r\nシリル・サザランド：島﨑信長\r\nデズモンド・ローナン：畠中祐\r\nザカリー・タウンゼント：濱野大輝\r\nクェンティン・アガター：杉田智和\r\nクラリッサ・アバネシー：田村ゆかり\r\nイーノック：土岐隼一\r\nファビアン・ワイナー：山下大輝\r\nシャーロット：島袋美由利\r\nカーティス・バニスター：戸谷菊之介",
+ "genre1": 7,
+ "subGenre1": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  167
+ ],
+ "videoFiles": [
+  {
+   "id": 29,
+   "name": "TS",
+   "filename": "2026年10月10日22時30分00秒-転生した大聖女は、聖女であることをひた隠す（第２話）.m2ts",
+   "type": "ts",
+   "size": 3517461576
+  }
+ ],
+ "tags": []
+}

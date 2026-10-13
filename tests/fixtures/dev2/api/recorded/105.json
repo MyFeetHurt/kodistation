@@ -1,0 +1,35 @@
+{
+ "id": 105,
+ "channelId": 3211240960,
+ "startAt": 1791808200000,
+ "endAt": 1791810900000,
+ "name": "感情の惑星　ＡＩで世界の心を追跡[字]",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 4,
+ "programId": 321124096034041,
+ "description": "世界各地で盛り上がる感情をＡＩで分析し、なぜその感情が沸き上がっているか、実際に現地を訪ねて追跡していくドキュメンタリー。今回は、アメリカ、インド、日本。",
+ "extended": "◇番組内容\n春に放送した「エモーション・ジャーニー」が、「感情の惑星」としてパワーアップ！世界各地で人々の感情が沸き立つ現場を追跡取材する。▼アメリカで高まる「自己愛」。その発信源に集合していたのは究極の長寿を追い求める改造人間▼インドで渦巻く「恐怖」。人々を震え上がらせていたのは、７か月間で２５件もの結婚詐欺をした極悪“泥棒花嫁”▼日本で「悲しみ」を辿った先にあったのは…「あの世の結婚式」\n◇出演者\n【出演】マヂカルラブリー，ヒコロヒー",
+ "genre1": 8,
+ "subGenre1": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  198
+ ],
+ "videoFiles": [
+  {
+   "id": 108,
+   "name": "TS",
+   "filename": "2026年10月12日21時30分00秒-感情の惑星　ＡＩで世界の心を追跡[字].m2ts",
+   "type": "ts",
+   "size": 5105384964
+  }
+ ],
+ "tags": []
+}

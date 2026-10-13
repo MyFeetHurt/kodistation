@@ -1,0 +1,35 @@
+{
+ "id": 91,
+ "channelId": 3208643056,
+ "startAt": 1791757800000,
+ "endAt": 1791759600000,
+ "name": "魔神英雄伝ワタル２",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 1,
+ "programId": 320864305603179,
+ "description": "キンババのおいしい話◇創界山の遥か上空、星界山に魔界の者ドワルダーが侵略開始！ワタル、虎王、海火子──三人の少年たちの超激闘が、星々の間に展開される！",
+ "extended": "◇出演者\n戦部ワタル：田中真弓\r\n忍部ヒミコ：林原めぐみ\r\n剣部シバラク：西村知道\r\n海火子：高乃麗\r\n龍神丸：玄田哲章\r\n渡部クラマ：山寺宏一\r\nドワルダー：緒方賢一\r\nドアクダー：飯塚昭三\r\n虎王・翔龍子：伊倉一恵",
+ "genre1": 7,
+ "subGenre1": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 1,
+ "thumbnails": [
+  104
+ ],
+ "videoFiles": [
+  {
+   "id": 94,
+   "name": "TS",
+   "filename": "2026年10月12日07時30分00秒-魔神英雄伝ワタル２.m2ts",
+   "type": "ts",
+   "size": 3495418952
+  }
+ ],
+ "tags": []
+}

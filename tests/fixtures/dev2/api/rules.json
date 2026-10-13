@@ -1,0 +1,160 @@
+{
+ "rules": [
+  {
+   "id": 1,
+   "isTimeSpecification": false,
+   "searchOption": {
+    "keyCS": false,
+    "keyRegExp": false,
+    "name": false,
+    "description": false,
+    "extended": false,
+    "ignoreKeyCS": false,
+    "ignoreKeyRegExp": false,
+    "ignoreName": false,
+    "ignoreDescription": false,
+    "ignoreExtended": false,
+    "GR": true,
+    "BS": false,
+    "CS": false,
+    "SKY": false,
+    "isFree": true,
+    "genres": [
+     {
+      "genre": 7,
+      "subGenre": 0
+     }
+    ],
+    "durationMax": 2700
+   },
+   "reserveOption": {
+    "enable": true,
+    "allowEndLack": true,
+    "avoidDuplicate": true,
+    "periodToAvoidDuplicate": 168
+   },
+   "saveOption": {
+    "directory": "アニメ"
+   },
+   "reservesCnt": 138
+  },
+  {
+   "id": 2,
+   "isTimeSpecification": false,
+   "searchOption": {
+    "keyCS": false,
+    "keyRegExp": false,
+    "name": false,
+    "description": false,
+    "extended": false,
+    "ignoreKeyCS": false,
+    "ignoreKeyRegExp": false,
+    "ignoreName": false,
+    "ignoreDescription": false,
+    "ignoreExtended": false,
+    "GR": false,
+    "BS": true,
+    "CS": false,
+    "SKY": false,
+    "isFree": true,
+    "genres": [
+     {
+      "genre": 6
+     }
+    ],
+    "durationMin": 4800,
+    "durationMax": 9000
+   },
+   "reserveOption": {
+    "enable": true,
+    "allowEndLack": true,
+    "avoidDuplicate": true,
+    "periodToAvoidDuplicate": 168
+   },
+   "saveOption": {
+    "directory": "映画"
+   },
+   "reservesCnt": 15
+  },
+  {
+   "id": 3,
+   "isTimeSpecification": false,
+   "searchOption": {
+    "keyCS": false,
+    "keyRegExp": false,
+    "name": false,
+    "description": false,
+    "extended": false,
+    "ignoreKeyCS": false,
+    "ignoreKeyRegExp": false,
+    "ignoreName": false,
+    "ignoreDescription": false,
+    "ignoreExtended": false,
+    "GR": true,
+    "BS": false,
+    "CS": false,
+    "SKY": false,
+    "isFree": true,
+    "genres": [
+     {
+      "genre": 3,
+      "subGenre": 0
+     }
+    ],
+    "durationMin": 2400
+   },
+   "reserveOption": {
+    "enable": true,
+    "allowEndLack": true,
+    "avoidDuplicate": true,
+    "periodToAvoidDuplicate": 168
+   },
+   "saveOption": {
+    "directory": "ドラマ"
+   },
+   "reservesCnt": 61
+  },
+  {
+   "id": 4,
+   "isTimeSpecification": false,
+   "searchOption": {
+    "keyCS": false,
+    "keyRegExp": false,
+    "name": false,
+    "description": false,
+    "extended": false,
+    "ignoreKeyCS": false,
+    "ignoreKeyRegExp": false,
+    "ignoreName": false,
+    "ignoreDescription": false,
+    "ignoreExtended": false,
+    "GR": false,
+    "BS": false,
+    "CS": false,
+    "SKY": false,
+    "isFree": true,
+    "channelIds": [
+     3211240960
+    ],
+    "genres": [
+     {
+      "genre": 8
+     }
+    ],
+    "durationMin": 1500,
+    "durationMax": 3700
+   },
+   "reserveOption": {
+    "enable": true,
+    "allowEndLack": true,
+    "avoidDuplicate": true,
+    "periodToAvoidDuplicate": 168
+   },
+   "saveOption": {
+    "directory": "ドキュメンタリー"
+   },
+   "reservesCnt": 56
+  }
+ ],
+ "total": 4
+}

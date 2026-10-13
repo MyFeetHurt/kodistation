@@ -1,0 +1,97 @@
+{
+ "socketIOPort": 8888,
+ "recorded": [
+  "recorded"
+ ],
+ "encode": [
+  "H.264"
+ ],
+ "urlscheme": {
+  "m2ts": {
+   "ios": "vlc-x-callback://x-callback-url/stream?url=PROTOCOL%3A%2F%2FADDRESS",
+   "android": "intent://ADDRESS#Intent;action=android.intent.action.VIEW;type=video/*;scheme=PROTOCOL;end"
+  },
+  "video": {
+   "ios": "infuse://x-callback-url/play?url=PROTOCOL://ADDRESS",
+   "android": "intent://ADDRESS#Intent;action=android.intent.action.VIEW;type=video/*;scheme=PROTOCOL;end"
+  },
+  "download": {
+   "ios": "vlc-x-callback://x-callback-url/download?url=PROTOCOL%3A%2F%2FADDRESS&filename=FILENAME"
+  }
+ },
+ "broadcast": {
+  "GR": true,
+  "BS": true,
+  "CS": true,
+  "SKY": false
+ },
+ "isEnableTSLiveStream": true,
+ "isEnableTSRecordedStream": true,
+ "isEnableEncodedRecordedStream": true,
+ "streamConfig": {
+  "live": {
+   "ts": {
+    "m2ts": [
+     {
+      "name": "720p",
+      "isUnconverted": false
+     },
+     {
+      "name": "480p",
+      "isUnconverted": false
+     },
+     {
+      "name": "無変換",
+      "isUnconverted": true
+     }
+    ],
+    "m2tsll": [
+     "720p",
+     "480p"
+    ],
+    "webm": [
+     "720p",
+     "480p"
+    ],
+    "mp4": [
+     "720p",
+     "480p"
+    ],
+    "hls": [
+     "720p",
+     "480p"
+    ]
+   }
+  },
+  "recorded": {
+   "ts": {
+    "webm": [
+     "720p",
+     "480p"
+    ],
+    "mp4": [
+     "720p",
+     "480p"
+    ],
+    "hls": [
+     "720p",
+     "480p"
+    ]
+   },
+   "encoded": {
+    "webm": [
+     "720p",
+     "480p"
+    ],
+    "mp4": [
+     "720p",
+     "480p"
+    ],
+    "hls": [
+     "720p",
+     "480p"
+    ]
+   }
+  }
+ }
+}

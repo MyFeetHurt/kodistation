@@ -1,0 +1,4 @@
+{
+ "no_such_service": {"code": 500, "message": "Internal Server Error", "errors": "Bad status respond (404 Not Found)."},
+ "no_tuner": {"code": 500, "message": "Internal Server Error", "errors": "Bad status respond (503 Service Unavailable)."}
+}

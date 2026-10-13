@@ -1,0 +1,35 @@
+{
+ "id": 108,
+ "channelId": 3208643056,
+ "startAt": 1791815400000,
+ "endAt": 1791817200000,
+ "name": "ロメリア戦記（第２話）",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 1,
+ "programId": 320864305603216,
+ "description": "砦攻略開始◇これは、魔王討伐の『その後』を描く、「一人の少女」と「彼女を支える騎士たち」の、再起の物語。",
+ "extended": "◇出演者\nロメリア・フォン・グラハム：根本優奈\r\nアル：小笠原仁\r\nレイ：大野智敬\r\nアンリ・レウス・ライオネル：広瀬裕也\r\nエリザベート：千本木彩花\r\nエカテリーナ：伊瀬茉莉也\r\nリョキ：亜咲花\r\nグラン：千葉翔也\r\nラグン：梶原岳人\r\nカイル：堀江瞬\r\nオットー：綿貫竜之介\r\nハンス：手塚ヒロミチ\r\nグレイン：山口智広\r\nジニ：広瀬竜一\r\nタース：細田健太\r\nセイ：海渡翼\r\nゼゼ：安田陸矢\r\nブライ：松川裕輝\r\nベン：山下タイキ\n◇出演者２\nガット：堀金蒼平\r\nレット：櫻井尚輝\r\nシュロー：石井瑞樹\r\nメリル：木村　颯\r\nボレル：原俊太郎\r\nミーチャ：峯田大夢",
+ "genre1": 7,
+ "subGenre1": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  201
+ ],
+ "videoFiles": [
+  {
+   "id": 111,
+   "name": "TS",
+   "filename": "2026年10月12日23時30分00秒-ロメリア戦記（第２話）.m2ts",
+   "type": "ts",
+   "size": 3487945764
+  }
+ ],
+ "tags": []
+}

@@ -1,0 +1,534 @@
+# Kodi Media Center language file
+# Addon id: plugin.video.epgstation
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en_GB\n"
+
+msgctxt "#30001"
+msgid "Recent recordings"
+msgstr ""
+
+msgctxt "#30002"
+msgid "Recording now"
+msgstr ""
+
+msgctxt "#30003"
+msgid "By channel"
+msgstr ""
+
+msgctxt "#30004"
+msgid "By genre"
+msgstr ""
+
+msgctxt "#30005"
+msgid "By rule"
+msgstr ""
+
+msgctxt "#30006"
+msgid "Search"
+msgstr ""
+
+msgctxt "#30007"
+msgid "Movies"
+msgstr ""
+
+msgctxt "#30008"
+msgid "TV shows"
+msgstr ""
+
+msgctxt "#30009"
+msgid "Browse"
+msgstr ""
+
+msgctxt "#30010"
+msgid "Next page"
+msgstr ""
+
+msgctxt "#30011"
+msgid "Choose video file"
+msgstr ""
+
+msgctxt "#30012"
+msgid "Partial"
+msgstr ""
+
+msgctxt "#30013"
+msgid "Length"
+msgstr ""
+
+msgctxt "#30014"
+msgid "Unknown"
+msgstr ""
+
+msgctxt "#30015"
+msgid "Live TV"
+msgstr ""
+
+msgctxt "#30016"
+msgid "Terrestrial"
+msgstr ""
+
+msgctxt "#30017"
+msgid "SKY"
+msgstr ""
+
+msgctxt "#30018"
+msgid "Next"
+msgstr ""
+
+msgctxt "#30019"
+msgid "{0} min left"
+msgstr ""
+
+msgctxt "#30020"
+msgid "What's on"
+msgstr ""
+
+msgctxt "#30021"
+msgid "By genre"
+msgstr ""
+
+msgctxt "#30022"
+msgid "Schedule"
+msgstr ""
+
+msgctxt "#30023"
+msgid "Now"
+msgstr ""
+
+msgctxt "#30024"
+msgid "Today"
+msgstr ""
+
+msgctxt "#30025"
+msgid "Tomorrow"
+msgstr ""
+
+msgctxt "#30026"
+msgid "Sun,Mon,Tue,Wed,Thu,Fri,Sat"
+msgstr ""
+
+msgctxt "#30027"
+msgid "{0} schedule"
+msgstr ""
+
+msgctxt "#30028"
+msgid "Program no longer in the guide"
+msgstr ""
+
+msgctxt "#30029"
+msgid "Invalid link"
+msgstr ""
+
+msgctxt "#30030"
+msgid "Scheduled recordings"
+msgstr ""
+
+msgctxt "#30031"
+msgid "Conflicts"
+msgstr ""
+
+msgctxt "#30032"
+msgid "Duplicates"
+msgstr ""
+
+msgctxt "#30033"
+msgid "Skipped"
+msgstr ""
+
+msgctxt "#30034"
+msgid "Delete reservation"
+msgstr ""
+
+msgctxt "#30035"
+msgid "Skip this airing"
+msgstr ""
+
+msgctxt "#30036"
+msgid "Stop recording"
+msgstr ""
+
+msgctxt "#30037"
+msgid "Undo skip"
+msgstr ""
+
+msgctxt "#30038"
+msgid "Record anyway"
+msgstr ""
+
+msgctxt "#30039"
+msgid "Delete this reservation?"
+msgstr ""
+
+msgctxt "#30040"
+msgid "Do not record this airing? The rule stays."
+msgstr ""
+
+msgctxt "#30041"
+msgid "Stop recording? What has been recorded so far is kept."
+msgstr ""
+
+msgctxt "#30042"
+msgid "Undo the skip and record this airing?"
+msgstr ""
+
+msgctxt "#30043"
+msgid "This program was recorded before. Record it anyway?"
+msgstr ""
+
+msgctxt "#30044"
+msgid "This airing will not be recorded."
+msgstr ""
+
+msgctxt "#30045"
+msgid "Reservation deleted"
+msgstr ""
+
+msgctxt "#30046"
+msgid "Airing will not record"
+msgstr ""
+
+msgctxt "#30047"
+msgid "Recording stopped"
+msgstr ""
+
+msgctxt "#30048"
+msgid "Skip undone"
+msgstr ""
+
+msgctxt "#30049"
+msgid "Will record"
+msgstr ""
+
+msgctxt "#30050"
+msgid "Failed: {0}"
+msgstr ""
+
+msgctxt "#30051"
+msgid "Reservation is gone"
+msgstr ""
+
+msgctxt "#30052"
+msgid "Reservation has changed"
+msgstr ""
+
+msgctxt "#30053"
+msgid "Rule: {0}"
+msgstr ""
+
+msgctxt "#30054"
+msgid "Manual reservation"
+msgstr ""
+
+msgctxt "#30055"
+msgid "Conflict: will not record"
+msgstr ""
+
+msgctxt "#30056"
+msgid "Recorded before: will not record"
+msgstr ""
+
+msgctxt "#30057"
+msgid "Skipped: will not record"
+msgstr ""
+
+msgctxt "#30058"
+msgid "Already airing: recording starts now"
+msgstr ""
+
+msgctxt "#30059"
+msgid "Failed (connection error)"
+msgstr ""
+
+msgctxt "#30060"
+msgid "The rest of this airing will not be recorded."
+msgstr ""
+
+msgctxt "#30061"
+msgid "Record"
+msgstr ""
+
+msgctxt "#30062"
+msgid "Record this program?"
+msgstr ""
+
+msgctxt "#30063"
+msgid "On air: recording starts now, partway in"
+msgstr ""
+
+msgctxt "#30064"
+msgid "Encode: {0}"
+msgstr ""
+
+msgctxt "#30065"
+msgid "Recording scheduled"
+msgstr ""
+
+msgctxt "#30066"
+msgid "Recording started"
+msgstr ""
+
+msgctxt "#30067"
+msgid "Already scheduled"
+msgstr ""
+
+msgctxt "#30068"
+msgid "Not scheduled: no free tuner (conflict)"
+msgstr ""
+
+msgctxt "#30069"
+msgid "This program has ended"
+msgstr ""
+
+msgctxt "#30070"
+msgid "Scheduled: rule"
+msgstr ""
+
+msgctxt "#30071"
+msgid "Scheduled: manual"
+msgstr ""
+
+msgctxt "#30072"
+msgid "Protect"
+msgstr ""
+
+msgctxt "#30073"
+msgid "Unprotect"
+msgstr ""
+
+msgctxt "#30074"
+msgid "Delete"
+msgstr ""
+
+msgctxt "#30075"
+msgid "Protected"
+msgstr ""
+
+msgctxt "#30076"
+msgid "Protect this recording? It will not be auto-deleted and cannot be deleted while protected."
+msgstr ""
+
+msgctxt "#30077"
+msgid "Remove protection? The recording can then be deleted, also automatically."
+msgstr ""
+
+msgctxt "#30078"
+msgid "Delete this recording? The files cannot be recovered."
+msgstr ""
+
+msgctxt "#30079"
+msgid "Encoding: will be cancelled"
+msgstr ""
+
+msgctxt "#30080"
+msgid "Files: {0}"
+msgstr ""
+
+msgctxt "#30081"
+msgid "Protected"
+msgstr ""
+
+msgctxt "#30082"
+msgid "Protection removed"
+msgstr ""
+
+msgctxt "#30083"
+msgid "Recording deleted"
+msgstr ""
+
+msgctxt "#30084"
+msgid "Recording is gone"
+msgstr ""
+
+msgctxt "#30085"
+msgid "Recording has changed"
+msgstr ""
+
+msgctxt "#30086"
+msgid "Protected: cannot delete"
+msgstr ""
+
+msgctxt "#30087"
+msgid "Protected (not auto-deleted)"
+msgstr ""
+
+msgctxt "#30100"
+msgid "Cannot reach EPGStation"
+msgstr ""
+
+msgctxt "#30101"
+msgid "No free tuner"
+msgstr ""
+
+msgctxt "#30102"
+msgid "Could not start live stream"
+msgstr ""
+
+msgctxt "#30103"
+msgid "Live streaming is disabled on the server"
+msgstr ""
+
+msgctxt "#30200"
+msgid "Server"
+msgstr ""
+
+msgctxt "#30201"
+msgid "EPGStation URL"
+msgstr ""
+
+msgctxt "#30202"
+msgid "Username (optional, HTTP basic auth)"
+msgstr ""
+
+msgctxt "#30203"
+msgid "Password"
+msgstr ""
+
+msgctxt "#30210"
+msgid "Display"
+msgstr ""
+
+msgctxt "#30211"
+msgid "Recordings per page"
+msgstr ""
+
+msgctxt "#30212"
+msgid "Genre names"
+msgstr ""
+
+msgctxt "#30213"
+msgid "Japanese"
+msgstr ""
+
+msgctxt "#30214"
+msgid "English"
+msgstr ""
+
+msgctxt "#30215"
+msgid "Play by default"
+msgstr ""
+
+msgctxt "#30216"
+msgid "Encoded file if available"
+msgstr ""
+
+msgctxt "#30217"
+msgid "Original TS"
+msgstr ""
+
+msgctxt "#30218"
+msgid "Show real file length (asks the server, cached)"
+msgstr ""
+
+msgctxt "#30230"
+msgid "Live TV"
+msgstr ""
+
+msgctxt "#30231"
+msgid "Live stream mode"
+msgstr ""
+
+msgctxt "#30232"
+msgid "Original broadcast (unconverted)"
+msgstr ""
+
+msgctxt "#30233"
+msgid "Transcoded: the server's 1st mode (e.g. 720p)"
+msgstr ""
+
+msgctxt "#30234"
+msgid "Transcoded: the server's last mode (e.g. 480p)"
+msgstr ""
+
+msgctxt "#30235"
+msgid "Unconverted sends the broadcast as it is (MPEG-2, about 16 Mbit/s). The transcoded options use the live m2ts modes in the server's EPGStation config.yml (stream.live.ts.m2ts), first or last in that list; the server re-encodes, which starts slower and loads the server."
+msgstr ""
+
+msgctxt "#30240"
+msgid "Recording"
+msgstr ""
+
+msgctxt "#30241"
+msgid "Encode after recording"
+msgstr ""
+
+msgctxt "#30242"
+msgid "None (TS only)"
+msgstr ""
+
+msgctxt "#30243"
+msgid "Server's encode mode"
+msgstr ""
+
+msgctxt "#30244"
+msgid "Uses the server's first encode mode (EPGStation config.yml encode); ignored when the server has none. The original TS is always kept."
+msgstr ""
+
+msgctxt "#30245"
+msgid "Delete a file"
+msgstr ""
+
+msgctxt "#30246"
+msgid "Choose the file to delete"
+msgstr ""
+
+msgctxt "#30247"
+msgid "Delete this file? It cannot be recovered."
+msgstr ""
+
+msgctxt "#30248"
+msgid "Delete: {0} / Keep: {1}"
+msgstr ""
+
+msgctxt "#30249"
+msgid "File deleted"
+msgstr ""
+
+msgctxt "#30250"
+msgid "File is gone"
+msgstr ""
+
+msgctxt "#30251"
+msgid "[Recording]"
+msgstr ""
+
+msgctxt "#30252"
+msgid "Broadcast: {0}"
+msgstr ""
+
+msgctxt "#30253"
+msgid "Genre: {0}"
+msgstr ""
+
+msgctxt "#30254"
+msgid "Video: {0}"
+msgstr ""
+
+msgctxt "#30255"
+msgid "Audio: {0}"
+msgstr ""
+
+msgctxt "#30256"
+msgid "Drops {0} / Errors {1} / Scrambled {2}"
+msgstr ""
+
+msgctxt "#30257"
+msgid "Encoding"
+msgstr ""
+
+msgctxt "#30258"
+msgid "Drop log"
+msgstr ""
+
+msgctxt "#30259"
+msgid "Drop log too large"
+msgstr ""
+
+msgctxt "#30260"
+msgid "No drop log"
+msgstr ""
+
+msgctxt "#30270"
+msgid "All ({0})"
+msgstr ""

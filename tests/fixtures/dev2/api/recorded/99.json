@@ -1,0 +1,39 @@
+{
+ "id": 99,
+ "channelId": 3272302072,
+ "startAt": 1791783720000,
+ "endAt": 1791787200000,
+ "name": "相棒　ｓｅａｓｏｎ２０　＃１０[再][解][字]",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 3,
+ "programId": 327230207212389,
+ "description": "第１０話「紅茶のおいしい喫茶店」\r\n右京と亘がカフェの店員に⁉\r\n詐欺グループ摘発のため特命係が動く！\r\n果たして、真犯人の正体とは…？",
+ "extended": "◇番組内容\n特命係は、角田からの頼みで張り込みを手伝うことに。捜査対象は詐欺のグループで、怪しまれずに張り込むため、喫茶店に目をつける。オーナーの真鍋に捜査への協力を持ち掛け、さっそく接客を担当することになった右京は、瑞枝という紅茶好きの女性と知り合い意気投合。そんな中、詐欺グループの男女２人が喫茶店にやってくる。亘は、店を出た男女の尾行を試みるが取り逃がしてしまう。その後、男が転落死体で見つかり…⁉\n◇出演者\n水谷豊、反町隆史、森口瑤子、川原和久、山中崇史、篠原ゆき子、山西惇、田中隆三 ほか\r\n【ゲスト】麻丘めぐみ、酒井敏也 ほか",
+ "genre1": 3,
+ "subGenre1": 0,
+ "genre2": 11,
+ "subGenre2": 5,
+ "genre3": 11,
+ "subGenre3": 6,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  192
+ ],
+ "videoFiles": [
+  {
+   "id": 102,
+   "name": "TS",
+   "filename": "2026年10月12日14時42分00秒-相棒　ｓｅａｓｏｎ２０　＃１０[再][解][字].m2ts",
+   "type": "ts",
+   "size": 7192826044
+  }
+ ],
+ "tags": []
+}

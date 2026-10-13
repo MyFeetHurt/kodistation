@@ -1,0 +1,35 @@
+{
+ "id": 36,
+ "channelId": 3272302072,
+ "startAt": 1791653400000,
+ "endAt": 1791655200000,
+ "name": "[新]彼方から【ＡＮｉＭＡＺｉＮＧ²！！！】",
+ "isRecording": false,
+ "isEncoding": false,
+ "isProtected": false,
+ "ruleId": 1,
+ "programId": 327230207212262,
+ "description": "「愛」と「滅び」の物語がいま目覚めるー",
+ "extended": "◇スタッフ\n原作・脚本監修：ひかわきょうこ「彼方から」（白泉社）\r\n監督：阿部記之\r\nシリーズ構成：たかすぎ梨香\r\nキャラクターデザイン：安彦英二\r\n美術監督：黛昌樹\r\n色彩設計：桂木今里\r\n撮影監督：李仁周\r\n編集：白石あかね\r\n音楽：はまたけし（Cosmic Wave）\r\n音響監督：矢野さとし\r\n音響効果：田中秀実\r\n音響制作：Ai Addiction\r\nアニメーション制作：スタジオディーン\r\n製作：彼方から製作委員会\n◇キャスト\n立木典子：CV.黒沢ともよ\r\nイザーク・キア・タージ：CV.熊谷健太郎\r\nラチェフ：CV.梅原裕一郎\r\nケイモス・リー・ゴーダ：CV.竹内栄治\r\nガーヤ：CV.齋藤貴美子\r\nゴーリヤ：CV.宮澤正\r\nアゴル：CV.中野泰佑\r\nジーナハース：CV.伊藤美来\n◇主題歌\nオープニング主題歌：原因は自分にある。「逃光行」\r\nエンディング主題歌：名無し之太郎「光の側で」\n◇おしらせ\n【公式HP】\r\nhttps://kanatakara-anime.com/\r\n\r\n【公式X】\r\nhttps://x.com/kanatakara_anm",
+ "genre1": 7,
+ "subGenre1": 0,
+ "videoType": "mpeg2",
+ "videoResolution": "1080i",
+ "videoStreamContent": 1,
+ "videoComponentType": 179,
+ "audioSamplingRate": 48000,
+ "audioComponentType": 3,
+ "thumbnails": [
+  157
+ ],
+ "videoFiles": [
+  {
+   "id": 39,
+   "name": "TS",
+   "filename": "2026年10月11日02時30分00秒-[新]彼方から【ＡＮｉＭＡＺｉＮＧ²！！！】.m2ts",
+   "type": "ts",
+   "size": 3625643356
+  }
+ ],
+ "tags": []
+}

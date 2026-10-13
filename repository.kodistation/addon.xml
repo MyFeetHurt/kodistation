@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.kodistation" name="KODIstation Repository" version="1.1.0" provider-name="MyFeetHurt">
+    <extension point="xbmc.addon.repository" name="KODIstation Repository">
+        <dir>
+            <info compressed="false">@BASE_URL@addons.xml</info>
+            <checksum verify="sha256">@BASE_URL@addons.xml.sha256</checksum>
+            <datadir zip="true">@BASE_URL@</datadir>
+            <hashes>sha256</hashes>
+        </dir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en_GB">Install and update KODIstation</summary>
+        <summary lang="ja_JP">KODIstation のインストールと自動更新</summary>
+        <description lang="en_GB">Kodi repository for KODIstation, the EPGStation 2.x add-on. Install KODIstation from here and Kodi keeps it up to date with every release.</description>
+        <description lang="ja_JP">EPGStation 2.x 用アドオン KODIstation のリポジトリです。ここから KODIstation をインストールすると、リリースごとに Kodi が自動で更新します。</description>
+        <platform>all</platform>
+        <license>MIT</license>
+        <website>https://github.com/MyFeetHurt/kodistation</website>
+        <source>https://github.com/MyFeetHurt/kodistation</source>
+        <assets>
+            <icon>resources/icon.png</icon>
+        </assets>
+        <news>v1.1.0 - moved to GitHub Pages (https://myfeethurt.github.io/kodistation/)</news>
+    </extension>
+</addon>

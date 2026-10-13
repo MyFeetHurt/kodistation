@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addons>
+<addon id="plugin.video.epgstation" name="KODIstation" version="0.3.0" provider-name="MyFeetHurt">
+    <requires>
+        <import addon="xbmc.python" version="3.0.1"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="main.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en_GB">Browse and play EPGStation recordings</summary>
+        <summary lang="ja_JP">EPGStation の録画を閲覧・再生</summary>
+        <description lang="en_GB">Lists recordings from an EPGStation 2.x server with full EPG information (description, extended info, genres, channel, broadcast time) and plays them directly.</description>
+        <description lang="ja_JP">EPGStation 2.x サーバーの録画を番組情報（概要・詳細・ジャンル・放送局・放送日時）付きで一覧表示し、直接再生します。</description>
+        <platform>all</platform>
+        <license>MIT</license>
+        <website>https://github.com/MyFeetHurt/kodistation</website>
+        <source>https://github.com/MyFeetHurt/kodistation</source>
+        <assets>
+            <icon>resources/icon.png</icon>
+        </assets>
+        <news>v0.3.0 (2026-10-13)
+- Recording details: a 【録画情報】 block with channel, air time, video/audio format, files with sizes, drop/error counts, protection and encoding state; ドロップログ viewer when a recording has drops
+- ファイルを削除: delete one video file of a recording (e.g. the TS after an encode) and keep the others
+- ジャンル別 counts every genre a recording has, and genres open into subgenre folders with counts
+- English genre names now include subgenres; dubbed movies show the voice actor as "Dub: name"
+- The KODIstation Repository moves to GitHub Pages (https://myfeethurt.github.io/kodistation/); source on GitHub</news>
+    </extension>
+</addon>
+<addon id="repository.kodistation" name="KODIstation Repository" version="1.1.0" provider-name="MyFeetHurt">
+    <extension point="xbmc.addon.repository" name="KODIstation Repository">
+        <dir>
+            <info compressed="false">https://myfeethurt.github.io/kodistation/addons.xml</info>
+            <checksum verify="sha256">https://myfeethurt.github.io/kodistation/addons.xml.sha256</checksum>
+            <datadir zip="true">https://myfeethurt.github.io/kodistation/</datadir>
+            <hashes>sha256</hashes>
+        </dir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en_GB">Install and update KODIstation</summary>
+        <summary lang="ja_JP">KODIstation のインストールと自動更新</summary>
+        <description lang="en_GB">Kodi repository for KODIstation, the EPGStation 2.x add-on. Install KODIstation from here and Kodi keeps it up to date with every release.</description>
+        <description lang="ja_JP">EPGStation 2.x 用アドオン KODIstation のリポジトリです。ここから KODIstation をインストールすると、リリースごとに Kodi が自動で更新します。</description>
+        <platform>all</platform>
+        <license>MIT</license>
+        <website>https://github.com/MyFeetHurt/kodistation</website>
+        <source>https://github.com/MyFeetHurt/kodistation</source>
+        <assets>
+            <icon>resources/icon.png</icon>
+        </assets>
+        <news>v1.1.0 - moved to GitHub Pages (https://myfeethurt.github.io/kodistation/)</news>
+    </extension>
+</addon>
+</addons>

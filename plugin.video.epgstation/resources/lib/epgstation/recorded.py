@@ -1,54 +1,29 @@
-"""Protect, unprotect and delete recordings (backlog 006) and delete one of their files (backlog 018): context entries,
+"""Protect, unprotect and delete recordings and delete one of their files: context entries,
 the lock marker, dialog texts and toasts.
 
 No Kodi imports here: everything is unit-testable (like items.py). It imports items only; items imports this module
-lazily in recorded_item (like reserves). plugin.py runs the one audited write path (do_recorded_action).
+lazily in recorded_item (like reserves). views/recorded_actions.py runs the writes.
 
 Actions (recorded.actions_for; EPGStation 2.10.0 behaviour):
     protect    not protected                     PUT /recorded/{id}/protect    (never auto-deleted)
     unprotect  protected                         PUT /recorded/{id}/unprotect
     delete     not protected and not recording   DELETE /recorded/{id}         (every file, thumbnails, drop log;
                                                   cancels its encodes first; refuses protected: RecordedIsProtected)
-    delete_file 2+ files, not protected, not     DELETE /videos/{fileId}       (018: that one file; refuses protected:
+    delete_file 2+ files, not protected, not     DELETE /videos/{fileId}       (that one file; refuses protected:
                 recording, not encoding                                            RecordedIsProtected; unknown file:
                                                                                    VideoFileIsNotFound; no encode
                                                                                    cancel; in progress or the last
                                                                                    file: the whole recording goes)
-No 削除 on a protected recording (unprotect first) or on one in progress (録画を停止 keeps the file). ファイルを削除
-(018) picks the file after the re-read (Kodi select list), names the file that stays and never offers the last one.
-
-The feature is meant to be removable. Hooks outside this module (code hooks are marked "protect / delete (006)"):
-- plugin.py: do_recorded_action, _recorded_write, _recorded_target, _fresh_recorded, _recorded_strings,
-  RECORDED_STRINGS, _item_strings (protect, unprotect, delete, marker, protect_line), NON_DIRECTORY_ACTIONS,
-  cache=False on the recording views, do_search / do_search_ask / _open_search_results, the recorded import
-- items.py: recorded_item (marker suffix, plot line, entries), DEFAULT_STRINGS, search_entry (root 検索 as a click
-  action, with plugin.do_search)
-- library.py: CHANGED_FILE, mark_changed, the changed-marker checks in Library.current / _save
-- api.py: put(), protect_recorded(), unprotect_recorded(), delete_recorded() in the writes section
-- strings 30072-30087 (both .po)
-- tests: test_recorded.py; the 006 lines of test_plugin.py and test_items.py (search) and test_reserves.py (writes
-  section)
-- tools: fake_epgstation.py (recorded protect / delete state and writes), kodi_smoke.py (kodi_write_lines),
-  tools/dev/test_reserve.py (recorded-snapshot, wait-recorded, adopt-recorded, audit, unprotect-recorded)
-
-Delete a file (018) is removable on its own. Hooks (code hooks are marked "delete a file (018)"):
-- this module: "delete_file" in OPS, can(), refusal(), delete_file_choices, confirm_file_message, error_message /
-  is_refusal (VideoFileIsNotFound), the DEFAULT_STRINGS keys delete_file .. file_gone
-- plugin.py: do_recorded_action (_recorded_file), _recorded_write (delete_video_file, file in the log line),
-  RECORDED_STRINGS, _item_strings (delete_file)
-- items.py: DEFAULT_STRINGS (delete_file)
-- api.py: delete_video_file() in the writes section
-- strings 30245-30250 (both .po)
-- tests: the 018 section of test_recorded.py, test_reserves.py (writes section)
-- tools: fake_epgstation.py (video_deleted, DELETE /videos), tools/dev/test_reserve.py (create --encode,
-  wait-recorded --files, adopted file ids in audit)
+No 削除 on a protected recording (unprotect first) or on one in progress (録画を停止 keeps the file).
+ファイルを削除 picks the file after the re-read (Kodi select list), names the file that stays and never offers
+the last one.
 """
 import time
 import unicodedata
 
 from .items import fmt_size, fmt_time, plugin_url, to_half
 
-OPS = ("protect", "unprotect", "delete", "delete_file")  # delete a file (018): delete_file
+OPS = ("protect", "unprotect", "delete", "delete_file")  # delete_file
 MARKER = " [COLOR gold][{0}][/COLOR]"
 
 DEFAULT_STRINGS = {
@@ -63,7 +38,6 @@ DEFAULT_STRINGS = {
     "protect_line": "Protected (not auto-deleted)",
     "failed": "Failed: {0}", "failed_net": "Failed (connection error)",
     "weekdays": "Sun,Mon,Tue,Wed,Thu,Fri,Sat",
-    # delete a file (018)
     "delete_file": "Delete a file", "choose_file": "Choose the file to delete",
     "q_delete_file": "Delete this file? It cannot be recovered.", "delete_keep": "Delete: {0} / Keep: {1}",
     "done_delete_file": "File deleted", "file_gone": "File is gone",
@@ -81,13 +55,13 @@ def is_protected(rec):
 
 def can(op, rec):
     """op is possible on the recording as it is now: protect / unprotect toggle the flag; delete needs an
-    unprotected, finished recording; delete_file (018) also 2+ files and no encode running (DELETE /videos does not
+    unprotected, finished recording; delete_file also 2+ files and no encode running (DELETE /videos does not
     cancel encodes, and deletes the whole recording for the last file or one in progress)."""
     if op == "protect":
         return not is_protected(rec)
     if op == "unprotect":
         return is_protected(rec)
-    if op == "delete_file":  # delete a file (018)
+    if op == "delete_file":
         return (not is_protected(rec) and not rec.get("isRecording") and not rec.get("isEncoding")
                 and len(rec.get("videoFiles") or []) >= 2)
     return op == "delete" and not is_protected(rec) and not rec.get("isRecording")
@@ -132,7 +106,7 @@ def files_line(rec, strings=None):
     return _strings(strings)["files"].format(", ".join(f"{v['name']} {fmt_size(v.get('size', 0))}" for v in files))
 
 
-def _date(ms, s):  # as reserves._date (this module does not import reserves: 007 stays removable)
+def _date(ms, s):  # as reserves._date (this module does not import reserves)
     names = s["weekdays"].split(",")
     lt = time.localtime(ms / 1000)
     wd = names[(lt.tm_wday + 1) % 7] if len(names) == 7 else ""  # tm_wday: Monday = 0; the list starts Sunday
@@ -168,13 +142,13 @@ def confirm_message(op, rec, channel, strings=None):
     lines = [s["q_" + op], one_line(to_half(rec["name"])), f"{time_line(rec, s)} {channel}"]
     if op == "delete":
         files = files_line(rec, s)
-        if rec.get("isEncoding"):  # on the files line (review L3): the text keeps to Estuary's four lines
+        if rec.get("isEncoding"):  # on the files line: the text keeps to Estuary's four lines
             files = f"{files} ({s['q_encoding']})" if files else s["q_encoding"]
         lines.append(files)
     return "\n".join(x for x in lines if x)
 
 
-def delete_file_choices(rec):  # delete a file (018)
+def delete_file_choices(rec):
     """The files the select list offers, in the server's order (each one may go while another stays)."""
     return list(rec.get("videoFiles") or []) if can("delete_file", rec) else []
 
@@ -183,7 +157,7 @@ def _file_text(v):
     return f"{v['name']} {fmt_size(v.get('size', 0))}"
 
 
-def confirm_file_message(rec, video_file_id, channel, strings=None):  # delete a file (018)
+def confirm_file_message(rec, video_file_id, channel, strings=None):
     """The yes/no text of ファイルを削除, four lines: the question, the name cut to one line, "10/12(月) 21:00-21:30
     {channel}", "削除: TS 136.8 MB / 残す: H.264 5.0 MB" (the file that goes and the ones that stay)."""
     s = _strings(strings)
@@ -197,7 +171,7 @@ def confirm_file_message(rec, video_file_id, channel, strings=None):  # delete a
 
 def fingerprint(rec):
     """What the dialog showed of a recording: id, name, start, channel, its files (id, size) and isEncoding. The
-    re-read after the yes must match (review M2). Sizes only for a finished recording: the TS of one in progress
+    re-read after the yes must match. Sizes only for a finished recording: the TS of one in progress
     grows."""
     growing = bool(rec.get("isRecording"))
     files = sorted((v.get("id"), None if growing else v.get("size")) for v in rec.get("videoFiles") or [])
@@ -226,7 +200,7 @@ def error_message(status, detail, strings=None):
         return s["protected"]
     if detail in GONE_ERRORS:
         return s["gone"]
-    if detail == "VideoFileIsNotFound":  # delete a file (018)
+    if detail == "VideoFileIsNotFound":
         return s["file_gone"]
     if maybe_applied(status, detail):
         return s["failed_net"]
@@ -235,4 +209,4 @@ def error_message(status, detail, strings=None):
 
 def is_refusal(detail):
     """A named refusal (warning toast) rather than a failure (error toast)."""
-    return detail in ("RecordedIsProtected", "VideoFileIsNotFound") or detail in GONE_ERRORS  # delete a file (018)
+    return detail in ("RecordedIsProtected", "VideoFileIsNotFound") or detail in GONE_ERRORS

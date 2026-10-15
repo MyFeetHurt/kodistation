@@ -2,6 +2,8 @@ import os
 import re
 
 settings = {}
+opened_settings = []  # one entry per openSettings() call
+instances = 0  # Addon objects created
 ICON = "/kodi/addons/plugin.video.epgstation/resources/icon.png"  # artwork (003): getAddonInfo("icon")
 _STRINGS = None
 
@@ -18,7 +20,11 @@ def _strings():
 
 class Addon:
     def __init__(self, id=None):
-        pass
+        global instances
+        instances += 1
+
+    def openSettings(self):  # noqa: N802
+        opened_settings.append(True)
 
     def getSetting(self, key):  # noqa: N802
         return settings.get(key, "")

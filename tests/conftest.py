@@ -81,6 +81,7 @@ def kodi(fake_server, tmp_path):
     xbmcgui.progress_log.clear()
     xbmcgui.progress_cancel_after = None
     xbmcaddon.settings.clear()
+    xbmcaddon.opened_settings.clear()
     xbmcaddon.settings["server_url"] = fake_server
     fake_epgstation.HANDLERS[fake_server].reset_reserves()  # reservations (007): no state from an earlier test
     return xbmcplugin.state

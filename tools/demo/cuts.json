@@ -1,12 +1,11 @@
 {
- "_comment": "Demo video (backlog 021): kept ranges per raw clip as [tour-log step, seconds]; offsets: clip time = log t + offset. Edited after the frame review; tools/demo/edit.py reads it.",
+ "_comment": "README demo: kept ranges per raw clip as [step, seconds] of the clip's step log (tools/demo/shoot.py); clip time = log t + offset. F first start, L library, V live TV, R record from the guide, S transcoded playback. Read by tools/demo/edit.py.",
  "offsets": {
-  "A1": -0.4,
-  "B1": -0.4,
-  "C1": -0.4,
-  "C2": -0.4,
-  "D1": -0.4,
-  "E2": -0.4
+  "F": 0.5,
+  "L": 0.5,
+  "V": 0.5,
+  "R": 0.5,
+  "S": 0.5
  },
  "crf": [
   24,
@@ -15,235 +14,261 @@
   30,
   32
  ],
+ "gif_fps": 10,
+ "gif_colors": 96,
  "video": [
   {
-   "clip": "A1",
-   "caption": "録画を見る / Browse recordings",
+   "clip": "F",
+   "caption": "初回設定 / First start: enter the EPGStation address",
+   "caption_s": 4.0,
    "keep": [
     {
      "from": [
       "home",
-      -0.6
-     ],
-     "to": [
-      "root",
-      0.9
-     ],
-     "speed": 1.25
-    },
-    {
-     "from": [
-      "root",
-      0.9
-     ],
-     "to": [
-      "episode2",
-      -0.2
-     ],
-     "speed": 1.5
-    },
-    {
-     "from": [
-      "episode2",
-      1.6
-     ],
-     "to": [
-      "details",
-      4.6
-     ],
-     "speed": 1.0
-    },
-    {
-     "from": [
-      "root_back",
       -0.3
      ],
      "to": [
-      "movie",
-      2.4
-     ],
-     "speed": 1.6
-    },
-    {
-     "from": [
-      "root_back2",
-      -0.2
-     ],
-     "to": [
-      "subgenre_item",
-      2.4
-     ],
-     "speed": 2.0
-    }
-   ]
-  },
-  {
-   "clip": "B1",
-   "caption": "ライブTV と番組表 / Live TV and guide",
-   "keep": [
-    {
-     "from": [
-      "root",
-      -0.5
-     ],
-     "to": [
-      "live_channel_focused",
-      2.3
-     ],
-     "speed": 1.6
-    },
-    {
-     "from": [
-      "live_playing",
-      0.3
-     ],
-     "to": [
-      "live_playing",
-      5.2
-     ],
-     "speed": 1.0
-    },
-    {
-     "from": [
-      "live_stopped",
-      1.6
-     ],
-     "to": [
-      "program_focused",
-      1.8
-     ],
-     "speed": 1.5
-    }
-   ]
-  },
-  {
-   "clip": "C1",
-   "caption": "番組表から録画予約 / Record from the guide",
-   "keep": [
-    {
-     "from": [
-      "program_focused",
-      -0.5
-     ],
-     "to": [
-      "record_toast",
-      3.6
-     ],
-     "speed": 1.2
-    }
-   ]
-  },
-  {
-   "clip": "C2",
-   "keep": [
-    {
-     "from": [
-      "record_mark",
-      -0.8
-     ],
-     "to": [
-      "cancelled",
-      1.2
-     ],
-     "speed": 1.5
-    }
-   ]
-  },
-  {
-   "clip": "D1",
-   "caption": "録画の管理 / Manage recordings",
-   "keep": [
-    {
-     "from": [
-      "root",
-      -0.4
-     ],
-     "to": [
-      "rec_focused",
-      1.0
-     ],
-     "speed": 2.5
-    },
-    {
-     "from": [
-      "rec_focused",
-      1.0
-     ],
-     "to": [
-      "protected",
-      1.0
-     ],
-     "speed": 1.6
-    },
-    {
-     "from": [
-      "protected",
-      1.0
-     ],
-     "to": [
-      "delete_question",
-      -0.2
-     ],
-     "speed": 1.7
-    },
-    {
-     "from": [
-      "delete_question",
-      -0.2
-     ],
-     "to": [
-      "delete_closed",
-      1.3
-     ],
-     "speed": 1.2
-    }
-   ]
-  },
-  {
-   "clip": "E2",
-   "caption": "英語表示 / English UI",
-   "keep": [
-    {
-     "from": [
-      "ja_root",
-      -0.6
-     ],
-     "to": [
-      "language_set",
-      0.5
+      "prompt",
+      2.2
      ],
      "speed": 1.0
     },
     {
      "from": [
       "settings",
-      -0.8
+      -0.3
      ],
      "to": [
-      "root_en",
-      -0.6
+      "typed",
+      0.6
+     ],
+     "speed": 1.5
+    },
+    {
+     "from": [
+      "typed",
+      0.6
+     ],
+     "to": [
+      "menu",
+      2.0
+     ],
+     "speed": 1.0
+    }
+   ]
+  },
+  {
+   "clip": "L",
+   "caption": "TV番組 / Recordings grouped as TV shows",
+   "caption_s": 3.5,
+   "keep": [
+    {
+     "from": [
+      "tvshows",
+      -0.5
+     ],
+     "to": [
+      "info",
+      -0.2
+     ],
+     "speed": 1.3
+    }
+   ]
+  },
+  {
+   "clip": "L",
+   "caption": "番組情報 / Full EPG details: cast, credits, genres, stream info",
+   "caption_s": 4.0,
+   "keep": [
+    {
+     "from": [
+      "info",
+      -0.2
+     ],
+     "to": [
+      "info",
+      5.5
+     ],
+     "speed": 1.0
+    }
+   ]
+  },
+  {
+   "clip": "L",
+   "caption": "再生 / Play",
+   "caption_s": 2.5,
+   "keep": [
+    {
+     "from": [
+      "playing",
+      2.3
+     ],
+     "to": [
+      "playing",
+      7.3
+     ],
+     "speed": 1.0
+    }
+   ]
+  },
+  {
+   "clip": "L",
+   "caption": "ジャンル別 / Browse by genre and subgenre",
+   "caption_s": 3.5,
+   "keep": [
+    {
+     "from": [
+      "browse",
+      1.0
+     ],
+     "to": [
+      "subgenre",
+      4.5
      ],
      "speed": 1.6
+    }
+   ]
+  },
+  {
+   "clip": "L",
+   "caption": "検索 / Search",
+   "caption_s": 2.5,
+   "keep": [
+    {
+     "from": [
+      "search",
+      -0.3
+     ],
+     "to": [
+      "results",
+      3.0
+     ],
+     "speed": 1.3
+    }
+   ]
+  },
+  {
+   "clip": "V",
+   "caption": "ライブTV / Live TV with what's on now and next",
+   "caption_s": 4.0,
+   "keep": [
+    {
+     "from": [
+      "live",
+      -0.3
+     ],
+     "to": [
+      "tune",
+      0.3
+     ],
+     "speed": 1.3
     },
     {
      "from": [
-      "root_en",
-      -0.6
+      "tune",
+      0.3
      ],
      "to": [
-      "subgenre_en",
-      0.8
+      "playing",
+      -0.5
      ],
-     "speed": 2.5
+     "speed": 3.0
     },
     {
      "from": [
-      "details_en",
-      -0.8
+      "playing",
+      -0.5
      ],
      "to": [
-      "details_en",
-      3.6
+      "playing",
+      4.5
+     ],
+     "speed": 1.0
+    }
+   ]
+  },
+  {
+   "clip": "R",
+   "caption": "番組表から録画 / Record from a channel's schedule",
+   "caption_s": 4.0,
+   "keep": [
+    {
+     "from": [
+      "days",
+      -0.3
+     ],
+     "to": [
+      "schedule",
+      2.5
+     ],
+     "speed": 1.3
+    },
+    {
+     "from": [
+      "context",
+      -0.5
+     ],
+     "to": [
+      "recorded",
+      3.5
+     ],
+     "speed": 1.0
+    }
+   ]
+  },
+  {
+   "clip": "R",
+   "caption": "録画予約 / Scheduled recordings",
+   "caption_s": 2.5,
+   "keep": [
+    {
+     "from": [
+      "reserves",
+      -0.3
+     ],
+     "to": [
+      "reserves",
+      3.0
+     ],
+     "speed": 1.0
+    }
+   ]
+  },
+  {
+   "clip": "S",
+   "caption": "変換して再生 / Stream transcoded (e.g. 720p) from any position",
+   "caption_s": 4.5,
+   "keep": [
+    {
+     "from": [
+      "recent",
+      -0.3
+     ],
+     "to": [
+      "starting",
+      0.3
+     ],
+     "speed": 1.3
+    },
+    {
+     "from": [
+      "starting",
+      0.3
+     ],
+     "to": [
+      "playing",
+      -0.5
+     ],
+     "speed": 3.0
+    },
+    {
+     "from": [
+      "playing",
+      -0.5
+     ],
+     "to": [
+      "playing",
+      4.5
      ],
      "speed": 1.0
     }
@@ -252,61 +277,83 @@
  ],
  "gif": [
   {
-   "clip": "A1",
+   "clip": "L",
    "keep": [
     {
      "from": [
-      "root",
+      "tvshows",
       -0.3
      ],
      "to": [
-      "episode1",
-      1.8
+      "episodes",
+      1.0
      ],
-     "speed": 2.2
+     "speed": 2.5
     },
     {
      "from": [
-      "details",
-      -0.6
+      "info",
+      0.4
      ],
      "to": [
-      "details",
-      2.8
+      "info",
+      2.9
+     ],
+     "speed": 1.0
+    },
+    {
+     "from": [
+      "playing",
+      2.3
+     ],
+     "to": [
+      "playing",
+      3.8
      ],
      "speed": 1.0
     }
    ]
   },
   {
-   "clip": "B1",
+   "clip": "V",
    "keep": [
     {
      "from": [
-      "ctx_guide",
-      -0.6
+      "channels",
+      0.8
      ],
      "to": [
-      "program_focused",
-      1.2
+      "channels",
+      2.3
      ],
-     "speed": 2.5
+     "speed": 1.0
+    },
+    {
+     "from": [
+      "playing",
+      0.2
+     ],
+     "to": [
+      "playing",
+      1.7
+     ],
+     "speed": 1.0
     }
    ]
   },
   {
-   "clip": "C1",
+   "clip": "R",
    "keep": [
     {
      "from": [
-      "ctx_record",
-      -1.0
+      "context",
+      -0.3
      ],
      "to": [
-      "record_toast",
-      2.6
+      "recorded",
+      2.5
      ],
-     "speed": 1.6
+     "speed": 2.0
     }
    ]
   }
@@ -314,34 +361,34 @@
  "screenshots": [
   {
    "name": "screenshot-recordings.png",
-   "clip": "A1",
+   "clip": "L",
    "at": [
-    "episode1",
-    1.8
+    "episodes",
+    4.0
    ]
   },
   {
    "name": "screenshot-details.png",
-   "clip": "A1",
+   "clip": "L",
    "at": [
-    "details",
+    "info",
     3.0
    ]
   },
   {
    "name": "screenshot-guide.png",
-   "clip": "C2",
+   "clip": "R",
    "at": [
-    "record_mark",
-    0.5
+    "recorded",
+    3.0
    ]
   },
   {
    "name": "screenshot-live.png",
-   "clip": "B1",
+   "clip": "V",
    "at": [
-    "live_channel_focused",
-    1.0
+    "channels",
+    2.0
    ]
   }
  ]

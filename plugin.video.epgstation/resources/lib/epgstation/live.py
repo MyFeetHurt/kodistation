@@ -1,24 +1,6 @@
-"""Live TV (backlog 012): channel lists with now/next and the live-stream helpers.
+"""Live TV: channel lists with now/next and the live-stream helpers.
 
-No Kodi imports here: everything is unit-testable (like items.py). plugin.py turns the dicts into ListItems.
-
-The feature is meant to be removable. Hooks outside this module (code hooks are marked "live TV (012)"):
-- items.py: root_menu's "live" folder (only when strings has "live")
-- plugin.py: the "live" entry of do_root; PLAY_ACTIONS "live_play"; do_live, do_live_play, _watch_live_start,
-  _report_live_failure, _LivePlayer, _playing_file, SORT_LIVE, _live_strings, _live_mode, _live_error,
-  _add(cache=), the "mimetype" key of _listitem
-- api.py: schedules(), channel_schedule(), config(), live_url(), live_probe()
-- settings.xml: category "live" (setting live_mode); strings 30015-30019, 30101-30103, 30230-30235 (both .po)
-- docs/api/README.md: the /config live keys (openapi.json vs real 2.10.0)
-- tests: test_live.py; the live tests in test_plugin.py (incl. live_play in the play-action error test);
-  test_smoke_tool.py test_expected_live_and_item_failures and test_check_live_single_type; kodi_stubs
-  (xbmc.py Player callbacks / isPlaying / getPlayingFile / players / player_file, Monitor / waited /
-  wait_hook, getCondVisibility / visible; xbmcgui.py setMimeType / setContentLookup; xbmcplugin.py
-  state.cache), conftest.py resets of those knobs and of handler.live_error / config_patch; fixtures
-  tests/fixtures/live/ and live_errors.json
-- tools: fake_epgstation.py live routes (LIVE_FIXTURES, live_error, config_patch), snapshot_api.py --live,
-  Makefile snapshot-live, kodi_smoke.py ROOT_ACTIONS "live" and the live checks (check_live, check_live_gui,
-  live_item_failures, expected_live, streams_failures)
+No Kodi imports here: everything is unit-testable (like items.py). views/live.py turns the dicts into ListItems.
 """
 import math
 import re
@@ -61,7 +43,7 @@ def watchable(channel):
 
 
 def gr_subchannel_ids(channels):
-    """Ids of terrestrial sub-channels (025): every service of a GR broadcaster shares its networkId and the main one
+    """Ids of terrestrial sub-channels: every service of a GR broadcaster shares its networkId and the main one
     has the lowest serviceId; the others (NHK総合2, MBS2, ...) air programmes only now and then. Only watchable
     services count. Works on /channels and /schedules channel items. BS/CS are left alone (one network, many
     broadcasters)."""
@@ -74,7 +56,7 @@ def gr_subchannel_ids(channels):
 
 
 def drop_subchannels(schedules):
-    """A /schedules response without the GR sub-channels (025)."""
+    """A /schedules response without the GR sub-channels."""
     sub = gr_subchannel_ids([sch["channel"] for sch in schedules])
     return [sch for sch in schedules if sch["channel"]["id"] not in sub]
 

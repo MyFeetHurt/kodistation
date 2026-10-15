@@ -1,7 +1,7 @@
-"""Transcoded playback (backlog 011): play a recording as EPGStation HLS in one of the server's recorded-stream modes.
+"""Transcoded playback: play a recording as EPGStation HLS in one of the server's recorded-stream modes.
 
-No Kodi imports here: everything is unit-testable (like items.py and live.py). plugin.py drives the dialogs and the
-player loop with these helpers.
+No Kodi imports here: everything is unit-testable (like items.py and live.py). views/stream.py drives the dialogs
+and the player loop with these helpers.
 
 How EPGStation 2.10.0 does it (docs/api/README.md "Recorded HLS"): GET /streams/recorded/{videoFileId}/hls?ss=&mode=
 starts ffmpeg and answers {"streamId": n}; the playlist is the static file /streamfiles/stream<n>.m3u8 (not under
@@ -9,27 +9,9 @@ starts ffmpeg and answers {"streamId": n}; the playlist is the static file /stre
 its start or the last PUT /streams/{id}/keep; DELETE /streams/{id} stops it at once. Stream ids are reused, so the
 played URL carries our own nonce (?k=...; the static server ignores the query).
 
-Kodi (spike on Kodi 21.3, backlog 011 Log): inputstream.adaptive with play_timeshift_buffer starts the live-style
+Kodi (measured on Kodi 21.3): inputstream.adaptive with play_timeshift_buffer starts the live-style
 playlist at 0 and seeks within the encoded part; Kodi's own ffmpeg also starts at 0 but cannot seek. The absolute
 position is ss + Kodi's player time.
-
-The feature is meant to be removable. Hooks outside this module (code hooks are marked "transcoded playback (011)"):
-- items.py: recorded_item's "変換して再生" context entry (only when strings has "stream")
-- plugin.py: _item_strings "stream"; NON_DIRECTORY_ACTIONS "stream"; _channels(timeout=); do_stream,
-  _save_position, _stream_duration, _use_isa, _stream_state, _wait_ready, _stream_listitem, _keep, _play_stream,
-  _stop_stream, _remember_stream, _stop_stale_streams, _StreamPlayer, _playing_tag, _player_time, _stream_strings,
-  _stream_mode, _positions, _active_streams
-- api.py: start_recorded_hls(), streams(), keep_stream(), stop_stream(), stream_playlist_url(), stream_playlist_status()
-- settings.xml: category "stream" (setting stream_mode); strings 30088-30092, 30104-30109, 30280-30285 (both .po)
-- docs/api/README.md: "Recorded HLS"
-- tests: test_transcode.py, test_snapshot_stream.py; the stream tests in test_plugin.py and test_items.py; the write
-  audits in test_reserves.py / test_recorded.py (stream start / keep / stop); test_guide.py's import check (the wrapped
-  import); kodi_stubs (xbmc.py Player getTime / getPlayingItem / stop / stop_calls, player_time, player_tag,
-  abort_after; xbmcgui.py DialogProgress, Dialog.numeric); conftest.py resets; fixtures tests/fixtures/streams/;
-  test_fixture_policy.py "streams"
-- tools: fake_epgstation.py stream routes (Handler.streams, stream_ready_after, stream_error, stream_timer,
-  stream_clock, /streamfiles), dev/snapshot_stream.py + Makefile snapshot-stream, kodi_smoke.py streams_failures at
-  the end
 """
 import hashlib
 import json
@@ -40,10 +22,10 @@ from .store import atomic_write_json
 
 MIME = "application/vnd.apple.mpegurl"  # the server sends the playlist as video/MP2T: Kodi must not look it up
 ISA = "inputstream.adaptive"
-READY_TIMEOUT = 20  # seconds to wait for isEnable (decision D7)
+READY_TIMEOUT = 20  # seconds to wait for isEnable
 READY_STEP = 0.5  # seconds between GET /streams polls
 SERVER_TIMER = 15  # EPGStation stops a stream 15 s after its start or its last keep (StreamBaseModel.setStopTimer)
-# 011 review M1: one keep that times out plus its retry must still reach the server within SERVER_TIMER of the last
+# one keep that times out plus its retry must still reach the server within SERVER_TIMER of the last
 # good keep: KEEP_EVERY + KEEP_TIMEOUT + KEEP_RETRY + KEEP_TIMEOUT + 1 s loop step = 14 s.
 KEEP_EVERY = 5  # seconds between keeps
 KEEP_TIMEOUT = 3  # seconds a keep (and the ownership check after it) may take
@@ -112,7 +94,7 @@ def _item_file(item):
 
 def stream_state(streams, stream_id, video_file_id=None, mode=None):
     """Our stream in GET /streams: "ready" (listed with isEnable), "waiting" (listed, not yet enabled), "gone" (not
-    listed: ffmpeg failed or it was stopped) or "other" (011 review L2: the id is listed with another file or mode:
+    listed: ffmpeg failed or it was stopped) or "other" (the id is listed with another file or mode:
     the server reused the id of our stopped stream for another client). video_file_id / mode None: not compared."""
     items = (streams or {}).get("items") if isinstance(streams, dict) else None
     for item in items or []:
@@ -358,7 +340,7 @@ STREAMS_TIMEOUT = 3  # seconds for a GET /streams (readiness, ownership checks)
 
 
 def end_message(reason, strings=None, started=True):
-    """Toast when the stream ended by itself (011 review nit 3 / L1 / L3); None when the user ended it. started: our
+    """Toast when the stream ended by itself ; None when the user ended it. started: our
     item had played (a "gone" before that is a failed start, review round 2)."""
     s = with_defaults(strings)
     if reason in ("failed", "timeout") or (reason == "gone" and not started):
@@ -380,7 +362,7 @@ def stream_item(d, nonce):
 
 
 def isa_properties(auth_header=""):
-    """ListItem properties for inputstream.adaptive (decision D6): seek within the encoded part, start at 0."""
+    """ListItem properties for inputstream.adaptive: seek within the encoded part, start at 0."""
     props = {"inputstream": ISA, "inputstream.adaptive.play_timeshift_buffer": "true"}
     if auth_header:
         props["inputstream.adaptive.manifest_headers"] = auth_header
@@ -392,7 +374,7 @@ STALE_MAX_AGE_MS = 7 * 24 * 3600 * 1000  # an entry of stream_active/ older than
 
 
 class ActiveStreams:
-    """Streams this Kodi started and has not stopped yet (011 tester F1): one file per stream in the directory
+    """Streams this Kodi started and has not stopped yet: one file per stream in the directory
     stream_active/, `<sha1(server_url)[:12]>-<streamId>.json` = {"server_url", "streamId", "videoFileId", "mode",
     "startedAt"}, so each add is one atomic create and each remove one unlink (concurrent plugin runs never rewrite
     each other's entries).
@@ -449,7 +431,7 @@ class ActiveStreams:
 
 
 def stale_state(entry, streams, now_ms):
-    """What to do with an entry of stream_active/ at the next start (final review round), from GET /streams:
+    """What to do with an entry of stream_active/ at the next start, from GET /streams:
     - "old": older than STALE_MAX_AGE_MS -> forget it unchecked
     - "forget": the id is not listed, or listed with another (or no) file / mode -> forget it, no DELETE
     - "live": listed with the same file and mode but not yet enabled -> keep it, no DELETE
@@ -468,7 +450,7 @@ def stale_state(entry, streams, now_ms):
 
 
 class PositionStore:
-    """Where transcoded playback stopped, per recording (decision D2 B: separate from Kodi's direct-play resume).
+    """Where transcoded playback stopped, per recording (separate from Kodi's direct-play resume).
 
     stream_positions.json: {"server_url": ..., "positions": {"<recordedId>": seconds}} (oldest first, at most
     POSITIONS_MAX); another server_url starts empty. An unreadable file counts as empty."""

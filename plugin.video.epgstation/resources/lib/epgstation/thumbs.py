@@ -1,4 +1,4 @@
-"""Blank (black) thumbnail detection with a persistent cache (backlog 003; stdlib only, no Kodi imports).
+"""Blank (black) thumbnail detection with a persistent cache (stdlib only, no Kodi imports).
 
 EPGStation makes one JPEG frame per recording (thumbnailPosition seconds in). A black or near-blank frame
 compresses to very few bytes: on the dev and prod servers every black 480x270 thumbnail is <= 0.0272 bytes per
@@ -8,7 +8,7 @@ height (dimensions from the JPEG's SOF marker; no decoder needed, no PIL in Kodi
 A thumbnail id never gets new content (a regenerated one is a new id), so each id is fetched once ever: thumbs.json
 in the addon profile caches [bytes, width, height] per id (raw values, so BLANK_BPP can change without refetching),
 keyed by server URL like durations.json. A fetch the server answers with HTTP 404 or 5xx is cached as {"t": time}
-for NEGATIVE_TTL (review L2, like durations' UNKNOWN_TTL): shown, not asked again before then. Timeouts are not
+for NEGATIVE_TTL (like durations' UNKNOWN_TTL): shown, not asked again before then. Timeouts are not
 cached. Unknown and failed thumbnails count as good (they are shown). Each list open checks at most MAX_CHECKS unknown
 ids within DEADLINE seconds (Budget); the rest are checked on the next open. A warm open makes no request.
 """
@@ -24,8 +24,8 @@ MAX_CHECKS = 100
 WORKERS = 4
 TIMEOUT = 3
 DEADLINE = 1.0
-NEGATIVE_TTL = 24 * 3600  # review L2: a thumbnail id that answered 404 / 5xx is asked again after a day
-MAX_BYTES = 2 * 1024 * 1024  # review L4: read at most this much of a thumbnail; anything larger is not blank
+NEGATIVE_TTL = 24 * 3600  # a thumbnail id that answered 404 / 5xx is asked again after a day
+MAX_BYTES = 2 * 1024 * 1024  # read at most this much of a thumbnail; anything larger is not blank
 
 # Start-of-frame markers carry the frame size; C4 (DHT), C8 (JPG extension) and CC (DAC) are not frames.
 _SOF = frozenset(range(0xC0, 0xD0)) - {0xC4, 0xC8, 0xCC}
@@ -136,7 +136,7 @@ class ThumbCache:
         """Atomic write, only when something changed. Returns False if it could not write."""
         if not self.dirty:
             return True
-        # review L3: another plugin run may have saved meanwhile: keep its entries (ours win for the same id)
+        # another plugin run may have saved meanwhile: keep its entries (ours win for the same id)
         merged = {k: v for k, v in self._load().items() if k not in self.d}
         merged.update(self.d)
         while len(merged) > MAX_ENTRIES:
@@ -177,7 +177,7 @@ def check(ids, api, cache, budget=None):
 
 
 def settle(candidates, api, cache, budget):
-    """review M1: the blank thumbnail ids that decide a list whose choice depends on them (TV shows: candidates(blank)
+    """the blank thumbnail ids that decide a list whose choice depends on them (TV shows: candidates(blank)
     = each show's newest thumbnail not in blank). Repeats: every candidate already known blank in the cache is marked
     (no request), then the unknown candidates are checked; while new blanks turn up and the budget lasts, the next
     candidates are checked. A run of blank episodes of any length ends on the first good one (or none: the logo)."""

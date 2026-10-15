@@ -2,9 +2,9 @@
 
 [English](README.md) | 日本語
 
-![KODIstation デモ: Kodi でアートワーク付きの録画一覧、詳細画面、チャンネルの番組表、番組表からの録画予約](media/demo.gif)
+![KODIstation デモ: Kodi で TV番組 にまとまったシリーズ、番組情報、再生、ライブTV、チャンネルの番組表からの録画予約](media/demo.gif)
 
-フル動画 (1:57): [kodistation-demo.mp4](https://cdn.jsdelivr.net/gh/MyFeetHurt/kodistation@main/media/kodistation-demo.mp4) · スクリーンショット: [録画一覧](media/screenshot-recordings.png) · [詳細](media/screenshot-details.png) · [番組表](media/screenshot-guide.png) · [ライブTV](media/screenshot-live.png)
+フル動画 (1:46: 初回設定、TV番組、番組情報、ジャンル別、検索、ライブTV、番組表から録画、変換して再生): [kodistation-demo.mp4](https://cdn.jsdelivr.net/gh/MyFeetHurt/kodistation@main/media/kodistation-demo.mp4) · スクリーンショット: [録画一覧](media/screenshot-recordings.png) · [詳細](media/screenshot-details.png) · [番組表](media/screenshot-guide.png) · [ライブTV](media/screenshot-live.png)
 
 KODIstation は [EPGStation](https://github.com/l3tnun/EPGStation) 2.x 用の Kodi ビデオアドオン
 （`plugin.video.epgstation`）です。EPGStation の録画を、サーバーが持つ番組情報をすべて付けて一覧・再生でき、

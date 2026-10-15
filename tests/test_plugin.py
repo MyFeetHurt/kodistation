@@ -12,6 +12,8 @@ import xbmc
 import xbmcaddon
 import xbmcgui
 from conftest import FIXTURES, run_plugin
+from resources.lib.epgstation import ui
+from resources.lib.epgstation.views import recordings
 
 
 def test_root_menu(kodi):
@@ -594,16 +596,16 @@ def test_tvshows_from_stale_cache_when_server_down(kodi, fake_server):
     # another server URL is another cache; point the cache at the same server name instead
     from resources.lib.epgstation import plugin
 
-    real = plugin._server_url
-    plugin._server_url = lambda: fake_server
+    real = ui.server_url
+    ui.server_url = lambda: fake_server
     try:
         plugin_obj = plugin.Plugin(["plugin://plugin.video.epgstation/", "1", "?action=tvshows"])
         from resources.lib.epgstation.api import EPGStation
 
-        plugin_obj.api = EPGStation("http://127.0.0.1:9")
+        plugin_obj.ctx.api = EPGStation("http://127.0.0.1:9")
         plugin_obj.run()
     finally:
-        plugin._server_url = real
+        ui.server_url = real
     assert kodi.ended is True
     if not live:
         assert [li.label for _, li, _ in kodi.items] == first
@@ -863,7 +865,8 @@ def test_live_play_resolves_stream(kodi, fake_server):
     ch, sched = _live_play(kodi, fake_server)
     ok, li = kodi.resolved
     assert ok
-    assert li.getPath() == f"{fake_server}/api/streams/live/{ch['id']}/m2ts?mode=2"
+    # customrequest=GET: Kodi 22 stats the resolved URL first, and EPGStation answers no HEAD on a live stream
+    assert li.getPath() == f"{fake_server}/api/streams/live/{ch['id']}/m2ts?mode=2|customrequest=GET"
     assert li.mimetype == "video/mp2t" and li.content_lookup is False
     cur, _ = live.now_next(sched["programs"], time.time() * 1000)
     assert li.tag.data["title"] == items.to_half(cur["name"])
@@ -881,7 +884,8 @@ def test_live_play_with_auth_and_mode_setting(kodi, fake_server):
     xbmcaddon.settings.update(username="u", live_mode="1")
     ch, _ = _live_play(kodi, fake_server)
     path = kodi.resolved[1].getPath()
-    assert path.startswith(f"{fake_server}/api/streams/live/{ch['id']}/m2ts?mode=0|Authorization=Basic%20")
+    live_url = f"{fake_server}/api/streams/live/{ch['id']}/m2ts?mode=0"
+    assert path.startswith(live_url + "|customrequest=GET&Authorization=Basic%20")
     xbmcaddon.settings["live_mode"] = "2"
     kodi.reset()
     _live_play(kodi, fake_server)
@@ -908,7 +912,7 @@ def test_live_play_openapi_config_keys(kodi, fake_server, handler):
                             "streamConfig": {"live": {"m2ts": cfg["streamConfig"]["live"]["ts"]["m2ts"]}}}
     ch, _ = _live_play(kodi, fake_server)
     assert kodi.resolved[0] is True
-    assert kodi.resolved[1].getPath().endswith(f"/api/streams/live/{ch['id']}/m2ts?mode=2")
+    assert kodi.resolved[1].getPath().endswith(f"/api/streams/live/{ch['id']}/m2ts?mode=2|customrequest=GET")
 
 
 def test_live_play_disabled_on_server(kodi, fake_server, handler):
@@ -1172,11 +1176,10 @@ def _captured():
 @pytest.fixture
 def guide_clock(handler, monkeypatch):
     """Fake server and plugin agree on now = capturedAt (local days line up with the fixtures)."""
-    from resources.lib.epgstation import plugin
 
     now = _captured()
     handler.now = now
-    monkeypatch.setattr(plugin, "_now_ms", lambda: now)
+    monkeypatch.setattr(ui, "now_ms", lambda: now)
     return now
 
 
@@ -1428,21 +1431,19 @@ def _set(handler):
 @pytest.fixture
 def reserve_clock(handler, monkeypatch):
     """The plugin's clock = the fixture set's reserves_meta capturedAt ("recording now" lines up with the capture)."""
-    from resources.lib.epgstation import plugin
 
     path = os.path.join(handler.root, "reserves_meta.json")
     if not os.path.isfile(path):
         pytest.skip("no reservation fixtures")
     with open(path, encoding="utf-8") as f:
         now = json.load(f)["capturedAt"]
-    monkeypatch.setattr(plugin, "_now_ms", lambda: now)
+    monkeypatch.setattr(ui, "now_ms", lambda: now)
     return now
 
 
 def _set_clock(monkeypatch, now):
-    from resources.lib.epgstation import plugin
 
-    monkeypatch.setattr(plugin, "_now_ms", lambda: now)
+    monkeypatch.setattr(ui, "now_ms", lambda: now)
 
 
 def _all_reserves(fake_server):
@@ -1828,11 +1829,11 @@ def test_reserve_action_stop(kodi, fake_server, handler, reserve_clock, monkeypa
 def test_reserve_action_stop_waits_at_most_stop_wait(kodi, fake_server, handler, reserve_clock, monkeypatch):
     import xbmc
     import xbmcgui
-    from resources.lib.epgstation import plugin, reserves
+    from resources.lib.epgstation import reserves
 
     r, rec, now = _recording_reserve(handler, monkeypatch, reserve_clock)
     handler.stop_drops_recording = False  # the server is slow to stop it
-    monkeypatch.setattr(plugin, "_clock", lambda: xbmc.waited)  # time passes only in the waits (stub: no sleep)
+    monkeypatch.setattr(ui, "clock", lambda: xbmc.waited)  # time passes only in the waits (stub: no sleep)
     xbmcgui.yesno_answers.append(True)
     run_plugin(_action("stop", r["id"]))
     assert handler.writes == [("DELETE", f"/api/reserves/{r['id']}", "")]
@@ -2236,12 +2237,11 @@ def test_record_program_gone_or_ended(kodi, fake_server, handler, guide_clock, m
 
 def test_record_gone_while_the_dialog_is_open(kodi, fake_server, handler, guide_clock, monkeypatch):
     import xbmcgui
-    from resources.lib.epgstation import plugin
 
     li = _free_item(kodi, guide_clock)
     p = _detail(fake_server, int(li.props["epgstation.programId"]))
     xbmcgui.yesno_answers.append(True)
-    xbmcgui.yesno_hook = lambda: monkeypatch.setattr(plugin, "_now_ms", lambda: p["endAt"] + 1)
+    xbmcgui.yesno_hook = lambda: monkeypatch.setattr(ui, "now_ms", lambda: p["endAt"] + 1)
     run_plugin(_record_url(li))
     assert len(xbmcgui.yesnos) == 1 and handler.writes == []
     assert xbmcgui.notifications[-1][1] == "This program has ended"
@@ -2520,11 +2520,10 @@ def test_record_malformed_lists_answer_writes_nothing(kodi, fake_server, handler
 
 
 def _start_during_dialog(monkeypatch, p):
-    from resources.lib.epgstation import plugin
 
     def hook():
         if len(xbmcgui.yesnos) == 1:  # only while the first dialog is open
-            monkeypatch.setattr(plugin, "_now_ms", lambda: p["startAt"] + 1000)
+            monkeypatch.setattr(ui, "now_ms", lambda: p["startAt"] + 1000)
     return hook
 
 
@@ -2989,12 +2988,11 @@ def _has_dev2_droplog(fake_server):
 
 
 def test_droplog_not_found_and_too_large_toast(kodi, fake_server, monkeypatch):
-    from resources.lib.epgstation import plugin
 
     run_plugin("action=droplog&id=1&log=999999")  # not captured: 404
     assert xbmcgui.textviewers == [] and xbmcgui.notifications[-1][1] == "No drop log"
     if _has_dev2_droplog(fake_server):
-        monkeypatch.setattr(plugin, "DROPLOG_MAX_KB", 1)  # 2.txt is 1.9 KB: 416
+        monkeypatch.setattr(recordings, "DROPLOG_MAX_KB", 1)  # 2.txt is 1.9 KB: 416
         run_plugin("action=droplog&id=125&log=2")
         assert xbmcgui.textviewers == [] and xbmcgui.notifications[-1][1] == "Drop log too large"
     run_plugin("action=droplog&id=1&log=x")  # bad parameter: the usual toast, no request
@@ -3202,9 +3200,9 @@ def _run_stream(rec_id, handle="-1"):
 def stream_rec(kodi, fake_server, handler, monkeypatch):
     """A finished recording with a file; the plugin clock and the fake server's 15 s stream timer (011 review L4d)
     follow the stub monitor's waits."""
-    from resources.lib.epgstation import items, plugin
+    from resources.lib.epgstation import items
 
-    monkeypatch.setattr(plugin, "_clock", lambda: xbmc.waited)
+    monkeypatch.setattr(ui, "clock", lambda: xbmc.waited)
     handler.stream_timer, handler.stream_clock = 15, lambda: xbmc.waited
     rec = next(r for r in _get(fake_server, "/api/recorded?limit=50")["records"] if r.get("videoFiles"))
     rec = _get(fake_server, f"/api/recorded/{rec['id']}")
@@ -4141,3 +4139,50 @@ def test_guide_now_hides_gr_subchannels(kodi, fake_server):
     kodi.items.clear()
     run_plugin("action=guide_now&t=now")
     assert any(any(f"channelId={i}" in url for i in sub) for url, _, _ in kodi.items)
+
+
+# --- first start: no server URL yet ------------------------------------------------------------------------------
+
+def test_no_server_url_offers_settings_for_a_directory(kodi):
+    xbmcaddon.settings["server_url"] = "   "
+    xbmcgui.yesno_answers.append(True)
+    run_plugin("action=movies")
+    assert kodi.ended is False  # no request against a guessed address, the directory fails at once
+    assert xbmcgui.yesnos[0]["defaultbutton"] == xbmcgui.DLG_YESNO_YES_BTN
+    assert xbmcaddon.opened_settings == [True]
+    assert not xbmcgui.notifications
+    assert not xbmc.builtins  # still no URL after the settings: nothing to open
+
+
+def test_no_server_url_set_in_settings_opens_the_addon(kodi, monkeypatch, fake_server):
+    xbmcaddon.settings["server_url"] = ""
+    xbmcgui.yesno_answers.append(True)
+    monkeypatch.setattr(xbmcaddon.Addon, "openSettings",
+                        lambda self: xbmcaddon.settings.__setitem__("server_url", fake_server))
+    run_plugin("")
+    assert xbmc.builtins == ["ActivateWindow(Videos,plugin://plugin.video.epgstation/,return)"]
+
+
+def test_no_server_url_declined_keeps_settings_closed(kodi):
+    xbmcaddon.settings["server_url"] = ""
+    run_plugin("")  # the root menu
+    assert kodi.ended is False and xbmcgui.yesnos and xbmcaddon.opened_settings == []
+
+
+def test_no_server_url_resolves_a_play_request_as_failed(kodi):
+    xbmcaddon.settings["server_url"] = ""
+    run_plugin("action=play&id=1")
+    ok, _ = kodi.resolved
+    assert ok is False
+
+
+def test_server_url_without_scheme_works(kodi, fake_server):
+    xbmcaddon.settings["server_url"] = fake_server[len("http://"):] + "/"
+    run_plugin("action=list")
+    assert kodi.ended is True and kodi.items
+
+
+def test_addon_object_released_after_the_run(kodi):
+
+    run_plugin("")
+    assert ui._ADDON is None  # Kodi 22 warns about Addon objects left in memory after a run

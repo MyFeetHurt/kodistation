@@ -5,7 +5,8 @@
             <group id="1">
                 <setting id="server_url" type="string" label="30201">
                     <level>0</level>
-                    <default>http://localhost:8888</default>
+                    <default/>
+                    <constraints><allowempty>true</allowempty></constraints>
                     <control type="edit" format="string"><heading>30201</heading></control>
                 </setting>
                 <setting id="username" type="string" label="30202">
@@ -59,7 +60,7 @@
                 </setting>
             </group>
         </category>
-        <!-- live TV (012) -->
+        <!-- live TV -->
         <category id="live" label="30230">
             <group id="1">
                 <setting id="live_mode" type="integer" label="30231" help="30235">
@@ -74,7 +75,7 @@
                     </constraints>
                     <control type="list" format="string"/>
                 </setting>
-                <!-- hide terrestrial sub-channels (025) -->
+                <!-- hide terrestrial sub-channels -->
                 <setting id="show_subchannels" type="boolean" label="30236" help="30237">
                     <level>0</level>
                     <default>false</default>
@@ -82,7 +83,7 @@
                 </setting>
             </group>
         </category>
-        <!-- transcoded playback (011) -->
+        <!-- transcoded playback -->
         <category id="stream" label="30280">
             <group id="1">
                 <setting id="stream_mode" type="integer" label="30281" help="30283">
@@ -99,7 +100,7 @@
                 </setting>
             </group>
         </category>
-        <!-- record from the guide (014) -->
+        <!-- record from the guide -->
         <category id="record" label="30240">
             <group id="1">
                 <setting id="record_encode" type="integer" label="30241" help="30244">

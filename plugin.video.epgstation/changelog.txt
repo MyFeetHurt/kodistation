@@ -1,3 +1,10 @@
+v0.4.0 (2026-10-16)
+- Kodi 22: live TV starts in seconds again (it waited about a minute for the stream on Kodi 22 RC1)
+- First start: KODIstation asks for the EPGStation address and opens the settings; an address without http:// works
+- Protect / unprotect / delete show at once in Movies, TV shows and the genre lists
+- No more "left classes in memory" warnings on Kodi 22
+- Inside: the add-on is split into one module per feature (no change to what you see)
+
 v0.3.2 (2026-10-16)
 - ライブTV and the program guide list only each terrestrial broadcaster's main channel; a new ライブTV setting 地上波のサブチャンネルを表示 / Show terrestrial sub-channels brings back NHK総合2, MBS2 and the like
 

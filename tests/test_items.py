@@ -1155,3 +1155,9 @@ def test_stream_entry_absent_without_files_or_string(api):
     assert "stream" not in _actions(items.recorded_item(dict(rec, videoFiles=[]), api, {}, "ja", STREAM_STRINGS))
     assert "stream" not in _actions(items.recorded_item(rec, api, {}, "ja"))
     assert "stream" not in _actions(items.recorded_item(rec, api, {}, "ja", dict(STREAM_STRINGS, stream="")))
+
+
+def test_kodi_headers_with_protocol_options():
+    assert EPGStation("http://h:1").kodi_headers(customrequest="GET") == "|customrequest=GET"
+    auth = EPGStation("http://h:1", "user", "pw")
+    assert auth.kodi_headers(customrequest="GET") == "|customrequest=GET&Authorization=Basic%20dXNlcjpwdw%3D%3D"

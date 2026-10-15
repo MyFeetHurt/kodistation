@@ -1,7 +1,6 @@
 """Backlog 013: program guide logic (resources/lib/epgstation/guide.py), against the shared live fixtures."""
 import json
 import os
-import re
 import time
 
 import pytest
@@ -500,22 +499,3 @@ def test_guide_cache_corrupt_unwritable_and_errors(tmp_path):
         guide.GuideCache(str(tmp_path / "x"), "s", now=lambda: 1.0).schedules(FakeApi(fail=True), ["GR"])
 
 
-def test_removal_checklist_lists_every_hook():
-    """guide.py's docstring names every file with a program guide (013) hook."""
-    files = [os.path.join(ROOT, "Makefile")]
-    for top in ("plugin.video.epgstation", "tools", "tests"):
-        files += [os.path.join(d, f) for d, _, fs in os.walk(os.path.join(ROOT, top)) for f in fs
-                  if f.endswith((".py", ".xml", ".po")) and "fixtures" not in d and "__pycache__" not in d]
-    guide_py = os.path.abspath(guide.__file__)
-    hooks = {os.path.basename(f) for f in files
-             if os.path.abspath(f) != guide_py and "program guide (013)" in open(f, encoding="utf-8").read()}
-    assert {"plugin.py", "api.py", "fake_epgstation.py", "snapshot_api.py"} <= hooks
-    missing = sorted(h for h in hooks if h not in guide.__doc__)
-    assert not missing, missing
-    # L7: the import of guide in plugin.py carries the marker too
-    plugin = os.path.join(ROOT, "plugin.video.epgstation", "resources", "lib", "epgstation", "plugin.py")
-    # transcoded playback (011): ruff wraps the import in parentheses, the marker sits on its first line
-    imports = re.findall(r"^from \. import (?:\((.*?)^\)|(.*?)$)", open(plugin, encoding="utf-8").read(), re.M | re.S)
-    imports = [a or b for a, b in imports]
-    assert any(re.search(r"\bguide\b", text) for text in imports)
-    assert all("program guide (013)" in text for text in imports if re.search(r"\bguide\b", text)), imports

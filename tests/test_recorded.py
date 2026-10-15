@@ -13,6 +13,7 @@ from conftest import FIXTURES, ROOT, run_plugin
 from resources.lib.epgstation import api as api_mod
 from resources.lib.epgstation import items, library, recorded
 from test_reserves import _api_methods, _callers, _FakeDev, _src, _test_reserve_tool, local
+from write_audit import calls
 
 JA = {"protect": "保護", "unprotect": "保護を解除", "delete": "削除", "marker": "保護",
       "q_protect": "この録画を保護しますか? 自動削除されず、保護中は削除できません。",
@@ -162,21 +163,6 @@ def test_maybe_applied():
     assert not recorded.maybe_applied(500, "RecordedIsProtected") and not recorded.maybe_applied(503, None)
 
 
-def test_removal_checklist_names_every_hook():
-    """recorded.py's docstring names every file with a "protect / delete (006)" hook."""
-    files = []
-    for top in ("plugin.video.epgstation", "tools", "tests"):
-        files += [os.path.join(d, f) for d, _, fs in os.walk(os.path.join(ROOT, top)) for f in fs
-                  if f.endswith((".py", ".xml", ".po")) and "fixtures" not in d and "__pycache__" not in d]
-    me = os.path.abspath(recorded.__file__)
-    hooks = {os.path.basename(f) for f in files
-             if os.path.abspath(f) != me and "protect / delete (006)" in open(f, encoding="utf-8").read()}
-    assert {"plugin.py", "items.py", "library.py", "api.py", "fake_epgstation.py", "kodi_smoke.py",
-            "test_reserve.py"} <= hooks
-    missing = sorted(h for h in hooks if h not in recorded.__doc__)
-    assert not missing, missing
-
-
 # --- items.recorded_item ------------------------------------------------------------------------------------------
 
 def test_recorded_item_marker_plot_props_and_entries():
@@ -213,138 +199,11 @@ def test_movie_and_episode_labels_keep_the_marker():
 
 # --- library changed-marker ---------------------------------------------------------------------------------------
 
-from test_library import ListApi, _r  # noqa: E402
+from test_library import ListApi  # noqa: E402
 
 
 def _lib(tmp_path, now=1000.0):
     return library.Library(str(tmp_path), "x", now=lambda: now)
-
-
-def test_mark_changed_creates_and_merges(tmp_path):
-    library.mark_changed(str(tmp_path), "x", 5, "protect", now=lambda: 10.0)
-    library.mark_changed(str(tmp_path), "x", 6, "delete", now=lambda: 11.0)
-    library.mark_changed(str(tmp_path), "x", 5, "unprotect", now=lambda: 12.0)
-    library.mark_changed(str(tmp_path), "x", 7, None, now=lambda: 13.0)
-    data = json.load(open(tmp_path / library.CHANGED_FILE, encoding="utf-8"))
-    assert data == {"server": "x", "t": 13.0, "deleted": [6], "protect": {"5": False}}
-    library.mark_changed(str(tmp_path), "other", 8, "protect", now=lambda: 14.0)  # another server: replaced
-    data = json.load(open(tmp_path / library.CHANGED_FILE, encoding="utf-8"))
-    assert data == {"server": "other", "t": 14.0, "deleted": [], "protect": {"8": True}}
-    assert [p.name for p in tmp_path.iterdir()] == [library.CHANGED_FILE]  # atomic: no temp file left
-
-
-def test_newer_marker_refreshes_once_and_save_removes_it(tmp_path):
-    recs = [_r(1, 100, "A #1", isProtected=False), _r(2, 200, "B #1", isProtected=False)]
-    _lib(tmp_path, 1000.0).current(ListApi(recs, []))
-    library.mark_changed(str(tmp_path), "x", 2, "protect", now=lambda: 1001.0)
-    recs[1]["isProtected"] = True
-    api = ListApi(recs, [])
-    snap = _lib(tmp_path, 1002.0).current(api)
-    assert ("pages",) in api.calls and snap.records[2]["isProtected"] is True
-    assert not (tmp_path / library.CHANGED_FILE).exists()
-    api = ListApi(recs, [])
-    _lib(tmp_path, 1003.0).current(api)
-    assert ("pages",) not in api.calls  # warm again
-
-
-def test_older_marker_is_ignored(tmp_path):
-    recs = [_r(1, 100, "A #1"), _r(2, 200, "B #1")]
-    library.mark_changed(str(tmp_path), "x", 2, "protect", now=lambda: 900.0)
-    _lib(tmp_path, 1000.0).current(ListApi(recs, []))
-    library.mark_changed(str(tmp_path), "x", 2, "protect", now=lambda: 999.0)  # written before the cache
-    api = ListApi(recs, [])
-    _lib(tmp_path, 1001.0).current(api)
-    assert ("pages",) not in api.calls
-
-
-def test_marker_of_another_server_is_ignored(tmp_path):
-    recs = [_r(1, 100, "A #1"), _r(2, 200, "B #1")]
-    _lib(tmp_path, 1000.0).current(ListApi(recs, []))
-    library.mark_changed(str(tmp_path), "other", 2, "protect", now=lambda: 1001.0)
-    api = ListApi(recs, [])
-    _lib(tmp_path, 1002.0).current(api)
-    assert ("pages",) not in api.calls
-
-
-def test_marker_written_during_a_refresh_survives_and_forces_the_next(tmp_path):
-    """A write while a refresh runs: the saved cache may predate it, so the marker stays (covered = refresh start)."""
-    recs = [_r(1, 100, "A #1"), _r(2, 200, "B #1")]
-
-    class WriteDuring(ListApi):
-        def recorded_pages(self, total, page, workers, deadline):
-            out = super().recorded_pages(total, page, workers, deadline)
-            library.mark_changed(str(tmp_path), "x", 1, "delete", now=lambda: 1000.5)
-            return out
-
-    _lib(tmp_path, 1000.0).current(WriteDuring(recs, []))
-    assert (tmp_path / library.CHANGED_FILE).exists()
-    assert json.load(open(tmp_path / library.INDEX_FILE, encoding="utf-8"))["h"]["covered"] == 1000.0
-    api = ListApi(recs[1:], [])
-    snap = _lib(tmp_path, 1001.0).current(api)
-    assert ("pages",) in api.calls and [e["id"] for e in snap.entries] == [2]
-    assert not (tmp_path / library.CHANGED_FILE).exists()
-
-
-def test_concurrent_mark_changed_loses_nothing(tmp_path, monkeypatch):
-    """Review L2: two plugin runs marking at once (read, merge, write) both land."""
-    import threading
-
-    real = library._read_changed
-
-    def slow(directory):
-        out = real(directory)
-        time.sleep(0.05)  # widen the read-merge-write window
-        return out
-
-    monkeypatch.setattr(library, "_read_changed", slow)
-    threads = [threading.Thread(target=library.mark_changed, args=(str(tmp_path), "x", i, "delete")) for i in (1, 2, 3)]
-    for t in threads:
-        t.start()
-    for t in threads:
-        t.join()
-    data = json.load(open(tmp_path / library.CHANGED_FILE, encoding="utf-8"))
-    assert sorted(data["deleted"]) == [1, 2, 3]
-    assert not (tmp_path / library.LOCK_FILE).exists()
-
-
-def test_stale_or_stuck_lock_does_not_block(tmp_path, monkeypatch):
-    lock = tmp_path / library.LOCK_FILE
-    lock.write_text("", encoding="utf-8")
-    old = time.time() - 60
-    os.utime(lock, (old, old))  # left behind by a crashed run: taken over
-    assert library.mark_changed(str(tmp_path), "x", 1, "delete")
-    assert not lock.exists()
-    lock.write_text("", encoding="utf-8")  # fresh and never released: write anyway after the wait
-    monkeypatch.setattr(library, "LOCK_WAIT", 0.1)
-    t = time.monotonic()
-    assert library.mark_changed(str(tmp_path), "x", 2, "delete")
-    assert time.monotonic() - t < 1.0
-    assert json.load(open(tmp_path / library.CHANGED_FILE, encoding="utf-8"))["deleted"] == [1, 2]
-    assert lock.exists()  # not ours: left alone
-
-
-def test_stale_lock_that_cannot_be_removed_does_not_hang(tmp_path, monkeypatch):
-    """Review N2: a stale lock that cannot be removed must not spin: give up after LOCK_WAIT and go on unlocked."""
-    import threading
-
-    lock = tmp_path / library.LOCK_FILE
-    lock.write_text("", encoding="utf-8")
-    os.utime(lock, (time.time() - 60, time.time() - 60))
-    real = os.remove
-
-    def remove(p):
-        if str(p).endswith(library.LOCK_FILE):
-            raise PermissionError(p)
-        return real(p)
-
-    monkeypatch.setattr(library.os, "remove", remove)
-    done = []
-    t = threading.Thread(target=lambda: done.append(library.mark_changed(str(tmp_path), "x", 1, "protect")),
-                         daemon=True)
-    t.start()
-    t.join(3)  # timeout: LOCK_WAIT is 1 s
-    assert done == [True], "mark_changed still spinning after 3 s"
-    assert json.load(open(tmp_path / library.CHANGED_FILE, encoding="utf-8"))["protect"] == {"1": True}
 
 
 class DownApi(ListApi):
@@ -360,112 +219,8 @@ class Tick:
         return self.t
 
 
-def test_stale_fallback_after_write_during_refresh(tmp_path):
-    """Review M1: a write during a refresh (header t after the marker) still shows in a stale fallback."""
-    clock = Tick(1000.0)
-    recs = [_r(1, 100, "A #1", isProtected=False), _r(2, 200, "B #1")]
-
-    class WriteDuring(ListApi):
-        def recorded_pages(self, total, page, workers, deadline):
-            out = super().recorded_pages(total, page, workers, deadline)
-            library.mark_changed(str(tmp_path), "x", 2, "delete", now=lambda: 1000.5)
-            library.mark_changed(str(tmp_path), "x", 1, "protect", now=lambda: 1000.5)
-            clock.t = 1001.0  # the refresh finishes later: header t = 1001
-            return out
-
-    library.Library(str(tmp_path), "x", now=clock).current(WriteDuring(recs, []))
-    assert (tmp_path / library.CHANGED_FILE).exists()
-    clock.t = 1002.0
-    snap = library.Library(str(tmp_path), "x", now=clock).current(DownApi(recs, []))
-    assert 2 not in snap.records, "deleted recording shown by the stale fallback"
-    assert snap.records[1]["isProtected"] is True, "old protect flag shown by the stale fallback"
-
-
-def test_marker_removed_by_concurrent_save(tmp_path, monkeypatch):
-    """Review M1: a marker written while _save writes the records file is not removed."""
-    clock = Tick(1000.0)
-    recs = [_r(1, 100, "A #1", isProtected=False), _r(2, 200, "B #1")]
-    real = library.store.atomic_write_json
-    hit = []
-
-    def write(path, obj):
-        ok = real(path, obj)
-        if path.endswith(library.RECORDS_FILE) and not hit:
-            hit.append(1)
-            library.mark_changed(str(tmp_path), "x", 1, "protect", now=lambda: 1000.9)
-        return ok
-
-    library.mark_changed(str(tmp_path), "x", 2, None, now=lambda: 999.0)  # an older marker exists
-    monkeypatch.setattr(library.store, "atomic_write_json", write)
-    library.Library(str(tmp_path), "x", now=clock).current(ListApi(recs, []))
-    monkeypatch.setattr(library.store, "atomic_write_json", real)
-    assert os.path.exists(tmp_path / library.CHANGED_FILE), "the protect marker of 1 was removed"
-
-
-def test_out_of_order_refreshes(tmp_path):
-    """Review N1: an older refresh that saves after a newer one must not bring its stale state back."""
-    clock = Tick(1000.0)
-    old = [_r(1, 100, "A #1", isProtected=False), _r(2, 200, "B #1")]
-    new = [_r(1, 100, "A #1", isProtected=True)]  # 1 protected, 2 deleted at 1000.5
-
-    class Slow(ListApi):  # R1 began at 1000, its pages predate the write; R2 runs and saves inside it
-        def recorded_pages(self, total, page, workers, deadline):
-            out = super().recorded_pages(total, page, workers, deadline)
-            library.mark_changed(str(tmp_path), "x", 2, "delete", now=lambda: 1000.5)
-            library.mark_changed(str(tmp_path), "x", 1, "protect", now=lambda: 1000.5)
-            clock.t = 1001.0
-            library.Library(str(tmp_path), "x", now=clock).current(ListApi(new, []))  # R2 covers the marker
-            clock.t = 1002.0
-            return out
-
-    library.Library(str(tmp_path), "x", now=clock).current(Slow(old, []))  # R1 saves last
-    assert json.load(open(tmp_path / library.INDEX_FILE, encoding="utf-8"))["h"]["covered"] == 1001.0
-    clock.t = 1003.0
-    snap = library.Library(str(tmp_path), "x", now=clock).current(DownApi(old, []))
-    assert 2 not in snap.records and snap.records[1]["isProtected"] is True
-
-
-def test_cache_without_covered_refreshes_on_any_marker(tmp_path):
-    """A cache written before covered existed: any marker of this server means a refresh."""
-    recs = [_r(1, 100, "A #1"), _r(2, 200, "B #1")]
-    _lib(tmp_path, 1000.0).current(ListApi(recs, []))
-    for name in (library.INDEX_FILE, library.RECORDS_FILE):
-        data = json.load(open(tmp_path / name, encoding="utf-8"))
-        del data["h"]["covered"]
-        json.dump(data, open(tmp_path / name, "w", encoding="utf-8"))
-    library.mark_changed(str(tmp_path), "x", 2, "protect", now=lambda: 10.0)
-    api = ListApi(recs, [])
-    _lib(tmp_path, 1001.0).current(api)
-    assert ("pages",) in api.calls
-
-
-def test_stale_fallback_applies_deletions_and_protect_flags(tmp_path):
-    recs = [_r(1, 100, "A #1", isProtected=False), _r(2, 200, "B #1", isProtected=True), _r(3, 300, "C #1")]
-    _lib(tmp_path, 1000.0).current(ListApi(recs, []))
-    library.mark_changed(str(tmp_path), "x", 3, "delete", now=lambda: 1001.0)
-    library.mark_changed(str(tmp_path), "x", 1, "protect", now=lambda: 1001.0)
-    library.mark_changed(str(tmp_path), "x", 2, "unprotect", now=lambda: 1001.0)
-    snap = _lib(tmp_path, 1002.0).current(DownApi(recs, []))
-    assert snap.stale and [e["id"] for e in snap.entries] == [2, 1] and set(snap.records) == {1, 2}
-    assert snap.records[1]["isProtected"] is True and snap.records[2]["isProtected"] is False
-    snap = _lib(tmp_path, 1002.0).current(DownApi(recs, []), with_records=False)
-    assert [e["id"] for e in snap.entries] == [2, 1]
-    assert (tmp_path / library.CHANGED_FILE).exists()  # kept until a successful refresh
-
-
 @pytest.mark.parametrize("content", ["{", "[]", '{"server": "x", "t": "soon"}', '{"server": "x", "t": 2000,'
                                      ' "deleted": "1", "protect": []}', '{"server": "x", "t": 2000, "deleted": ["a"]}'])
-def test_bad_marker_file_is_ignored_safely(tmp_path, content):
-    recs = [_r(1, 100, "A #1"), _r(2, 200, "B #1")]
-    _lib(tmp_path, 1000.0).current(ListApi(recs, []))
-    (tmp_path / library.CHANGED_FILE).write_text(content, encoding="utf-8")
-    snap = _lib(tmp_path, 1001.0).current(ListApi(recs, []))
-    assert [e["id"] for e in snap.entries] == [2, 1]
-    snap = _lib(tmp_path, 1001.0).current(DownApi(recs, []))
-    assert [e["id"] for e in snap.entries] == [2, 1]
-    library.mark_changed(str(tmp_path), "x", 1, "delete", now=lambda: 1002.0)  # a bad file is replaced
-    data = json.load(open(tmp_path / library.CHANGED_FILE, encoding="utf-8"))
-    assert data["deleted"] == [1]
 
 
 # --- api.py -------------------------------------------------------------------------------------------------------
@@ -624,23 +379,38 @@ def test_recorded_action_yes_writes_once(kodi, fake_server, handler, tmp_path, o
     logs = [m for _, m in xbmc.logs if "[epgstation] recorded:" in m]
     assert logs == [f"[epgstation] recorded: {op} recorded {rid} ({items.to_half(rec['name'])})",
                     f"[epgstation] recorded: {op} recorded {rid} ({items.to_half(rec['name'])}) done"]
-    marker = json.load(open(_changed_path(xbmcvfs), encoding="utf-8"))
-    assert marker["server"] == fake_server
+    assert _library_invalidated(xbmcvfs)
     if op == "delete":
-        assert marker["deleted"] == [rid]
         assert _get(fake_server, "/api/recorded?limit=1")["total"] == total - 1
     else:
-        assert marker["protect"] == {str(rid): op == "protect"}
         assert _get(fake_server, f"/api/recorded/{rid}")["isProtected"] is (op == "protect")
 
 
-def _changed_path(xbmcvfs):
-    return os.path.join(xbmcvfs.translatePath("special://profile/addon_data/plugin.video.epgstation/"),
-                        library.CHANGED_FILE)
+def _library_invalidated(xbmcvfs):
+    """The library index is gone: the next Movies / TV shows open refreshes."""
+    return not os.path.exists(os.path.join(
+        xbmcvfs.translatePath("special://profile/addon_data/plugin.video.epgstation/"), library.INDEX_FILE))
 
 
 def _list_item(kodi, rid):
     return next((li for _, li, _ in kodi.items if li.props.get("epgstation.recordedId") == str(rid)), None)
+
+
+def test_protect_shows_in_a_warm_library_list(kodi, fake_server, handler):
+    """A protect keeps the library signature: the warm cache is invalidated, so the next library list shows it."""
+    import xbmcgui
+
+    rec = _target(fake_server, handler)
+    g = rec["genre1"], rec.get("subGenre1")
+    url = f"action=list&genre={g[0]}&subGenre={g[1]}"  # a list from the library cache
+    run_plugin(url)
+    assert recorded.DEFAULT_STRINGS["marker"] not in _list_item(kodi, rec["id"]).label
+    kodi.reset()
+    xbmcgui.yesno_answers.append(True)
+    run_plugin(_action("protect", rec["id"]))
+    kodi.reset()
+    run_plugin(url)
+    assert recorded.DEFAULT_STRINGS["marker"] in _list_item(kodi, rec["id"]).label
 
 
 def test_recorded_action_list_follows(kodi, fake_server, handler):
@@ -707,13 +477,12 @@ def test_recorded_action_state_changed_before_the_dialog(kodi, fake_server, hand
 
 
 def test_refusal_marks_the_library_changed(kodi, fake_server, handler):
-    """Codex P2b: protection changed elsewhere -> the warm library refreshes on its next open (marker, no op)."""
+    """Protection changed elsewhere -> the warm library refreshes on its next open."""
     import xbmcvfs
 
     rec = _target(fake_server, handler, protected=True)
     run_plugin(_action("delete", rec["id"]))
-    marker = json.load(open(_changed_path(xbmcvfs), encoding="utf-8"))
-    assert marker["server"] == fake_server and marker["deleted"] == [] and marker["protect"] == {}
+    assert _library_invalidated(xbmcvfs)
     assert handler.writes == []
 
 
@@ -723,7 +492,7 @@ def test_gone_marks_the_recording_deleted(kodi, fake_server, handler):
     rec = _target(fake_server, handler)
     handler.recorded_deleted.add(rec["id"])  # deleted elsewhere
     run_plugin(_action("protect", rec["id"]))
-    assert json.load(open(_changed_path(xbmcvfs), encoding="utf-8"))["deleted"] == [rec["id"]]
+    assert _library_invalidated(xbmcvfs)
     assert handler.writes == []
 
 
@@ -841,10 +610,7 @@ def test_recorded_action_server_error(kodi, fake_server, handler, errors, want, 
     failed = [m for _, m in xbmc.logs if "[epgstation] recorded:" in m and "failed" in m]
     assert len(failed) == 1 and errors in failed[0]
     assert ("may still have applied" in failed[0]) == (errors == "IPCTimeout")
-    marker = json.load(open(_changed_path(xbmcvfs), encoding="utf-8"))
-    # always a refresh; the deletion is recorded when it may have applied, or the server says it is gone (review L4)
-    gone_or_maybe = errors in ("IPCTimeout", "RecordedIdIsNotFound", "RecordedIsNull")
-    assert marker["deleted"] == ([rec["id"]] if gone_or_maybe else [])
+    assert _library_invalidated(xbmcvfs)  # always: the write may have applied, or the recording is gone
 
 
 def test_protect_answered_gone_marks_the_recording_deleted(kodi, fake_server, handler):
@@ -855,8 +621,7 @@ def test_protect_answered_gone_marks_the_recording_deleted(kodi, fake_server, ha
     handler.write_error = (500, {"code": 500, "message": "Internal Server Error", "errors": "RecordedIsNull"})
     xbmcgui.yesno_answers.append(True)
     run_plugin(_action("protect", rec["id"]))
-    marker = json.load(open(_changed_path(xbmcvfs), encoding="utf-8"))
-    assert marker["deleted"] == [rec["id"]] and marker["protect"] == {}
+    assert _library_invalidated(xbmcvfs)
     assert xbmcgui.notifications[-1][1] == "Recording is gone"
 
 
@@ -1109,19 +874,15 @@ def _method_body(src, name):
     return src.split(f"    def {name}(", 1)[1].split("\n    def ", 1)[0]
 
 
-def test_recorded_writes_are_called_only_from_do_recorded_action():
-    hits = {}
-    for name, src in _addon_sources().items():
-        for m in re.finditer(r"\.(protect_recorded|unprotect_recorded|delete_recorded)\(|\bapi\.(put)\(", src):
-            hits.setdefault(name, []).append(m.group(1) or m.group(2))
-    assert hits == {"plugin.py": ["protect_recorded", "unprotect_recorded", "delete_recorded"]}  # 018: below
-    plugin = _src("plugin.py")
-    body = _method_body(plugin, "do_recorded_action") + _method_body(plugin, "_recorded_write")
-    assert len(re.findall(r"\.(protect_recorded|unprotect_recorded|delete_recorded)\(", body)) == 3
-    write = _method_body(plugin, "_recorded_write")
-    assert "_recorded_write(" in _method_body(plugin, "do_recorded_action")
-    assert _callers(plugin, r"\b_recorded_write\(") == {"do_recorded_action"}
-    assert re.search(r"\.(protect_recorded|unprotect_recorded|delete_recorded)\(", write)
+def test_recorded_writes_are_called_only_from_the_confirmed_write():
+    """protect / unprotect / delete / delete a file: only in views/recorded_actions._write, which only
+    recorded_action calls (after its confirmation and re-check); no view calls api.put directly."""
+    assert calls({"put"}, receiver="api") == {}
+    assert calls({"protect_recorded", "unprotect_recorded", "delete_recorded", "delete_video_file"}) == {
+        ("views/recorded_actions.py", "_write"): ["delete_recorded", "delete_video_file", "protect_recorded",
+                                                  "unprotect_recorded"]}
+    view = "views/recorded_actions.py"
+    assert calls({"_write"}, [view]) == {(view, "recorded_action"): ["_write"]}
 
 
 def test_pure_modules_have_no_write_call():
@@ -1143,13 +904,13 @@ def test_strings_in_both_languages():
 
 def test_strings_po_match_the_defaults():
     """en_gb msgids = recorded.DEFAULT_STRINGS; ja msgstrs = the plan's words (JA above)."""
-    from resources.lib.epgstation import plugin
+    from resources.lib.epgstation.views import recorded_actions
 
     path = os.path.join(ROOT, "plugin.video.epgstation", "resources", "language", "resource.language.ja_jp",
                         "strings.po")
     found = {int(i): (en, ja) for i, en, ja in re.findall(r'msgctxt "#(\d+)"\nmsgid "([^"]*)"\nmsgstr "([^"]*)"',
                                                           open(path, encoding="utf-8").read())}
-    for key, sid in plugin.RECORDED_STRINGS:
+    for key, sid in recorded_actions.RECORDED_STRINGS:
         assert found[sid][0] == recorded.DEFAULT_STRINGS[key], key
         assert found[sid][1] == JA[key], key
 
@@ -1447,9 +1208,9 @@ def test_delete_recorded_accepts_adopted_but_never_a_snapshot_one(tmp_path, monk
 
 def test_kodi_recorded_pattern_matches_the_plugin_log():
     tool = _test_reserve_tool()
-    plugin = _src("plugin.py")
-    assert 'f"[epgstation] recorded: {what}' in plugin
-    assert "what = f\"{op} recorded {rec['id']} ({items.to_half(rec['name'])})\"" in plugin
+    view = _src(os.path.join("views", "recorded_actions.py"))
+    assert 'ui.log(f"recorded: {what}' in view
+    assert "what = f\"{op} recorded {rec['id']} ({items.to_half(rec['name'])})\"" in view
     lines = tool.kodi_recorded(_kodi(_kts(NOW), "recorded: unprotect recorded 70 (KODIstation test) done") + "\n"
                                + _kodi(_kts(NOW), "reserve: cancel reserve 3 (x)"))
     assert lines == [(NOW, "unprotect", 70)]
@@ -1521,21 +1282,6 @@ def test_error_message_and_refusal_for_a_missing_file():
     assert recorded.error_message(500, "VideoFileIsNotFound") == "File is gone"
     assert recorded.is_refusal("VideoFileIsNotFound") and recorded.is_refusal("RecordedIsProtected")
     assert not recorded.is_refusal("IPCTimeout") and not recorded.is_refusal(None)
-
-
-def test_removal_checklist_names_every_018_hook():
-    """recorded.py's docstring names every file with a "delete a file (018)" hook."""
-    files = []
-    for top in ("plugin.video.epgstation", "tools", "tests"):
-        files += [os.path.join(d, f) for d, _, fs in os.walk(os.path.join(ROOT, top)) for f in fs
-                  if f.endswith((".py", ".xml", ".po")) and "fixtures" not in d and "__pycache__" not in d]
-    me = os.path.abspath(recorded.__file__)
-    hooks = {os.path.basename(f) for f in files
-             if os.path.abspath(f) != me and "delete a file (018)" in open(f, encoding="utf-8").read()}
-    assert {"plugin.py", "items.py", "api.py", "fake_epgstation.py", "test_reserve.py", "test_recorded.py"} <= hooks
-    section = recorded.__doc__.split("Delete a file (018)", 1)[1]
-    missing = sorted(h for h in hooks if h not in section)
-    assert not missing, missing
 
 
 def _dev_only(handler):
@@ -1639,8 +1385,7 @@ def test_delete_file_yes_writes_once(kodi, fake_server, handler, idx, vid, keep)
     what = f"delete_file recorded 9 ({items.to_half(rec['name'])}) file {vid} ({files[vid]['name']})"
     assert [m for _, m in xbmc.logs if "[epgstation] recorded:" in m] == [f"[epgstation] recorded: {what}",
                                                                           f"[epgstation] recorded: {what} done"]
-    marker = json.load(open(_changed_path(xbmcvfs), encoding="utf-8"))
-    assert marker["server"] == fake_server and marker["deleted"] == [] and marker["protect"] == {}  # refresh only
+    assert _library_invalidated(xbmcvfs)
     assert [v["id"] for v in _get(fake_server, "/api/recorded/9")["videoFiles"]] == [keep]
     kodi.reset()
     run_plugin("action=list")
@@ -1791,8 +1536,7 @@ def test_delete_file_server_error(kodi, fake_server, handler, errors, want, icon
     assert xbmc.builtins == ["Container.Refresh"]
     failed = [m for _, m in xbmc.logs if "[epgstation] recorded:" in m and "failed" in m]
     assert len(failed) == 1 and errors in failed[0] and "delete_file recorded 9" in failed[0]
-    marker = json.load(open(_changed_path(xbmcvfs), encoding="utf-8"))
-    assert marker["deleted"] == ([9] if errors == "RecordedIdIsNotFound" else []) and marker["protect"] == {}
+    assert _library_invalidated(xbmcvfs)
 
 
 def test_delete_file_no_answer(kodi, fake_server, handler, monkeypatch):
@@ -1837,11 +1581,7 @@ def test_delete_file_stale_entry_on_a_single_file_recording(kodi, fake_server, h
     assert xbmcgui.notifications[-1][1] == "Recording has changed"
 
 
-def test_delete_video_file_is_called_only_from_recorded_write():
-    hits = {name: len(re.findall(r"\.delete_video_file\(", src)) for name, src in _addon_sources().items()}
-    assert {k: v for k, v in hits.items() if v} == {"plugin.py": 1}
-    plugin = _src("plugin.py")
-    assert re.search(r"\.delete_video_file\(", _method_body(plugin, "_recorded_write"))
+def test_delete_video_file_api_path():
     methods = _api_methods(_src("api.py"))
     assert re.search(r'self\.delete\(f"/videos/\{int\(video_file_id\)\}"\)', methods["delete_video_file"])
 
@@ -1949,22 +1689,17 @@ def test_audit_refuses_a_video_get_or_put_path(tmp_path, monkeypatch):
 
 
 def test_stream_writes_are_called_only_from_the_stream_path():
-    """Transcoded playback (011): the stream start / keep / stop are reached only from do_stream and its helpers."""
-    hits = {}
-    for name, src in _addon_sources().items():
-        for m in re.finditer(r"\.(start_recorded_hls|keep_stream|stop_stream)\(", src):
-            hits.setdefault(name, []).append(m.group(1))
-    # tester F1: _stop_stale_streams stops what an earlier run left (after a GET /streams match)
-    assert hits == {"plugin.py": ["start_recorded_hls", "stop_stream", "keep_stream", "stop_stream"]}
-    plugin = _src("plugin.py")
-    assert "start_recorded_hls(" in _method_body(plugin, "do_stream")
-    assert "keep_stream(" in plugin.split("    def _keep(", 1)[1].split("\n    def ", 1)[0]
-    assert _callers(plugin, r"\b_keep\(") == {"_wait_ready", "_play_stream"}
-    assert "stop_stream(" in plugin.split("    def _stop_stream(", 1)[1].split("\n    def ", 1)[0]
-    assert _callers(plugin, r"\.stop_stream\(") == {"_stop_stream", "_stop_stale_streams"}
-    assert _callers(plugin, r"\b_stop_stale_streams\(") == {"do_stream"}
-    assert _callers(plugin, r"\b_stop_stream\(") == {"do_stream"}
-    # 011 review nit 5: the transcode start path and the stream write paths live in their api methods only
+    """Transcoded playback: the stream start / keep / stop are reached only from views/stream.stream and its helpers;
+    _stop_stale_streams stops what an earlier run left (after a GET /streams match)."""
+    assert calls({"start_recorded_hls", "keep_stream", "stop_stream"}) == {
+        ("views/stream.py", "stream"): ["start_recorded_hls"],
+        ("views/stream.py", "_keep"): ["keep_stream"],
+        ("views/stream.py", "_stop"): ["stop_stream"],
+        ("views/stream.py", "_stop_stale_streams"): ["stop_stream"]}
+    assert calls({"_keep", "_stop", "_stop_stale_streams"}, ["views/stream.py"]) == {
+        ("views/stream.py", "_wait_ready"): ["_keep"], ("views/stream.py", "_play"): ["_keep", "_keep"],
+        ("views/stream.py", "stream"): ["_stop", "_stop_stale_streams"]}
+    # the transcode start path and the stream write paths live in their api methods only
     api = _src("api.py")
     assert _callers(api, r"/streams/recorded/") == {"start_recorded_hls"}
     assert _callers(api, r'"/streams/\{int\(stream_id\)\}/keep"') == {"keep_stream"}

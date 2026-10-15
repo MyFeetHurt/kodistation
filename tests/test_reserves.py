@@ -11,6 +11,7 @@ from conftest import FIXTURES, ROOT
 from resources.lib.epgstation import api as api_mod
 from resources.lib.epgstation import epgmeta, items, reserves
 from resources.lib.epgstation.genres import item_genres
+from write_audit import calls
 
 SETS = ["dev", "dev2"]
 MIN = 60 * 1000
@@ -503,16 +504,15 @@ def _callers(src, pattern):
 
 
 def test_api_writes_section_is_exactly_the_audited_writes():
-    """007 + 014 + 006 + 018 + 011: the writes section holds six DELETEs, one POST, three PUTs and the GET that starts
-    a transcode (011), nothing else writes."""
+    """The writes section holds six DELETEs, one POST, three PUTs and the GET that starts a transcode; nothing else
+    writes."""
     src = _src("api.py")
-    section = src.split("# --- writes (006, 007, 014, 018)", 1)
+    section = src.split("# --- writes:", 1)
     assert len(section) == 2
     body = section[1].split("\n    # --- end of writes", 1)[0]
     writes = re.findall(r"^    def (\w+)\(", body, re.M)
     assert writes == ["delete", "cancel_reserve", "remove_skip", "remove_overlap", "post", "create_reserve", "put",
                       "protect_recorded", "unprotect_recorded", "delete_recorded", "delete_video_file",
-                      # transcoded playback (011)
                       "start_recorded_hls", "streams", "keep_stream", "stop_stream", "stream_playlist_url"]
     assert '"PATCH"' not in src and "method=\"POST\"" not in src
     assert src.count('"POST"') == 1 and '"POST"' in _api_methods(src)["post"]
@@ -542,25 +542,15 @@ def _method_body(src, name):
     return src.split(f"    def {name}(self):", 1)[1].split("\n    def ", 1)[0]
 
 
-def test_write_methods_are_called_only_from_do_reserve_action():
-    """The 007 DELETEs only in do_reserve_action (006's delete_recorded is test_recorded's)."""
-    callers = {}
-    for name, src in _addon_sources().items():
-        for m in re.finditer(r"\.(cancel_reserve|remove_skip|remove_overlap|delete)\(", src):
-            callers.setdefault(name, []).append(m.group(1))
-    assert set(callers) == {"plugin.py"}
-    plugin = _src("plugin.py")
-    outside = plugin.replace(_method_body(plugin, "do_reserve_action"), "")
-    assert not re.search(r"\.(cancel_reserve|remove_skip|remove_overlap|delete)\(", outside)
+def test_reservation_writes_are_called_only_from_reserve_action():
+    """The reservation DELETEs only in views/reservations.reserve_action (delete_recorded is test_recorded's)."""
+    assert calls({"cancel_reserve", "remove_skip", "remove_overlap", "delete"}) == {
+        ("views/reservations.py", "reserve_action"): ["cancel_reserve", "remove_overlap", "remove_skip"]}
 
 
-def test_create_reserve_is_called_only_from_do_record():
-    """014: exactly one create_reserve call in the addon, in plugin.do_record; nothing calls api.post directly."""
-    hits = {name: len(re.findall(r"\.create_reserve\(", src)) for name, src in _addon_sources().items()}
-    assert {k: v for k, v in hits.items() if v} == {"plugin.py": 1}
-    plugin = _src("plugin.py")
-    assert re.search(r"\.create_reserve\(", _method_body(plugin, "do_record"))
-    assert not any(re.search(r"\.post\(", src) for src in _addon_sources().values())
+def test_create_reserve_is_called_only_from_record():
+    """Exactly one create_reserve call in the addon, in views/reservations.record; nothing calls api.post directly."""
+    assert calls({"create_reserve", "post"}) == {("views/reservations.py", "record"): ["create_reserve"]}
 
 
 def test_guide_live_items_have_no_api_write_call():
@@ -1086,29 +1076,15 @@ def test_dev_tool_adopt_without_snapshot_refuses(tmp_path, monkeypatch):
         tool.adopt(dev, 41, 5)
 
 
-def test_dev_tool_kodi_log_matches_do_record_format():
-    """The pattern adopt looks for is the exact line plugin.do_record logs."""
+def test_dev_tool_kodi_log_matches_record_format():
+    """The pattern adopt looks for is the exact line views/reservations.record logs (ui.log adds "[epgstation] ")."""
     tool = _test_reserve_tool()
-    plugin = _src("plugin.py")
-    assert 'f"[epgstation] reserve: {what} done: reserve {reserve_id}"' in plugin
-    assert 'what = f"add program {program_id} ({items.to_half(program[\'name\'])})"' in plugin
+    view = _src(os.path.join("views", "reservations.py"))
+    assert 'ui.log(f"reserve: {what} done: reserve {reserve_id}")' in view
+    assert 'what = f"add program {program_id} ({items.to_half(program[\'name\'])})"' in view
+    assert 'xbmc.log(f"[epgstation] {message}", level)' in _src("ui.py")
     found = tool.kodi_adds(_kodi_line(local(2026, 10, 12, 21, 0, ) + 5, 327220206442898, 520, "東京空色さんぽ (再)"))
     assert found == [(local(2026, 10, 12, 21, 0) + 5, 327220206442898, 520)]
-
-
-def test_record_from_the_guide_removal_checklist_names_every_hook():
-    """reserves.py's docstring names every file with a "record from the guide (014)" hook."""
-    files = []
-    for top in ("plugin.video.epgstation", "tools", "tests"):
-        files += [os.path.join(d, f) for d, _, fs in os.walk(os.path.join(ROOT, top)) for f in fs
-                  if f.endswith((".py", ".xml", ".po")) and "fixtures" not in d and "__pycache__" not in d]
-    me = os.path.abspath(reserves.__file__)
-    hooks = {os.path.basename(f) for f in files
-             if os.path.abspath(f) != me and "record from the guide (014)" in open(f, encoding="utf-8").read()}
-    assert {"plugin.py", "guide.py", "api.py", "settings.xml", "fake_epgstation.py", "kodi_smoke.py",
-            "test_reserve.py"} <= hooks
-    missing = sorted(h for h in hooks if h not in reserves.__doc__)
-    assert not missing, missing
 
 
 def test_add_error_ipc_timeout_is_no_answer():

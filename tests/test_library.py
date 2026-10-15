@@ -620,3 +620,30 @@ def test_invalid_genres_in_the_index_mean_cold(tmp_path, fake_server, handler, b
 
 def test_valid_pairs_accepts_missing_subgenre():
     assert library._valid_pairs([[3, None], [6, 0]]) and library._valid_pairs([])
+
+
+# --- invalidate (after a write) --------------------------------------------------------------------------------------
+
+def test_invalidate_refreshes_next_open_and_reuses_parsed_metadata(tmp_path, fake_server, handler, monkeypatch):
+    api = EPGStation(fake_server)
+    _lib(tmp_path, fake_server).current(api)
+    assert library.invalidate(str(tmp_path), fake_server)
+    assert not (tmp_path / library.INDEX_FILE).exists() and (tmp_path / library.RECORDS_FILE).exists()
+    parses = _count_parses(monkeypatch)
+    since = len(_log(fake_server))
+    snap = _lib(tmp_path, fake_server).current(api)
+    assert "page:0+500" in _paths(fake_server, since)  # a full fetch, not the warm cache
+    assert set(parses) <= _live_ids(fake_server)  # finished recordings are not parsed again
+    assert (tmp_path / library.INDEX_FILE).exists() and snap.entries
+
+
+def test_invalidate_leaves_another_servers_cache(tmp_path, fake_server, handler):
+    _lib(tmp_path, fake_server).current(EPGStation(fake_server))
+    assert library.invalidate(str(tmp_path), "http://other:8888")
+    assert (tmp_path / library.INDEX_FILE).exists()
+
+
+def test_invalidate_without_or_with_a_broken_index(tmp_path):
+    assert library.invalidate(str(tmp_path), "http://x")  # nothing there
+    (tmp_path / library.INDEX_FILE).write_text("{broken", encoding="utf-8")
+    assert library.invalidate(str(tmp_path), "http://x") and not (tmp_path / library.INDEX_FILE).exists()

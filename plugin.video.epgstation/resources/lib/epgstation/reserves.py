@@ -1,8 +1,8 @@
-"""Scheduled recordings (backlog 007): the 録画予約 list, its 競合 / 重複 / 除外 folders and the reservation actions.
+"""Scheduled recordings: the 録画予約 list, its 競合 / 重複 / 除外 folders and the reservation actions.
 
-No Kodi imports here: everything is unit-testable (like items.py). plugin.py turns the dicts into ListItems and runs
-the one audited write path (do_reserve_action). This module never imports live or guide: 014 (record from the guide)
-will make the guide import reserves, never the other way round.
+No Kodi imports here: everything is unit-testable (like items.py). views/reservations.py turns the dicts into
+ListItems and runs the writes. This module never imports live or guide: the guide imports it for its reservation
+markers, never the other way round.
 
 Reservation states follow EPGStation's getCnts priority: conflict > skip > overlap > normal.
 Actions (one context entry per reservation, chosen by action_for):
@@ -10,32 +10,6 @@ Actions (one context entry per reservation, chosen by action_for):
     cancel     normal or conflict, not ended  DELETE /reserves/{id}   (manual: deleted; rule: becomes a skip)
     unskip     skip, not ended                DELETE /reserves/{id}/skip
     unoverlap  overlap, not ended             DELETE /reserves/{id}/overlap
-
-The feature is meant to be removable. Hooks outside this module (code hooks are marked "reservations (007)"):
-- plugin.py: do_root (録画予約), do_reserves, do_reserve_info, do_reserve_action, _reserve_strings, _reserve_error,
-  _all_reserves, _reserve_of_recording, _wait_stopped, SORT_RESERVES, NON_DIRECTORY_ACTIONS, _item_strings "stop",
-  the reserves import
-- items.py: root_menu (録画予約), recorded_item (録画を停止 entry), rule_name (shared with rule_folders), "stop" string
-- api.py: the "writes (007)" section (delete, cancel_reserve, remove_skip, remove_overlap), _request, reserves(),
-  reserve(), reserve_lists(), ApiError.detail
-- strings 30030-30057 (both .po)
-- tests: test_reserves.py; the reservation tests in test_plugin.py; test_smoke_tool.py reservation tests; kodi_stubs
-  (xbmcgui.py Dialog.yesno / yesno_answers / yesnos / DLG_YESNO_NO_BTN, xbmc.py executebuiltin / builtins /
-  getLocalizedString), conftest.py resets; fixtures api/reserves.json, api/reserves/cnts.json, reserves_meta.json
-- tools: fake_epgstation.py (reservation state, writes, write_error), snapshot_api.py --reserves (make
-  snapshot-reserves), kodi_smoke.py check_reserves, tools/dev/test_reserve.py
-
-Record from the guide (backlog 014) builds on this module (guide.py imports it, never the other way round). Remove it
-first; its hooks are marked "record from the guide (014)":
-- this module: the "record from the guide (014)" section (RESERVED, lists_index … add_error) and its strings
-- guide.py: program_item / program_items index and records, mark_channels
-- plugin.py: do_record, _reserve_index, _records_for, _encode_mode, _record_strings, _mark_strings, RECORD_STRINGS,
-  the guide listings' index/records (do_live, do_guide_now, do_guide_genre, do_guide_channel), NON_DIRECTORY_ACTIONS
-- api.py: post(), create_reserve() in the writes section, _request's body
-- settings.xml: category "record" (record_encode); strings 30061-30071, 30240-30244 (both .po)
-- tests: the 014 sections of test_reserves.py, test_guide.py, test_plugin.py and test_smoke_tool.py
-- tools: fake_epgstation.py POST /reserves (add_conflict), kodi_smoke.py guide/live reservation markers,
-  tools/dev/test_reserve.py pick / snapshot / adopt
 """
 import time
 
@@ -82,7 +56,6 @@ DEFAULT_STRINGS = {
     "rule": "Rule: {0}", "manual": "Manual reservation", "line_conflict": "Conflict: will not record",
     "line_overlap": "Recorded before: will not record", "line_skip": "Skipped: will not record",
     "recording": "Recording now", "weekdays": "Sun,Mon,Tue,Wed,Thu,Fri,Sat",
-    # record from the guide (014)
     "record": "Record", "q_record": "Record this program?",
     "q_record_airing": "On air: recording starts now, partway in",
     "encode": "Encode: {0}", "done_record": "Recording scheduled", "done_record_now": "Recording started",
@@ -358,12 +331,12 @@ def context_stop(rec_id, strings=None):
     return (_strings(strings)["stop"], plugin_url(action="reserve_action", op="stop", recordedId=rec_id))
 
 
-# --- record from the guide (014) ----------------------------------------------------------------------------------
+# --- record from the guide ----------------------------------------------------------------------------------
 # The guide marks its programs from one GET /reserves/lists over the listed window (never cached) and offers one
 # reservation entry per program: 録画 when it is not reserved, else this module's action (action_for).
 
 RECORD_WAIT = 5.0  # seconds to wait for an on-air add to show in /recording (EPGStation starts it a moment later)
-RESERVED = "[COLOR red]○[/COLOR] "  # reserved, will record (● while it records, 007's RECORDING)
+RESERVED = "[COLOR red]○[/COLOR] "  # reserved, will record (● while it records: RECORDING)
 LIST_STATES = (("normal", NORMAL), ("conflicts", "conflict"), ("skips", "skip"), ("overlaps", "overlap"))
 _RANK = {state: i for i, (_, state) in enumerate(LIST_STATES)}  # the guide's choice: normal > conflict > skip > overlap
 
@@ -395,7 +368,7 @@ def program_reserve(stub, program, channel_id=None):
 
 
 def marker(r, records, strings=None):
-    """Label prefix of a reserved program: 007's [競合] / [除外] / [重複], ● while /recording lists it, else ○."""
+    """Label prefix of a reserved program: the state's [競合] / [除外] / [重複], ● while /recording lists it, else ○."""
     s = _strings(strings)
     state = classify(r)
     if state != NORMAL:
@@ -404,7 +377,7 @@ def marker(r, records, strings=None):
 
 
 def reserve_line(r, strings=None):
-    """Plot line(s) under the time line: 録画予約: ルール / 手動, plus 007's state line for conflict/skip/overlap."""
+    """Plot line(s) under the time line: 録画予約: ルール / 手動, plus the state line for conflict/skip/overlap."""
     s = _strings(strings)
     line = s["by_rule"] if _is_rule(r) else s["by_manual"]
     state = classify(r)
@@ -441,7 +414,7 @@ def record_context(program, channel, strings=None):
 
 
 def reserve_context(r, now_ms, records=(), strings=None):
-    """007's entry for a reserved program, None when it has none (ended)."""
+    """The reservation entry for a reserved program, None when it has none (ended)."""
     op = action_for(r, now_ms, records)
     if op is None:
         return None

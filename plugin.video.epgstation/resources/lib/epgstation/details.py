@@ -1,8 +1,9 @@
-"""Full EPG detail view (backlog 002): the 【録画情報】 block at the end of a recording's plot, the audio / aspect
+"""Full EPG detail view: the 【録画情報】 block at the end of a recording's plot, the audio / aspect
 stream details and the drop log text.
 
 No Kodi imports here: everything is unit-testable (like items.py). items.recorded_item builds the block and the
-ドロップログ context entry; plugin.py adds the AudioStreamDetail / aspect and runs do_droplog (one GET on demand).
+ドロップログ context entry; ui.listitem adds the AudioStreamDetail / aspect; views/recordings.droplog
+shows the log (one GET on demand).
 
 API facts (EPGStation 2.10.0 source):
 - The drop counts come with every RecordedItem as `dropLogFile` {id, errorCnt, dropCnt, scramblingCnt}; openapi.json
@@ -111,14 +112,14 @@ def drop_counts(rec):
 
 
 def has_drop_problem(rec):
-    """User decision 2a: the ドロップログ entry only when any of drop / error / scrambling count > 0."""
+    """The ドロップログ entry only when any of drop / error / scrambling count > 0."""
     counts = drop_counts(rec)
     return bool(counts and any(counts) and rec["dropLogFile"].get("id") is not None)
 
 
 def detail_lines(rec, channel, genres, lang="ja", strings=None, extra=()):
     """lang (genre_language) picks the audio label and the genre separator; genres come in already localized; labels
-    from strings. English genres are joined with "; " (ARIB subgenre names contain ", ", subgenres (009)).
+    from strings. English genres are joined with "; " (ARIB subgenre names contain ", ").
     The 【録画情報】 block: header, then only the lines with data, in this order: 放送, ジャンル, 映像, 音声,
     ファイル, ドロップ (red when drop or scrambling > 0), エンコード中, then `extra` (Partial 長さ, 保護)."""
     s = block_strings(strings)

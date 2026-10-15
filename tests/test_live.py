@@ -425,23 +425,6 @@ def _marked(text, needle):
                for n, line in enumerate(lines))
 
 
-def test_removal_checklist_lists_every_hook():
-    """L5: live.py's docstring names every file with a live TV (012) hook; the root entries carry the marker."""
-    files = [os.path.join(ROOT, "Makefile")]
-    for top in ("plugin.video.epgstation", "tools", "tests"):
-        files += [os.path.join(d, f) for d, _, fs in os.walk(os.path.join(ROOT, top)) for f in fs
-                  if f.endswith((".py", ".xml", ".po")) and "fixtures" not in d and "__pycache__" not in d]
-    live_py = os.path.abspath(live.__file__)
-    hooks = {os.path.basename(f) for f in files
-             if os.path.abspath(f) != live_py and "live TV (012)" in open(f, encoding="utf-8").read()}
-    hooks |= {"test_live.py", "test_smoke_tool.py", "test_plugin.py", "fake_epgstation.py", "snapshot_api.py"}
-    missing = sorted(h for h in hooks if h not in live.__doc__)
-    assert not missing, missing
-    plugin = os.path.join(ROOT, "plugin.video.epgstation", "resources", "lib", "epgstation", "plugin.py")
-    assert _marked(open(plugin, encoding="utf-8").read(), '("live", 30015)')
-    assert _marked(open(os.path.join(ROOT, "tools", "kodi_smoke.py"), encoding="utf-8").read(), "ROOT_ACTIONS = ")
-
-
 def test_start_watch_switch_from_recording_tester_sequence():
     """Tester L-b (Kodi 21.3): a recording plays, then live_play: onPlayBackStarted (ours), one onPlayBackStopped,
     no separate stop for the recording and no failure dialog. That stop is ours and a failure: probe at once."""

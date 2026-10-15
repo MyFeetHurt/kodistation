@@ -1,29 +1,14 @@
-"""Program guide (backlog 013): what's on now or at an hour, programs by genre, a channel's schedule by day.
+"""Program guide: what's on now or at an hour, programs by genre, a channel's schedule by day.
 
-No Kodi imports here: everything is unit-testable (like items.py and live.py). plugin.py turns the dicts into
-ListItems. It builds on live.py (watchable, time_range, progress, the live_play path): remove the guide before
-removing live TV.
-
-The feature is meant to be removable. Hooks outside this module (code hooks are marked "program guide (013)"):
-- plugin.py: do_live (guide.menu folders, guide.with_schedule_context), do_guide_now, do_guide_genres,
-  do_guide_genre, do_guide_channel, do_guide_info, _guide_strings, _guide_cache, _now_ms, _guide_channel,
-  SORT_GUIDE, the "update" context entries of _listitem, NON_DIRECTORY_ACTIONS, BadParamError, _int_param, the guide
-  import
-- api.py: schedule_detail(), ApiError.status
-- strings 30020-30029 (both .po)
-- tests: test_guide.py; the guide tests in test_plugin.py; test_smoke_tool.py guide tests; kodi_stubs
-  (xbmcplugin.py SORT_METHOD_TITLE / GENRE / STUDIO, xbmcgui.py Dialog.info / info_shown), conftest.py resets of
-  info_shown and handler.now; fixture tests/fixtures/live/guide.json
-- tools: fake_epgstation.py (guide.json merge, Handler.now, per-day /schedules/{id}, /schedules/detail),
-  snapshot_api.py snapshot_guide, kodi_smoke.py check_guide / check_guide_gui / guide checks in check_live
-Record from the guide (014) hooks into program_item / program_items / mark_channels here; its removal list is in
-reserves.py.
+No Kodi imports here: everything is unit-testable (like items.py and live.py). views/guide.py turns the dicts
+into ListItems. It builds on live.py (watchable, time_range, progress, the live_play path) and on reserves.py
+(the reservation markers).
 """
 import bisect
 import json
 import time
 
-from . import epgmeta, live, reserves, store  # record from the guide (014): reserves
+from . import epgmeta, live, reserves, store  # reserves
 from .genres import GENRE_EN, GENRE_JA, item_genres
 from .items import (
     MENU_ICONS,
@@ -263,7 +248,7 @@ def _channel_params(channel):
 
 
 def day_folders(channel, buckets, now_ms, strings=None, api=None):
-    """"今日 10/11(日) (18)" … per day with programs (the channel's 番組表). artwork (003): icon = the channel's logo
+    """"今日 10/11(日) (18)" … per day with programs (the channel's 番組表). icon = the channel's logo
     when it has one (hasLogoData, and api given), else DefaultPVRGuide.png."""
     s = _strings(strings)
     icon = MENU_ICONS["guide"]
@@ -283,7 +268,7 @@ def schedule_context(channel, strings=None):
 
 
 def with_schedule_context(dicts, strings=None):
-    """Adds the 番組表 entry to 012 channel items (live.channel_items)."""
+    """Adds the 番組表 entry to live channel items (live.channel_items)."""
     for d in dicts:
         p = d["props"]
         channel = {"id": p["epgstation.channelId"], "name": p["epgstation.channel"], "hasLogoData": bool(d["art"])}
@@ -300,7 +285,7 @@ def time_line(program, now_ms, strings=None):
 
 
 def program_info(channel_name, program, now_ms, lang="ja", strings=None, on_error=None, reserve_line=""):
-    """InfoTagVideo fields of a guide program (mediatype video, like the live channels). reserve_line (014): the
+    """InfoTagVideo fields of a guide program (mediatype video, like the live channels). reserve_line: the
     reservation line(s) right under the time line."""
     name = to_half(program["name"])
     meta = epgmeta.metadata(program, on_error=(lambda e: on_error(program, e)) if on_error else None)
@@ -328,9 +313,9 @@ def program_item(channel, program, api, now_ms, lang="ja", strings=None, style="
     """Item dict of a guide program. style: "slot" ("channel  name"), "genre" ("HH:MM channel  name", tomorrow
     "明日 HH:MM …") or "day" ("HH:MM  name"). On air: ▶, plays the channel (live_play); else guide_info (Kodi's
     information dialog). context=False: no 番組表 entry (inside the channel's own schedule).
-    Record from the guide (014): index = reserves.lists_index of the listing's GET /reserves/lists (None: it failed,
+    Record from the guide: index = reserves.lists_index of the listing's GET /reserves/lists (None: it failed,
     no marker and no reservation entry), records = /recording; the marker goes after ▶, the reservation entry
-    (録画 or 007's action) after 番組表."""
+    (録画 or the reservation's action) after 番組表."""
     s = _strings(strings)
     ch_name = to_half(channel.get("name") or str(channel["id"]))
     name = to_half(program["name"])
@@ -344,7 +329,7 @@ def program_item(channel, program, api, now_ms, lang="ja", strings=None, style="
     else:
         label = f"{ch_name}  {name}"
     mark, line, entry = reserves.guide_mark(dict(program, channelId=channel["id"]), ch_name, index, records, now_ms,
-                                            strings)  # record from the guide (014)
+                                            strings)
     info = program_info(ch_name, program, now_ms, lang, s, on_error, line)
     art = {}
     if channel.get("hasLogoData"):
@@ -374,7 +359,7 @@ def program_item(channel, program, api, now_ms, lang="ja", strings=None, style="
     }
     if on_air:
         # the existing play path (one stream, no HEAD, start watch); playcount 0 and own empty stream details keep
-        # Kodi's DB state of the live_play URL off the item (012's watched-mark fix)
+        # Kodi's DB state of the live_play URL off the item (else Kodi marks the channel watched)
         info["playcount"] = 0
         d.update(path=plugin_url(action="live_play", channelId=channel["id"], name=ch_name), playable=True,
                  stream={"codec": "", "width": 0, "height": 0, "duration": info["duration"]})
@@ -391,7 +376,7 @@ def program_items(rows, api, now_ms, lang="ja", strings=None, style="slot", on_e
 
 
 def mark_channels(dicts, programs, index, records, now_ms, strings=None):
-    """Record from the guide (014): marker and reservation entry (after 番組表) on 012 channel items
+    """Record from the guide: marker and reservation entry (after 番組表) on live channel items
     (live.channel_items) for their current program. programs: {programId: program}; index None: unchanged."""
     if index is None:
         return dicts

@@ -31,12 +31,12 @@ PUBLIC_REPO_BASE_URL := https://myfeethurt.github.io/kodistation/
 REPO_BASE_URL ?= $(PUBLIC_REPO_BASE_URL)
 REPO_DIR      ?= dist/repo
 ZIPS := dist/$(ADDON)-$(VERSION).zip dist/$(REPO_ID)-$(REPO_VERSION).zip
-# Demo video (backlog 021): raw clips and tour logs are private, outside the tree. The demo targets need the dev
-# Kodi in local.env (KODI_HOST, KODI_SSH_USER): the localhost default and any loopback host are refused.
-DEMO_RAW ?= $(HOME)/.cache/epgstation-kodi/demo-021
-DEMO_HOST = python3 tools/demo/kodi_drive.py --check-host
+# Demo video: raw clips and step logs are private, outside the tree. demo-shoot films one clip on the Kodi in
+# local.env (KODI_HOST, KODI_SSH_USER; GBM, JSON-RPC and EventServer on); FREE_ONLY=<EPGStation URL> keeps its paid
+# channels off camera, SHOOT_ARGS passes more (--forbid TITLE, --server, --episode, --channel, --recording).
+DEMO_RAW ?= $(HOME)/.cache/epgstation-kodi/demo
 
-.PHONY: help lint test check build zip repo release deploy smoke screenshot ci audit-public export-public export-pages-init snapshot-prod snapshot-dev snapshot-dev2 snapshot-schedules snapshot-live snapshot-reserves snapshot-stream fake fake-prod clean demo-probe demo-capture demo-edit demo-check
+.PHONY: help lint test check build zip repo release deploy smoke screenshot ci audit-public export-public export-pages-init snapshot-prod snapshot-dev snapshot-dev2 snapshot-schedules snapshot-live snapshot-reserves snapshot-stream fake fake-prod clean demo-shoot demo-edit demo-check
 
 help:            ## list targets
 	@grep -E '^[a-z-]+:.*##' $(MAKEFILE_LIST) | sed 's/:.*##/\t/'
@@ -126,16 +126,14 @@ fake:            ## serve the dev2 fixtures as a fake EPGStation on :8889
 fake-prod:       ## serve the private prod snapshot (make snapshot-prod) on :8889, for manual checks only
 	python3 tools/fake_epgstation.py $(PROD_SNAPSHOT_DIR) --port 8889
 
-demo-probe:      ## demo video (021): 3 s KMS capture probe on the Kodi VM (frame size, fps); changes nothing
-	host=$$($(DEMO_HOST)) && ssh "$${KODI_SSH_USER:+$$KODI_SSH_USER@}$$host" sh -s probe < tools/demo/capture.sh
-
-demo-capture:    ## film one tour section: make demo-capture SECTION=A [TOUR_ARGS='--program P --channel C' | '--rec REC']
-	@$(DEMO_HOST) >/dev/null
-	@[ -n "$(SECTION)" ] || { echo "usage: make demo-capture SECTION=A|B|C|D|E" >&2; exit 1; }
+demo-shoot:      ## film one demo clip: make demo-shoot CLIP=firstrun|library|live|record|stream NAME=F|L|V|R|S
+	@[ -n "$(KODI_HOST_GIVEN)" ] && [ -n "$(CLIP)" ] && [ -n "$(NAME)" ] || \
+		{ echo "usage: make demo-shoot CLIP=... NAME=... (KODI_HOST in local.env)" >&2; exit 1; }
 	mkdir -p -m 700 $(DEMO_RAW)
-	python3 tools/demo/tour.py $(SECTION) --capture $(SECTION)1 --log $(DEMO_RAW)/$(SECTION)1.jsonl $(TOUR_ARGS)
+	python3 tools/demo/shoot.py $(CLIP) --name $(NAME) --out $(DEMO_RAW) --kodi $(KODI_HOST_GIVEN) \
+		--ssh "$${KODI_SSH_USER:+$$KODI_SSH_USER@}$(KODI_HOST_GIVEN)" $(if $(FREE_ONLY),--free-only $(FREE_ONLY)) $(SHOOT_ARGS)
 
-demo-edit:       ## build media/ from the clips in DEMO_RAW (scp'd from the VM's ~/demo-021) and tools/demo/cuts.json
+demo-edit:       ## build media/ from the clips in DEMO_RAW and tools/demo/cuts.json
 	python3 tools/demo/edit.py --raw $(DEMO_RAW) --out media --work $(DEMO_RAW)
 
 demo-check:      ## check the media files: no metadata, no text chunks/comments, no private literal, size/length limits

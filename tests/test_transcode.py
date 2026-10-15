@@ -1,7 +1,6 @@
 """Transcoded playback (backlog 011): transcode.py helpers (no Kodi, no server)."""
 import json
 import os
-import re
 
 import pytest
 from conftest import FIXTURES
@@ -469,41 +468,6 @@ def test_position_store_unreadable(tmp_path, content):
     store = transcode.PositionStore(str(path), "u")
     assert store.get(1) is None and store.get(2) is None
     assert store.get(3) == (120 if '"3": 120' in content else None)
-
-
-def test_removal_checklist_lists_every_hook():
-    """transcode.py's docstring names every file with a transcoded playback (011) hook."""
-    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    files = [os.path.join(root, "Makefile")]
-    for top in ("plugin.video.epgstation", "tools", "tests"):
-        files += [os.path.join(d, f) for d, _, fs in os.walk(os.path.join(root, top)) for f in fs
-                  if f.endswith((".py", ".xml", ".po")) and "fixtures" not in d and "__pycache__" not in d]
-    own = {os.path.abspath(transcode.__file__), os.path.abspath(__file__)}
-    hooks = {os.path.basename(f) for f in files
-             if os.path.abspath(f) not in own and "(011)" in open(f, encoding="utf-8").read()}
-    assert {"plugin.py", "api.py", "items.py", "fake_epgstation.py", "settings.xml", "kodi_smoke.py"} <= hooks
-    missing = sorted(h for h in hooks if h not in transcode.__doc__)
-    assert not missing, missing
-
-
-
-def test_removal_checklist_names_real_plugin_and_api_hooks():
-    """011 review nit 1: every plugin.py / api.py name in the checklist exists, and every function of plugin.py's
-    transcoded playback section is listed."""
-    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    lib = os.path.join(root, "plugin.video.epgstation", "resources", "lib", "epgstation")
-    plugin = open(os.path.join(lib, "plugin.py"), encoding="utf-8").read()
-    api = open(os.path.join(lib, "api.py"), encoding="utf-8").read()
-    named = set(re.findall(r"\b_?[a-z_]*[A-Za-z][A-Za-z0-9_]*\b", transcode.__doc__.split("- plugin.py:", 1)[1]
-                           .split("\n- api.py:", 1)[0]))
-    for name in named - {"stream", "timeout", "NON_DIRECTORY_ACTIONS"}:
-        assert re.search(rf"\b(def|class) {name}\b", plugin), name
-    assert "NON_DIRECTORY_ACTIONS" in plugin
-    section = plugin.split("# --- transcoded playback (011) ---", 1)[1].split("\n    # --- ", 1)[0]
-    for name in re.findall(r"^    def (\w+)\(", section, re.M):
-        assert name in named, name
-    for name in re.findall(r"(\w+)\(\)", transcode.__doc__.split("- api.py:", 1)[1].split("\n- ", 1)[0]):
-        assert re.search(rf"    def {name}\(", api), name
 
 
 # --- ActiveStreams (tester F1, final review round: one file per stream) -------------------------------------------

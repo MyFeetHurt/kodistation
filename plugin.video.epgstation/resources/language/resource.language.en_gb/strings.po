@@ -608,3 +608,7 @@ msgstr ""
 msgctxt "#30285"
 msgid "The server's last mode (e.g. 480p)"
 msgstr ""
+
+msgctxt "#30290"
+msgid "The EPGStation server address is not set yet. Open the settings now?"
+msgstr ""

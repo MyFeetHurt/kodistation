@@ -608,3 +608,7 @@ msgstr "サーバーの1番目のモード (例: 720p)"
 msgctxt "#30285"
 msgid "The server's last mode (e.g. 480p)"
 msgstr "サーバーの最後のモード (例: 480p)"
+
+msgctxt "#30290"
+msgid "The EPGStation server address is not set yet. Open the settings now?"
+msgstr "EPGStation サーバーのアドレスが未設定です。設定を開きますか？"

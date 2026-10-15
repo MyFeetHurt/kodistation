@@ -16,7 +16,7 @@ import urllib.request
 # Sent with every request: the dev smoke tells the addon's requests apart in EPGStation's access log by it.
 USER_AGENT = "KODIstation/1 (plugin.video.epgstation)"
 
-# review L5: every worker pool started by this run; join_workers() waits for them after the plugin handed its answer to
+# every worker pool started by this run; join_workers() waits for them after the plugin handed its answer to
 # Kodi, so no worker thread outlives the run into Kodi's interpreter teardown (one LanguageInvoker segfault was seen).
 PENDING = []
 _PENDING_LOCK = threading.Lock()
@@ -36,11 +36,22 @@ def join_workers():
         pool.shutdown(wait=True)
 
 
+def normalize_url(text):
+    """The server URL as typed in the settings, made usable: trimmed, "http://" added when no scheme was typed
+    ("epgstation.lan:8888"), no trailing slash. "" when nothing was typed."""
+    text = (text or "").strip()
+    if not text:
+        return ""
+    if "://" not in text:
+        text = "http://" + text
+    return text.rstrip("/")
+
+
 class ApiError(Exception):
     def __init__(self, message, status=None, detail=None):
         super().__init__(message)
-        self.status = status  # program guide (013): HTTP status when the server answered with an error
-        self.detail = detail  # reservations (007): the server's "errors" / "message" text of a JSON error body
+        self.status = status  # HTTP status when the server answered with an error
+        self.detail = detail  # the server's "errors" / "message" text of a JSON error body
 
 
 def _error_detail(err):
@@ -98,8 +109,8 @@ class EPGStation:
             raise ApiError(f"{path}: {e}") from e
 
     def get(self, path, _timeout=None, _raw=False, _limit=None, _empty_ok=False, **params):
-        """GET: the parsed JSON (_raw=True: the body bytes, at most _limit of them, artwork (003)). ApiError also for an
-        empty answer, unless _empty_ok (002: an empty raw body comes back as b"")."""
+        """GET: the parsed JSON (_raw=True: the body bytes, at most _limit of them). ApiError also for an
+        empty answer, unless _empty_ok (an empty raw body then comes back as b"")."""
         data = self._request("GET", path, params, _timeout, raw=_raw, limit=_limit)
         if not data and (data is None or _raw) and not (_empty_ok and _raw):
             raise ApiError(f"{path}: empty answer")
@@ -132,7 +143,7 @@ class EPGStation:
         timeout = max(0.1, min(self.timeout, deadline))
         end = time.monotonic() + deadline
         pool = concurrent.futures.ThreadPoolExecutor(max_workers=min(workers, len(offsets)))
-        _track(pool)  # review L5
+        _track(pool)
         try:
             futures = [pool.submit(self.recorded, offset=off, limit=page, timeout=timeout) for off in offsets]
             _, not_done = concurrent.futures.wait(futures, timeout=max(0.0, end - time.monotonic()))
@@ -147,7 +158,7 @@ class EPGStation:
     def recorded_item(self, recorded_id, half_width=False):
         return self.get(f"/recorded/{recorded_id}", isHalfWidth=half_width)
 
-    def drop_log(self, drop_log_file_id, maxsize=512, timeout=None):  # full detail view (002): a GET, not a write
+    def drop_log(self, drop_log_file_id, maxsize=512, timeout=None):  # a GET, not a write
         """GET /dropLogs/{dropLogFileId}?maxsize=<KB>: the drop log text (text/plain; "" for an empty log). ApiError
         status 404 (unknown id) or 416 (larger than maxsize KB). The id is RecordedItem.dropLogFile.id (the spec's
         `dropLog`)."""
@@ -196,13 +207,13 @@ class EPGStation:
         """
         return _parallel(self.duration, ids, workers, timeout, deadline)
 
-    def thumbnail(self, thumbnail_id, timeout=None, limit=None):  # artwork (003): blank-thumbnail check (thumbs.py)
+    def thumbnail(self, thumbnail_id, timeout=None, limit=None):  # blank-thumbnail check (thumbs.py)
         """GET /thumbnails/{id}: the JPEG bytes (at most `limit`). ApiError (status 404) when it does not exist."""
         return self.get(f"/thumbnails/{thumbnail_id}", _timeout=timeout, _raw=True, _limit=limit)
 
     def thumbnails(self, ids, workers=4, timeout=3, deadline=1.0, reduce=None, limit=None):
-        """{id: JPEG bytes, or reduce(bytes) computed in the worker (review L4: thumbs.summary, so no body is kept)}
-        fetched in parallel, like durations(): back within about `deadline` seconds. review L2: an id the server
+        """{id: JPEG bytes, or reduce(bytes) computed in the worker (thumbs.summary, so no body is kept)}
+        fetched in parallel, like durations(): back within about `deadline` seconds. An id the server
         answers with HTTP 404 or 5xx maps to None (thumbs.py caches that for a while); other failures (timeouts, no
         connection) are left out."""
         def one(tid, t):
@@ -216,7 +227,7 @@ class EPGStation:
 
         return _parallel(one, ids, workers, timeout, deadline)
 
-    # --- live TV (012) -------------------------------------------------------------------------------------------
+    # --- live TV -------------------------------------------------------------------------------------------
 
     def schedules(self, start_at, end_at, types, half_width=False, timeout=None):
         """Schedules: per channel (server order), programs overlapping [start_at, end_at] sorted by startAt.
@@ -230,7 +241,7 @@ class EPGStation:
         return self.get(f"/schedules/{channel_id}", _timeout=timeout, startAt=int(start_at), days=days,
                         isHalfWidth=half_width)
 
-    def schedule_detail(self, program_id, half_width=False, timeout=None):  # program guide (013)
+    def schedule_detail(self, program_id, half_width=False, timeout=None):
         """One guide program (ScheduleProgramItem); ApiError with status 404 when it is no longer in the guide."""
         return self.get(f"/schedules/detail/{program_id}", _timeout=timeout, isHalfWidth=half_width)
 
@@ -264,7 +275,7 @@ class EPGStation:
         except (urllib.error.URLError, OSError, http.client.HTTPException):
             return None, None
 
-    # --- reservations (007) ---------------------------------------------------------------------------------------
+    # --- reservations ---------------------------------------------------------------------------------------
 
     def reserves(self, type="all", half_width=False, offset=0, limit=1000, timeout=None):  # noqa: A002 - API name
         """Reserves {reserves, total} ordered by startAt. Always pass limit: the server's default is 24."""
@@ -279,15 +290,15 @@ class EPGStation:
         [start_at, end_at] (inclusive)."""
         return self.get("/reserves/lists", _timeout=timeout, startAt=int(start_at), endAt=int(end_at))
 
-    # --- writes (006, 007, 014, 018): only plugin.do_reserve_action (the reservation DELETEs), plugin.do_record (the
-    # POST) and plugin.do_recorded_action (protect / unprotect / delete a recording, delete one file) call these, each
-    # after an explicit yes; plugin.do_stream (011) starts, keeps and stops its own transcoded stream (section below) -
+    # --- writes: only views/reservations (the reservation DELETEs and the POST) and views/recorded_actions (protect /
+    # unprotect / delete a recording, delete one file) call these, each after an explicit yes; views/stream starts,
+    # keeps and stops its own transcoded stream (section below) - tests/write_audit.py pins the callers -
     # The reservation DELETEs answer 200 with an empty body; errors (also an unknown id) come back as HTTP 500 with
     # {"errors": "ReservationIsNotFound"} etc. in ApiError.detail.
 
     def delete(self, path, timeout=None):
         """DELETE an API path (the parsed answer or None). Only the reservation DELETEs below, delete_recorded,
-        delete_video_file and stop_stream (011) call it."""
+        delete_video_file and stop_stream call it."""
         return self._request("DELETE", path, None, timeout)
 
     def cancel_reserve(self, reserve_id):
@@ -302,7 +313,7 @@ class EPGStation:
         """DELETE /reserves/{id}/overlap: a rule reservation already recorded before records anyway."""
         return self.delete(f"/reserves/{int(reserve_id)}/overlap")
 
-    def post(self, path, body, timeout=None):  # record from the guide (014)
+    def post(self, path, body, timeout=None):
         """POST a JSON body to an API path; the parsed answer. Only create_reserve calls it."""
         return self._request("POST", path, None, timeout, body)
 
@@ -324,9 +335,9 @@ class EPGStation:
             # toast is the short connection text, never "HTTP 201")
             raise ApiError(f"/reserves: unexpected answer {str(data)[:200]}", None, "unexpected answer") from e
 
-    def put(self, path, timeout=None):  # protect / delete (006)
+    def put(self, path, timeout=None):
         """PUT an API path without a body; the parsed answer ({"code": 200}). Only the two protect methods and
-        keep_stream (011) call it."""
+        keep_stream call it."""
         return self._request("PUT", path, None, timeout)
 
     def protect_recorded(self, recorded_id):
@@ -347,7 +358,7 @@ class EPGStation:
         keeps deleting)."""
         return self.delete(f"/recorded/{int(recorded_id)}")
 
-    def delete_video_file(self, video_file_id):  # delete a file (018)
+    def delete_video_file(self, video_file_id):
         """DELETE /videos/{videoFileId}: that one file and its row; the recording, its thumbnails and drop log stay.
         Encodes are NOT cancelled. On a recording in progress EPGStation stops and deletes the whole recording, and
         deleting its last file deletes the whole recording (the addon never sends either). 200 {"code": 200}. HTTP 500
@@ -355,8 +366,8 @@ class EPGStation:
         limit: the server keeps going)."""
         return self.delete(f"/videos/{int(video_file_id)}")
 
-    # --- transcoded playback (011): plugin.do_stream only. The start is a GET that starts ffmpeg on the server; the
-    # keep (PUT) and the stop (DELETE) are the stream's own writes (decision D5), never a recording or a reservation.
+    # --- transcoded playback: views/stream only. The start is a GET that starts ffmpeg on the server; the
+    # keep (PUT) and the stop (DELETE) are the stream's own writes, never a recording or a reservation.
 
     def start_recorded_hls(self, video_file_id, ss, mode, timeout=None):
         """GET /streams/recorded/{videoFileId}/hls?ss=<sec>&mode=<index>: starts a transcode; the streamId (int).
@@ -387,7 +398,7 @@ class EPGStation:
 
     # --- end of writes ---------------------------------------------------------------------------------------------
 
-    def stream_playlist_status(self, stream_id, timeout=3):  # transcoded playback (011): stale cleanup
+    def stream_playlist_status(self, stream_id, timeout=3):  # stale cleanup
         """HEAD /streamfiles/stream{id}.m3u8 (a static file, no side effect): the HTTP status (200 while the stream has
         its playlist, 404 once its files are gone), None when the server cannot be reached."""
         req = urllib.request.Request(f"{self.base_url}/streamfiles/stream{int(stream_id)}.m3u8", method="HEAD")
@@ -403,11 +414,14 @@ class EPGStation:
         except (urllib.error.URLError, OSError, http.client.HTTPException):
             return None
 
-    def kodi_headers(self):
-        """Header suffix for Kodi URLs ('|Authorization=...'), or ''."""
-        if not self._auth:
+    def kodi_headers(self, **options):
+        """Kodi's protocol-option suffix for a URL ('|key=value&...', or ''): the given options, then the
+        Authorization header when the server needs one."""
+        if self._auth:
+            options["Authorization"] = self._auth
+        if not options:
             return ""
-        return "|Authorization=" + urllib.parse.quote(self._auth)
+        return "|" + "&".join(f"{k}={urllib.parse.quote(v)}" for k, v in options.items())
 
 
 def _parallel(fetch, ids, workers, timeout, deadline):
@@ -427,14 +441,14 @@ def _parallel(fetch, ids, workers, timeout, deadline):
         if tripped.is_set() or left <= 0:
             raise ApiError("skipped: server timed out or deadline passed")
         try:
-            return fetch(key, max(0.05, min(timeout, left)))  # review L5: never past the deadline
+            return fetch(key, max(0.05, min(timeout, left)))  # never past the deadline
         except ApiError as e:
             if _is_timeout(e):
                 tripped.set()
             raise
 
     pool = concurrent.futures.ThreadPoolExecutor(max_workers=min(workers, len(ids)))
-    _track(pool)  # review L5: joined by join_workers() after the run
+    _track(pool)  # joined by join_workers() after the run
     try:
         futures = {pool.submit(one, i): i for i in ids}
         done, not_done = concurrent.futures.wait(futures, timeout=max(0.0, deadline))

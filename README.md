@@ -2,9 +2,9 @@
 
 English | [日本語](README.ja.md)
 
-![KODIstation demo: browsing recordings with artwork, the details view, a channel's program guide and recording a program from the guide in Kodi](media/demo.gif)
+![KODIstation demo: a series in TV shows, the full EPG details, playback, live TV and recording a program from a channel's schedule in Kodi](media/demo.gif)
 
-Full video (1:57): [kodistation-demo.mp4](https://cdn.jsdelivr.net/gh/MyFeetHurt/kodistation@main/media/kodistation-demo.mp4) · Screenshots: [recordings](media/screenshot-recordings.png) · [details](media/screenshot-details.png) · [guide](media/screenshot-guide.png) · [live TV](media/screenshot-live.png)
+Full video (1:46: first start, TV shows, details, genres, search, live TV, record from the guide, transcoded playback): [kodistation-demo.mp4](https://cdn.jsdelivr.net/gh/MyFeetHurt/kodistation@main/media/kodistation-demo.mp4) · Screenshots: [recordings](media/screenshot-recordings.png) · [details](media/screenshot-details.png) · [guide](media/screenshot-guide.png) · [live TV](media/screenshot-live.png)
 
 KODIstation is a Kodi video add-on (`plugin.video.epgstation`) for [EPGStation](https://github.com/l3tnun/EPGStation)
 2.x. It browses and plays your EPGStation recordings with all the EPG information the server has, watches live TV,

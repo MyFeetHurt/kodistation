@@ -7,7 +7,7 @@ Item dict shape:
     {"label": str, "path": str, "folder": bool, "playable": bool,
      "info": {...InfoTagVideo fields...}, "art": {...}, "props": {...},
      "stream": {"codec", "width", "height", "aspect"?} | None, "context": [(label, action)],
-     "audio": {"codec", "channels"} | None (recordings only, 002)}
+     "audio": {"codec", "channels"} | None (recordings only)}
 """
 import re
 import time
@@ -27,11 +27,11 @@ CODECS = {"mpeg2": "mpeg2video", "h.264": "h264", "h.265": "hevc"}
 
 # English fallbacks; plugin.py passes the localized strings.
 DEFAULT_STRINGS = {"choose": "Choose video file", "partial": "Partial", "length": "Length", "unknown": "Unknown",
-                   "stop": "Stop recording",  # reservations (007): stop
-                   # protect / delete (006): recorded.DEFAULT_STRINGS keys of the entries, marker and plot line
+                   "stop": "Stop recording",  # stop
+                   # recorded.DEFAULT_STRINGS keys of the entries, marker and plot line
                    "protect": "Protect", "unprotect": "Unprotect", "delete": "Delete", "marker": "Protected",
                    "protect_line": "Protected (not auto-deleted)",
-                   "delete_file": "Delete a file"}  # delete a file (018): its entry
+                   "delete_file": "Delete a file"}  # its entry
 
 # Lists longer than this show EPG lengths: no real-duration probing of every file (Movies is unpaged).
 REAL_DURATION_MAX = 300
@@ -149,7 +149,7 @@ def build_plot(texts, tech=()):
 
 
 def raw_plot_texts(rec):
-    """Plot without metadata: description, then the raw extended EPG text (as before 015)."""
+    """Plot without metadata: description, then the raw extended EPG text (when the parser is not used)."""
     return [to_half(rec.get("description") or ""), to_half((rec.get("extended") or "").replace("\r\n", "\n").strip())]
 
 
@@ -207,7 +207,7 @@ def recorded_item(rec, api, channels, lang="ja", strings=None, real_duration=Non
     real_duration: seconds of the file that will play, if known. Ignored while recording.
     on_error(rec, exception): called when the metadata parser fails (the item then has no metadata).
     meta: epgmeta.metadata(rec) when the caller has it already (library cache), else it is parsed here.
-    artwork (003): logos: channel ids with hasLogoData (None: unknown, no logo URL); blank: thumbnail ids known blank
+    logos: channel ids with hasLogoData (None: unknown, no logo URL); blank: thumbnail ids known blank
     (thumbs.check); fallback_icon: the addon icon. See recording_art.
     """
     # Kodi returns "" for string IDs it has not loaded yet (addon updated without restart).
@@ -223,7 +223,7 @@ def recorded_item(rec, api, channels, lang="ja", strings=None, real_duration=Non
         label = "[COLOR red]●[/COLOR] " + label
         real_duration = None
 
-    from . import details  # full detail view (002): here, details imports recorded, which imports items
+    from . import details  # here, details imports recorded, which imports items
     block = details.block_strings(strings)  # the 【録画情報】 block's labels: Kodi's language (strings.po)
     duration, extra_tech, partial = scheduled, [], False
     if real_duration is not None:
@@ -232,7 +232,7 @@ def recorded_item(rec, api, channels, lang="ja", strings=None, real_duration=Non
             partial = True
             label += f" [COLOR yellow][{strings['partial']}][/COLOR]"
             extra_tech.append(f"{block['length']}: {fmt_duration(real_duration)} / {fmt_duration(scheduled)}")
-    from . import recorded  # protect / delete (006): here, recorded imports items
+    from . import recorded  # here, recorded imports items
     if recorded.is_protected(rec):  # gold [保護] suffix after [Partial]; the plot says it too (poster views)
         label += recorded.marker(rec, strings)
         extra_tech.append(recorded.protect_line(block))
@@ -242,7 +242,7 @@ def recorded_item(rec, api, channels, lang="ja", strings=None, real_duration=Non
     info = metadata_info(meta, name, lang)
     genres = item_genres(rec, lang)
     info.update({
-        # full detail view (002): the 【録画情報】 block (broadcast, genres, video, audio, files, drops, ...) at the end
+        # the 【録画情報】 block (broadcast, genres, video, audio, files, drops, ...) at the end
         "plot": build_plot(texts, details.detail_lines(rec, channel, genres, lang, strings, extra_tech)),
         "plotoutline": to_half(rec.get("description") or ""),
         "genres": genres,
@@ -275,19 +275,19 @@ def recorded_item(rec, api, channels, lang="ja", strings=None, real_duration=Non
     if rec.get("videoResolution") in RESOLUTIONS:
         w, h = RESOLUTIONS[rec["videoResolution"]]
         stream = {"codec": CODECS.get(rec.get("videoType"), rec.get("videoType") or ""), "width": w, "height": h,
-                  "aspect": details.aspect(rec)}  # full detail view (002)
+                  "aspect": details.aspect(rec)}
 
     playable = bool(rec.get("videoFiles"))
     context = [(strings["choose"], plugin_url(action="choose", id=rec["id"]))] \
         if len(rec.get("videoFiles") or []) > 1 else []
-    if playable and strings.get("stream"):  # transcoded playback (011): 変換して再生 (the click checks /config)
+    if playable and strings.get("stream"):  # 変換して再生 (the click checks /config)
         context.append((strings["stream"], plugin_url(action="stream", id=rec["id"])))
-    if rec.get("isRecording"):  # reservations (007): 録画を停止 (stop, keep what was recorded)
+    if rec.get("isRecording"):  # 録画を停止 (stop, keep what was recorded)
         from . import reserves  # here: reserves imports items
         context.append(reserves.context_stop(rec["id"], strings))
-    # protect / delete (006): 保護 / 保護を解除, 削除; delete a file (018): ファイルを削除
+    # 保護 / 保護を解除, 削除; ファイルを削除
     context += recorded.context_entries(rec, strings)
-    if details.has_drop_problem(rec):  # full detail view (002): ドロップログ, only when a count is > 0 (decision 2a)
+    if details.has_drop_problem(rec):  # ドロップログ, only when a count is > 0
         context.append((block["droplog"], plugin_url(action="droplog", id=rec["id"], log=rec["dropLogFile"]["id"])))
     return {
         "label": label,
@@ -298,12 +298,12 @@ def recorded_item(rec, api, channels, lang="ja", strings=None, real_duration=Non
         "art": art,
         "props": props,
         "stream": stream,
-        "audio": details.audio_stream(rec),  # full detail view (002): {"codec", "channels"} | None
+        "audio": details.audio_stream(rec),  # {"codec", "channels"} | None
         "context": context,
     }
 
 
-# --- artwork (003) -------------------------------------------------------------------------------------------------
+# --- artwork -------------------------------------------------------------------------------------------------
 
 # Kodi's built-in icons (Estuary's Textures.xbt has every one) for the menus and folders, by what they open.
 MENU_ICONS = {
@@ -348,7 +348,7 @@ def icon_art(icon):
 
 
 def folder(label, icon=None, **params):
-    """A folder item; icon (artwork (003)): a Kodi Default*.png or a logo URL, set as icon and thumb."""
+    """A folder item; icon: a Kodi Default*.png or a logo URL, set as icon and thumb."""
     return {"label": label, "path": plugin_url(**params), "folder": True, "playable": False,
             "info": {"title": label}, "art": icon_art(icon), "props": {}, "stream": None, "context": []}
 
@@ -360,9 +360,9 @@ def root_menu(strings):
         folder(strings["recent"], MENU_ICONS["recent"], action="list"),
         folder(strings["recording"], MENU_ICONS["recording"], action="recording"),
     ]
-    if strings.get("reserves"):  # reservations (007)
+    if strings.get("reserves"):
         out.append(folder(strings["reserves"], MENU_ICONS["reserves"], action="reserves"))
-    if strings.get("live"):  # live TV (012)
+    if strings.get("live"):
         out.append(folder(strings["live"], MENU_ICONS["live"], action="live"))
     out += [
         search_entry(strings["search"]),
@@ -372,7 +372,7 @@ def root_menu(strings):
 
 
 def search_entry(label):
-    """検索: a click action, not a folder (protect / delete (006)): plugin.do_search_ask asks for the keyword and opens
+    """検索: a click action, not a folder: views/recordings.search_ask asks for the keyword and opens
     the results at ?action=search&keyword=..., so Container.Refresh (after a delete) and Back re-list them without the
     keyboard. A folder could not do that: Kodi ignores Container.Update while it still handles that folder. Its own
     action (not "search"): Kodi passes a directory and a resolve request the same argv, so ?action=search with a
@@ -419,7 +419,7 @@ def channel_folders(options, channels, logos=None, api=None):
     return out
 
 
-# --- subgenres (009): genre and subgenre folders from library entries ("genres": genres.genre_pairs) -------------
+# --- genre and subgenre folders from library entries ("genres": genres.genre_pairs) -------------
 # /recorded/options counts genre1 only, /recorded?genre=G matches genre1-3: counts come from the library instead.
 
 def genre_counts(entries):
@@ -476,7 +476,7 @@ def subgenre_entries(entries, genre, sub_genre):
 
 def rule_name(rule):
     """A rule's display name: reserveOption.name, else the search keyword, else the save directory, else "Rule N"
-    (rule folders; reservations (007))."""
+    (rule folders)."""
     return ((rule.get("reserveOption") or {}).get("name") or (rule.get("searchOption") or {}).get("keyword")
             or (rule.get("saveOption") or {}).get("directory") or f"Rule {rule['id']}")
 
@@ -521,7 +521,7 @@ def video_choices(video_files, durations):
     return out
 
 
-# --- backlog 005: movies, TV shows, rule counts ------------------------------------------------------------------
+# --- movies, TV shows, rule counts ------------------------------------------------------------------
 
 def show_key(meta, rec):
     """TV-show grouping key: the parsed show, loosely compared (epgmeta.key: NFKC, lower case, no spaces or
@@ -544,7 +544,7 @@ def group_shows(entries, blank=frozenset()):
     """TV shows from library entries (movies left out), the show with the newest episode first.
 
     Each: {"key", "title" (most frequent spelling, ties: newest), "ids" (newest first), "count",
-    "newest", "oldest", "thumb" (newest entry with a thumbnail not in blank (artwork (003)), or None),
+    "newest", "oldest", "thumb" (newest entry with a thumbnail not in blank, or None),
     "channels" (ids, newest first)}.
     """
     shows = {}
@@ -573,7 +573,7 @@ def group_shows(entries, blank=frozenset()):
 
 
 def show_thumb_candidates(entries, blank=frozenset()):
-    """artwork (003): the thumbnail id each show would use with these blank ids (what to check before group_shows)."""
+    """the thumbnail id each show would use with these blank ids (what to check before group_shows)."""
     return [s["thumb"]["thumb"] for s in group_shows(entries, blank) if s["thumb"] is not None]
 
 
@@ -582,7 +582,7 @@ def tvshow_folder(show, records, api, channels, lang="ja", unknown="", logos=Non
 
     A show without a name (blank EPG title) is labelled by the channel of its newest episode, else `unknown`
     (localized "Unknown"; Kodi returns "" for strings it has not loaded yet, then the English word).
-    artwork (003): recording_art of the show's thumbnail (group_shows) and the channel of that episode (no
+    recording_art of the show's thumbnail (group_shows) and the channel of that episode (no
     thumbnail: of the newest episode); logos: hasLogoData channel ids; fallback_icon: the addon icon."""
     title = show_title(show, channels, unknown)
     newest = records.get(show["newest"]["id"]) or {}
@@ -703,7 +703,7 @@ def list_category(params, channels, lang, strings):
             return params["genre"]
         if genre not in GENRE_JA:
             return params["genre"]
-        if params.get("subGenre"):  # subgenres (009): "映画 / 洋画"
+        if params.get("subGenre"):  # "映画 / 洋画"
             try:
                 sub = int(params["subGenre"])
             except ValueError:

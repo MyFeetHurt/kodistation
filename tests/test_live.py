@@ -487,3 +487,31 @@ def test_live_mode_setting_explains_the_options():
         texts = {i: (translated or english) for i, english, translated in entries}
         assert texts.get(help_id), lang
         assert "720p" in texts["30233"] and "480p" in texts["30234"], lang
+
+
+def _ch(cid, network, service, ctype="GR", stype=1):
+    return {"id": cid, "networkId": network, "serviceId": service, "channelType": ctype, "type": stype}
+
+
+def test_gr_subchannel_ids_rule():
+    """Hide terrestrial sub-channels (025): per GR networkId the lowest watchable serviceId stays."""
+    chans = [_ch(1, 10, 2065), _ch(2, 10, 2064), _ch(3, 10, 2066), _ch(4, 10, 2448, stype=192),  # MBS, MBS2/3, 携帯
+             _ch(5, 11, 40960), _ch(6, 11, 40961),  # NHK総合1/2
+             _ch(7, 12, 41008),  # one service only
+             _ch(8, 4, 191, "BS"), _ch(9, 4, 192, "BS"),  # BS: different broadcasters on one network
+             {"id": 10, "serviceId": 1, "channelType": "GR", "type": 1}]  # no networkId: left alone
+    assert live.gr_subchannel_ids(chans) == {1, 3, 6}
+
+
+def test_drop_subchannels_fixtures(fx):
+    kept = live.drop_subchannels(fx["schedules"])
+    gr = [s["channel"] for s in kept if s["channel"]["channelType"] == "GR" and live.watchable(s["channel"])]
+    networks = [c["networkId"] for c in gr]
+    assert len(networks) == len(set(networks))
+    for c in gr:  # the main service of its broadcaster
+        assert c["serviceId"] == min(s["channel"]["serviceId"] for s in fx["schedules"]
+                                     if s["channel"].get("networkId") == c["networkId"]
+                                     and s["channel"]["channelType"] == "GR" and live.watchable(s["channel"]))
+    other = [s for s in fx["schedules"] if s["channel"]["channelType"] != "GR"]
+    assert [s for s in kept if s["channel"]["channelType"] != "GR"] == other
+    assert live.gr_subchannel_ids(fx["channels"])  # the captured channel list has GR sub-channels

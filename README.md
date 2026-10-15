@@ -55,7 +55,8 @@ Settings (*Add-ons → My add-ons → Video add-ons → KODIstation → Configur
   password (when EPGStation sits behind a reverse proxy that asks for one).
 - **Display**: page size, genre language (Japanese or English), real file length on lists, which video file to
   play by default.
-- **Live TV**: live stream mode (unconverted, or one of the server's transcoded live modes).
+- **Live TV**: live stream mode (unconverted, or one of the server's transcoded live modes); show terrestrial
+  sub-channels (off: only each broadcaster's main channel).
 - **Recording**: encode after recording, for recordings started from the guide.
 
 ## Not affiliated

@@ -489,6 +489,14 @@ msgctxt "#30235"
 msgid "Unconverted sends the broadcast as it is (MPEG-2, about 16 Mbit/s). The transcoded options use the live m2ts modes in the server's EPGStation config.yml (stream.live.ts.m2ts), first or last in that list; the server re-encodes, which starts slower and loads the server."
 msgstr ""
 
+msgctxt "#30236"
+msgid "Show terrestrial sub-channels"
+msgstr ""
+
+msgctxt "#30237"
+msgid "Terrestrial broadcasters also send second and third channels (for example NHK総合2 or MBS2) that air programmes only now and then. Off: only each broadcaster's main channel is listed in Live TV and the program guide."
+msgstr ""
+
 msgctxt "#30240"
 msgid "Recording"
 msgstr ""

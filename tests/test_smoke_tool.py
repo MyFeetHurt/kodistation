@@ -109,7 +109,7 @@ def _live_fake(monkeypatch, channel_types, lists=None, marked=()):
                  "label": ("[COLOR red]○[/COLOR] " if cid in marked else "") + f"{name}  {prog}", "genre": ["g"],
                  "art": {"thumb": f"image://http%3a%2f%2fh%2fapi%2fchannels%2f{cid}%2flogo/"}}
                 for cid, name, prog in kodi_smoke.expected_live(
-                    [s for s in schedules if s["channel"]["channelType"] == t], now)]
+                    live.drop_subchannels([s for s in schedules if s["channel"]["channelType"] == t]), now)]
 
     def listdir(host, url):
         types = live.live_types(channels)

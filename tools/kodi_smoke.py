@@ -500,8 +500,9 @@ def live_item_failures(files, want, logos, markers=None):
         mark = (markers or {}).get(cid, "")
         if markers is None and f["label"].startswith(("[COLOR red]", "[COLOR grey]")):
             mark = f["label"].split("[/COLOR] ", 1)[0] + "[/COLOR] "
-        if not f["label"].startswith(mark + name) or program not in f["label"]:
-            failures.append(f"live label {f['label']!r} lacks {mark + name!r} / {program!r}")
+        marks = (mark,) if isinstance(mark, str) else tuple(mark)  # one marker per Kodi language
+        if not any(f["label"].startswith(m + name) for m in marks) or program not in f["label"]:
+            failures.append(f"live label {f['label']!r} lacks {marks[0] + name!r} / {program!r}")
         art = urllib.parse.unquote(json.dumps(f.get("art") or {}))
         if cid in logos and f"/api/channels/{cid}/logo" not in art:
             failures.append(f"live item {f['label']!r} has no logo art: {f.get('art')}")
@@ -543,8 +544,9 @@ def check_live(host, epgs):
     now = time.time() * 1000
     listed = [f for f in listdir(host, url) if query_param(f, "action") == "live_play"]
     flags = {t: "true" if t == types[0] else "false" for t in ("GR", "BS", "CS", "SKY")}
-    schedules = epgs_get(epgs, "/schedules", startAt=int(now), endAt=int(now + live.WINDOW_MS),
-                         isHalfWidth="false", **flags)
+    schedules = live.drop_subchannels(  # the plugin default hides GR sub-channels (025)
+        epgs_get(epgs, "/schedules", startAt=int(now), endAt=int(now + live.WINDOW_MS), isHalfWidth="false",
+                 **flags))
     want = expected_live(schedules, time.time() * 1000)
     logos = {c["id"] for c in channels if c.get("hasLogoData")}
     markers = live_markers(epgs, schedules, time.time() * 1000)
@@ -554,15 +556,17 @@ def check_live(host, epgs):
 
 
 def live_markers(epgs, schedules, now_ms):
-    """{channelId: reservation marker of its current program} from GET /reserves/lists [now, now] (014)."""
+    """{channelId: the reservation markers of its current program, one per Kodi language ([重複] / [Duplicates])}
+    from GET /reserves/lists [now, now] (014)."""
     current = {}
     for sched in schedules:
         cur, _ = live.now_next(sched["programs"], now_ms)
         if cur is not None and live.watchable(sched["channel"]):
             current[sched["channel"]["id"]] = dict(cur, channelId=sched["channel"]["id"])
     index, records = epgs_marks(epgs, list(current.values()), now_ms, (now_ms, now_ms))
-    s = mark_strings(GUIDE_STRINGS[0])
-    return {cid: reserves.guide_mark(p, "", index, records, now_ms, s)[0] for cid, p in current.items()}
+    marks = [mark_strings(s) for s in GUIDE_STRINGS]
+    return {cid: tuple(reserves.guide_mark(p, "", index, records, now_ms, s)[0] for s in marks)
+            for cid, p in current.items()}
 
 
 def check_live_gui(host, epgs):
@@ -753,8 +757,9 @@ def check_guide(host, epgs):
     genres = listdir(host, PLUGIN + "?action=guide_genres")
     news = listdir(host, PLUGIN + "?action=guide_genre&genre=0")
     now = time.time() * 1000
-    schedules = epgs_get(epgs, "/schedules", startAt=int(now), endAt=int(now + guide.WINDOW_MS),
-                         isHalfWidth="false", **_type_flags(types))
+    schedules = live.drop_subchannels(  # the plugin default hides GR sub-channels (025)
+        epgs_get(epgs, "/schedules", startAt=int(now), endAt=int(now + guide.WINDOW_MS), isHalfWidth="false",
+                 **_type_flags(types)))
     print(f"guide 現在: {len(now_files)} items; ジャンル別: {_labels(genres)[:4]}; ニュース・報道: {len(news)} items")
     now_rows = [p for _, p in guide.on_air_at(schedules, now)]
     news_rows = [p for _, p in guide.genre_programs(schedules, 0, now)]

@@ -74,6 +74,12 @@
                     </constraints>
                     <control type="list" format="string"/>
                 </setting>
+                <!-- hide terrestrial sub-channels (025) -->
+                <setting id="show_subchannels" type="boolean" label="30236" help="30237">
+                    <level>0</level>
+                    <default>false</default>
+                    <control type="toggle"/>
+                </setting>
             </group>
         </category>
         <!-- transcoded playback (011) -->

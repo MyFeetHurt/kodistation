@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.epgstation" name="KODIstation" version="0.3.1" provider-name="MyFeetHurt">
+<addon id="plugin.video.epgstation" name="KODIstation" version="0.3.2" provider-name="MyFeetHurt">
     <requires>
         <import addon="xbmc.python" version="3.0.1"/>
     </requires>
@@ -18,9 +18,7 @@
         <assets>
             <icon>resources/icon.png</icon>
         </assets>
-        <news>v0.3.1 (2026-10-14)
-- 変換して再生 / Stream transcoded: play a recording transcoded by EPGStation (e.g. 720p / 480p) for weak clients; start from the beginning, a saved position or a chosen time; seeking within the transcoded part with inputstream.adaptive
-- New 変換再生 settings: transcode mode (server's first or last mode, or ask each time)
-- The stream is always stopped on the server when playback ends; a listing left by a killed Kodi is cleaned up on the next transcoded start</news>
+        <news>v0.3.2 (2026-10-16)
+- ライブTV and the program guide list only each terrestrial broadcaster's main channel; a new ライブTV setting 地上波のサブチャンネルを表示 / Show terrestrial sub-channels brings back NHK総合2, MBS2 and the like</news>
     </extension>
 </addon>

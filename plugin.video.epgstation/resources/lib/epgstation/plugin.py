@@ -115,6 +115,14 @@ def _live_mode():  # live TV (012): 0 unconverted, 1 first transcoded mode, 2 la
         return 0
 
 
+def _show_subchannels():  # hide terrestrial sub-channels (025)
+    return _setting("show_subchannels") == "true"
+
+
+def _channel_filter(schedules):  # hide terrestrial sub-channels (025)
+    return schedules if _show_subchannels() else live.drop_subchannels(schedules)
+
+
 def _live_error(program, exc):  # live TV (012)
     xbmc.log(f"[epgstation] metadata parser failed on program {program.get('id')}: {exc!r}", xbmc.LOGWARNING)
 
@@ -951,7 +959,7 @@ class Plugin:
                 return
             channel_type = types[0]
         now = _now_ms()
-        schedules = self.api.schedules(now, now + live.WINDOW_MS, [channel_type])
+        schedules = _channel_filter(self.api.schedules(now, now + live.WINDOW_MS, [channel_type]))
         out = live.channel_items(schedules, self.api, now, _lang(), strings, _live_error)
         out = guide.with_schedule_context(out, _guide_strings())  # program guide (013): 番組表 context entry
         # record from the guide (014): markers and the reservation entry for each channel's current program
@@ -1051,7 +1059,7 @@ class Plugin:
     def _guide_schedules(self):
         """The next 24 h of every watchable broadcast type (disk cache, guide.TTL)."""
         types = live.live_types(self.api.channels())
-        return _guide_cache().schedules(self.api, types)
+        return _channel_filter(_guide_cache().schedules(self.api, types))
 
     def do_guide_now(self):
         """No t: the hour folders (no request). t=now or ms: one program per channel airing at t."""

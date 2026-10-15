@@ -60,6 +60,25 @@ def watchable(channel):
     return channel.get("type") is None or channel["type"] in LIVE_SERVICE_TYPES
 
 
+def gr_subchannel_ids(channels):
+    """Ids of terrestrial sub-channels (025): every service of a GR broadcaster shares its networkId and the main one
+    has the lowest serviceId; the others (NHK総合2, MBS2, ...) air programmes only now and then. Only watchable
+    services count. Works on /channels and /schedules channel items. BS/CS are left alone (one network, many
+    broadcasters)."""
+    main = {}
+    gr = [c for c in channels if c.get("channelType") == "GR" and watchable(c) and c.get("networkId") is not None]
+    for c in gr:
+        if c["networkId"] not in main or c["serviceId"] < main[c["networkId"]]["serviceId"]:
+            main[c["networkId"]] = c
+    return {c["id"] for c in gr if main[c["networkId"]]["id"] != c["id"]}
+
+
+def drop_subchannels(schedules):
+    """A /schedules response without the GR sub-channels (025)."""
+    sub = gr_subchannel_ids([sch["channel"] for sch in schedules])
+    return [sch for sch in schedules if sch["channel"]["id"] not in sub]
+
+
 def live_types(channels):
     """Broadcast types that have watchable channels, in TYPE_ORDER (from /channels)."""
     have = {c.get("channelType") for c in channels if watchable(c)}

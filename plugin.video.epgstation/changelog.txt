@@ -1,3 +1,6 @@
+v0.3.2 (2026-10-16)
+- ライブTV and the program guide list only each terrestrial broadcaster's main channel; a new ライブTV setting 地上波のサブチャンネルを表示 / Show terrestrial sub-channels brings back NHK総合2, MBS2 and the like
+
 v0.3.1 (2026-10-14)
 - 変換して再生 / Stream transcoded: play a recording transcoded by EPGStation (e.g. 720p / 480p) for weak clients; start from the beginning, a saved position or a chosen time; seeking within the transcoded part with inputstream.adaptive
 - New 変換再生 settings: transcode mode (server's first or last mode, or ask each time)

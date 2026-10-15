@@ -823,7 +823,9 @@ def test_live_gr_channels(kodi, fake_server):
     assert int(q["endAt"][0]) - int(q["startAt"][0]) == live.WINDOW_MS
     assert _live_requests(fake_server) == []
     sched = _get(fake_server, "/api/schedules?GR=true&BS=false&CS=false&SKY=false&startAt=0&endAt=99999999999999")
-    want = [items.to_half(s["channel"]["name"]) for s in sched if live.watchable(s["channel"])]
+    # hide terrestrial sub-channels (025): on by default
+    want = [items.to_half(s["channel"]["name"]) for s in live.drop_subchannels(sched) if live.watchable(s["channel"])]
+    assert len(want) < sum(1 for s in sched if live.watchable(s["channel"]))
     lis = [li for _, li, folder in kodi.items]
     assert [li.props["epgstation.channel"] for li in lis] == want
     assert all(li.props["IsPlayable"] == "true" for li in lis)
@@ -1179,10 +1181,11 @@ def guide_clock(handler, monkeypatch):
 
 
 def _guide_schedules(fake_server, now):
-    from resources.lib.epgstation import guide
+    """What the guide lists with the default settings: the next 24 h without GR sub-channels (025)."""
+    from resources.lib.epgstation import guide, live
 
-    return _get(fake_server, f"/api/schedules?GR=true&BS=true&CS=true&SKY=false&startAt={now}"
-                             f"&endAt={now + guide.WINDOW_MS}")
+    return live.drop_subchannels(_get(fake_server, f"/api/schedules?GR=true&BS=true&CS=true&SKY=false&startAt={now}"
+                                                   f"&endAt={now + guide.WINDOW_MS}"))
 
 
 def test_live_lists_guide_folders_first(kodi, fake_server):
@@ -4109,3 +4112,32 @@ def test_fake_server_out_of_range(stream_rec, fake_server, handler):
         pytest.skip("no captured duration")
     status, _, body = _http(fake_server, "GET", f"/api/streams/recorded/{vid}/hls?ss=999999&mode=0")
     assert status == 500 and json.loads(body)["errors"] == "OutOfRange"
+
+
+def test_live_gr_subchannels_setting(kodi, fake_server):
+    """Hide terrestrial sub-channels (025): the setting brings back every watchable service."""
+    import xbmcaddon
+    from resources.lib.epgstation import items, live
+
+    xbmcaddon.settings["show_subchannels"] = "true"
+    run_plugin("action=live&type=GR")
+    sched = _get(fake_server, "/api/schedules?GR=true&BS=false&CS=false&SKY=false&startAt=0&endAt=99999999999999")
+    want = [items.to_half(s["channel"]["name"]) for s in sched if live.watchable(s["channel"])]
+    assert [li.props["epgstation.channel"] for _, li, _ in kodi.items] == want
+
+
+def test_guide_now_hides_gr_subchannels(kodi, fake_server):
+    """Hide terrestrial sub-channels (025): 放送中 lists no GR sub-channel unless the setting is on."""
+    import xbmcaddon
+    from resources.lib.epgstation import live
+
+    sched = _get(fake_server, "/api/schedules?GR=true&BS=false&CS=false&SKY=false&startAt=0&endAt=99999999999999")
+    sub = live.gr_subchannel_ids([s["channel"] for s in sched])
+    assert sub
+    run_plugin("action=guide_now&t=now")
+    hidden = [url for url, _, _ in kodi.items if any(f"channelId={i}" in url for i in sub)]
+    assert hidden == []
+    xbmcaddon.settings["show_subchannels"] = "true"
+    kodi.items.clear()
+    run_plugin("action=guide_now&t=now")
+    assert any(any(f"channelId={i}" in url for i in sub) for url, _, _ in kodi.items)
